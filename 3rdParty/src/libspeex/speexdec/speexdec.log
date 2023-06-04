@@ -1,0 +1,16 @@
+﻿  wave_out.c
+  wav_io.c
+  speexdec.c
+d:\gitehub\project being worked on\8.instantmessagesys\instantmessagesys\win-client\3rdparty\src\libspeex\src\speexdec.c(339): warning C4244: “=”: 从“ogg_int64_t”转换到“int”，可能丢失数据
+d:\gitehub\project being worked on\8.instantmessagesys\instantmessagesys\win-client\3rdparty\src\libspeex\src\speexdec.c(505): warning C4013: “_endthread”未定义；假设外部返回 int
+d:\gitehub\project being worked on\8.instantmessagesys\instantmessagesys\win-client\3rdparty\src\libspeex\src\speexdec.c(530): warning C4013: “startPlayAudio”未定义；假设外部返回 int
+d:\gitehub\project being worked on\8.instantmessagesys\instantmessagesys\win-client\3rdparty\src\libspeex\src\speexdec.c(536): warning C4013: “MessagePump”未定义；假设外部返回 int
+  skeleton.c
+d:\gitehub\project being worked on\8.instantmessagesys\instantmessagesys\win-client\3rdparty\src\libspeex\src\skeleton.c(15): warning C4142: "write_ogg_page_to_file": 类型的良性重定义
+  d:\gitehub\project being worked on\8.instantmessagesys\instantmessagesys\win-client\3rdparty\src\libspeex\src\skeleton.h(56): note: 参见“write_ogg_page_to_file”的声明
+  getopt1.c
+  getopt.c
+  正在生成代码...
+getopt.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/SAFESEH”规范)
+  speexdec.vcxproj -> D:\GITEHUB\PROJECT BEING WORKED ON\8.instantMessageSys\instantMessageSys\win-client\solution\\..\bin\teamtalk\Debug\speexdec.exe
+  speexdec.vcxproj -> D:\GITEHUB\PROJECT BEING WORKED ON\8.instantMessageSys\instantMessageSys\win-client\solution\\..\bin\teamtalk\Debug\speexdec.pdb (Full PDB)
