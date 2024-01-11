@@ -18,30 +18,15 @@ NAMESPACE_BEGIN(imcore)
 
 class Operation;
 
-/**
- * The class <code>OperationManager</code> 
- *
- */
 class OperationManager
 {
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Constructor 
-     */
 	OperationManager() = default;
-    /**
-     * Destructor
-     */
 	~OperationManager();
-    //@}
 	OperationManager(OperationManager&) = delete;
 	OperationManager(OperationManager&&) = delete;
 	OperationManager& operator= (OperationManager&) = delete;
 	OperationManager& operator= (OperationManager&&) = delete;
-
 public:
 	IMCoreErrorCode startup();
     void shutdown(IN int seconds = 2000);
@@ -55,11 +40,10 @@ private:
 	std::list<Operation*>      m_vecDelayOperations;
 	std::list<Operation*>      m_vecRealtimeOperations;
 
-	std::mutex					m_cvMutex; // 互斥锁.
-	std::condition_variable		m_CV; // 条件变量
+	std::mutex					m_cvMutex;	// 互斥锁
+	std::condition_variable		m_CV;		// 条件变量
 
 	std::mutex					m_mutexOperation;
-
 	bool                        m_bContinue = true;
 	std::thread					m_operationThread;
 };

@@ -31,52 +31,43 @@ class Operation;
 	extern "C" {
 #endif
 	
-	/**@name start/stop*/
-	//@{
+	// start/stop
 	NETWORK_DLL bool IMLibCoreRunEvent();
 	NETWORK_DLL bool IMLibCoreStopEvent();
 	NETWORK_DLL bool IMLibCoreIsRunning();
-	//@}
 
-	/**@name network*/
-	//@{
+	// network
 	NETWORK_DLL int IMLibCoreConnect(string ip, int port);
 	NETWORK_DLL int IMLibCoreWrite(int key, uchar_t* data, uint32_t size);
 	NETWORK_DLL void IMLibCoreShutdown(int key);
 	NETWORK_DLL void IMLibCoreClose(int key);
 	NETWORK_DLL void IMLibCoreRegisterCallback(int handle,ITcpSocketCallback* pCB);
 	NETWORK_DLL void IMLibCoreUnRegisterCallback(int handle);
-	//@}
 
-	/**@name operation*/
-	//@{
+	// operation
 	/**
-	* 发起一个Operation到任务队列尾部(放入容器的Operation对象实例不需要自己释放)
-	*
-	* @param   IOperation * pOperation
-	* @param   int delay = 0
-	* @return  void
+	* \brief 发起一个Operation到任务队列尾部(放入容器的Operation对象实例不需要自己释放)
+	* \param IOperation * pOperation
+	* \param int delay = 0
+	* \return void
 	*/
 	NETWORK_DLL void IMLibCoreStartOperation(IN Operation* pOperation, Int32 delay = 0);
+
 	/**
-	* 将Operation 以lambda表达式方式放入到任务队列中
-	*
-	* @param   std::function<void()> operationRun
-	* @return  void
-	*/
+	 * \brief 将Operation 以lambda表达式方式放入到任务队列中
+	 * \param   std::function<void()> operationRun
+	 * \return  void
+	 */
 	NETWORK_DLL void IMLibCoreStartOperationWithLambda(std::function<void()> operationRun
         , Int32 delay = 0
         , std::string oper_name = "_common_operation_name");
-    /**
-    * 从任务队列中删除
-    *
-    * @param   std::function<void()> operationRun
-    * @return  void
-    */
+	
+	/**
+	 * \brief 从任务队列中删除
+	 * \param std::function<void()> operationRun
+	 * \return  void
+	 */
     NETWORK_DLL void IMLibCoreClearOperationByName(std::string oper_name);
-	//@}
-
-    
 
 #ifdef ANDROID
 	JNIEXPORT void JNICALL Java_com_mogujie_im_libcore_LibCore_setJNIEnv(JNIEnv *, jobject);
@@ -104,6 +95,7 @@ class Operation;
 #ifdef __cplusplus
 	}
 #endif
+
 NAMESPACE_END(imcore)
 /******************************************************************************/
 #endif// IMCORE_A19CD639_91DF_4383_9D8F_4698959A8FD1_H__
