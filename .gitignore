@@ -1,0 +1,57 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+!sqlite3.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Debug
+bin/teamtalk/Debug/*.ilk
+bin/teamtalk/Debug/*.pdb
+bin/teamtalk/Debug/*.exe
+bin/teamtalk/Debug/log/
+
+# Release
+bin/teamtalk/Release/*.ilk
+bin/teamtalk/Release/*.pdb
+bin/teamtalk/Release/*.exe
+bin/teamtalk/Release/log/
+bin/teamtalk/Release/DuiLib.dll.manifest
+
+# Folders
+bin/teamtalk/users/
+obj/
+solution/.vs/
+
+
+
+
+
+
