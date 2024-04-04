@@ -12,45 +12,17 @@ class CteamtalkApp : public CWinApp
 {
 public:
 	CteamtalkApp();
-
 public:
 	virtual BOOL InitInstance();
 	virtual BOOL ExitInstance();
-
 private:
-	/**
-	 *  创建用户目录
-	 *
-	 * @return  BOOL
-	 * @exception there is no any exception to throw.
-	 */	
-	BOOL _CreateUsersFolder();
-	/**
-	 * 创建主窗口
-	 *
-	 * @return  BOOL
-	 * @exception there is no any exception to throw.
-	 */	
-	BOOL _CreateMainDialog();
-	/**
-	* 销毁主窗口
-	*
-	* @return  BOOL
-	* @exception there is no any exception to throw.
-	*/
-	BOOL _DestroyMainDialog();
-	/**
-	* 判断是否是单实例
-	*
-	* @return  BOOL
-	* @exception there is no any exception to throw.
-	*/
-	BOOL _IsHaveInstance();
-
+	BOOL _CreateUsersFolder();		//创建用户目录
+	BOOL _CreateMainDialog();		//创建主窗口
+	BOOL _DestroyMainDialog();		//销毁主窗口
+	BOOL _IsHaveInstance();			//判断是否是单实例
 	void _InitLog();
-
 private:
-	MainDialog*						m_pMainDialog;
+	MainDialog* m_pMainDialog;
 };
 
 extern CteamtalkApp theApp;

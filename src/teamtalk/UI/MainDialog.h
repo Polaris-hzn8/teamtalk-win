@@ -34,7 +34,6 @@ enum BalloonStyle
 
 const UInt16  TIMER_TRAYEMOT = 1;//系统托盘闪烁timer
 
-
 class CNotifyIconData : public NOTIFYICONDATA
 {
 public:
@@ -45,25 +44,11 @@ public:
 	}
 };
 
-/**
- * The class <code>MainDialog</code> 
- *
- */
 class MainDialog final : public WindowImplBase
 {
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Constructor 
-     */
     MainDialog();
-    /**
-     * Destructor
-     */
     virtual ~MainDialog();
-    //@}
 	DUI_DECLARE_MESSAGE_MAP()
 public:
 	LPCTSTR GetWindowClassName() const;
@@ -93,17 +78,13 @@ private:
 	void OnMenuClicked(IN const CString& itemName,IN const CString& strLparam);
 	void OnTrayIconNotify(WPARAM wParam, LPARAM lParam);
     void OnHotkey(__in WPARAM wParam, __in LPARAM lParam);
-	/**@name MKO*/
-	//@{
 public:
 	void MKOForTcpClientModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
 	void MKOForLoginModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
 	void MKOForUserListModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
 	void MKOForSessionModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
-	//@}
 	
-	/**@name 托盘区图标相关操作*/
-	//@{
+	// 托盘区图标相关操作
 	BOOL InstallIcon(LPCTSTR lpszToolTip, HICON hIcon, UINT nID, BOOL bReInstall = FALSE);
 	BOOL RemoveIcon();
 	BOOL SetTrayIcon(HICON hIcon);
@@ -115,24 +96,10 @@ public:
 	BOOL SetVersion(UINT uVersion);
 	DWORD GetShellVersion(void);
 
-    void _UpdateTotalUnReadMsgCount(void);//更新总的未读计数
+    void _UpdateTotalUnReadMsgCount(void);	//更新总的未读计数
     void _FreshMySignature(void);
-	/**
-	 * 开始系统托盘闪烁
-	 *
-	 * @return  void
-	 * @exception there is no any exception to throw.
-	 */	
-	void StartNewMsgTrayEmot();
-	/**
-	* 停止系统托盘闪烁
-	*
-	* @return  void
-	* @exception there is no any exception to throw.
-	*/
-	void StopNewMsgTrayEmot();
-	//@}
-
+	void StartNewMsgTrayEmot();				//开始系统托盘闪烁
+	void StopNewMsgTrayEmot();				//停止系统托盘闪烁
 private:
 	CButtonUI*				m_pbtnSysConfig;
 	CButtonUI*				m_pbtnOnlineStatus;
@@ -140,11 +107,10 @@ private:
 	CButtonUI*				m_pbtnClose;
 	CButtonUI*				m_pbtnMinMize;
 	CTextUI*				m_ptxtUname;
-    CTextUI*				m_pTextUnreadMsgCount;//总的未读计数
-    CEditUI*	            m_pEditSignature;//个性签名
+    CTextUI*				m_pTextUnreadMsgCount;	//总的未读计数
+    CEditUI*	            m_pEditSignature;		//个性签名
 
-
-	HICON                   m_hIcons[ICON_COUNT];                       //Icon对象数组	
+	HICON                   m_hIcons[ICON_COUNT];	//Icon对象数组
 	CNotifyIconData			m_niData;
 	BOOL					m_bInstalled;
 	BOOL					m_bHidden;
