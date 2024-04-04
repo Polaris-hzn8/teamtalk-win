@@ -4,59 +4,7 @@
 
 本项目为teamtalk的windows客户端，由C++语言开发
 
-目录结构：
-
-1. 3rdParty：
-    - include：
-    - src：
-
-2. bin-teamtalk：
-    - data：
-    - gui：
-    - users：
-
-3. core：
-    - DuiLib：
-    - network：
-    - utility：
-
-4. include：
-    - DuilibEx
-    - GifSmiley
-    - Modules
-    - network
-    - ProtocolBuffer
-    - utility
-
-5. src：
-    - DuiLibEx
-    - GifSmiley
-    - Modules
-        - Base
-        - Database
-        - Emotion
-        - FileTransfer
-        - GroupList
-        - HttpPool
-        - Login
-        - Message
-        - Misc
-        - P2PCmd
-        - res
-        - ScreenCapture
-        - Session
-        - SysConfig
-        - TcpClient
-        - UserList
-
-    - teamtalk
-        - res
-        - UI
-
-6. tools：
-    - depends
-    - docs
-    - protobuf-2.6.1
+项目目录结构：
 
 
 ```
