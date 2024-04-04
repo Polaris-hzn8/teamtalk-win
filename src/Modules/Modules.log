@@ -1,7 +1,0 @@
-﻿  UIIMEdit.cpp
-d:\gitehub\project being worked on\8.instantmessagesys\instantmessagesys\win-client\core\duilib\core\uimanager.h(45): warning C4091: “typedef ”: 没有声明变量时忽略“DuiLib::EVENTTYPE_UI”的左侧
-  EmotionModule_Impl.cpp
-d:\gitehub\project being worked on\8.instantmessagesys\instantmessagesys\win-client\core\duilib\core\uimanager.h(45): warning C4091: “typedef ”: 没有声明变量时忽略“DuiLib::EVENTTYPE_UI”的左侧
-  正在生成代码...
-  Modules.vcxproj -> D:\GITEHUB\PROJECT BEING WORKED ON\8.instantMessageSys\instantMessageSys\win-client\solution\\..\bin\teamtalk\Debug\Modules.dll
-  Modules.vcxproj -> D:\GITEHUB\PROJECT BEING WORKED ON\8.instantMessageSys\instantMessageSys\win-client\solution\\..\bin\teamtalk\Debug\Modules.pdb (Full PDB)
