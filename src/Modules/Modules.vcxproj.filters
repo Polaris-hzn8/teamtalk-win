@@ -97,6 +97,12 @@
     <Filter Include="ScreenCapture\ScreenCapture\CaptureMode">
       <UniqueIdentifier>{9a93c0ae-0212-4e38-b77f-7359c9d79dea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="thridParty">
+      <UniqueIdentifier>{734009a0-6df7-4a20-95e5-6385e7e48a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thridParty\libsecurity">
+      <UniqueIdentifier>{7629c334-679c-4329-b075-37be52273618}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Modules.cpp">
@@ -621,6 +627,18 @@
     <ClCompile Include="ScreenCapture\ScreenCapture\CaptureMode\ManalSelectMode.cpp">
       <Filter>ScreenCapture\ScreenCapture\CaptureMode</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\3rdParty\src\libsecurity\security.cpp">
+      <Filter>thridParty\libsecurity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\src\libsecurity\aes_core.cpp">
+      <Filter>thridParty\libsecurity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\src\libsecurity\base64.cpp">
+      <Filter>thridParty\libsecurity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\src\libsecurity\md5.cpp">
+      <Filter>thridParty\libsecurity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Modules.h">
@@ -1012,6 +1030,21 @@
     </ClInclude>
     <ClInclude Include="ScreenCapture\ScreenCapture\CaptureMode\ModeComm.h">
       <Filter>ScreenCapture\ScreenCapture\CaptureMode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\include\security.h">
+      <Filter>thridParty\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\src\libsecurity\aes.h">
+      <Filter>thridParty\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\src\libsecurity\aes_locl.h">
+      <Filter>thridParty\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\src\libsecurity\base64.h">
+      <Filter>thridParty\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rdParty\src\libsecurity\md5.h">
+      <Filter>thridParty\libsecurity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
