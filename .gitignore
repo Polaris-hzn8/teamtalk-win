@@ -4,7 +4,6 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # 自定义排除目录
-lib/*
 obj/*
 
 # User-specific files

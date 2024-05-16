@@ -3,11 +3,11 @@
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
 
 
- /* File created by MIDL compiler version 8.01.0622 */
+ /* File created by MIDL compiler version 8.01.0628 */
 /* at Tue Jan 19 11:14:07 2038
  */
 /* Compiler settings for vc140.idl:
-    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.01.0622 
+    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.01.0628 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 
@@ -41,6 +41,14 @@
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
+#endif
+
+#ifndef DECLSPEC_XFGVIRT
+#if defined(_CONTROL_FLOW_GUARD_XFG)
+#define DECLSPEC_XFGVIRT(base, func) __declspec(xfg_virtual(base, func))
+#else
+#define DECLSPEC_XFGVIRT(base, func)
+#endif
 #endif
 
 /* Forward Declarations */ 
@@ -133,28 +141,34 @@ EXTERN_C const IID IID_IGifSmileyCtrl;
     {
         BEGIN_INTERFACE
         
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IGifSmileyCtrl * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IGifSmileyCtrl * This);
         
+        DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IGifSmileyCtrl * This);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfoCount)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
             IGifSmileyCtrl * This,
             /* [out] */ UINT *pctinfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfo)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
             IGifSmileyCtrl * This,
             /* [in] */ UINT iTInfo,
             /* [in] */ LCID lcid,
             /* [out] */ ITypeInfo **ppTInfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetIDsOfNames)
         HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
             IGifSmileyCtrl * This,
             /* [in] */ REFIID riid,
@@ -163,6 +177,7 @@ EXTERN_C const IID IID_IGifSmileyCtrl;
             /* [in] */ LCID lcid,
             /* [size_is][out] */ DISPID *rgDispId);
         
+        DECLSPEC_XFGVIRT(IDispatch, Invoke)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IGifSmileyCtrl * This,
             /* [annotation][in] */ 
@@ -182,37 +197,45 @@ EXTERN_C const IID IID_IGifSmileyCtrl;
             /* [annotation][out] */ 
             _Out_opt_  UINT *puArgErr);
         
+        DECLSPEC_XFGVIRT(IGifSmileyCtrl, put_BackColor)
         /* [id][requestedit][bindable][propput] */ HRESULT ( STDMETHODCALLTYPE *put_BackColor )( 
             IGifSmileyCtrl * This,
             /* [in] */ OLE_COLOR clr);
         
+        DECLSPEC_XFGVIRT(IGifSmileyCtrl, get_BackColor)
         /* [id][requestedit][bindable][propget] */ HRESULT ( STDMETHODCALLTYPE *get_BackColor )( 
             IGifSmileyCtrl * This,
             /* [retval][out] */ OLE_COLOR *pclr);
         
+        DECLSPEC_XFGVIRT(IGifSmileyCtrl, get_HWND)
         /* [id][requestedit][bindable][propget] */ HRESULT ( STDMETHODCALLTYPE *get_HWND )( 
             IGifSmileyCtrl * This,
             /* [retval][out] */ long *pHWND);
         
+        DECLSPEC_XFGVIRT(IGifSmileyCtrl, LoadFromFile)
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *LoadFromFile )( 
             IGifSmileyCtrl * This,
             /* [in] */ BSTR bstrFileName);
         
+        DECLSPEC_XFGVIRT(IGifSmileyCtrl, LoadFromFileSized)
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *LoadFromFileSized )( 
             IGifSmileyCtrl * This,
             /* [in] */ BSTR bstrFileName,
             /* [in] */ INT nWidth,
             /* [in] */ INT nHeight);
         
+        DECLSPEC_XFGVIRT(IGifSmileyCtrl, SetHostWindow)
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *SetHostWindow )( 
             IGifSmileyCtrl * This,
             /* [in] */ long hwndHostWindow,
             /* [in] */ INT nNotyfyMode);
         
+        DECLSPEC_XFGVIRT(IGifSmileyCtrl, get_FileName)
         /* [helpstring][id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_FileName )( 
             IGifSmileyCtrl * This,
             /* [retval][out] */ BSTR *pVal);
         
+        DECLSPEC_XFGVIRT(IGifSmileyCtrl, FreeImage)
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *FreeImage )( 
             IGifSmileyCtrl * This);
         
@@ -317,28 +340,34 @@ EXTERN_C const IID IID_IGifSmileyCtrl2;
     {
         BEGIN_INTERFACE
         
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IGifSmileyCtrl2 * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IGifSmileyCtrl2 * This);
         
+        DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IGifSmileyCtrl2 * This);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfoCount)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
             IGifSmileyCtrl2 * This,
             /* [out] */ UINT *pctinfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfo)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
             IGifSmileyCtrl2 * This,
             /* [in] */ UINT iTInfo,
             /* [in] */ LCID lcid,
             /* [out] */ ITypeInfo **ppTInfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetIDsOfNames)
         HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
             IGifSmileyCtrl2 * This,
             /* [in] */ REFIID riid,
@@ -347,6 +376,7 @@ EXTERN_C const IID IID_IGifSmileyCtrl2;
             /* [in] */ LCID lcid,
             /* [size_is][out] */ DISPID *rgDispId);
         
+        DECLSPEC_XFGVIRT(IDispatch, Invoke)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IGifSmileyCtrl2 * This,
             /* [annotation][in] */ 
@@ -366,10 +396,12 @@ EXTERN_C const IID IID_IGifSmileyCtrl2;
             /* [annotation][out] */ 
             _Out_opt_  UINT *puArgErr);
         
+        DECLSPEC_XFGVIRT(IGifSmileyCtrl2, SetHint)
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *SetHint )( 
             IGifSmileyCtrl2 * This,
             /* [in] */ BSTR bstrHint);
         
+        DECLSPEC_XFGVIRT(IGifSmileyCtrl2, GetHint)
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *GetHint )( 
             IGifSmileyCtrl2 * This,
             /* [retval][out] */ BSTR *bstrHint);

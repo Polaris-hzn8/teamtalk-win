@@ -40,7 +40,7 @@ template<> struct hash<std::string> {
 }
 #else
 #include <unordered_map>
-using namespace stdext;
+//using namespace stdext;
 #endif
 #ifdef ANDROID
 #include <android/log.h>

@@ -13,8 +13,8 @@
 //  	named_guids,           /* Named guids and declspecs */    \
 //  	rename("IDispatchEx","IMyDispatchEx")	/* fix conflicting with IDispatchEx ant dispex.h */  
 // using namespace ShockwaveFlashObjects;
-#include "Utils/FlashEventHandler.h"
-#include "Utils/flash11.tlh"
+#include "../Utils/FlashEventHandler.h"
+#include "../Utils/flash11.tlh"
 
 class CActiveXCtrl;
 

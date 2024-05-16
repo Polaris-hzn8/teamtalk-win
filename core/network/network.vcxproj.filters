@@ -132,7 +132,4 @@
       <Filter>Protocol Buffer</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\..\..\..\programming\Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\hash_map" />
-  </ItemGroup>
 </Project>
