@@ -10,7 +10,7 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{54871609-8514-4f45-a700-e15bb333ce30}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Json">
+    <Filter Include="Json">
       <UniqueIdentifier>{450ebbf4-7b29-455a-a217-f13d3021faf6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -34,13 +34,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_reader.cpp">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_value.cpp">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_writer.cpp">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClCompile>
     <ClCompile Include="md5.cpp">
       <Filter>Source Files</Filter>
@@ -78,37 +78,37 @@
       <Filter>API</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\assertions.h">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\autolink.h">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\config.h">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\features.h">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\forwards.h">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\json.h">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\reader.h">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\value.h">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\writer.h">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\src\lib_json\json_batchallocator.h">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\src\lib_json\json_tool.h">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </ClInclude>
     <ClInclude Include="md5.h">
       <Filter>Source Files</Filter>
@@ -131,19 +131,16 @@
       <Filter>Project Files</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\json_internalarray.inl">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\json_internalmap.inl">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\json_valueiterator.inl">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\sconscript">
-      <Filter>Source Files\Json</Filter>
-    </None>
-    <None Include="..\..\3rdParty\src\json\src\lib_json\version.h.in">
-      <Filter>Source Files\Json</Filter>
+      <Filter>Json</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

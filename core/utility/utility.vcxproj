@@ -177,7 +177,6 @@
     <None Include="..\..\3rdParty\src\json\src\lib_json\json_internalmap.inl" />
     <None Include="..\..\3rdParty\src\json\src\lib_json\json_valueiterator.inl" />
     <None Include="..\..\3rdParty\src\json\src\lib_json\sconscript" />
-    <None Include="..\..\3rdParty\src\json\src\lib_json\version.h.in" />
     <None Include="res\utility.rc2" />
     <None Include="utility.def" />
   </ItemGroup>
