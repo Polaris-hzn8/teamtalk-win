@@ -401,5 +401,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 # 加入版本控制的特殊文件 否则编译不通过
+*.exp
 !**/Flash11.tlb
 !**/flash11.tlh

@@ -72,8 +72,9 @@
     <IntDir>$(SolutionDir)\..\obj\$(Configuration)\$(ProjectName)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)\..\output\bin\teamtalk\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\..\output\obj\$(Configuration)\$(ProjectName)_$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\..\obj\$(ProjectName)_$(Configuration)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
@@ -127,7 +128,7 @@
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ogg.def</ModuleDefinitionFile>
-      <ImportLibrary>$(SolutionDir)..\lib\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\..\commonlib\$(TargetName).lib</ImportLibrary>
     </Link>
     <BuildLog>
       <Path />
