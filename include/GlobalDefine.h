@@ -1,8 +1,14 @@
-/*******************************************************************************
- *  @file      macros.h 2012\9\11 17:09:12 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @summary   定义一些常用宏
- ******************************************************************************/
+/**
+* Copyright (C) 2024 Polaris-hzn8 / LuoChenhao
+*
+* Author: luochenhao
+* Email: lch2022fox@163.com
+* Time: Fri 08 Nov 2024 12:35:39 CST
+* Github: https://github.com/Polaris-hzn8
+* Src code may be copied only under the term's of the Apache License
+* Please visit the http://www.apache.org/licenses/ Page for more detail.
+*
+**/
 
 #ifndef MACROS_31EB74F9_8A94_45A9_B217_2A3F7354279E_H__
 #define MACROS_31EB74F9_8A94_45A9_B217_2A3F7354279E_H__
@@ -11,7 +17,6 @@
 #include <string>
 #include <tchar.h>
 #include <vector>
-/******************************************************************************/
 #pragma warning(disable : 4267)
 
 typedef signed char						Int8;

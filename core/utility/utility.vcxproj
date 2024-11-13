@@ -49,8 +49,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\..\bin\teamtalk\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\..\obj\$(Configuration)\$(ProjectName)_$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\..\obj\$(ProjectName)_$(Configuration)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -101,8 +102,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>.\utility.def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>..\..\3rdParty\lib;$(SolutionDir)\..\lib\$(Configuration)</AdditionalLibraryDirectories>
-      <ImportLibrary>$(SolutionDir)..\lib\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\commonlib\</AdditionalLibraryDirectories>
+      <ImportLibrary>$(SolutionDir)..\commonlib\$(TargetName).lib</ImportLibrary>
       <AdditionalDependencies>sqlite3.lib;network.lib;MSVCRT.lib;Netapi32.lib;mfcs140u.lib</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>MSVCRT.lib;mfcs140u.lib</IgnoreSpecificDefaultLibraries>
     </Link>

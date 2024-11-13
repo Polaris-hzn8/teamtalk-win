@@ -1,14 +1,14 @@
-import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\prsht.idl";
-import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\MsHTML.idl";
-import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dimm.idl";
-import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\dispex.idl";
-import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\dxgitype.idl";
-import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\dxgicommon.idl";
-import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\dxgiformat.idl";
-import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\MsHtmHst.idl";
-import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\docobj.idl";
-import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ExDisp.idl";
-import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ObjSafe.idl";
+import "D:\Windows Kits\10\Include\10.0.26100.0\um\prsht.idl";
+import "D:\Windows Kits\10\Include\10.0.26100.0\um\MsHTML.idl";
+import "D:\Windows Kits\10\Include\10.0.26100.0\um\dimm.idl";
+import "D:\Windows Kits\10\Include\10.0.26100.0\um\dispex.idl";
+import "D:\Windows Kits\10\Include\10.0.26100.0\shared\dxgitype.idl";
+import "D:\Windows Kits\10\Include\10.0.26100.0\shared\dxgicommon.idl";
+import "D:\Windows Kits\10\Include\10.0.26100.0\shared\dxgiformat.idl";
+import "D:\Windows Kits\10\Include\10.0.26100.0\um\MsHtmHst.idl";
+import "D:\Windows Kits\10\Include\10.0.26100.0\um\docobj.idl";
+import "D:\Windows Kits\10\Include\10.0.26100.0\um\ExDisp.idl";
+import "D:\Windows Kits\10\Include\10.0.26100.0\um\ObjSafe.idl";
 
 [
 	object,
@@ -17,15 +17,15 @@ import "C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\ObjSafe.i
 	helpstring("IGifSmileyCtrl Interface"),
 	pointer_default(unique)
 ] 
-#line 31 "e:\\gitehub\\1.teamtalk\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
+#line 31 "e:\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
 interface IGifSmileyCtrl : IDispatch {
-#line 34 "e:\\gitehub\\1.teamtalk\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
+#line 34 "e:\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
 	[propput,bindable,requestedit,id(-501)] HRESULT  BackColor([in] OLE_COLOR clr);
-#line 36 "e:\\gitehub\\1.teamtalk\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
+#line 36 "e:\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
 	[propget,bindable,requestedit,id(-501)] HRESULT  BackColor([out,retval] OLE_COLOR *pclr);
-#line 38 "e:\\gitehub\\1.teamtalk\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
+#line 38 "e:\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
 	[propget,bindable,requestedit,id(-515)] HRESULT  HWND([out,retval] long *pHWND);
-#line 40 "e:\\gitehub\\1.teamtalk\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
+#line 40 "e:\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
 	[id(1)] HRESULT  LoadFromFile([in] BSTR bstrFileName);
 	[id(2)] HRESULT  LoadFromFileSized([in] BSTR bstrFileName, [in] INT nWidth, [in] INT nHeight);
 	[id(3)] HRESULT  SetHostWindow([in] long hwndHostWindow, [in] INT nNotyfyMode);
@@ -40,9 +40,9 @@ interface IGifSmileyCtrl : IDispatch {
 	helpstring("IGifSmileyCtrl2 Interface"),
 	pointer_default(unique)
 ] 
-#line 57 "e:\\gitehub\\1.teamtalk\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
+#line 57 "e:\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
 interface IGifSmileyCtrl2 : IDispatch {
-#line 59 "e:\\gitehub\\1.teamtalk\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
+#line 59 "e:\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
 	[id(4)] HRESULT  SetHint([in] BSTR bstrHint);
 	[id(5)] HRESULT  GetHint([out,retval] BSTR *bstrHint);
 };
@@ -60,7 +60,7 @@ library GifSmiley
 		uuid(DB35DD77-55E2-4905-8075-EB351BB5CBC1),
 		helpstring("GifSmileyCtrl Class")
 	] 
-#line 77 "e:\\gitehub\\1.teamtalk\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
+#line 77 "e:\\teamtalk-win\\src\\gifsmiley\\gifsmileyctrl.h"
 	coclass CGifSmileyCtrl {
 		[default]	interface IGifSmileyCtrl2;
 		interface IGifSmileyCtrl;
