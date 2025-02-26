@@ -298,7 +298,9 @@
     <ClCompile Include="UIlib.cpp" />
     <ClCompile Include="Utils\DialogManager.cpp" />
     <ClCompile Include="Utils\UIShadow.cpp" />
-    <ClCompile Include="Utils\WinImplBase.cpp" />
+    <ClCompile Include="Utils\WinImplBase.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Utils\stb_image.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
