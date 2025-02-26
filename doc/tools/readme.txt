@@ -14,9 +14,6 @@ You will still need to download the source code package in order to obtain the
 Java or Python runtime libraries.  Get it from:
   https://github.com/google/protobuf/releases/
 
-
-
-
 本目录文件下载url：
 https://github.com/google/protobuf/releases
 
