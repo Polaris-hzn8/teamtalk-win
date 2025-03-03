@@ -144,31 +144,6 @@
   <ItemGroup>
     <Image Include="res\teamtalk.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Xml Include="..\..\resources\gui\CreateDiscussionGrpDialog\ChangeDiscussionMemberDialog.xml" />
-    <Xml Include="..\..\resources\gui\CreateDiscussionGrpDialog\CreateDiscussionGrpDialog.xml" />
-    <Xml Include="..\..\resources\gui\CreateDiscussionGrpDialog\ListCreatFromItem.xml" />
-    <Xml Include="..\..\resources\gui\CreateDiscussionGrpDialog\ListGroupMembersItem.xml" />
-    <Xml Include="..\..\resources\gui\EmotionDialog\emotion.xml" />
-    <Xml Include="..\..\resources\gui\EmotionDialog\QSBFace.xml" />
-    <Xml Include="..\..\resources\gui\FileTransferDialog\FileTransferDialog.xml" />
-    <Xml Include="..\..\resources\gui\FileTransferDialog\FileTransferListItem.xml" />
-    <Xml Include="..\..\resources\gui\FloatDialog\FloatDialog.xml" />
-    <Xml Include="..\..\resources\gui\LoginDialog\LoginDialog.xml" />
-    <Xml Include="..\..\resources\gui\MainDialog\eaUserListItem.xml" />
-    <Xml Include="..\..\resources\gui\MainDialog\groupListItem.xml" />
-    <Xml Include="..\..\resources\gui\MainDialog\MainDialog.xml" />
-    <Xml Include="..\..\resources\gui\MainDialog\recentlyListItem.xml" />
-    <Xml Include="..\..\resources\gui\MainDialog\UserDetailInfoDialog.xml" />
-    <Xml Include="..\..\resources\gui\menu\lineStatus.xml" />
-    <Xml Include="..\..\resources\gui\menu\SendFile.xml" />
-    <Xml Include="..\..\resources\gui\menu\TrayIconMenu.xml" />
-    <Xml Include="..\..\resources\gui\menu\userListMenu.xml" />
-    <Xml Include="..\..\resources\gui\SessionDialog\groupMembersListItem.xml" />
-    <Xml Include="..\..\resources\gui\SessionDialog\SessionDialog.xml" />
-    <Xml Include="..\..\resources\gui\SysConfigDialog\ServerConfigDialog.xml" />
-    <Xml Include="..\..\resources\gui\SysConfigDialog\SysConfigDialog.xml" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

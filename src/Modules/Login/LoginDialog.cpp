@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      LoginWnd.cpp 2014\7\31 12:23:51 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "LoginDialog.h"
