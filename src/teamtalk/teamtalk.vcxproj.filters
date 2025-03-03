@@ -7,36 +7,6 @@
     <Filter Include="Main">
       <UniqueIdentifier>{1dcb2f95-42cc-475e-b123-23eeee2e9381}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DUI Resouece">
-      <UniqueIdentifier>{5d381f25-b8af-48be-8153-dfae5576a037}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DUI Resouece\CreateDiscussionGrpDialog">
-      <UniqueIdentifier>{366809bb-3760-4edd-b822-7a700b67d977}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DUI Resouece\EmotionDialog">
-      <UniqueIdentifier>{ad509627-acbe-4208-9ae3-3aa25faab792}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DUI Resouece\FileTransferDialog">
-      <UniqueIdentifier>{6b56dc3a-17d1-4930-8bc2-b56c227d6ca0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DUI Resouece\FloatDialog">
-      <UniqueIdentifier>{860ecd32-eeaa-49fb-887c-752288d9e370}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DUI Resouece\LoginDialog">
-      <UniqueIdentifier>{1f47a33c-018a-4225-a270-0d5083a1b930}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DUI Resouece\MainDialog">
-      <UniqueIdentifier>{b685f1a8-ace4-4e28-b105-55fa3ca2a96f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DUI Resouece\menu">
-      <UniqueIdentifier>{e0648d93-fd49-4eb9-9381-12d8e41de8dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DUI Resouece\SessionDialog">
-      <UniqueIdentifier>{5d190999-a6e7-40a5-ba24-80555e6cd867}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DUI Resouece\SysConfigDialog">
-      <UniqueIdentifier>{8ec41866-9d91-4964-a22b-c552193db928}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -86,76 +56,5 @@
     <None Include="res\teamtalk.rc2">
       <Filter>ProjectFils</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="..\..\resources\gui\CreateDiscussionGrpDialog\ChangeDiscussionMemberDialog.xml">
-      <Filter>DUI Resouece\CreateDiscussionGrpDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\CreateDiscussionGrpDialog\CreateDiscussionGrpDialog.xml">
-      <Filter>DUI Resouece\CreateDiscussionGrpDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\CreateDiscussionGrpDialog\ListCreatFromItem.xml">
-      <Filter>DUI Resouece\CreateDiscussionGrpDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\CreateDiscussionGrpDialog\ListGroupMembersItem.xml">
-      <Filter>DUI Resouece\CreateDiscussionGrpDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\EmotionDialog\emotion.xml">
-      <Filter>DUI Resouece\EmotionDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\EmotionDialog\QSBFace.xml">
-      <Filter>DUI Resouece\EmotionDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\FileTransferDialog\FileTransferListItem.xml">
-      <Filter>DUI Resouece\FileTransferDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\FileTransferDialog\FileTransferDialog.xml">
-      <Filter>DUI Resouece\FileTransferDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\FloatDialog\FloatDialog.xml">
-      <Filter>DUI Resouece\FloatDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\LoginDialog\LoginDialog.xml">
-      <Filter>DUI Resouece\LoginDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\MainDialog\eaUserListItem.xml">
-      <Filter>DUI Resouece\MainDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\MainDialog\groupListItem.xml">
-      <Filter>DUI Resouece\MainDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\MainDialog\MainDialog.xml">
-      <Filter>DUI Resouece\MainDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\MainDialog\recentlyListItem.xml">
-      <Filter>DUI Resouece\MainDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\MainDialog\UserDetailInfoDialog.xml">
-      <Filter>DUI Resouece\MainDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\menu\lineStatus.xml">
-      <Filter>DUI Resouece\menu</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\menu\SendFile.xml">
-      <Filter>DUI Resouece\menu</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\menu\TrayIconMenu.xml">
-      <Filter>DUI Resouece\menu</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\menu\userListMenu.xml">
-      <Filter>DUI Resouece\menu</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\SessionDialog\groupMembersListItem.xml">
-      <Filter>DUI Resouece\SessionDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\SessionDialog\SessionDialog.xml">
-      <Filter>DUI Resouece\SessionDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\SysConfigDialog\ServerConfigDialog.xml">
-      <Filter>DUI Resouece\SysConfigDialog</Filter>
-    </Xml>
-    <Xml Include="..\..\resources\gui\SysConfigDialog\SysConfigDialog.xml">
-      <Filter>DUI Resouece\SysConfigDialog</Filter>
-    </Xml>
   </ItemGroup>
 </Project>

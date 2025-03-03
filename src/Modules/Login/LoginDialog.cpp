@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      LoginWnd.cpp 2014\7\31 12:23:51 $
- *  @author    大佛<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "LoginDialog.h"
@@ -29,11 +31,6 @@ DUI_BEGIN_MESSAGE_MAP(LoginDialog, WindowImplBase)
 	DUI_ON_MSGTYPE(DUI_MSGTYPE_SETFOCUS,OnSetFocus)
 DUI_END_MESSAGE_MAP()
 
-/******************************************************************************/
-
-// -----------------------------------------------------------------------------
-//  LoginWnd: Public, Constructor
-
 LoginDialog::LoginDialog()
 :m_ptxtTip(0)
 ,m_pedtUserName(0)
@@ -44,9 +41,6 @@ LoginDialog::LoginDialog()
 {
 
 }
-
-// -----------------------------------------------------------------------------
-//  LoginWnd: Public, Destructor
 
 LoginDialog::~LoginDialog()
 {
@@ -71,6 +65,7 @@ CControlUI* LoginDialog::CreateControl(LPCTSTR pstrClass)
 {
 	return nullptr;
 }
+
 void LoginDialog::OnFinalMessage(HWND hWnd)
 {
 	module::getLoginModule()->removeObserver(this);
@@ -117,6 +112,7 @@ void LoginDialog::OnTextChanged(TNotifyUI& msg)
 		m_bPassChanged = TRUE;
 	}
 }
+
 void LoginDialog::OnSetFocus(TNotifyUI& msg)
 {
 	if (msg.pSender == m_pedtPassword)
@@ -199,6 +195,7 @@ void LoginDialog::_DoLogin()
 		BIND_CALLBACK_1(LoginDialog::OnHttpCallbackOperation), param);
 	module::getHttpPoolModule()->pushHttpOperation(pOper);
 }
+
 void LoginDialog::OnHttpCallbackOperation(std::shared_ptr<void> param)
 {
 	DoLoginServerParam* pParam = (DoLoginServerParam*)param.get();
@@ -225,6 +222,7 @@ void LoginDialog::OnHttpCallbackOperation(std::shared_ptr<void> param)
 		m_pBtnLogin->SetEnabled(true);
 	}
 }
+
 void LoginDialog::OnOperationCallback(std::shared_ptr<void> param)
 {
 	LoginParam* pLoginParam = (LoginParam*)param.get();
@@ -321,14 +319,9 @@ LRESULT LoginDialog::ResponseDefaultKeyEvent(WPARAM wParam)
 void LoginDialog::InitWindow()
 {
 	CenterWindow();
-	////窗口阴影
+	//窗口阴影
 	//CWndShadow::Initialize(m_PaintManager.GetInstance());
 	//m_WndShadow.Create(m_hWnd);
 	//m_WndShadow.SetSize(2);
 	//m_WndShadow.SetPosition(0, 0);
 }
-
-
-
-
-/******************************************************************************/

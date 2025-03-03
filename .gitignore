@@ -405,4 +405,7 @@ FodyWeavers.xsd
 *.exp
 !**/Flash11.tlb
 !**/flash11.tlh
-!test_folder/**
+
+# pack
+package/Release
+package/users

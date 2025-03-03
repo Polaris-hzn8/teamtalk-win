@@ -1,13 +1,9 @@
-#ifndef WIN_IMPL_BASE_HPP
-#define WIN_IMPL_BASE_HPP
 
-#include "stdafx.h"
+#include "../stdafx.h"
 #include "DialogManager.h"
+
 namespace DuiLib
 {
-
-//////////////////////////////////////////////////////////////////////////
-
 LPBYTE WindowImplBase::m_lpResourceZIPBuffer=NULL;
 
 DUI_BEGIN_MESSAGE_MAP(WindowImplBase,CNotifyPump)
@@ -477,4 +473,5 @@ WindowImplBase::~WindowImplBase()
 {
 	DialogManager::getInstance()->unRegisterDialog(this);
 }
-}
+
+}// namespace DuiLib

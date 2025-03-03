@@ -1,14 +1,11 @@
-/*================================================================
- *   Copyright (C) 2015 All rights reserved.
- *
- *   文件名称：security.cpp
- *   创 建 者：Zhang Yuanhao
- *   邮    箱：bluefoxah@gmail.com
- *   创建日期：2015年01月29日
- *   描    述：
- *
- #include "security.h"
- ================================================================*/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
 #ifdef __ANDROID__
 #include <jni.h>
 #include <android/log.h>
@@ -17,6 +14,7 @@
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
 #define LOGE(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "native-activity", __VA_ARGS__))
 #endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -86,10 +84,7 @@ extern "C" {
         env->SetByteArrayRegion(carr,0,strDec.length(),(jbyte*)strDec.c_str());
         return carr;
     }
-    
-    /**
-     * 解密
-     */
+
     jbyteArray Java_com_mogujie_tt_Security_DecryptMsg(JNIEnv* env, jobject obj, jstring jstr)
     {
         const char *pInData = env->GetStringUTFChars(jstr, NULL);   //获取待揭秘内容,转换格式

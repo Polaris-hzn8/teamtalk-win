@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      DoLoginServerHttpOperation.cpp 2014\12\23 10:10:54 $
- *  @author    ´ó·ð<´ó·ð@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "DoLoginServerHttpOperation.h"
@@ -18,6 +20,7 @@ DoLoginServerHttpOperation::DoLoginServerHttpOperation(IN module::IOperationDele
 {
 
 }
+
 void DoLoginServerHttpOperation::processOpertion()
 {
 	module::TTConfig* pCfg = module::getSysConfigModule()->getSystemConfig();
@@ -41,7 +44,7 @@ void DoLoginServerHttpOperation::processOpertion()
 	}
 	std::string body = response.getBody();
 	client.killSelf();
-	//json½âÎö
+
 	try
 	{
 		Json::Reader reader;
@@ -93,4 +96,3 @@ void DoLoginServerHttpOperation::release()
 	delete this;
 }
 
-/******************************************************************************/

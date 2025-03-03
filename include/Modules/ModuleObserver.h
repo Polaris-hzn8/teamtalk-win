@@ -1,8 +1,10 @@
-/*******************************************************************************
- *  @file      ModuleObserver.h 2014\7\23 13:52:44 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef OBSERVER_6444A026_CF7D_4675_BD86_A112B52B992D_H__
 #define OBSERVER_6444A026_CF7D_4675_BD86_A112B52B992D_H__
@@ -12,7 +14,7 @@
 #include <tuple> 
 #include <memory>
 #include <functional>
-/******************************************************************************/
+
 enum
 {
 	MKO_STRING = 0,
@@ -20,6 +22,7 @@ enum
 	MKO_SHARED_VOIDPTR,
 	MKO_VOIDPTR,
 };
+
 typedef std::tuple<std::string, Int32, std::shared_ptr<void>, void*> MKO_TUPLE_PARAM;
 typedef std::function<void(std::string, MKO_TUPLE_PARAM)> MKODelegate;
 
@@ -66,5 +69,5 @@ public:
 };
 
 NAMESPACE_END(module)
-/******************************************************************************/
+
 #endif// OBSERVER_6444a026-cf7d-4675-bd86-a112b52b992d_H__
