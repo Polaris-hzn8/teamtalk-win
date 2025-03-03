@@ -1,8 +1,10 @@
-/*******************************************************************************
- *  @file      utilStrCoding.h 2014\7\15 20:22:14 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief   
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef UTILSTRCODING_EBFB2FF8_92ED_408B_9A6B_A59579E9942D_H__
 #define UTILSTRCODING_EBFB2FF8_92ED_408B_9A6B_A59579E9942D_H__
@@ -10,7 +12,6 @@
 #include "GlobalDefine.h"
 #include "utility/utilityDll.h"
 #include <string>
-/******************************************************************************/
 
 NAMESPACE_BEGIN(util)
 
@@ -35,5 +36,4 @@ UTILITY_API Int32       splitString(__in std::wstring src, __in std::vector<std:
 
 NAMESPACE_END(util)
 
-/******************************************************************************/
 #endif// UTILSTRCODING_EBFB2FF8_92ED_408B_9A6B_A59579E9942D_H__

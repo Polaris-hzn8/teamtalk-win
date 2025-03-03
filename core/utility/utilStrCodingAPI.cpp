@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      utilStrCodeAPI.cpp 2014\12\24 17:08:52 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "utility/utilStrCodingAPI.h"
@@ -10,7 +12,6 @@
 #include <locale>
 #include <codecvt>
 
-/******************************************************************************/
 NAMESPACE_BEGIN(util)
 
 CString int32ToCString(Int32 n)
@@ -19,6 +20,7 @@ CString int32ToCString(Int32 n)
 	str.Format(_T("%d"), n);
 	return str;
 }
+
 Int32	cstringToInt32(LPCTSTR buff)
 {
 	if (nullptr == buff)
@@ -418,4 +420,4 @@ char* ConvertChineseUnicodeToPyt(wchar_t* chrstr)
 
 
 NAMESPACE_END(util)
-/******************************************************************************/
+

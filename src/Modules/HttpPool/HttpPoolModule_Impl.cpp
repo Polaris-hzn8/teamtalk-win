@@ -1,13 +1,14 @@
-/******************************************************************************* 
- *  @file      HttpPoolModule_Impl.cpp 2014\7\25 11:20:58 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief	   http operation thread pool 
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 简单的HTTP下载池
+*/
 
 #include "stdafx.h"
 #include "HttpPoolModule_Impl.h"
 
-/******************************************************************************/
 namespace module
 {
 	module::IHttpPoolModule* getHttpPoolModule()
@@ -22,8 +23,6 @@ namespace
 	HttpPoolModule_Impl* m_pInstance = 0;
 	const UInt8   MAX_THEAD_COUNT = 1;
 }
-// -----------------------------------------------------------------------------
-//  HttpPoolModule_Impl: Public, Constructor
 
 HttpPoolModule_Impl::HttpPoolModule_Impl()
 {
@@ -31,9 +30,6 @@ HttpPoolModule_Impl::HttpPoolModule_Impl()
 	m_hSemaphore = ::CreateSemaphore(NULL, 0, LONG_MAX, NULL);
 	m_pInstance = this;
 }
-
-// -----------------------------------------------------------------------------
-//  HttpPoolModule_Impl: Public, Destructor
 
 HttpPoolModule_Impl::~HttpPoolModule_Impl()
 {

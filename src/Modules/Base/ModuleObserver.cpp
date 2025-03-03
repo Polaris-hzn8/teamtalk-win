@@ -1,24 +1,30 @@
-/******************************************************************************* 
- *  @file      ModuleObserver.cpp 2014\7\23 13:55:19 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief   
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "Modules/ModuleObserver.h"
 #include "Modules/ModuleSubject.h"
 #include <vector>
 #include <algorithm>
-/******************************************************************************/
+
 NAMESPACE_BEGIN(module)
 
-ModuleObserverCtx::ModuleObserverCtx(MKODelegate& hd, void* pObserObject)
-: callback(hd)
-, m_pObserverObject(pObserObject)
+MKOEvent_Impl::MKOEvent_Impl(IN ModuleSubject* p)
+: m_pMko(p)
+, m_mkoInt(0)
+, m_pmkoVoid(nullptr)
 {
 
 }
 
+MKOEvent_Impl::~MKOEvent_Impl()
+{
+}
 
 void MKOEvent_Impl::process()
 {
@@ -39,13 +45,13 @@ void MKOEvent_Impl::process()
 		}
 		catch (const std::bad_function_call&)
 		{
-			LOG__(ERR,_T("bad function call-m_keyId:%d"),m_keyId);
+			LOG__(ERR, _T("bad function call-m_keyId:%d"), m_keyId);
 		}
 		catch (...)
 		{
 			LOG__(ERR, _T("unknown exception"));
 		}
-		
+
 	}
 }
 
@@ -54,17 +60,11 @@ void MKOEvent_Impl::release()
 	delete this;
 }
 
-MKOEvent_Impl::MKOEvent_Impl(IN ModuleSubject* p)
-: m_pMko(p)
-, m_mkoInt(0)
-, m_pmkoVoid(nullptr)
+ModuleObserverCtx::ModuleObserverCtx(MKODelegate& hd, void* pObserObject)
+	: callback(hd)
+	, m_pObserverObject(pObserObject)
 {
 
-}
-
-MKOEvent_Impl::~MKOEvent_Impl()
-{
 }
 
 NAMESPACE_END(module)
-/******************************************************************************/
