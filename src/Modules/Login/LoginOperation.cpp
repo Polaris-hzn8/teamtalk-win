@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      LoginOperation.cpp 2014\7\30 15:32:28 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: Ö´ÐÐµÇÂ¼ÇëÇó
+*/
 
 #include "stdafx.h"
 #include "LoginOperation.h"
@@ -11,10 +13,6 @@
 #include "Modules/IUserListModule.h"
 #include "Modules/ITcpClientModule.h"
 #include "GlobalConfig.h"
-/******************************************************************************/
-
-// -----------------------------------------------------------------------------
-//  LoginOperation: Public, Constructor
 
 LoginOperation::LoginOperation(module::IOperationDelegate callback, LoginParam& param)
 :ICallbackOpertaion(callback)
@@ -22,9 +20,6 @@ LoginOperation::LoginOperation(module::IOperationDelegate callback, LoginParam& 
 {
 
 }
-
-// -----------------------------------------------------------------------------
-//  LoginOperation: Public, Destructor
 
 LoginOperation::~LoginOperation()
 {
@@ -46,8 +41,9 @@ void LoginOperation::processOpertion()
 	LOG__(APP, _T("MsgServeIp:%s,Port:%d"), server, pCfg->msgServPort);
 	IM::Login::IMLoginRes* pImLoginResp = (IM::Login::IMLoginRes*)module::getTcpClientModule()
 		->doLogin(server, pCfg->msgServPort,m_loginParam.csUserName,m_loginParam.password);
-	if (0 == pImLoginResp || pImLoginResp->result_code() != IM::BaseDefine::REFUSE_REASON_NONE 
-		|| !pImLoginResp->has_user_info())
+	if (pImLoginResp == 0 ||
+		pImLoginResp->result_code() != IM::BaseDefine::REFUSE_REASON_NONE ||
+		!pImLoginResp->has_user_info())
 	{
 		//TODO,ÈôÊ§°Ü£¬³¢ÊÔ±¸ÓÃIP
 		LOG__(ERR,_T("add:%s:%d,uname:%s,login for msg server failed"),server,pCfg->msgServPort, m_loginParam.csUserName);
@@ -111,4 +107,3 @@ void LoginOperation::release()
 	delete this;
 }
 
-/******************************************************************************/

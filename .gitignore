@@ -407,5 +407,6 @@ FodyWeavers.xsd
 !**/flash11.tlh
 
 # pack
-package/Release
+package/teamtalk/*
+!package/teamtalk/ttlogconfig.ini
 package/users

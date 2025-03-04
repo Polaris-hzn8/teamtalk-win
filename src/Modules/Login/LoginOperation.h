@@ -1,15 +1,17 @@
-/*******************************************************************************
- *  @file      LoginOperation.h 2014\7\30 15:32:25 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: Ö´ÐÐµÇÂ¼ÇëÇó
+*/
 
 #ifndef LOGINOPERATION_9610A313_DC31_429E_B9E9_09A34ABA8063_H__
 #define LOGINOPERATION_9610A313_DC31_429E_B9E9_09A34ABA8063_H__
 
 #include "Modules/IModuleInterface.h"
 #include "ProtocolBuffer/im.Login.pb.h"
-/******************************************************************************/
+
 enum
 {
 	LOGIN_FAIL = -1,            //µÇÂ½Ê§°Ü
@@ -28,25 +30,11 @@ public:
 	std::string		password;
 };
 
-/**
- * The class <code>LoginOperation</code> 
- *
- */
 class LoginOperation : public module::ICallbackOpertaion
 {
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Constructor 
-     */
 	LoginOperation(module::IOperationDelegate callback, LoginParam& param);
-    /**
-     * Destructor
-     */
     virtual ~LoginOperation();
-    //@}
 
 public:
 	virtual void processOpertion();
@@ -55,5 +43,5 @@ public:
 private:
 	LoginParam			m_loginParam;
 };
-/******************************************************************************/
+
 #endif// LOGINOPERATION_9610A313_DC31_429E_B9E9_09A34ABA8063_H__
