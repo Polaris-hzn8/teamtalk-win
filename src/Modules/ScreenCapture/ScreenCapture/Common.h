@@ -1,21 +1,16 @@
 
-/*******************************************************************************
- *  @file      Common.h 2015\5\5 15:56:19 $
- *  @author    доки<nansong@mogujie.com>
- *  @brief     
- ******************************************************************************/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef COMMON_AB85173C_FF84_48AF_A453_99E670F74E73_H__
 #define COMMON_AB85173C_FF84_48AF_A453_99E670F74E73_H__
 
 #include <windows.h>
 #include <string>
-/******************************************************************************/
-
-/**
- * The class <code>Common</code> 
- *
- */
 
 template <typename T>
 class Singleton
@@ -116,5 +111,5 @@ namespace ScreenCommon
     }
 }
 
-/******************************************************************************/
 #endif// COMMON_AB85173C-FF84-48AF-A453-99E670F74E73_H__
+

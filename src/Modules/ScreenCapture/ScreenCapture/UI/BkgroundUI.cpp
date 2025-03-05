@@ -1,13 +1,14 @@
-/******************************************************************************* 
- *  @file      BkgroundUI.cpp 2015\5\5 16:07:13 $
- *  @author    доки<nansong@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "BkgroundUI.h"
 #include "../ScreenSnapshot.h"
-
 
 class CCustomPaintDC
 {
@@ -236,6 +237,3 @@ void BkgroundUI::onAddPolyRegionItem(__in HWND hWnd, __in WPARAM wParam, __in LP
 
     ScreenSnapshot::Instance()->updateRect(lpRect);
 }
-
-
-/******************************************************************************/

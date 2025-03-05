@@ -1,6 +1,11 @@
+
 /*
-    对话框基础类
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 对话框基础类
 */
+
 #pragma once
 
 #include <shlwapi.h>

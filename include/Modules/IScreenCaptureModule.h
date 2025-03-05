@@ -1,9 +1,10 @@
-/*******************************************************************************
- *  @file      IScreenCaptureModule.h 2014\7\17 19:38:12 $
- *  @author    доки<nansong@mogujie.com>
- *  @brief   
- ******************************************************************************/
-//{5CF3E642-5F2A-4841-B497-A7C015E6E1D4}
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef ISCREEN_CAPTURE_5CF3E642_5F2A_4841_B497_A7C015E6E1D4_H__
 #define ISCREEN_CAPTURE_5CF3E642_5F2A_4841_B497_A7C015E6E1D4_H__
@@ -13,7 +14,7 @@
 #include "Modules/ModuleBase.h"
 #include "Modules/ModuleDll.h"
 #include <string>
-/******************************************************************************/
+
 NAMESPACE_BEGIN(module)
 const std::string MODULE_SCREEN_CAPTURE_PREFIX = "screen_capture";
 
@@ -32,10 +33,7 @@ enum ScreenCaptureHotkeyId
 
     SC_HK_MAX
 };
-/**
- * The class <code>IScreenCaptureModule</code> 
- *
- */
+
 class MODULE_API IScreenCaptureModule:public module::ModuleBase, public IScreenCaptureCallback
 {
 public:
@@ -48,5 +46,5 @@ public:
 MODULE_API IScreenCaptureModule* getScreenCaptureModule();
 
 NAMESPACE_END(module)
-/******************************************************************************/
+
 #endif// ISCREEN_CAPTURE_5CF3E642_5F2A_4841_B497_A7C015E6E1D4_H__

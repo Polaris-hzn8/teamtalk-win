@@ -1,8 +1,10 @@
-/*******************************************************************************
- *  @file      MessageEntity.h 2014\7\25 22:59:38 $
- *  @author    大佛<dafo@mogujie.com>
- *  @brief   
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef MESSAGEENTITY_35FE027F_F23D_4444_B013_9FCF04145DD6_H__
 #define MESSAGEENTITY_35FE027F_F23D_4444_B013_9FCF04145DD6_H__
@@ -10,9 +12,7 @@
 #include "GlobalDefine.h"
 #include "Modules/ModuleDll.h"
 
-/******************************************************************************/
-
-///////////////////////////消息类型跟服务器一致///////////////////////////////////////////////
+// 消息类型与服务器相同
 enum MSG_TYPE_SERVER{
 	MSG_TYPE_TEXT_P2P = 0x01,
 	MSG_TYPE_AUDIO_P2P = 0x02,
@@ -20,15 +20,17 @@ enum MSG_TYPE_SERVER{
 	MSG_TYPE_AUDIO_GROUP = 0x12,
 };
 
-enum MSG_TYPE_RENDER//消息渲染类型--这个是给IE显示用的
+// 消息渲染类型（IE显示使用）
+enum MSG_TYPE_RENDER
 {
-	MESSAGE_RENDERTYPE_TEXT = 1,            //纯文本消息
-	MESSAGE_RENDERTYPE_IMAGE = 2,               //纯图片
-	MESSAGE_RENDERTYPE_SYSTEMTIPS = 4,          //系统提示
-	MESSAGE_RENDERTYPE_FILETRANSFER = 5,        //文件提示
-	MESSAGE_RENDERTYPE_AUDIO = 6,               //语音消息
+	MESSAGE_RENDERTYPE_TEXT = 1,            //纯文本
+	MESSAGE_RENDERTYPE_IMAGE = 2,           //纯图片
+	MESSAGE_RENDERTYPE_SYSTEMTIPS = 4,      //系统提示
+	MESSAGE_RENDERTYPE_FILETRANSFER = 5,    //文件提示
+	MESSAGE_RENDERTYPE_AUDIO = 6,           //语音消息
 };
 
+// 消息类型 运行时\离线\历史
 enum MSG_TYPE_STATUS
 {
 	MESSAGE_TYPE_NONE = -1,
@@ -36,7 +38,9 @@ enum MSG_TYPE_STATUS
 	MESSAGE_TYPE_OFFLINE,                   //离线消息
 	MESSAGE_TYPE_HISTORY,                   //历史消息
 };
-enum MSG_TYPE_FROM		//消息来源类型
+
+// 消息来源类型
+enum MSG_TYPE_FROM
 {
 	MESSAGETYPE_FROM_ERROR = 0,
 	MESSAGETYPE_FROM_FRIEND,				//来自点对点的好友消息
@@ -46,10 +50,8 @@ enum MSG_TYPE_FROM		//消息来源类型
 class MODULE_API MessageEntity
 {
 public:
-
     MessageEntity();
     ~MessageEntity() = default;
-
 public:
 	UInt8			msgType;            //消息类型		 1.文本消息；100.语音消息	MSG_TYPE_SERVER
 	UInt8			msgStatusType;      //消息的状态类型 0 在线 1 离线、2 历史		MSG_TYPE_STATUS
@@ -77,5 +79,5 @@ public:
 	//群功能
 	std::string getOriginSessionId();
 };
-/******************************************************************************/
+
 #endif// MESSAGEENTITY_35FE027F_F23D_4444_B013_9FCF04145DD6_H__

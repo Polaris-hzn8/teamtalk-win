@@ -1,9 +1,10 @@
 
-/******************************************************************************* 
- *  @file      UIMgr.cpp 2015\5\5 16:03:37 $
- *  @author    доки<nansong@mogujie.com>
- *  @brief     
- ******************************************************************************/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "UIMgr.h"
@@ -11,13 +12,10 @@
 #include "EditToolbarUI.h"
 #include "../ScreenSnapshot.h"
 
-/******************************************************************************/
-
 UIScreenCaptureMgr::UIScreenCaptureMgr()
 {
 
 }
-
 
 void UIScreenCaptureMgr::forceForgroundWindow(__in HWND hWnd)
 {
@@ -111,4 +109,3 @@ void UIScreenCaptureMgr::sendEditToolbarMessage(__in UINT uMsg, __in WPARAM wPar
 	::SendMessage(m_hEditToolBarUI, uMsg, wParam, lParam);
 }
 
-/******************************************************************************/

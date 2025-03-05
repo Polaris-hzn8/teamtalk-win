@@ -1,21 +1,16 @@
 
-/*******************************************************************************
- *  @file      ScreenSnapshot.h 2015\5\5 15:52:35 $
- *  @author    доки<nansong@mogujie.com>
- *  @brief     
- ******************************************************************************/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef SCREENSNAPSHOT_BC2EEFE8_E0DC_4340_A330_ADEA1587ABD1_H__
 #define SCREENSNAPSHOT_BC2EEFE8_E0DC_4340_A330_ADEA1587ABD1_H__
 
 #include "Common.h"
 #include <vector>
-/******************************************************************************/
-
-/**
- * The class <code>ScreenSnapshot</code> 
- *
- */
 
 class ScreenSnapshot :public Singleton<ScreenSnapshot>
 {
@@ -41,5 +36,4 @@ private:
     HDC m_hBkgMemDC;
 };
 
-/******************************************************************************/
 #endif// SCREENSNAPSHOT_BC2EEFE8-E0DC-4340-A330-ADEA1587ABD1_H__

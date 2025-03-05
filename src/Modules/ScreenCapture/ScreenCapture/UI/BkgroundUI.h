@@ -1,22 +1,15 @@
 
-/*******************************************************************************
- *  @file      BkgroundUI.h 2015\5\5 16:05:50 $
- *  @author    доки<nansong@mogujie.com>
- *  @brief     
- ******************************************************************************/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef BKGROUNDUI_30A15831_BD3E_4E94_817A_E1D46B604B91_H__
 #define BKGROUNDUI_30A15831_BD3E_4E94_817A_E1D46B604B91_H__
 #include "../Common.h"
 #include "Dlgbase.h"
-
-/******************************************************************************/
-
-/**
- * The class <code>BkgroundUI</code> 
- *
- */
-;
 
 class BkgroundUI :public CDlgBase, public Singleton<BkgroundUI>
 {
@@ -56,5 +49,4 @@ private:
 	std::vector<RECT> m_sDrawPolyRegion;
 };
 
-/******************************************************************************/
 #endif// BKGROUNDUI_30a15831-bd3e-4e94-817a-e1d46b604b91_H__

@@ -1,15 +1,16 @@
-/******************************************************************************* 
- *  @file      MessageEntity.cpp 2014\7\25 22:59:44 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief   
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "Modules/MessageEntity.h"
 #include "Modules/ISysConfigModule.h"
 #include "Modules/IGroupListModule.h"
 #include <string>
-/******************************************************************************/
 
 MessageEntity::MessageEntity()
 : msgType(0)
@@ -70,5 +71,3 @@ BOOL MessageEntity::makeGroupSessionId()
 	}
 	return FALSE;
 }
-
-/******************************************************************************/

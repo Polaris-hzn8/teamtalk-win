@@ -1,9 +1,10 @@
 
-/******************************************************************************* 
- *  @file      ScreenCapture.cpp 2015\5\5 15:55:44 $
- *  @author    доки<nansong@mogujie.com>
- *  @brief     
- ******************************************************************************/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "ScreenCapture.h"
@@ -13,9 +14,6 @@
 #include "shlwapi.h"
 
 #pragma comment(lib, "shlwapi.lib")
-
-/******************************************************************************/
-
 
 ScreenCapture::ScreenCapture():
 m_hMouseHook(NULL),
@@ -256,4 +254,3 @@ BOOL ScreenCapture::installMsgHook(BOOL bInstall)
 	return result;
 }
 
-/******************************************************************************/
