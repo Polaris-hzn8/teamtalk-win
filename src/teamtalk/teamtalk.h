@@ -7,7 +7,6 @@
 #include "resource.h"
 
 class MainDialog;
-
 class CteamtalkApp : public CWinApp
 {
 public:

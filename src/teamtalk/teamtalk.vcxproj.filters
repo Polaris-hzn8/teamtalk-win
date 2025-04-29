@@ -7,6 +7,9 @@
     <Filter Include="Main">
       <UniqueIdentifier>{1dcb2f95-42cc-475e-b123-23eeee2e9381}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{22b20b25-d38f-428a-8ad9-fe92864e174b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -44,17 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\teamtalk.ico">
-      <Filter>ProjectFils</Filter>
+      <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="teamtalk.rc">
-      <Filter>ProjectFils</Filter>
+      <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\teamtalk.rc2">
-      <Filter>ProjectFils</Filter>
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
 </Project>
