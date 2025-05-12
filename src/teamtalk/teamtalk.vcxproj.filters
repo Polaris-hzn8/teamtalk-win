@@ -7,9 +7,6 @@
     <Filter Include="Main">
       <UniqueIdentifier>{1dcb2f95-42cc-475e-b123-23eeee2e9381}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{22b20b25-d38f-428a-8ad9-fe92864e174b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -26,6 +23,9 @@
     </ClInclude>
     <ClInclude Include="UI\MainDialog.h">
       <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\versioninfo.h">
+      <Filter>ProjectFils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -47,17 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\teamtalk.ico">
-      <Filter>Resource Files</Filter>
+      <Filter>ProjectFils</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="teamtalk.rc">
-      <Filter>Resource Files</Filter>
+      <Filter>ProjectFils</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\teamtalk.rc2">
-      <Filter>Resource Files</Filter>
+      <Filter>ProjectFils</Filter>
     </None>
   </ItemGroup>
 </Project>
