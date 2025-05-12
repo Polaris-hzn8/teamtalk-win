@@ -1,19 +1,20 @@
+
 /*
- * UtilPdu.h
- *
- *  Created on: 2013-8-27
- *      Author: ziteng@mogujie.com
- */
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef UTILPDU_H_
 #define UTILPDU_H_
 
-#include "ostype.h"
 #include <set>
 #include <map>
 #include <list>
 #include <string>
 using namespace std;
+#include "ostype.h"
 
 #ifdef WIN32
 	#ifdef BUILD_PDU
@@ -100,7 +101,8 @@ private:
 #define ERROR_CODE_WRONG_COMMAND_ID		3
 #define ERROR_CODE_ALLOC_FAILED			4
 
-class CPduException {
+class CPduException
+{
 public:
 	CPduException(uint32_t module_id, uint32_t command_id, uint32_t error_code, const char* error_msg)
 	{
@@ -125,6 +127,5 @@ private:
 
 char* idtourl(uint32_t id);
 uint32_t urltoid(const char* url);
-
 
 #endif /* UTILPDU_H_ */

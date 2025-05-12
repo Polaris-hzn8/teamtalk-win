@@ -6,9 +6,8 @@
  * @website www.xiangwangfeng.com
  */
 
-#include "standard_header.h"
 #include "util.h"
-
+#include "standard_header.h"
 
 #pragma warning(disable :4996)
 
@@ -21,12 +20,12 @@ void	makeLower(char* source,int len)
 
 void	makeLower(const std::string& input,std::string& output)
 {
-	size_t	length	=	input.size();
-	if (length	>	0)
+	size_t length = input.size();
+	if (length > 0)
 	{
 		output.resize(length);
-		std::transform(input.begin(),input.end(),output.begin(),tolower)
-;	}
+		std::transform(input.begin(), input.end(), output.begin(), tolower);
+	}
 }
 
 void	trimString(const std::string& input,std::string& output)
@@ -94,6 +93,7 @@ std::string	torfc1738(const std::string& source)
 			dst += source[i];
 		}
 		else
+		{
 			if (source[i] == ' ')
 			{
 				dst += '+';
@@ -105,6 +105,7 @@ std::string	torfc1738(const std::string& source)
 				dst += hex[c / 16];
 				dst += hex[c % 16];
 			}
+		}
 	}
 	return dst;
 }

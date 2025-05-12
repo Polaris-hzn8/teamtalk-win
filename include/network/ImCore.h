@@ -1,26 +1,29 @@
-/*******************************************************************************
- *  @file      ImCore.h 2014\11\28 13:28:49 $
- *  @author    À¶ºü<lanhu@mogujie.com>
- *  @brief     im cross platform library,currently include network¡¢opertion manager
- ******************************************************************************/
 
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: im cross platform library,currently include network¡¢opertion manager
+*/
 #ifndef IMCORE_A19CD639_91DF_4383_9D8F_4698959A8FD1_H__
 #define IMCORE_A19CD639_91DF_4383_9D8F_4698959A8FD1_H__
 
-#include "GlobalDefine.h"
-#include "util.h"
 #include <iostream>
 #include <string.h>
 #include <functional>
+
+#include "util.h"
+#include "GlobalDefine.h"
 using namespace std;
 
 #ifdef ANDROID
 	#include <jni.h>
 	#include <android/LOG__.h>
 #endif
-/******************************************************************************/
+
 class ClientConn;
 struct ITcpSocketCallback;
+
 NAMESPACE_BEGIN(imcore)
 
 const std::string OPERATION_NAME_MSG_READ_ACK = "operation_name_msg_read_ack";
@@ -97,6 +100,6 @@ class Operation;
 #endif
 
 NAMESPACE_END(imcore)
-/******************************************************************************/
+
 #endif// IMCORE_A19CD639_91DF_4383_9D8F_4698959A8FD1_H__
 

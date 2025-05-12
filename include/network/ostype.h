@@ -58,7 +58,8 @@ typedef unsigned char	uchar_t;
 typedef int				net_handle_t;
 typedef int				conn_handle_t;
 
-enum {
+enum
+{
 	NETLIB_OK		= 0,
 	NETLIB_ERROR	= -1
 };

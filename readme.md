@@ -9,6 +9,7 @@
 1. 3rdParty：第三方开源工具
    - include：头文件 google、sqlite3
    - src：源文件 cxImage、http、json、libogg、libsecurity、libspeex、protobuff、yaolog
+   - info.txt：第三方代码源地址
 2. commonlib：各个项目共享的静态库\导出库文件
 3. solution：工程文件
 4. inlude：头文件

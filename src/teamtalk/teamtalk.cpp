@@ -46,7 +46,6 @@ BOOL CteamtalkApp::InitInstance()
 	}
 	AfxEnableControlContainer();// ActiveX¿Ø¼þÖ§³Ö
 
-
 	//if (_IsHaveInstance())
 	//{
 	//	LOG__(ERR, _T("Had one instance,this will exit"));
