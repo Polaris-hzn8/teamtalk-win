@@ -1,26 +1,21 @@
-/******************************************************************************* 
- *  @file      TTThread.cpp 2014\7\1 16:04:19 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief   windows线程处理的包装
- ******************************************************************************/
+
+ /*
+  Reviser: Polaris_hzn8
+  Email: lch2022fox@163.com
+  Github: https://github.com/Polaris-hzn8
+  brief: Windows线程处理的封装
+ */
 
 #include "stdafx.h"
 #include "utility/TTThread.h"
 
-/******************************************************************************/
 NAMESPACE_BEGIN(util)
-
-// -----------------------------------------------------------------------------
-//  TTThread: Public, Constructor
 
 TTThread::TTThread()
 :m_hThread(0)
 {
 
 }
-
-// -----------------------------------------------------------------------------
-//  TTThread: Public, Destructor
 
 TTThread::~TTThread()
 {
@@ -78,4 +73,3 @@ UInt32 __stdcall TTThread::_threadProc(void *lpParam)
 }
 
 NAMESPACE_END(util)
-/******************************************************************************/

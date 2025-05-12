@@ -1,15 +1,10 @@
 
-/**
-* Copyright (C) 2024 Polaris-hzn8 / LuoChenhao
-*
-* Author: luochenhao
-* Email: lch2022fox@163.com
-* Time: Sat 15 Feb 2025 01:56:10 CST
-* Github: https://github.com/Polaris-hzn8
-* Src code may be copied only under the term's of the Apache License
-* Please visit the http://www.apache.org/licenses/ Page for more detail.
-* brief: http://www.codeproject.com/Articles/10809/A-Small-Class-to-Read-INI-File
-**/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: ini工具类封装
+*/
 
 #ifndef INIOPERATION_372131CD_292F_4837_8C4D_A01CF07CC4B6_H__
 #define INIOPERATION_372131CD_292F_4837_8C4D_A01CF07CC4B6_H__

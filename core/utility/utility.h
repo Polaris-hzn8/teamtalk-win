@@ -9,17 +9,10 @@
 
 #include "resource.h"		// 主符号
 
-
-// CutilityApp
-// 有关此类实现的信息，请参阅 utility.cpp
-//
-
 class CutilityApp : public CWinApp
 {
 public:
 	CutilityApp();
-
-// 重写
 public:
 	virtual BOOL InitInstance();
 
