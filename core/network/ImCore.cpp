@@ -6,10 +6,10 @@
  brief:
 */
 
-#include "network/ImCore.h"
-#include "TcpSocketsManager.h"
-#include "OperationManager.h"
 #include <process.h>
+#include "network/ImCore.h"
+#include "OperationManager.h"
+#include "TcpSocketsManager.h"
 
 NAMESPACE_BEGIN(imcore)
 
@@ -17,10 +17,11 @@ NAMESPACE_BEGIN(imcore)
 JavaVM *g_jvm = NULL;
 jobject g_obj = NULL;
 #endif
+
 static CLock g_lock;
 
 #ifdef _MSC_VER
-HANDLE g_hThreadHandle = 0;
+HANDLE g_hEventThread = NULL;
 unsigned int __stdcall event_run(void* threadArgu)
 {
 	LOG__(NET,  _T("event_run"));
@@ -37,6 +38,147 @@ void *event_run(void* arg) {
 	return NULL;
 }
 #endif
+
+// start/stop
+bool IMLibCoreRunEvent()
+{
+	LOG__(NET, _T("==============================================================================="));
+
+	// operation thread
+	getOperationManager()->startup();
+
+	CAutoLock lock(&g_lock);
+	if (netlib_is_running())
+		return true;
+
+	// netlib_eventloop
+#ifdef _MSC_VER
+	unsigned int threadId = 0;
+	g_hEventThread = (HANDLE)_beginthreadex(nullptr, 0, event_run, nullptr, 0, &threadId);
+	if (g_hEventThread == NULL ||
+		g_hEventThread == INVALID_HANDLE_VALUE)
+	{
+		g_hEventThread = NULL;
+		return false;
+	}
+#else
+	pthread_t thread_id;
+	if (pthread_create(&thread_id, nullptr, event_run, nullptr) != 0)
+	{
+		return false;
+	}
+#endif
+
+	return true;
+}
+
+bool IMLibCoreStopEvent()
+{
+	netlib_stop_event();
+
+#ifdef _MSC_VER
+	if (g_hEventThread)
+	{
+		if (WaitForSingleObject(g_hEventThread, 3000) == WAIT_TIMEOUT)
+		{
+			TerminateThread(g_hEventThread, 0);
+			WaitForSingleObject(g_hEventThread, 500);
+		}
+		CloseHandle(g_hEventThread);
+		g_hEventThread = NULL;
+	}
+#endif
+
+	netlib_destroy();
+
+	getOperationManager()->shutdown();
+
+	return true;
+}
+
+bool IMLibCoreIsRunning()
+{
+	return netlib_is_running();
+}
+
+// network
+int IMLibCoreConnect(string ip, int port)
+{
+	return TcpSocketsManager::getInstance()->connect(ip.c_str(), port);
+}
+
+int IMLibCoreWrite(int key, uchar_t* data, uint32_t size)
+{
+	int nRet = -1;
+	int nHandle = key;
+	CImConn* pConn = TcpSocketsManager::getInstance()->get_client_conn(nHandle);
+	if (pConn)
+	{
+		pConn->Send((void*)data, size);
+	}
+	else
+	{
+		LOG__(NET,  _T("connection is invalied:%d"), key);
+	}
+	return nRet;
+}
+
+void IMLibCoreShutdown(int key)
+{
+	LOG__(NET, _T("shutdown key:%d"), key);
+	int nHandle = key;
+	CImConn* pConn = TcpSocketsManager::getInstance()->get_client_conn(nHandle);
+	if (pConn)
+	{
+		pConn->Shutdown();
+	}
+}
+
+void IMLibCoreClose(int key)
+{
+	LOG__(NET,  _T("close key:%d"), key);
+	int nHandle = key;
+	CImConn* pConn = TcpSocketsManager::getInstance()->get_client_conn(nHandle);
+	if (pConn)
+	{
+		pConn->Close();
+	}
+}
+
+void IMLibCoreRegisterCallback(int handle,ITcpSocketCallback* pCB)
+{
+	TcpSocketsManager::getInstance()->registerCallback(handle,pCB);
+}
+
+void IMLibCoreUnRegisterCallback(int handle)
+{
+	TcpSocketsManager::getInstance()->unRegisterCallback(handle);
+}
+
+// operation
+void IMLibCoreStartOperation(IN Operation* pOperation, Int32 delay /*= 0*/)
+{
+	if (getOperationManager()->startOperation(pOperation, delay) != IMCORE_OK)
+	{
+		LOG__(ERR, _T("push operation failed"));
+	}
+}
+
+void IMLibCoreStartOperationWithLambda(std::function<void()> operationRun, Int32 delay /*= 0*/, std::string oper_name)
+{
+    if (getOperationManager()->startOperationWithLambda(operationRun, delay, oper_name) != IMCORE_OK)
+    {
+        LOG__(ERR, _T("push operation with lambda failed"));
+    }
+}
+
+void IMLibCoreClearOperationByName(std::string oper_name)
+{
+    if (getOperationManager()->clearOperationByName(oper_name) != IMCORE_OK)
+    {
+        LOG__(ERR, _T("clear operation by name failed"));
+    }
+}
 
 #ifdef ANDROID
 JNIEXPORT void JNICALL Java_com_mogujie_im_libcore_LibCore_setJNIEnv(
@@ -85,7 +227,7 @@ JNIEXPORT void JNICALL Java_com_mogujie_im_libcore_LibCore_close(JNIEnv* env,
 }
 
 void onRead(int nHandle, string strJson) {
-	JNIEnv *env;
+	JNIEnv* env;
 	jclass cls;
 	jmethodID mid;
 
@@ -121,7 +263,7 @@ void onRead(int nHandle, string strJson) {
 }
 
 void onClose(int nHandle) {
-	JNIEnv *env;
+	JNIEnv* env;
 	jclass cls;
 	jmethodID mid;
 	if (g_jvm->AttachCurrentThread(&env, NULL) != JNI_OK) {
@@ -156,7 +298,7 @@ void onClose(int nHandle) {
 }
 
 void onConnect(int nHandle) {
-	JNIEnv *env;
+	JNIEnv* env;
 	jclass cls;
 	jmethodID mid;
 
@@ -200,7 +342,7 @@ char* jstringTostr(JNIEnv* env, jstring jstr) {
 	jbyteArray byteArray = (jbyteArray)env->CallObjectMethod(jstr, methodId,
 		encode);
 	jsize strLen = env->GetArrayLength(byteArray);
-	jbyte *jBuf = env->GetByteArrayElements(byteArray, JNI_FALSE);
+	jbyte* jBuf = env->GetByteArrayElements(byteArray, JNI_FALSE);
 
 	if (jBuf > 0) {
 		pStr = (char*)malloc(strLen + 1);
@@ -233,7 +375,7 @@ jstring strToJstring(JNIEnv* env, const char* pStr) {
 	return (jstring)env->NewObject(jstrObj, methodId, byteArray, encode);
 }
 
-JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
+JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved) {
 	JNIEnv* env = NULL;
 	jint result = -1;
 	//»ñÈ¡JNI°æ±¾
@@ -253,134 +395,5 @@ JNIEXPORT jstring JNICALL Java_com_mogujie_im_libcore_LibCore_getToken(JNIEnv* e
 	return strToJstring(env, token);
 }
 #endif
-
-bool IMLibCoreRunEvent()
-{	
-	LOG__(NET, _T("==============================================================================="));
-
-	getOperationManager()->startup();
-
-	CAutoLock lock(&g_lock);
-	if (!netlib_is_running())
-	{
-#ifdef _MSC_VER
-		unsigned int m_dwThreadID;
-		g_hThreadHandle = (HANDLE)_beginthreadex(0, 0, event_run, 0, 0, (unsigned*)&m_dwThreadID);
-		if (g_hThreadHandle < (HANDLE)2)
-		{
-			m_dwThreadID = 0;
-			g_hThreadHandle = 0;
-		}
-		return g_hThreadHandle >(HANDLE)1;
-#else
-		pthread_t pt;
-		pthread_create(&pt, NULL, event_run, NULL);
-#endif
-	}
-
-	return true;
-}
-
-bool IMLibCoreStopEvent()
-{
-	bool bRet = false;
-	netlib_stop_event();
-#ifdef _MSC_VER
-	if (g_hThreadHandle)
-	{
-		if (::WaitForSingleObject(g_hThreadHandle, 3000) == WAIT_TIMEOUT)
-		{
-			::TerminateThread(g_hThreadHandle, 0);
-			WaitForSingleObject(g_hThreadHandle, 500);
-		}
-		::CloseHandle(g_hThreadHandle);
-		g_hThreadHandle = 0;
-	}
-#endif
-	netlib_destroy();
-
-	getOperationManager()->shutdown();
-
-	return bRet;
-}
-
-bool IMLibCoreIsRunning()
-{
-	return netlib_is_running();
-}
-
-int IMLibCoreConnect(string ip, int port)
-{
-	return TcpSocketsManager::getInstance()->connect(ip.c_str(), port);
-}
-
-int IMLibCoreWrite(int key, uchar_t* data, uint32_t size)
-{
-	int nRet = -1;
-	int nHandle = key;
-	CImConn* pConn = TcpSocketsManager::getInstance()->get_client_conn(nHandle);
-	if (pConn) {
-		pConn->Send((void*)data, size);
-	}
-	else {
-		LOG__(NET,  _T("connection is invalied:%d"), key);
-	}
-
-	return nRet;
-}
-
-void IMLibCoreClose(int key)
-{
-	LOG__(NET,  _T("close key:%d"), key);
-	int nHandle = key;
-	CImConn* pConn = TcpSocketsManager::getInstance()->get_client_conn(nHandle);
-	if (pConn) {
-		pConn->Close();
-	}
-}
-
-NETWORK_DLL void IMLibCoreShutdown(int key)
-{
-	LOG__(NET, _T("shutdown key:%d"), key);
-	int nHandle = key;
-	CImConn* pConn = TcpSocketsManager::getInstance()->get_client_conn(nHandle);
-	if (pConn) {
-		pConn->Shutdown();
-	}
-}
-
-void IMLibCoreRegisterCallback(int handle,ITcpSocketCallback* pCB)
-{
-	TcpSocketsManager::getInstance()->registerCallback(handle,pCB);
-}
-
-void IMLibCoreUnRegisterCallback(int handle)
-{
-	TcpSocketsManager::getInstance()->unRegisterCallback(handle);
-}
-
-void IMLibCoreStartOperation(IN Operation* pOperation, Int32 delay /*= 0*/)
-{
-	if (getOperationManager()->startOperation(pOperation, delay) != IMCORE_OK)
-	{
-		LOG__(ERR, _T("push operation failed"));
-	}
-}
-
-void IMLibCoreStartOperationWithLambda(std::function<void()> operationRun, Int32 delay /*= 0*/, std::string oper_name)
-{
-    if (getOperationManager()->startOperationWithLambda(operationRun, delay, oper_name) != IMCORE_OK)
-    {
-        LOG__(ERR, _T("push operation with lambda failed"));
-    }
-}
-
-void IMLibCoreClearOperationByName(std::string oper_name)
-{
-    if (getOperationManager()->clearOperationByName(oper_name) != IMCORE_OK)
-    {
-        LOG__(ERR, _T("clear operation by name failed"));
-    }
-}
 
 NAMESPACE_END(imcore)

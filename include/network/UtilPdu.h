@@ -14,6 +14,7 @@
 #include <list>
 #include <string>
 using namespace std;
+
 #include "ostype.h"
 
 #ifdef WIN32

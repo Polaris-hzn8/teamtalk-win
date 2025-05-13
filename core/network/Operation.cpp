@@ -1,21 +1,19 @@
-/******************************************************************************* 
- *  @file      Operation.cpp 2014\12\23 13:35:34 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 封装的操作对象operation
+*/
 
 #include "GlobalConfig.h"
+#include "yaolog/yaolog.h"
 #include "network/Exception.h"
 #include "network/Operation.h"
-#include "yaolog/yaolog.h"
-/******************************************************************************/
+
 NAMESPACE_BEGIN(imcore)
 
 const std::string OPERATION_NAME_COMMON = "operation_name_common";
-
-
-// -----------------------------------------------------------------------------
-//  Operation: Public, Constructor
 
 Operation::Operation()
 :m_state(OPERATION_IDLE)
@@ -30,9 +28,6 @@ Operation::Operation(const std::string& name)
 {
 
 }
-
-// -----------------------------------------------------------------------------
-//  Operation: Public, Destructor
 
 Operation::~Operation()
 {
@@ -70,4 +65,3 @@ void Operation::release()
 }
 
 NAMESPACE_END(imcore)
-/******************************************************************************/

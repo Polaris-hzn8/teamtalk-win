@@ -1,22 +1,20 @@
-/*******************************************************************************
- *  @file      Operation.h 2014\12\23 13:35:31 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 封装的操作对象operation
+*/
 
 #ifndef OPERATION_D8F2BC78_108D_4219_9D6E_F1728D1B8C95_H__
 #define OPERATION_D8F2BC78_108D_4219_9D6E_F1728D1B8C95_H__
 
-#include "GlobalDefine.h"
 #include "IOperation.h"
+#include "GlobalDefine.h"
 #include "network/networkdll.h"
-/******************************************************************************/
+
 NAMESPACE_BEGIN(imcore)
 
-/**
- * The class <code>Operation</code> 
- *
- */
 class NETWORK_DLL Operation : public IOperation
 {
 	enum OperationState
@@ -29,19 +27,9 @@ class NETWORK_DLL Operation : public IOperation
 	};
 
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Constructor 
-     */
     Operation();
 	Operation(const std::string& name);
-    /**
-     * Destructor
-     */
     virtual ~Operation();
-    //@}
 
 public:
 	virtual void processOpertion() = 0;
@@ -59,5 +47,5 @@ private:
 };
 
 NAMESPACE_END(imcore)
-/******************************************************************************/
+
 #endif// OPERATION_D8F2BC78_108D_4219_9D6E_F1728D1B8C95_H__

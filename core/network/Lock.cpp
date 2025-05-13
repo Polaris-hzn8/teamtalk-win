@@ -3,7 +3,7 @@
  Reviser: Polaris_hzn8
  Email: lch2022fox@163.com
  Github: https://github.com/Polaris-hzn8
- brief:
+ brief: 自定义封装的lock_guard
 */
 
 #include "network/Lock.h"
