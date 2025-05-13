@@ -1,15 +1,16 @@
-/******************************************************************************* 
- *  @file      imconn.cpp 2013\6\5 18:51:30 $
- *  @author    згЬк<ziteng@mogujie.com>
- *  @brief     
- ******************************************************************************/
 
-#include "network/imconn.h"
-#include "network/TTPBHeader.h"
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
 #include "GlobalDefine.h"
+#include "network/imconn.h"
 #include "TcpSocketsManager.h"
+#include "network/TTPBHeader.h"
 
-/******************************************************************************/
 void imconn_callback(void* callback_data, uint8_t msg, uint32_t handle, void* pParam)
 {
 	NOTUSED_ARG(handle);
@@ -211,5 +212,3 @@ void CImConn::unRegisterCallback()
 {
 	m_pTcpSocketCB = 0;
 }
-
-/******************************************************************************/

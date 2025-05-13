@@ -1,6 +1,14 @@
-#include "network/netlib.h"
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
 #include "BaseSocket.h"
 #include "EventDispatch.h"
+#include "network/netlib.h"
 
 int netlib_init()
 {
@@ -13,7 +21,6 @@ int netlib_init()
 		ret = NETLIB_ERROR;
 	}
 #endif
-
 	return ret;
 }
 
@@ -26,7 +33,6 @@ int netlib_destroy()
 		ret = NETLIB_ERROR;
 	}
 #endif
-
 	return ret;
 }
 

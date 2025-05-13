@@ -1,8 +1,10 @@
-/*******************************************************************************
- *  @file      Exception.h 2012\9\10 16:25:53 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief   Âß¼­ÒýÇæÒì³£
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: Âß¼­ÒýÇæÒì³£
+*/
 
 #ifndef EXCEPTION_7889B422_4F2F_495F_AFAC_180F657486D2_H__
 #define EXCEPTION_7889B422_4F2F_495F_AFAC_180F657486D2_H__
@@ -10,7 +12,7 @@
 #include "GlobalDefine.h"
 #include "networkdll.h"
 #include <string>
-/******************************************************************************/
+
 NAMESPACE_BEGIN(imcore)
 
 #pragma warning(disable: 4251)
@@ -29,5 +31,5 @@ public:
 };
 
 NAMESPACE_END(imcore)
-/******************************************************************************/
+
 #endif// EXCEPTION_7889B422_4F2F_495F_AFAC_180F657486D2_H__

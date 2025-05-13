@@ -1,23 +1,18 @@
-/******************************************************************************* 
- *  @file      TcpSocketsManager.cpp 2014\12\1 19:55:00 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "GlobalDefine.h"
 #include "TcpSocketsManager.h"
-/******************************************************************************/
-
-// -----------------------------------------------------------------------------
-//  TcpSocketsManager: Public, Constructor
 
 TcpSocketsManager::TcpSocketsManager()
 {
 
 }
-
-// -----------------------------------------------------------------------------
-//  TcpSocketsManager: Public, Destructor
 
 TcpSocketsManager::~TcpSocketsManager()
 {
@@ -74,6 +69,4 @@ void TcpSocketsManager::release_by_handle(net_handle_t handle)
 	if (iter != m_client_conn_map.end())
 		m_client_conn_map.erase(handle);
 }
-
-
 

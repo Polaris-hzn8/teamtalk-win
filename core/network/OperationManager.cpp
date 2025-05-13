@@ -1,15 +1,17 @@
-/******************************************************************************* 
- *  @file      OperationManager.cpp 2014\12\18 19:16:30 $
- *  @author    大佛<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "GlobalConfig.h"
 #include "yaolog/yaolog.h"
 #include "network/Operation.h"
 #include "OperationManager.h"
 #include <algorithm>
-/******************************************************************************/
+
 NAMESPACE_BEGIN(imcore)
 
 namespace
@@ -100,7 +102,7 @@ void OperationManager::shutdown(IN int seconds /*= 2000*/)
 	for (IOperation* pOper : m_vecDelayOperations)
 	{
 		delete pOper;
-		pOper = 0;
+		pOper = NULL;
 	}
 	m_vecDelayOperations.clear();
 }
@@ -162,7 +164,6 @@ IMCoreErrorCode OperationManager::clearOperationByName(std::string oper_name)
 
 OperationManager::~OperationManager()
 {
-	//捕捉可能抛出的未知异常
 	try
 	{
 		shutdown();
@@ -181,5 +182,3 @@ OperationManager* getOperationManager()
 }
 
 NAMESPACE_END(imcore)
-
-/******************************************************************************/

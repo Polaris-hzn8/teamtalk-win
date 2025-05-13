@@ -1,5 +1,13 @@
-#include "EventDispatch.h"
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
 #include "BaseSocket.h"
+#include "EventDispatch.h"
 
 #define MIN_TIMER_DURATION	100	// miliseconds
 

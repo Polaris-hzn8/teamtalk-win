@@ -1,8 +1,13 @@
+
 /*
- * A socket event dispatcher, features include: 
- * 1. portable: worked both on Windows, MAC OS X,  LINUX platform
- * 2. a singleton pattern: only one instance of this class can exist
- */
+  Reviser: Polaris_hzn8
+  Email: lch2022fox@163.com
+  Github: https://github.com/Polaris-hzn8
+  brief: A socket event dispatcher, features include: 
+	1. portable: worked both on Windows, MAC OS X,  LINUX platform
+	2. a singleton pattern: only one instance of this class can exist
+*/
+
 #ifndef __EVENT_DISPATCH_H__
 #define __EVENT_DISPATCH_H__
 

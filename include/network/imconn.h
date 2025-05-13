@@ -1,18 +1,19 @@
-/*******************************************************************************
- *  @file      imconn.h 2013\6\5 18:51:30 $
- *  @author    згЬк<ziteng@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef IMCONN_F6246291_E098_40CB_B2B9_612AD9AC1F93_H__
 #define IMCONN_F6246291_E098_40CB_B2B9_612AD9AC1F93_H__
 
-#include "netlib.h"
-#include "network/util.h"
-#include "UtilPdu.h"
 #include <map>
 #include <string>
-/******************************************************************************/
+#include "netlib.h"
+#include "UtilPdu.h"
+#include "network/util.h"
 
 #define SERVER_HEARTBEAT_INTERVAL	5000
 #define SERVER_TIMEOUT				30000
@@ -66,6 +67,4 @@ protected:
 
 void imconn_callback(void* callback_data, uint8_t msg, uint32_t handle, void* pParam);
 
-/******************************************************************************/
 #endif// IMCONN_F6246291_E098_40CB_B2B9_612AD9AC1F93_H__
-

@@ -1,19 +1,21 @@
-/*******************************************************************************
- *  @file      OperationManager.h 2014\12\18 19:14:27 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef OPERATIONMANAGER_7EEF3272_2557_4A76_9C25_67D4639F40DB_H__
 #define OPERATIONMANAGER_7EEF3272_2557_4A76_9C25_67D4639F40DB_H__
 
-#include "network/ErrorCode.h"
+#include <list>
+#include <mutex>
+#include <thread>
 #include <functional>
 #include <condition_variable>
-#include <mutex>
-#include <list>
-#include <thread>
-/******************************************************************************/
+#include "network/ErrorCode.h"
+
 NAMESPACE_BEGIN(imcore)
 
 class Operation;
@@ -51,5 +53,5 @@ private:
 OperationManager* getOperationManager();
 
 NAMESPACE_END(imcore)
-/******************************************************************************/
+
 #endif// OPERATIONMANAGER_7EEF3272_2557_4A76_9C25_67D4639F40DB_H__
