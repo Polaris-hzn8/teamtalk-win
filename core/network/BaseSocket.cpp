@@ -1,8 +1,16 @@
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
 #include "BaseSocket.h"
 #include "EventDispatch.h"
 
 typedef unordered_map<net_handle_t, CBaseSocket*> SocketMap;
-SocketMap	g_socket_map;
+SocketMap g_socket_map;
 
 void AddBaseSocket(CBaseSocket* pSocket)
 {
@@ -162,7 +170,6 @@ int CBaseSocket::Close()
 	RemoveBaseSocket(this);
 	closesocket(m_socket);
 	ReleaseRef();
-
 	return 0;
 }
 

@@ -66,11 +66,9 @@ private:
 #else
 	int		m_epfd;
 #endif
-	CLock			m_lock;
+	CLock				m_lock;
 	list<TimerItem*>	m_timer_list;
 	list<TimerItem*>	m_loop_list;
-
-	static CEventDispatch* m_pEventDispatch;
     
     bool running;
 };

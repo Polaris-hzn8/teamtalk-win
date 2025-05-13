@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      Subject.cpp 2014\12\16 15:33:12 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "Modules/ModuleSubject.h"
@@ -10,19 +12,13 @@
 #include "Modules/UIEventManager.h"
 #include "utility/utilCommonAPI.h"
 #include <algorithm>
-/******************************************************************************/
-NAMESPACE_BEGIN(module)
 
-// -----------------------------------------------------------------------------
-//  Subject: Public, Constructor
+NAMESPACE_BEGIN(module)
 
 ModuleSubject::ModuleSubject()
 {
 
 }
-
-// -----------------------------------------------------------------------------
-//  Subject: Public, Destructor
 
 ModuleSubject::~ModuleSubject()
 {
@@ -143,4 +139,3 @@ void ModuleSubject::getIObserverHandlersByModuleId(OUT std::vector<MKODelegate>&
 }
 
 NAMESPACE_END(module)
-/******************************************************************************/

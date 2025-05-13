@@ -6,11 +6,11 @@
  brief:
 */
 
+#include <algorithm>
 #include "GlobalConfig.h"
 #include "yaolog/yaolog.h"
-#include "network/Operation.h"
 #include "OperationManager.h"
-#include <algorithm>
+#include "network/Operation.h"
 
 NAMESPACE_BEGIN(imcore)
 
@@ -38,30 +38,27 @@ namespace
 	};
 }
 
+// 任务队列 启动
 IMCoreErrorCode OperationManager::startup()
 {
 	m_operationThread = std::thread([&]
 	{
 		std::unique_lock <std::mutex> lck(m_cvMutex);
-		Operation* pOperation = nullptr;
 		while (m_bContinue)
 		{
-			if (!m_bContinue)
-				break;
+			Operation* pOperation = nullptr;
 			if (m_vecRealtimeOperations.empty())
-				m_CV.wait(lck);
+				m_cv.wait(lck);
 			if (!m_bContinue)
 				break;
 			{
 				std::lock_guard<std::mutex> lock(m_mutexOperation);
-				if (m_vecRealtimeOperations.empty())
-					continue;
-				pOperation = m_vecRealtimeOperations.front();
-				m_vecRealtimeOperations.pop_front();
+				if (!m_vecRealtimeOperations.empty())
+				{
+					pOperation = m_vecRealtimeOperations.front();
+					m_vecRealtimeOperations.pop_front();
+				}
 			}
-
-			if (!m_bContinue)
-				break;
 
 			if (pOperation)
 			{
@@ -74,22 +71,23 @@ IMCoreErrorCode OperationManager::startup()
 	return IMCORE_OK;
 }
 
+// 任务队列 释放
 void OperationManager::shutdown(IN int seconds /*= 2000*/)
 {
 	m_bContinue = false;
-	m_CV.notify_one();
+	m_cv.notify_one();
 
-	//todo kuaidao ...join may be infinite waiting
+	//bug:...join may be infinite waiting
 	if (m_operationThread.joinable())
 		m_operationThread.join();
 
 	{
 		std::lock_guard<std::mutex> locker(m_mutexOperation);
-		for (IOperation* pOper : m_vecRealtimeOperations)
+		for (IOperation* pOperation : m_vecRealtimeOperations)
 		{
 			try
 			{
-				pOper->release();
+				pOperation->release();
 			}
 			catch (...)
 			{
@@ -99,10 +97,10 @@ void OperationManager::shutdown(IN int seconds /*= 2000*/)
 		m_vecRealtimeOperations.clear();
 	}
 
-	for (IOperation* pOper : m_vecDelayOperations)
+	for (IOperation* pOperation : m_vecDelayOperations)
 	{
-		delete pOper;
-		pOper = NULL;
+		delete pOperation;
+		pOperation = NULL;
 	}
 	m_vecDelayOperations.clear();
 }
@@ -115,23 +113,25 @@ IMCoreErrorCode OperationManager::startOperation(IN Operation* pOperation, Int32
 		return IMCORE_ARGUMENT_ERROR;
 	}
 
-	//todo kuaidao...delay operntion process
+	//...delay operntion process
 	if (delay > 0)
 	{
+
 	}
 	else
 	{
 		std::lock_guard<std::mutex> locker(m_mutexOperation);
 		m_vecRealtimeOperations.push_back(pOperation);
-		m_CV.notify_one();
+		m_cv.notify_one();
 	}
 
 	return IMCORE_OK;
 }
 
-IMCoreErrorCode OperationManager::startOperationWithLambda(std::function<void()> operationRun
-                                                            , Int32 delay
-                                                            , std::string oper_name)
+IMCoreErrorCode OperationManager::startOperationWithLambda(
+	std::function<void()> operationRun,
+	Int32 delay,
+	std::string oper_name)
 {
     LambdaOperation* pLambdaOper = new LambdaOperation(operationRun);
     pLambdaOper->set_name(oper_name);

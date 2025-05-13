@@ -3,7 +3,9 @@
  Reviser: Polaris_hzn8
  Email: lch2022fox@163.com
  Github: https://github.com/Polaris-hzn8
- brief:
+ brief: 
+	1.单例控制
+	2.利用生产者消费者模型 管理和调度异步任务
 */
 
 #ifndef OPERATIONMANAGER_7EEF3272_2557_4A76_9C25_67D4639F40DB_H__
@@ -19,7 +21,6 @@
 NAMESPACE_BEGIN(imcore)
 
 class Operation;
-
 class OperationManager
 {
 public:
@@ -33,9 +34,7 @@ public:
 	IMCoreErrorCode startup();
     void shutdown(IN int seconds = 2000);
     IMCoreErrorCode startOperation(IN Operation* pOperation, Int32 delay);
-    IMCoreErrorCode startOperationWithLambda(std::function<void()> operationRun
-        , Int32 delay
-        , std::string oper_name);
+    IMCoreErrorCode startOperationWithLambda(std::function<void()> operationRun, Int32 delay, std::string oper_name);
     IMCoreErrorCode clearOperationByName(std::string oper_name);
 
 private:
@@ -43,7 +42,7 @@ private:
 	std::list<Operation*>      m_vecRealtimeOperations;
 
 	std::mutex					m_cvMutex;	// 互斥锁
-	std::condition_variable		m_CV;		// 条件变量
+	std::condition_variable		m_cv;		// 条件变量
 
 	std::mutex					m_mutexOperation;
 	bool                        m_bContinue = true;

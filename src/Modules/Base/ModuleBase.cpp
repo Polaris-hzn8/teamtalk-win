@@ -1,26 +1,22 @@
-/******************************************************************************* 
- *  @file      ModuleBase.cpp 2014\12\16 14:16:02 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
-#include "Modules/ModuleSubject.h"
 #include "Modules/ModuleBase.h"
-/******************************************************************************/
-NAMESPACE_BEGIN(module)
+#include "Modules/ModuleSubject.h"
 
-// -----------------------------------------------------------------------------
-//  ModuleBase: Public, Constructor
+NAMESPACE_BEGIN(module)
 
 ModuleBase::ModuleBase()
 :m_pModuleSubject(0)
 {
 	m_pModuleSubject = new ModuleSubject();
 }
-
-// -----------------------------------------------------------------------------
-//  ModuleBase: Public, Destructor
 
 ModuleBase::~ModuleBase()
 {
@@ -64,4 +60,3 @@ void ModuleBase::asynNotifyObserver(IN const std::string& keyId, IN std::shared_
 }
 
 NAMESPACE_END(module)
-/******************************************************************************/

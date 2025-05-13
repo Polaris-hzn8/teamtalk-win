@@ -1,18 +1,20 @@
-/******************************************************************************* 
- *  @file      UIEventManager.cpp 2014\7\18 15:09:03 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief   
- ******************************************************************************/
 
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
+#include <memory>
+#include <algorithm>
 #include "stdafx.h"
 #include "Modules/IEvent.h"
-#include "utility/utilStrCodingAPI.h"
-#include "utility/utilCommonAPI.h"
 #include "network/Exception.h"
+#include "utility/utilCommonAPI.h"
 #include "Modules/UIEventManager.h"
-#include <algorithm>
-#include <memory>
-/******************************************************************************/
+#include "utility/utilStrCodingAPI.h"
+
 NAMESPACE_BEGIN(module)
 
 namespace
@@ -56,7 +58,6 @@ UIEventManager::UIEventManager()
 
 UIEventManager::~UIEventManager()
 {
-	//捕捉可能抛出的未知异常
 	try
 	{
 		shutdown();
@@ -70,12 +71,12 @@ UIEventManager::~UIEventManager()
 
 void UIEventManager::shutdown()
 {
-	if (0 !=m_hWnd)
+	if (0 != m_hWnd)
 	{
 		_removeEvents();
-		::KillTimer(m_hWnd, UI_TIMER_ID);
-		::DestroyWindow(m_hWnd);
-		::UnregisterClassW(uiEventWndClass, ::GetModuleHandle(NULL));
+		KillTimer(m_hWnd, UI_TIMER_ID);
+		DestroyWindow(m_hWnd);
+		UnregisterClassW(uiEventWndClass, ::GetModuleHandle(NULL));
 		m_hWnd = 0;
 	}
 }
@@ -326,4 +327,3 @@ UIEventManager* getEventManager()
 }
 
 NAMESPACE_END(module)
-/******************************************************************************/

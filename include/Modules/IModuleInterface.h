@@ -1,20 +1,22 @@
-/*******************************************************************************
- *  @file      IModuleInterface.h 2014\12\18 13:37:56 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef IMODULEINTERFACE_26428D8B_4585_4660_95B3_94E8735700E9_H__
 #define IMODULEINTERFACE_26428D8B_4585_4660_95B3_94E8735700E9_H__
 
+#include <string>
+#include <functional>
 #include "GlobalDefine.h"
 #include "Modules/IEvent.h"
-#include "Modules/UIEventManager.h"
-#include "Modules/ModuleDll.h"
 #include "network/Operation.h"
-#include <functional>
-#include <string>
-/******************************************************************************/
+#include "Modules/ModuleDll.h"
+#include "Modules/UIEventManager.h"
+
 namespace imcore
 {
 	class TTPBHeader;
@@ -90,5 +92,5 @@ public:
 };
 
 NAMESPACE_END(module)
-/******************************************************************************/
+
 #endif// IMODULEINTERFACE_26428d8b-4585-4660-95b3-94e8735700e9_H__

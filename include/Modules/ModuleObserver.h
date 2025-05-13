@@ -9,11 +9,11 @@
 #ifndef OBSERVER_6444A026_CF7D_4675_BD86_A112B52B992D_H__
 #define OBSERVER_6444A026_CF7D_4675_BD86_A112B52B992D_H__
 
-#include "GlobalDefine.h"
-#include "Modules/IEvent.h"
-#include <tuple> 
+#include <tuple>
 #include <memory>
 #include <functional>
+#include "GlobalDefine.h"
+#include "Modules/IEvent.h"
 
 enum
 {

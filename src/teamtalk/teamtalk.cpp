@@ -58,7 +58,8 @@ BOOL CteamtalkApp::InitInstance()
 	//}
 
 	// 网络事件循环
-	// 1.启动逻辑任务队列处理线程，2.启动IO处理线程，进行IO读写事件的监听
+	// 1.启动任务处理线程
+	// 2.启动IO处理线程监听IO读写事件
 	if (!imcore::IMLibCoreRunEvent())
 	{
 		LOG__(ERR, _T("start imcore lib failed!"));
@@ -66,7 +67,7 @@ BOOL CteamtalkApp::InitInstance()
 	LOG__(APP, _T("start imcore lib done"));
 
 	//start ui event
-	// 启动ui事件代理窗口，从系统消息队列中获取消息并处理一般事件和定时事件
+	// 启动ui事件代理窗口，从系统消息队列中获取消息并处理 一般事件和定时事件
 	if (module::getEventManager()->startup() != imcore::IMCORE_OK)
 	{
 		LOG__(ERR, _T("start ui event failed"));

@@ -1,25 +1,27 @@
-/*******************************************************************************
- *  @file      UIEventManager.h 2014\7\18 15:09:00 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief   
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef UIEVENTMANAGER_7F7C0283_2B1D_4BB8_8052_ADBB35F055F3_H__
 #define UIEVENTMANAGER_7F7C0283_2B1D_4BB8_8052_ADBB35F055F3_H__
 
-#include "GlobalDefine.h"
-#include "network/ErrorCode.h"
-#include "network/Lock.h"
-#include "ModuleDll.h"
 #include <list>
 #include <functional>
-/******************************************************************************/
+#include "ModuleDll.h"
+#include "GlobalDefine.h"
+#include "network/Lock.h"
+#include "network/ErrorCode.h"
+
 NAMESPACE_BEGIN(module)
 
 using namespace imcore;
+
 struct IEvent;
 struct ITimerEvent;
-
 struct TTTimer
 {
 	UInt64 nElapse;
@@ -30,26 +32,11 @@ struct TTTimer
 	TTTimer();
 };
 
-/**
- * The class <code>UIEventManager</code> 
- *
- */
 class MODULE_CLASS UIEventManager final
 {
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Constructor 
-     */
-    UIEventManager();
-    /**
-     * Destructor
-     */
+	UIEventManager();
     ~UIEventManager();
-    //@}
-
 public:
 	IMCoreErrorCode startup();
 	void            shutdown();
@@ -84,5 +71,5 @@ private:
 MODULE_API UIEventManager* getEventManager();
 
 NAMESPACE_END(module)
-/******************************************************************************/
+
 #endif// UIEVENTMANAGER_7F7C0283_2B1D_4BB8_8052_ADBB35F055F3_H__

@@ -5,8 +5,8 @@
  ******************************************************************************/
 
 #include "stdafx.h"
-#include "DatabaseModule_Impl.h"
 #include "utility/CppSQLite3.h"
+#include "DatabaseModule_Impl.h"
 #include "utility/utilStrCodingAPI.h"
 
 /******************************************************************************/

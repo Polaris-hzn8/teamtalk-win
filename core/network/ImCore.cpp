@@ -44,14 +44,14 @@ bool IMLibCoreRunEvent()
 {
 	LOG__(NET, _T("==============================================================================="));
 
-	// operation thread
+	// start thread -> operation tasklist
 	getOperationManager()->startup();
 
 	CAutoLock lock(&g_lock);
 	if (netlib_is_running())
 		return true;
 
-	// netlib_eventloop
+	// start thread -> netlib_eventloop
 #ifdef _MSC_VER
 	unsigned int threadId = 0;
 	g_hEventThread = (HANDLE)_beginthreadex(nullptr, 0, event_run, nullptr, 0, &threadId);
