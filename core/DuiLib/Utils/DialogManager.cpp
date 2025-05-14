@@ -1,24 +1,21 @@
-/******************************************************************************* 
- *  @file      DialogManager.cpp 2014\9\9 10:51:50 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "DialogManager.h"
 #include <algorithm>
-/******************************************************************************/
+
 NAMESPACE_BEGIN(DuiLib)
-// -----------------------------------------------------------------------------
-//  DialogManager: Public, Constructor
 
 DialogManager::DialogManager()
 {
 
 }
-
-// -----------------------------------------------------------------------------
-//  DialogManager: Public, Destructor
 
 DialogManager::~DialogManager()
 {
@@ -66,4 +63,3 @@ void DialogManager::closeAllDialogs()
 }
 
 NAMESPACE_END(DuiLib)
-/******************************************************************************/

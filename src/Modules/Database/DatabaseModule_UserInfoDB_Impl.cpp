@@ -1,14 +1,16 @@
-/******************************************************************************* 
- *  @file      DatabaseModule_UserInfoDB_Impl.cpp 2014\12\30 11:26:25 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     user info db manage
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: user info db manage
+*/
 
 #include "stdafx.h"
 #include "DatabaseModule_Impl.h"
 #include "utility/CppSQLite3.h"
 #include "utility/utilStrCodingAPI.h"
-/******************************************************************************/
+
 namespace
 {
 	const std::string createUserInfoSql =
@@ -293,5 +295,3 @@ BOOL DatabaseModule_Impl::_execUserInfoCreateTableDML()
 	
 	return TRUE;
 }
-
-/******************************************************************************/

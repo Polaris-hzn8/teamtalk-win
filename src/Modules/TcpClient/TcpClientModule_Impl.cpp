@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      TcpClientModule_Impl.cpp 2014\7\29 13:16:48 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "TcpClientModule_Impl.h"
@@ -18,7 +20,7 @@
 #include "Modules/IGroupListModule.h"
 #include "Modules/IFileTransferModule.h"
 #include "Modules/UIEventManager.h"
-/******************************************************************************/
+
 namespace module
 {
 	ITcpClientModule* getTcpClientModule()
@@ -62,9 +64,6 @@ namespace
 	}
 }
 
-// -----------------------------------------------------------------------------
-//  TcpClientModule_Impl: Public, Constructor
-
 TcpClientModule_Impl::TcpClientModule_Impl()
 :m_tcpClientState(TCPCLIENT_STATE_OK)
 ,m_pImLoginResp(0)
@@ -76,9 +75,6 @@ TcpClientModule_Impl::TcpClientModule_Impl()
 	m_eventConnected = CreateEvent(NULL, FALSE, FALSE, NULL);
 	m_pImLoginResp = new IM::Login::IMLoginRes();
 }
-
-// -----------------------------------------------------------------------------
-//  TcpClientModule_Impl: Public, Destructor
 
 TcpClientModule_Impl::~TcpClientModule_Impl()
 {
@@ -311,4 +307,3 @@ void ServerPingTimer::release()
 {
 	delete this;
 }
-/******************************************************************************/

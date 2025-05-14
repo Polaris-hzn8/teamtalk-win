@@ -1,14 +1,15 @@
-﻿/******************************************************************************* 
- *  @file      IUserListModule.cpp 2014\8\26 16:36:25 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+﻿
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "Modules/IUserListModule.h"
 #include "Modules/ITcpClientModule.h"
 
-/******************************************************************************/
 NAMESPACE_BEGIN(module)
 CString UserInfoEntity::getRealName()const
 {
@@ -71,4 +72,3 @@ BOOL UserInfoEntity::isOnlne() const
 }
 
 NAMESPACE_END(module)
-/******************************************************************************/

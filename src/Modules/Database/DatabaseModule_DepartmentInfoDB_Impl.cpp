@@ -1,14 +1,16 @@
-﻿/******************************************************************************* 
- *  @file      DatabaseModule_DepartmentInfoDB_Impl.cpp 2015\3\17 11:24:57 $
- *  @author    大佛<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+﻿
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
-#include "DatabaseModule_Impl.h"
 #include "utility/CppSQLite3.h"
+#include "DatabaseModule_Impl.h"
 #include "utility/utilStrCodingAPI.h"
-/******************************************************************************/
+
 namespace
 {
 	const std::string createDepartmentInfoSql =
@@ -251,5 +253,3 @@ BOOL DatabaseModule_Impl::_execDepartmentInfoCreateTableDML()
 	
 	return TRUE;
 }
-
-/******************************************************************************/

@@ -1,6 +1,14 @@
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
 #include "md5.h"
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
 typedef struct {
     unsigned int state[4];     

@@ -23,6 +23,7 @@ namespace
 	#define UI_EVENT_MSG				WM_USER + 1005
 
 	static const wchar_t uiEventWndClass[] = L"uiEventManager_class";
+	static const wchar_t uiEventWndName[] = L"uiEvnetManager_window";
 }
 
 namespace
@@ -71,13 +72,13 @@ UIEventManager::~UIEventManager()
 
 void UIEventManager::shutdown()
 {
-	if (0 != m_hWnd)
+	if (m_hWnd != NULL)
 	{
 		_removeEvents();
 		KillTimer(m_hWnd, UI_TIMER_ID);
 		DestroyWindow(m_hWnd);
 		UnregisterClassW(uiEventWndClass, ::GetModuleHandle(NULL));
-		m_hWnd = 0;
+		m_hWnd = NULL;
 	}
 }
 
@@ -119,22 +120,39 @@ imcore::IMCoreErrorCode UIEventManager::startup()
 {
 	IMCoreErrorCode errCode = IMCORE_OK;
 
-	if (0 != m_hWnd)
+	if (m_hWnd != NULL)
+	{
 		return IMCORE_OK;
+	}
 	else
 	{
 		if (!_registerClass())
+		{
 			return IMCORE_INVALID_HWND_ERROR;
-		m_hWnd = ::CreateWindowW(uiEventWndClass, _T("uiEvnetManager_window"),
-			0, 0, 0, 0, 0, HWND_MESSAGE, 0, GetModuleHandle(0), 0);
+		}
+
+		// 收发消息窗口
+		m_hWnd = CreateWindowW(
+			uiEventWndClass,	// 类名
+			uiEventWndName,		// 标题
+			0,					// 窗口样式
+			0, 0, 0, 0,			// x, y, width, height
+			HWND_MESSAGE,		// 特殊父窗口
+			0,					// 无菜单
+			GetModuleHandle(0),	// 当前应用实例句柄
+			0					// 附加数据
+		);
+
 		if (m_hWnd)
 		{
-			::SetTimer(m_hWnd, reinterpret_cast<UINT_PTR>(this), 1000, NULL);
+			SetTimer(m_hWnd, reinterpret_cast<UINT_PTR>(this), 1000, NULL);
 		}
 	}
 
-	if (FALSE == ::IsWindow(m_hWnd))
+	if (FALSE == IsWindow(m_hWnd))
+	{
 		errCode = IMCORE_INVALID_HWND_ERROR;
+	}
 
 	return errCode;
 }
@@ -155,21 +173,25 @@ void UIEventManager::_removeEvents()
 void UIEventManager::_processEvent(IEvent* pEvent, BOOL bRelease)
 {
 	assert(pEvent);
-	if (0 == pEvent)
+	if (pEvent == NULL)
 		return;
 
 	try
 	{
 		pEvent->process();
 		if (bRelease)
+		{
 			pEvent->release();
+		}
 	}
 	catch (imcore::Exception *e)
 	{
 		LOG__(ERR, _T("event run exception"));
 		pEvent->onException(e);
 		if (bRelease)
+		{
 			pEvent->release();
+		}
 		if (e)
 		{
 			LOG__(ERR, _T("event run exception:%s"), util::stringToCString(e->m_msg));
@@ -178,9 +200,11 @@ void UIEventManager::_processEvent(IEvent* pEvent, BOOL bRelease)
 	}
 	catch (...)
 	{
-		LOG__(ERR, _T("operation run exception,unknown reason"));
+		LOG__(ERR, _T("operation run exception, unknown reason"));
 		if (bRelease)
+		{
 			pEvent->release();
+		}
 		assert(FALSE);
 	}
 }

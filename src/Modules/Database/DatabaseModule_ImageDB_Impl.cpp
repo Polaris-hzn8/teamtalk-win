@@ -1,15 +1,16 @@
-/******************************************************************************* 
- *  @file      DatabaseModule_ImageDB_Impl.cpp 2014\12\30 14:06:32 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "utility/CppSQLite3.h"
 #include "DatabaseModule_Impl.h"
 #include "utility/utilStrCodingAPI.h"
 
-/******************************************************************************/
 namespace
 {
 	const std::string createImImageSql =
@@ -156,5 +157,3 @@ BOOL DatabaseModule_Impl::sqlUpdateImImageEntity(UInt32 hashcode, module::ImImag
 
 	return TRUE;
 }
-
-/******************************************************************************/

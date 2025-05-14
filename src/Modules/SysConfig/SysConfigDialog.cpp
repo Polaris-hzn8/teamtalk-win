@@ -1,14 +1,16 @@
-/******************************************************************************* 
- *  @file      SettingDialog.cpp 2014\8\6 20:05:26 $
- *  @author    大佛<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
-#include "SysConfigDialog.h"
 #include "GlobalDefine.h"
-#include "Modules/ISysConfigModule.h"
+#include "SysConfigDialog.h"
 #include "Modules/IMiscModule.h"
+#include "Modules/ISysConfigModule.h"
 #include "Modules/ITcpClientModule.h"
 
 DUI_BEGIN_MESSAGE_MAP(SysConfigDialog, WindowImplBase)
@@ -16,19 +18,11 @@ DUI_BEGIN_MESSAGE_MAP(SysConfigDialog, WindowImplBase)
 	DUI_ON_MSGTYPE(DUI_MSGTYPE_CLICK, OnClick)
 DUI_END_MESSAGE_MAP()
 
-/******************************************************************************/
-
-// -----------------------------------------------------------------------------
-//  SettingDialog: Public, Constructor
-
 SysConfigDialog::SysConfigDialog()
 :m_pbtnApply(0)
 {
 
 }
-
-// -----------------------------------------------------------------------------
-//  SettingDialog: Public, Destructor
 
 SysConfigDialog::~SysConfigDialog()
 {
@@ -111,7 +105,6 @@ void SysConfigDialog::OnClick(TNotifyUI& msg)
 			module::getMiscModule()->playSound(module::getMiscModule()->getDataDir() + _T("Sound\\callmsg.wav"));
 		}
 	}
-
 	__super::OnClick(msg);
 }
 
@@ -209,5 +202,3 @@ void SysConfigDialog::_ApplySetting()
 	module::getSysConfigModule()->asynNotifyObserver(module::KEY_SYSCONFIG_UPDATED);	//通知改动
 	module::getSysConfigModule()->saveData();
 }
-
-/******************************************************************************/

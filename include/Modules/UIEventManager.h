@@ -3,7 +3,7 @@
  Reviser: Polaris_hzn8
  Email: lch2022fox@163.com
  Github: https://github.com/Polaris-hzn8
- brief:
+ brief: UI事件代理窗口
 */
 
 #ifndef UIEVENTMANAGER_7F7C0283_2B1D_4BB8_8052_ADBB35F055F3_H__
@@ -46,18 +46,18 @@ public:
 	IMCoreErrorCode scheduleTimerWithLambda(IN UInt32 delay, IN BOOL bRepeat
 										  , IN std::function<void()> timerRun
 										  , OUT ITimerEvent** ppTimer);
-	IMCoreErrorCode  killTimer(IN ITimerEvent* pTimerEvent);
+	IMCoreErrorCode killTimer(IN ITimerEvent* pTimerEvent);
 
 private:
 	BOOL _registerClass();
 	void _removeEvents();
 	void _processTimer();
 	void _processEvent(IEvent* pEvent, BOOL bRelease);
+
 	static LRESULT _stdcall _WindowProc(HWND hWnd
 		, UINT message
 		, WPARAM wparam
 		, LPARAM lparam);
-
 private:
 	UIEventManager& operator=(UIEventManager&);
 	UIEventManager(const UIEventManager&);

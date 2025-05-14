@@ -1,40 +1,40 @@
-﻿/*******************************************************************************
- *  @file      IUserListModule.h 2014\8\6 15:25:06 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     组织架构相关模块
- ******************************************************************************/
+﻿
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 组织架构相关模块
+*/
 
 #ifndef IUSERLISTMODULE_FDBD79FF_2F63_4E0A_8265_A001E2EB5182_H__
 #define IUSERLISTMODULE_FDBD79FF_2F63_4E0A_8265_A001E2EB5182_H__
 
+#include <list>
+#include <string>
 #include "GlobalDefine.h"
 #include "Modules/ModuleDll.h"
+#include "Modules/ModuleBase.h"
 #include "Modules/IMiscModule.h"
 #include "Modules/IUserListModule.h"
-#include "Modules/ModuleBase.h"
 #include "Modules/IModuleInterface.h"
 #include "utility/utilStrCodingAPI.h"
 #include "ProtocolBuffer/IM.BaseDefine.pb.h"
-#include <string>
-#include <list>
-/******************************************************************************/
+
 #define		PREFIX_GRAY_AVATAR		_T("gray_")
 
 NAMESPACE_BEGIN(module)
+
 const std::string MODULE_USERLIST_PREFIX = "userlist";
 //KEYID
 const std::string KEY_USERLIST_UPDATE_DEPARTMENTLIST = MODULE_USERLIST_PREFIX + "DeparmentList"; 		//成功获取到组织架构信息
-const std::string KEY_USERLIST_UPDATE_RECENTLIST = MODULE_USERLIST_PREFIX + "RecentList";			//成功获取最近联系人
+const std::string KEY_USERLIST_UPDATE_RECENTLIST = MODULE_USERLIST_PREFIX + "RecentList";				//成功获取最近联系人
 const std::string KEY_USERLIST_UPDATE_NEWUSESADDED = MODULE_USERLIST_PREFIX + "NewuserAdded";			//新用户更新
-const std::string KEY_USERLIST_DOWNAVATAR_SUCC = MODULE_USERLIST_PREFIX + "DownavatarSucc";		//头像下载成功通知
-const std::string KEY_USERLIST_ALLUSERLINESTATE = MODULE_USERLIST_PREFIX + "AllUserLineState";		//列表所有用户在线状态通知
-const std::string KEY_USERLIST_USERLINESTATE = MODULE_USERLIST_PREFIX + "UserLineState";			//单个用户在线状态通知
-const std::string KEY_USERLIST_USERSIGNINFO_CHANGED = MODULE_USERLIST_PREFIX + "UserSignInfoChanged";//用户个性签名更变通知
+const std::string KEY_USERLIST_DOWNAVATAR_SUCC = MODULE_USERLIST_PREFIX + "DownavatarSucc";				//头像下载成功通知
+const std::string KEY_USERLIST_ALLUSERLINESTATE = MODULE_USERLIST_PREFIX + "AllUserLineState";			//列表所有用户在线状态通知
+const std::string KEY_USERLIST_USERLINESTATE = MODULE_USERLIST_PREFIX + "UserLineState";				//单个用户在线状态通知
+const std::string KEY_USERLIST_USERSIGNINFO_CHANGED = MODULE_USERLIST_PREFIX + "UserSignInfoChanged";	//用户个性签名更变通知
 
-/**
-* The class <code>部门信息定义</code>
-*
-*/
+// 部门信息定义
 struct DepartmentEntity
 {
 	std::string				dId;				//部门ID
@@ -86,15 +86,13 @@ public:
     std::string     signature;              //个性签名
 	UInt32			status;					//0:在职  1:离职
 };
-typedef std::map<std::string, UserInfoEntity>    UserInfoEntityMap;
-typedef std::vector<std::string>			UserInfoEntityVec;
+typedef std::vector<std::string>				UserInfoEntityVec;
+typedef std::map<std::string, UserInfoEntity>   UserInfoEntityMap;
 
-/**
- * The class <code>组织架构相关模块</code> 
- *
- */
-class MODULE_API IUserListModule : public module::ModuleBase
-								  ,public module::IPduPacketParse
+// 组织架构相关模块
+class MODULE_API IUserListModule :
+	public module::ModuleBase,
+	public module::IPduPacketParse
 {
 public:
 	/**
@@ -104,6 +102,7 @@ public:
 	* @exception there is no any exception to throw.
 	*/
 	virtual BOOL startup() = 0;
+
 	/**
 	* 所有部门信息
 	*
@@ -111,6 +110,7 @@ public:
 	* @exception there is no any exception to throw.
 	*/
 	virtual const module::DepartmentMap& getAllDepartments() = 0;
+
 	/**
 	* 获取所有人的信息
 	*
@@ -119,6 +119,7 @@ public:
 	* @exception there is no any exception to throw.
 	*/
 	virtual void getAllUsersInfo(OUT module::UserInfoEntityMap& MapUsers)const = 0;
+
 	/**
 	* 根据用户ID获取个人信息
 	*
@@ -128,6 +129,7 @@ public:
 	* @exception there is no any exception to throw.
 	*/
 	virtual BOOL getUserInfoBySId(IN std::string sid, OUT module::UserInfoEntity& userInfo) = 0;
+
 	/**
 	* 清空所有人列表
 	*
@@ -135,6 +137,7 @@ public:
 	* @exception there is no any exception to throw.
 	*/
 	virtual void removeAllListInfo() = 0;
+
 	/**
 	* 获取自己的信息
 	*
@@ -151,6 +154,7 @@ public:
 	* @exception there is no any exception to throw.
 	*/
 	virtual void tcpGetUserOnlieStatus(IN const std::string& sId) = 0;
+
 	/**
 	* 获取一批人的在线列表，如果列表人数过多，要分批获取
 	*
@@ -159,6 +163,7 @@ public:
 	* @exception there is no any exception to throw.
 	*/
 	virtual void tcpGetUserOnlieStatus(IN const module::UserInfoEntityVec& VecId) = 0;
+
 	/**
 	* tcp获取个人信息
 	*
@@ -167,6 +172,7 @@ public:
 	* @exception there is no any exception to throw.
 	*/
 	virtual void tcpGetUserInfo(IN const std::string& sId) = 0;
+
 	/**
 	* tcp获取某一批人的信息
 	*
@@ -177,6 +183,7 @@ public:
     virtual void tcpChangeMySignInfo(IN const std::string sSignInfo) = 0;//修改自己的个性签名
 
 	virtual void tcpGetUsersInfo(IN const module::UserInfoEntityVec& VecUnKnowUserInfo) = 0;
+
 	/**
 	* 获取缺省的个人头像
 	*
@@ -184,6 +191,7 @@ public:
 	* @exception there is no any exception to throw.
 	*/
 	virtual CString getDefaultAvatartPath() = 0;
+
 	/**
 	* 获取自己的信息
 	*
@@ -219,5 +227,5 @@ public:
 MODULE_API IUserListModule* getUserListModule();
 
 NAMESPACE_END(module)
-/******************************************************************************/
+
 #endif// IUSERLISTMODULE_FDBD79FF_2F63_4E0A_8265_A001E2EB5182_H__

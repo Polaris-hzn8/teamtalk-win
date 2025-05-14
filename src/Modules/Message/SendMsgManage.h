@@ -7,9 +7,9 @@
 #ifndef SENDMSGMANAGE_5545E32E_5320_4A45_ABD0_5AC0F09EE7AF_H__
 #define SENDMSGMANAGE_5545E32E_5320_4A45_ABD0_5AC0F09EE7AF_H__
 
-#include "Modules/MessageEntity.h"
 #include "network/Lock.h"
 #include "Modules/IEvent.h"
+#include "Modules/MessageEntity.h"
 #include <list>
 enum MSG_SENDSTATUS
 {

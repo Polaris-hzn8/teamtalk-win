@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      DatabaseModule_FileTransferHistory_Impl.cpp 2015\1\13 9:26:59 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "DatabaseModule_Impl.h"
@@ -10,7 +12,7 @@
 #include "json/writer.h"
 #include "json/reader.h"
 #include "utility/CppSQLite3.h"
-/******************************************************************************/
+
 namespace
 {
 	const std::string createFileTransferHistorySql =
@@ -140,4 +142,3 @@ BOOL DatabaseModule_Impl::_execFileTransferHistoryTableDML()
 
 	return TRUE;
 }
-/******************************************************************************/

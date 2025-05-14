@@ -57,19 +57,12 @@ public:
 	}
 	virtual ~ICallbackOpertaion() {}
 protected:
-	/**
-	 * \brief 同步回调
-	 * \param std::shared_ptr<void>
-	 * \param param
-	 */
+	// 同步回调
 	void syncCallback(std::shared_ptr<void> param)
 	{
 		m_callback(param);
 	}
-	/**
-	 * \brief 异步回调，借助UIEvent
-	 * \param param std::shared_ptr<void>
-	 */
+	// 异步回调 借助UIEvent
 	void asyncCallback(std::shared_ptr<void> param)
 	{
 		CallbackOperationEvent* pEvent = new CallbackOperationEvent(m_callback, param);
@@ -83,11 +76,7 @@ private:
 struct IPduPacketParse
 {
 public:
-	/**
-	 * \brief 收到TcpClient网络包后的包解析回调接口
-	 * \param header std::auto_ptr<CImPdu> pdu
-	 * \param pbBody
-	 */
+	// 收到TcpClient网络包后的解析回调接口
 	virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody) = 0;
 };
 

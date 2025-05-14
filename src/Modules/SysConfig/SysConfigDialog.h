@@ -1,35 +1,23 @@
- /*******************************************************************************
- *  @file      SettingDialog.h 2014\8\6 20:05:34 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef SETTINGDIALOG_D45AE043_1F5F_4CBD_833A_309EBBA7F18E_H__
 #define SETTINGDIALOG_D45AE043_1F5F_4CBD_833A_309EBBA7F18E_H__
 
 #include "DuiLib/UIlib.h"
-/******************************************************************************/
+
 using namespace DuiLib;
 
-/**
- * The class <code>SettingDialog</code> 
- *
- */
 class SysConfigDialog final : public WindowImplBase
 {
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Constructor 
-     */
     SysConfigDialog();
-    /**
-     * Destructor
-     */
     virtual ~SysConfigDialog();
-    //@}
 	DUI_DECLARE_MESSAGE_MAP()
 public:
 	LPCTSTR GetWindowClassName() const;
@@ -62,5 +50,5 @@ private:
 	COptionUI*				m_CtrlEntrtRdo;
 	COptionUI*				m_EnterRdo;
 };
-/******************************************************************************/
+
 #endif// SETTINGDIALOG_D45AE043_1F5F_4CBD_833A_309EBBA7F18E_H__

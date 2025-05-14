@@ -1,26 +1,26 @@
-/******************************************************************************* 
- *  @file      LoginModule_Impl.cpp 2014\7\17 19:51:47 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief   
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
-
-#include "LoginModule_Impl.h"
 #include "LoginDialog.h"
+#include "network/ImCore.h"
 #include "ReloginManager.h"
+#include "LoginModule_Impl.h"
+#include "network/TTPBHeader.h"
+#include "Modules/IMiscModule.h"
+#include "utility/Multilingual.h"
+#include "utility/utilCommonAPI.h"
+#include "Modules/ISysConfigModule.h"
+#include "utility/utilStrCodingAPI.h"
+#include "Modules/ITcpClientModule.h"
 #include "ProtocolBuffer/IM.Login.pb.h"
 #include "ProtocolBuffer/IM.Buddy.pb.h"
 #include "ProtocolBuffer/IM.Group.pb.h"
-#include "Modules/ITcpClientModule.h"
-#include "Modules/ISysConfigModule.h"
-#include "Modules/IMiscModule.h"
-#include "utility/utilCommonAPI.h"
-#include "utility/Multilingual.h"
-#include "utility/utilStrCodingAPI.h"
-#include "network/ImCore.h"
-#include "network/TTPBHeader.h"
-/******************************************************************************/
 
 namespace module
 {
@@ -30,8 +30,6 @@ namespace module
 		return &module;
 	}
 }
-// -----------------------------------------------------------------------------
-//  LoginModule_Impl: Public, Constructor
 
 LoginModule_Impl::LoginModule_Impl()
 :m_pReloginManager(0)
@@ -39,9 +37,6 @@ LoginModule_Impl::LoginModule_Impl()
 {
 
 }
-
-// -----------------------------------------------------------------------------
-//  LoginModule_Impl: Public, Destructor
 
 LoginModule_Impl::~LoginModule_Impl()
 {
@@ -96,6 +91,7 @@ void LoginModule_Impl::notifyLoginDone()
 		LOG__(APP, _T("IMNormalGroupListReq"));
 	});
 }
+
 void LoginModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBody)
 {
 	switch (header.getCommandId())
@@ -107,6 +103,7 @@ void LoginModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBody)
 		return;
 	}
 }
+
 void LoginModule_Impl::_kickUserResponse(IN std::string& pbBody)
 {
 	IM::Login::IMKickUser imKickUser;
@@ -148,5 +145,3 @@ void LoginModule_Impl::setOfflineByMyself(BOOL b)
 {
 	m_bIsOfflineByMyself = b;
 }
-
-/******************************************************************************/

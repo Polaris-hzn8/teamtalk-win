@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      SysConfigModule_Impl.cpp 2014\8\4 10:56:41 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "Modules/IModuleInterface.h"
@@ -14,7 +16,7 @@
 #include "ServerConfigDialog.h"
 #include "Modules/IMiscModule.h"
 #include "../Session/Operation/DownloadAvatarHttpOperation.h"
-/******************************************************************************/
+
 namespace module
 {
 	ISysConfigModule* getSysConfigModule()
@@ -31,9 +33,6 @@ namespace
 	const CString g_account_config = _T("accountConfig.ini");
 }
 
-// -----------------------------------------------------------------------------
-//  SysConfigModule_Impl: Public, Constructor
-
 SysConfigModule_Impl::SysConfigModule_Impl()
 :m_bSysConfigDialogFlag(FALSE)
 {
@@ -42,9 +41,6 @@ SysConfigModule_Impl::SysConfigModule_Impl()
 
 	_loadData();
 }
-
-// -----------------------------------------------------------------------------
-//  SysConfigModule_Impl: Public, Destructor
 
 SysConfigModule_Impl::~SysConfigModule_Impl()
 {
@@ -181,6 +177,7 @@ CString SysConfigModule_Impl::UserID() const
 {
 	return m_Config.csUserId;
 }
+
 UInt32 SysConfigModule_Impl::userId() const
 {
 	return util::stringToInt32(m_Config.userId);
@@ -298,5 +295,3 @@ void SysConfigModule_Impl::saveDepartmentInfoLatestUpdateTime(IN const UInt32 nL
 	util::CIniWriter iniWriter(strPath);
 	iniWriter.WriteInteger(_T("department"), _T("LastUpdateTime"), nLatestUpdateTime);
 }
-
-/******************************************************************************/

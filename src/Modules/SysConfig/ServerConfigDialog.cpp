@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      ServerConfigDialog.cpp 2014\9\16 13:27:30 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "ServerConfigDialog.h"
@@ -16,19 +18,11 @@ DUI_BEGIN_MESSAGE_MAP(ServerConfigDialog, WindowImplBase)
 	DUI_ON_MSGTYPE(DUI_MSGTYPE_CLICK, OnClick)
 DUI_END_MESSAGE_MAP()
 
-/******************************************************************************/
-
-// -----------------------------------------------------------------------------
-//  SettingDialog: Public, Constructor
-
 ServerConfigDialog::ServerConfigDialog()
 :m_pbtnApply(0)
 {
 
 }
-
-// -----------------------------------------------------------------------------
-//  SettingDialog: Public, Destructor
 
 ServerConfigDialog::~ServerConfigDialog()
 {
@@ -110,5 +104,3 @@ BOOL ServerConfigDialog::_ApplySetting()
 	pTTConfig->loginServIP = strLoginServIP;
 	return module::getSysConfigModule()->saveData();
 }
-
-/******************************************************************************/

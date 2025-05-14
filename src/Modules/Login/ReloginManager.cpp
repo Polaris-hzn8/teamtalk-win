@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      ReloginManager.cpp 2013\9\4 16:44:21 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief   
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "ReloginManager.h"
@@ -17,9 +19,6 @@
 #include "ProtocolBuffer/IM.Buddy.pb.h"
 #include "utility/Multilingual.h"
 #include "network/ImCore.h"
-/******************************************************************************/
-// -----------------------------------------------------------------------------
-//  ReloginManager: Public, Constructor
 
 ReloginManager::ReloginManager()
 :m_secondCount(3)
@@ -28,14 +27,10 @@ ReloginManager::ReloginManager()
 
 }
 
-// -----------------------------------------------------------------------------
-//  ReloginManager: Public, Destructor
-
 ReloginManager::~ReloginManager()
 {
 }
-// -----------------------------------------------------------------------------
-// public   
+
 void ReloginManager::startReloginTimer(UInt32 second)
 {
     if(second > 15)
@@ -49,16 +44,12 @@ void ReloginManager::startReloginTimer(UInt32 second)
 	, &pTimer);
     m_secondCount = second;
 }
-/******************************************************************************/
-// -----------------------------------------------------------------------------
-// public   
+
 void ReloginManager::forceRelogin()
 {
     doRelogin();
 }
 
-// -----------------------------------------------------------------------------
-// private   
 void ReloginManager::doRelogin()
 {
     try

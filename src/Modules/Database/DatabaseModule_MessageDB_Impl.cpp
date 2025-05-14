@@ -1,18 +1,19 @@
-/******************************************************************************* 
- *  @file      DatabaseModule_MessageDB_Impl.cpp 2015\1\6 14:53:10 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
-#include "DatabaseModule_Impl.h"
-#include "utility/CppSQLite3.h"
-#include "Modules/MessageEntity.h"
-#include "Modules/ITcpClientModule.h"
 #include "json/writer.h"
 #include "json/reader.h"
+#include "utility/CppSQLite3.h"
+#include "DatabaseModule_Impl.h"
+#include "Modules/MessageEntity.h"
+#include "Modules/ITcpClientModule.h"
 
-/******************************************************************************/
 namespace
 {
 	const std::string createImMessageSql =
@@ -291,4 +292,3 @@ BOOL DatabaseModule_Impl::sqlBatchInsertMessage(IN std::list<MessageEntity>& msg
 
 	return TRUE;
 }
-/******************************************************************************/

@@ -9,8 +9,8 @@
 #ifndef DOLOGINSERVERHTTPOPERATION_D4296DCE_0662_447D_9F79_B058C0B9FC6D_H__
 #define DOLOGINSERVERHTTPOPERATION_D4296DCE_0662_447D_9F79_B058C0B9FC6D_H__
 
-#include "Modules/IHttpPoolModule.h"
 #include <string>
+#include "Modules/IHttpPoolModule.h"
 
 enum
 {
