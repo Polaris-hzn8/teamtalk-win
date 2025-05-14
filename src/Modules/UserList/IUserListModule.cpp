@@ -11,6 +11,7 @@
 #include "Modules/ITcpClientModule.h"
 
 NAMESPACE_BEGIN(module)
+
 CString UserInfoEntity::getRealName()const
 {
 	if (!csNickName.IsEmpty())
@@ -32,8 +33,8 @@ std::string UserInfoEntity::getAvatarPath()const
 	//获取当前登录状态
 	UInt8 netState = module::getTcpClientModule()->getTcpClientNetState();
 	std::string path;
-	if (module::TCPCLIENT_STATE_OK == netState 
-		&& IM::BaseDefine::USER_STATUS_OFFLINE != onlineState)
+	if (module::TCPCLIENT_STATE_OK == netState &&
+		IM::BaseDefine::USER_STATUS_OFFLINE != onlineState)
 	{
 		path = avatarLocalPath;
 		if (path.empty())
