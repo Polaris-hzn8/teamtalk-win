@@ -9,10 +9,10 @@
 #ifndef IHITORYMSGMODULE_D042F2F2_05B0_45E6_9746_344A76279AE8_H__
 #define IHITORYMSGMODULE_D042F2F2_05B0_45E6_9746_344A76279AE8_H__
 
-#include "GlobalDefine.h"
-#include "Modules/ModuleDll.h"
-#include "MessageEntity.h"
 #include <list>
+#include "GlobalDefine.h"
+#include "MessageEntity.h"
+#include "Modules/ModuleDll.h"
 
 class MessageEntity;
 class TransferFileEntity;

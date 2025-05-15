@@ -93,23 +93,30 @@ BOOL UIEventManager::_registerClass()
 	ASSERT(ret != NULL);
 	if (NULL == ret || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS)
 		return FALSE;
-
 	return TRUE;
 }
 
-LRESULT _stdcall UIEventManager::_WindowProc(HWND hWnd
-											, UINT message
-											, WPARAM wparam
-											, LPARAM lparam)
+// 窗口过程函数
+LRESULT _stdcall UIEventManager::_WindowProc(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam)
 {
 	switch (message)
 	{
 	case UI_EVENT_MSG:
-		reinterpret_cast<UIEventManager*>(wparam)->_processEvent(reinterpret_cast<IEvent*>(lparam), TRUE);
-		break;
+	{/* 普通事件处理 */
+		IEvent* pEvent = reinterpret_cast<IEvent*>(lparam);
+		UIEventManager* pManager = reinterpret_cast<UIEventManager*>(wparam);
+		if (pManager && pEvent)
+		{
+			pManager->_processEvent(pEvent, TRUE);
+		}
+	}
+	break;
 	case WM_TIMER:
-		reinterpret_cast<UIEventManager*>(wparam)->_processTimer();
-		break;
+	{/* 定时事件处理 */
+		UIEventManager* pManager = reinterpret_cast<UIEventManager*>(wparam);
+		pManager->_processTimer();
+	}
+	break;
 	default:
 		break;
 	}
@@ -119,8 +126,7 @@ LRESULT _stdcall UIEventManager::_WindowProc(HWND hWnd
 imcore::IMCoreErrorCode UIEventManager::startup()
 {
 	IMCoreErrorCode errCode = IMCORE_OK;
-
-	if (m_hWnd != NULL)
+	if (NULL != m_hWnd)
 	{
 		return IMCORE_OK;
 	}
@@ -131,7 +137,6 @@ imcore::IMCoreErrorCode UIEventManager::startup()
 			return IMCORE_INVALID_HWND_ERROR;
 		}
 
-		// 收发消息窗口
 		m_hWnd = CreateWindowW(
 			uiEventWndClass,	// 类名
 			uiEventWndName,		// 标题
@@ -142,18 +147,16 @@ imcore::IMCoreErrorCode UIEventManager::startup()
 			GetModuleHandle(0),	// 当前应用实例句柄
 			0					// 附加数据
 		);
-
 		if (m_hWnd)
 		{
+			// 每隔1s给窗口线程 发送WM_TIMER
 			SetTimer(m_hWnd, reinterpret_cast<UINT_PTR>(this), 1000, NULL);
 		}
 	}
-
 	if (FALSE == IsWindow(m_hWnd))
 	{
 		errCode = IMCORE_INVALID_HWND_ERROR;
 	}
-
 	return errCode;
 }
 
@@ -317,18 +320,14 @@ void UIEventManager::_processTimer()
 imcore::IMCoreErrorCode UIEventManager::killTimer(IN ITimerEvent* pTimerEvent)
 {
 	CAutoLock lock(&m_lock);
-	auto iter = std::remove_if(m_lstTimers.begin()
-		, m_lstTimers.end()
-		, [=](TTTimer& ttime)
-	{
+	auto iter = std::remove_if(m_lstTimers.begin(), m_lstTimers.end(), [=](TTTimer& ttime) {
 		return (pTimerEvent == ttime.pTimerEvent);
-	}
-	);
+	});
 	if (iter != m_lstTimers.end())
 	{
-		m_lstTimers.erase(iter,m_lstTimers.end());
+		m_lstTimers.erase(iter, m_lstTimers.end());
 		delete pTimerEvent;
-		pTimerEvent = 0;
+		pTimerEvent = NULL;
 		return IMCORE_OK;
 	}
 

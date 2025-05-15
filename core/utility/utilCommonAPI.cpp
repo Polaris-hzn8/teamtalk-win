@@ -49,19 +49,23 @@ CString getMd5CString(const char* pSrc, size_t length)
 	return binToHexToCString(&bmd5[0], 16);
 }
 
+// ±‹√‚÷ÿ∏¥º∆À„
 CString getAppPath()
 {
 	static CString g_sDllPath = _T("");
-
 	if (g_sDllPath.IsEmpty())
 	{
-		TCHAR	buffer[MAX_PATH];
+		TCHAR buffer[MAX_PATH];
 		ZeroMemory(buffer, sizeof(TCHAR)* MAX_PATH);
-		HMODULE h = GetModuleHandle(NULL);
-		::GetModuleFileName(h, buffer, MAX_PATH);
-		::PathRemoveFileSpec(buffer);
-		g_sDllPath = buffer;
-		g_sDllPath += _T("\\");
+
+		HMODULE hModule = GetModuleHandle(NULL);
+		if (hModule)
+		{
+			GetModuleFileName(hModule, buffer, MAX_PATH);
+			PathRemoveFileSpec(buffer);
+			g_sDllPath = buffer;
+			g_sDllPath += _T("\\");
+		}
 	}
 	return g_sDllPath;
 }
@@ -73,8 +77,8 @@ CString getParentAppPath()
 	{
 		g_csParentAppPath = getAppPath();
 		LPTSTR lpszPath = g_csParentAppPath.GetBuffer();
-		::PathRemoveBackslash(lpszPath);
-		::PathRemoveFileSpec(lpszPath);
+		PathRemoveBackslash(lpszPath);
+		PathRemoveFileSpec(lpszPath);
 		g_csParentAppPath = lpszPath;
 		g_csParentAppPath += _T("\\");
 	}

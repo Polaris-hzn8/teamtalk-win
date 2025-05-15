@@ -8,15 +8,15 @@
 
 #include "stdafx.h"
 #include "MainDialog.h"
-#include "Modules/ITcpClientModule.h"
-#include "Modules/ILoginModule.h"
 #include "Modules/IMiscModule.h"
-#include "Modules/IUserListModule.h"
+#include "Modules/ILoginModule.h"
+#include "utility/Multilingual.h"
 #include "Modules/ISessionModule.h"
+#include "Modules/IUserListModule.h"
+#include "Modules/ITcpClientModule.h"
 #include "Modules/ISysConfigModule.h"
 #include "Modules/IFileTransferModule.h"
 #include "ProtocolBuffer/IM.BaseDefine.pb.h"
-#include "utility/Multilingual.h"
 
 void MainDialog::OnClick(TNotifyUI& msg)
 {

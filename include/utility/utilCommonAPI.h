@@ -9,10 +9,10 @@
 #ifndef UTILAPI_AF8EB6AC_116D_4D74_8AFA_0C5E7BF6FFEB_H__
 #define UTILAPI_AF8EB6AC_116D_4D74_8AFA_0C5E7BF6FFEB_H__
 
-#include "utility/utilityDll.h"
-#include "GlobalDefine.h"
 #include <list>
 #include <string>
+#include "GlobalDefine.h"
+#include "utility/utilityDll.h"
 
 NAMESPACE_BEGIN(util)
 

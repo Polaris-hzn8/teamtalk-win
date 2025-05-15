@@ -53,11 +53,9 @@ private:
 	void _removeEvents();
 	void _processTimer();
 	void _processEvent(IEvent* pEvent, BOOL bRelease);
+	// 窗口过程函数
+	static LRESULT _stdcall _WindowProc(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam);
 
-	static LRESULT _stdcall _WindowProc(HWND hWnd
-		, UINT message
-		, WPARAM wparam
-		, LPARAM lparam);
 private:
 	UIEventManager& operator=(UIEventManager&);
 	UIEventManager(const UIEventManager&);

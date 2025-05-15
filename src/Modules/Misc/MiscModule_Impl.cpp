@@ -6,16 +6,16 @@
  brief:
 */
 
+#include <MMSystem.h>
 #include "stdafx.h"
+#include "security.h"
+#include "network/ImCore.h"
 #include "MiscModule_Impl.h"
-#include "utility/utilCommonAPI.h"
 #include "utility/Multilingual.h"
+#include "utility/utilCommonAPI.h"
 #include "utility/utilStrCodingAPI.h"
 #include "Modules/ISysConfigModule.h"
 #include "../Core/DuiLib/Utils/DialogManager.h"
-#include "network/ImCore.h"
-#include "security.h"
-#include <MMSystem.h>
 
 namespace module
 {

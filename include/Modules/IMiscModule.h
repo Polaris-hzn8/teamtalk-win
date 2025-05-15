@@ -95,11 +95,11 @@ public:
 	virtual void doProcess2(IN std::string& pData, OUT std::string& pOutData) = 0;
 };
 
-#define ENCRYPT_MSG(p1,p2) module::getMiscModule()->doProcess1((p1),(p2))
-#define	DECRYPT_MSG(p1,p2) module::getMiscModule()->doProcess2((p1),(p2))
+#define ENCRYPT_MSG(p1, p2) module::getMiscModule()->doProcess1((p1),(p2))
+#define	DECRYPT_MSG(p1, p2) module::getMiscModule()->doProcess2((p1),(p2))
 
 MODULE_API IMiscModule* getMiscModule();
 
 NAMESPACE_END(module)
-/******************************************************************************/
+
 #endif// IMISCMODULE_450253C2_B143_4DD2_BD21_552FC6049D7A_H__
