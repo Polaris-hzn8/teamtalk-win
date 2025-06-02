@@ -7,22 +7,22 @@
 */
 
 #include "stdafx.h"
+#include "security.h"
 #include "LoginDialog.h"
 #include "GlobalDefine.h"
+#include "network/ImCore.h"
 #include "LoginOperation.h"
-#include "DoLoginServerHttpOperation.h"
-#include "Modules/ISysConfigModule.h"
-#include "Modules/ILoginModule.h"
 #include "Modules/IMiscModule.h"
-#include "Modules/ISessionModule.h"
-#include "Modules/IMessageModule.h"
-#include "Modules/IHttpPoolModule.h"
-#include "Modules/ITcpClientModule.h"
+#include "Modules/ILoginModule.h"
 #include "utility/Multilingual.h"
 #include "utility/utilCommonAPI.h"
+#include "Modules/IMessageModule.h"
+#include "Modules/ISessionModule.h"
+#include "Modules/IHttpPoolModule.h"
 #include "utility/utilStrCodingAPI.h"
-#include "network/ImCore.h"
-#include "security.h"
+#include "Modules/ITcpClientModule.h"
+#include "Modules/ISysConfigModule.h"
+#include "DoLoginServerHttpOperation.h"
 
 DUI_BEGIN_MESSAGE_MAP(LoginDialog, WindowImplBase)
 	DUI_ON_MSGTYPE(DUI_MSGTYPE_WINDOWINIT, OnWindowInitialized)

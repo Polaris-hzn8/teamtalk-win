@@ -46,15 +46,19 @@ LoginModule_Impl::~LoginModule_Impl()
 
 BOOL LoginModule_Impl::showLoginDialog()
 {
-	BOOL bRet = FALSE;
 	LoginDialog* pDialog = new LoginDialog();
 	PTR_FALSE(pDialog);
 	CString csTitle = util::getMultilingual()->getStringById(_T("STRID_LOGINDIALOG_BTN_LOGIN"));
 	pDialog->Create(NULL, csTitle, UI_CLASSSTYLE_DIALOG, WS_EX_STATICEDGE | WS_EX_APPWINDOW, 0, 0, 0, 0);
 	pDialog->CenterWindow();
-	bRet = (IDOK == pDialog->ShowModal());
-
-	return bRet;
+	if (pDialog->ShowModal() == IDOK)
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
 }
 
 void LoginModule_Impl::notifyLoginDone()
