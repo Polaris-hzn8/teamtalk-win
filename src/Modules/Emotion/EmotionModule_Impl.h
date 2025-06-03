@@ -1,8 +1,10 @@
-/*******************************************************************************
- *  @file      EmotionModule_Impl.h 2014\8\6 20:05:39 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 
+*/
 
 #ifndef EMOTIONMODULE_IMPL_9432EBF5_DD5E_4C01_BF4B_A8D3E1E11CB9_H__
 #define EMOTIONMODULE_IMPL_9432EBF5_DD5E_4C01_BF4B_A8D3E1E11CB9_H__
@@ -11,22 +13,9 @@
 #include "EmoCfgParseTool.h"
 
 class EmotionDialog;
-
-/*
-	该文件定义了一个名为 EmotionModule_Impl 的类，该类继承自 IEmotionModule 接口（纯虚函数）实现了具体的表情管理模块的功能
-	类中的成员函数实现了 IEmotionModule 接口中声明的函数，包括
-	  showEmotionDialog
-	  getEmotionNameByID
-	  getEmotionIDByName
-	  getCurEmotionWndSessionId
-	  getAllEmotionFileNames
-	  这些函数的具体实现会根据实际需求来完成
-*/
 class EmotionModule_Impl final : public module::IEmotionModule {
 public:
-	//构造函数
     EmotionModule_Impl();
-	//虚析构函数
     virtual ~EmotionModule_Impl();
 
 public:

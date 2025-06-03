@@ -1,35 +1,30 @@
-/******************************************************************************* 
- *  @file      UIEmotion.cpp 2014\7\16 16:29:00 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief   
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "EmotionDialog.h"
 #include "EmotionButton.h"
-
-
-// -----------------------------------------------------------------------------
-//  UIEmotion: Public, Constructor
 
 EmotionDialog::EmotionDialog()
 {
 
 }
 
-// -----------------------------------------------------------------------------
-//  UIEmotion: Public, Destructor
-
 EmotionDialog::~EmotionDialog()
 {
 	PostQuitMessage(0);
 }
 
-
 LPCTSTR EmotionDialog::GetWindowClassName() const
 {
 	return _T("UIEmotion");
 }
+
 CDuiString EmotionDialog::GetSkinFile()
 {
 	return  _T("EmotionDialog\\QSBFace.xml");
@@ -43,7 +38,6 @@ UINT EmotionDialog::GetClassStyle() const
 CDuiString EmotionDialog::GetSkinFolder()
 {
 	return   _T("..\\data\\Emotion\\");
-
 }
 
 void EmotionDialog::OnFinalMessage(HWND hWnd)
@@ -58,8 +52,6 @@ void EmotionDialog::Init()
 
 void EmotionDialog::OnPrepare()
 {
-
-
 }
 
 void EmotionDialog::Notify(TNotifyUI& msg)
@@ -94,7 +86,9 @@ void EmotionDialog::Notify(TNotifyUI& msg)
 		}
 	}
 	else
+	{
 		__super::Notify(msg);
+	}
 }
 
 LRESULT EmotionDialog::ResponseDefaultKeyEvent(WPARAM wParam)
@@ -147,5 +141,3 @@ LRESULT EmotionDialog::OnKillFocus(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL
 	::ShowWindow(m_hWnd, SW_HIDE);
 	return __super::OnKillFocus(uMsg,wParam,lParam,bHandled);
 }
-
-/******************************************************************************/

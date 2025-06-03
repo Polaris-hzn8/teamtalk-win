@@ -1,46 +1,45 @@
-/******************************************************************************* 
- *  @file      EmotionModule_Impl.cpp 2014\8\6 20:07:17 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "EmotionModule_Impl.h"
 #include "EmotionDialog.h"
 #include "Modules/IMiscModule.h"
 
-namespace module {
-	module::IEmotionModule* getEmotionModule() {
+namespace module
+{
+	module::IEmotionModule* getEmotionModule()
+	{
 		static EmotionModule_Impl module;
 		return &module;
 	}
 }
 
-// -----------------------------------------------------------------------------
-//  EmotionModule_Impl: Public, Constructor
-
-EmotionModule_Impl::EmotionModule_Impl() :m_emotionWindow(0) ,m_pEmotionKey(nullptr) {
-	if (nullptr == m_pEmotionKey) {
+EmotionModule_Impl::EmotionModule_Impl() :m_emotionWindow(0) ,m_pEmotionKey(nullptr)
+{
+	if (nullptr == m_pEmotionKey)
+	{
 		m_pEmotionKey = new EmoCfgParseTool();
 		m_pEmotionKey->loadCfgFile(module::getMiscModule()->getDataDir() + _T("Emotion\\sysemots.ini"));
 	}
 }
 
-// -----------------------------------------------------------------------------
-//  EmotionModule_Impl: Public, Destructor
-
-EmotionModule_Impl::~EmotionModule_Impl() {
+EmotionModule_Impl::~EmotionModule_Impl()
+{
 	delete m_pEmotionKey;
 	m_pEmotionKey = nullptr;
 }
 
-
-// -----------------------------------------------------------------------------
-//  EmotionModule_Impl: class member func impl
-
-void EmotionModule_Impl::showEmotionDialog(IN std::string sid, IN POINT pt) {
+void EmotionModule_Impl::showEmotionDialog(IN std::string sid, IN POINT pt)
+{
 	m_sid = sid;
-	if (!m_emotionWindow) {
+	if (!m_emotionWindow)
+	{
 		m_emotionWindow = new EmotionDialog;
 		m_emotionWindow->Create(NULL, _T("EmotionWnd")
 			, UI_WNDSTYLE_FRAME | WS_POPUP, WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_STATICEDGE
@@ -55,10 +54,13 @@ void EmotionModule_Impl::showEmotionDialog(IN std::string sid, IN POINT pt) {
 	}
 }
 
-BOOL EmotionModule_Impl::getEmotionNameByID(IN CString ID, OUT CString& csPath) {
-	if (m_pEmotionKey) {
+BOOL EmotionModule_Impl::getEmotionNameByID(IN CString ID, OUT CString& csPath)
+{
+	if (m_pEmotionKey)
+	{
 		CString csName = m_pEmotionKey->getNameByID(ID);
-		if (!csName.IsEmpty()) {
+		if (!csName.IsEmpty())
+		{
 			csPath = module::getMiscModule()->getEmotionFilesDir() + csName;
 			return TRUE;
 		}
@@ -66,12 +68,15 @@ BOOL EmotionModule_Impl::getEmotionNameByID(IN CString ID, OUT CString& csPath) 
 	return FALSE;
 }
 
-std::string EmotionModule_Impl::getCurEmotionWndSessionId(void) {
+std::string EmotionModule_Impl::getCurEmotionWndSessionId(void)
+{
 	return m_sid;
 }
 
-BOOL EmotionModule_Impl::getEmotionIDByName(IN CString csName, OUT CString& csID) {
-	if (m_pEmotionKey) {
+BOOL EmotionModule_Impl::getEmotionIDByName(IN CString csName, OUT CString& csID)
+{
+	if (m_pEmotionKey)
+	{
 		csID = m_pEmotionKey->getIDByName(csName);
 		if (!csID.IsEmpty()) return TRUE;
 	}
@@ -79,8 +84,12 @@ BOOL EmotionModule_Impl::getEmotionIDByName(IN CString csName, OUT CString& csID
 	return FALSE;
 }
 
-void EmotionModule_Impl::getAllEmotionFileNames(OUT std::list<CString>& nameList) {
-	if (m_pEmotionKey) m_pEmotionKey->getAllNames(nameList);
+void EmotionModule_Impl::getAllEmotionFileNames(OUT std::list<CString>& nameList)
+{
+	if (m_pEmotionKey)
+	{
+		m_pEmotionKey->getAllNames(nameList);
+	}
 }
 
 

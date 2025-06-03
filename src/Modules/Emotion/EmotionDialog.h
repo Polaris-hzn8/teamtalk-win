@@ -1,35 +1,22 @@
-/*******************************************************************************
- *  @file      UIEmotion.h 2014\7\16 16:25:06 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief   
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef UIEMOTION_5122008B_3DA1_4CCC_9A2E_474D1CF7C234_H__
 #define UIEMOTION_5122008B_3DA1_4CCC_9A2E_474D1CF7C234_H__
 
 #include "DuiLib/UIlib.h"
-/******************************************************************************/
 using namespace DuiLib;
 
-/**
- * The class <code>UIEmotion</code> 
- *
- */
 class EmotionDialog: public WindowImplBase
 {
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Constructor 
-     */
     EmotionDialog();
-    /**
-     * Destructor
-     */
     virtual ~EmotionDialog();
-    //@}
 
 public:
 	void OnFinalMessage(HWND /*hWnd*/);
@@ -52,5 +39,5 @@ protected:
 private:
 
 };
-/******************************************************************************/
+
 #endif// UIEMOTION_5122008B_3DA1_4CCC_9A2E_474D1CF7C234_H__
