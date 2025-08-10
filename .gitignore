@@ -406,7 +406,15 @@ FodyWeavers.xsd
 !**/Flash11.tlb
 !**/flash11.tlh
 
-# pack
-package/teamtalk/*
-!package/teamtalk/ttlogconfig.ini
-package/users
+# common lib
+commonlib/*
+!commonlib/libprotobuf-lite.lib
+!commonlib/sqlite3.lib
+!commonlib/readme.txt
+
+# package file
+package/*
+!package/gui
+!package/data
+!package/chinese.ini
+!package/module/ttlogconfig.ini
