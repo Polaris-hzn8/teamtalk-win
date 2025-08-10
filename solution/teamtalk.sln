@@ -44,20 +44,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "speexdec", "..\3rdParty\src
 		{15CBFEFF-7965-41F5-B4E2-21E8795C9159} = {15CBFEFF-7965-41F5-B4E2-21E8795C9159}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pb", "pb", "{A1BF8191-585C-439A-B7DE-8391272B587C}"
-	ProjectSection(SolutionItems) = preProject
-		..\pb\IM.BaseDefine.proto = ..\pb\IM.BaseDefine.proto
-		..\pb\IM.Buddy.proto = ..\pb\IM.Buddy.proto
-		..\pb\IM.File.proto = ..\pb\IM.File.proto
-		..\pb\IM.Group.proto = ..\pb\IM.Group.proto
-		..\pb\IM.Login.proto = ..\pb\IM.Login.proto
-		..\pb\IM.Message.proto = ..\pb\IM.Message.proto
-		..\pb\IM.Other.proto = ..\pb\IM.Other.proto
-		..\pb\IM.Server.proto = ..\pb\IM.Server.proto
-		..\pb\IM.SwitchService.proto = ..\pb\IM.SwitchService.proto
-		..\pb\ProtoBuffer使用指南.txt = ..\pb\ProtoBuffer使用指南.txt
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_RTL_dll|Win32 = Debug_RTL_dll|Win32
