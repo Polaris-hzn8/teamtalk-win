@@ -1,8 +1,10 @@
- /*******************************************************************************
- *  @file      MainDialog.h 2014\7\31 15:23:22 $
- *  @author    大佛<dafo@mogujie.com>
- *  @brief     主窗口
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 应用主窗口teamtalk
+*/
 
 #ifndef MAINDIALOG_8BE12371_DCA1_4FC5_8E32_D74B82D2399B_H__
 #define MAINDIALOG_8BE12371_DCA1_4FC5_8E32_D74B82D2399B_H__
@@ -11,7 +13,7 @@
 
 #include "GlobalDefine.h"
 #include "Modules/ModuleObserver.h"
-/******************************************************************************/
+
 enum
 {
 	ICON_TRAY_LOGO = 0,
@@ -116,7 +118,7 @@ private:
 	BOOL					m_bHidden;
 	DWORD					m_dwShellVersion;
 };
-/******************************************************************************/
+
 #endif// MAINDIALOG_8BE12371_DCA1_4FC5_8E32_D74B82D2399B_H__
 
 

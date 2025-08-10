@@ -1,12 +1,13 @@
-/******************************************************************************* 
- *  @file      MainDialog_TrayIcon.cpp 2014\8\19 20:17:29 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "MainDialog.h"
-/******************************************************************************/
 
 void MainDialog::OnTrayIconNotify(WPARAM wParam, LPARAM lParam)
 {
@@ -259,4 +260,3 @@ DWORD MainDialog::GetShellVersion(void)
 	return m_dwShellVersion;
 }
 
-/******************************************************************************/

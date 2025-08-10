@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      DatabaseModule_Impl.cpp 2014\8\3 10:43:17 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "DatabaseModule_Impl.h"
@@ -11,7 +13,7 @@
 #include "utility/utilCommonAPI.h"
 #include "Modules/IMiscModule.h"
 #include "Modules/ISysConfigModule.h"
-/******************************************************************************/
+
 namespace module
 {
 	IDatabaseModule* getDatabaseModule()
@@ -20,8 +22,6 @@ namespace module
 		return &module;
 	}
 }
-// -----------------------------------------------------------------------------
-//  DatabaseModule_Impl: Public, Constructor
 
 DatabaseModule_Impl::DatabaseModule_Impl()
 :m_pSqliteDB(new CppSQLite3DB())
@@ -29,9 +29,6 @@ DatabaseModule_Impl::DatabaseModule_Impl()
 {
 	_startup();
 }
-
-// -----------------------------------------------------------------------------
-//  DatabaseModule_Impl: Public, Destructor
 
 DatabaseModule_Impl::~DatabaseModule_Impl()
 {
@@ -132,7 +129,3 @@ BOOL DatabaseModule_Impl::_startup()
 	return TRUE;
 }
 
-
-
-
-/******************************************************************************/

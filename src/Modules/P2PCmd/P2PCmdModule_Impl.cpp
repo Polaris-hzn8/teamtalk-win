@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      P2PCmdModule_Impl.cpp 2015\1\5 15:57:26 $
- *  @author    大佛<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 客户端与客户端之间数据传输 如:正在输入、窗口抖动等
+*/
 
 #include "stdafx.h"
 #include "ProtocolBuffer/IM.SwitchService.pb.h"
@@ -19,7 +21,7 @@
 #include "../Message/ReceiveMsgManage.h"
 #include "network/ImCore.h"
 #include "network/TTPBHeader.h"
-/******************************************************************************/
+
 namespace module
 {
 	module::IP2PCmdModule* getP2PCmdModule()
@@ -178,4 +180,3 @@ void P2PCmdModule_Impl::_makeJsonData(IN UINT32 nServiceID, IN UINT32 nCmdID, IN
 	sJsonData = fstWrite.write(root);
 }
 
-/******************************************************************************/

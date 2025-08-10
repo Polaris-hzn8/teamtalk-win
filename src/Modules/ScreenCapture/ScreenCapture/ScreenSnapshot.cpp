@@ -1,21 +1,22 @@
 
-/******************************************************************************* 
- *  @file      ScreenSnapshot.cpp 2015\5\5 15:54:05 $
- *  @author    доки<nansong@mogujie.com>
- *  @brief     
- ******************************************************************************/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "ScreenSnapshot.h"
 #include "../../3rdParty/src/cxImage/cxImage/ximage.h"
 
-/******************************************************************************/
-
 ScreenSnapshot::ScreenSnapshot()
 :m_hMemDC(NULL),
 m_hBkgMemDC(NULL),
 m_hDrawMemDC(NULL)
-{}
+{
+
+}
 
 BOOL ScreenSnapshot::updateRect(__in RECT *rc)
 {
@@ -188,4 +189,3 @@ BOOL ScreenSnapshot::saveRect(__in RECT &rc, __in std::wstring &savePath)
 	return result;
 }
 
-/******************************************************************************/

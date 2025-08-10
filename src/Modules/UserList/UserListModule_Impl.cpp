@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      IUserListModule_Impl.cpp 2014\8\6 15:28:35 $
- *  @author    大佛<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "UserListModule_Impl.h"
@@ -19,7 +21,6 @@
 #include "../Session/Operation/DownloadAvatarHttpOperation.h"
 #include <random>
 
-/******************************************************************************/
 namespace module
 {
 	module::IUserListModule* getUserListModule()
@@ -29,15 +30,9 @@ namespace module
 	}
 }
 
-// -----------------------------------------------------------------------------
-//  IUserListModule_Impl: Public, Constructor
-
 UserListModule_Impl::UserListModule_Impl()
 {
 }
-
-// -----------------------------------------------------------------------------
-//  IUserListModule_Impl: Public, Destructor
 
 void UserListModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBody)
 {
@@ -137,6 +132,7 @@ void UserListModule_Impl::_allUserlistResponse(IN string& pbBody)
 	module::getUserListModule()->asynNotifyObserver(module::KEY_USERLIST_UPDATE_DEPARTMENTLIST);
 
 }
+
 void UserListModule_Impl::_usersLineStatusResponse(IN string& pbBody)
 {
 	IM::Buddy::IMUsersStatRsp imUsersStatRsp;
@@ -177,6 +173,7 @@ void UserListModule_Impl::_changeAvatarResponse(IN string& pbBody)
 	std::string sid = util::uint32ToString(imChangeAvatarRsp.user_id());
 	LOG__(APP, _T("IMChangeAvatarRsp,sid = %s"), util::stringToCString(sid));
 }
+
 void UserListModule_Impl::_removeSessionNotify(IN std::string& pbBody)
 {
 	IM::Buddy::IMRemoveSessionNotify imRemoveSessionNotify;
@@ -295,6 +292,7 @@ void UserListModule_Impl::_recentlistResponse(IN string& pbBody)//最近联系人群信
 	module::getDatabaseModule()->sqlBatchInsertRecentSessionInfos(vecSessionEntities);
 	module::getUserListModule()->asynNotifyObserver(module::KEY_USERLIST_UPDATE_RECENTLIST);
 }
+
 void UserListModule_Impl::_userStatusNotify(IN string& pbBody)
 {	
 	IM::Buddy::IMUserStatNotify imUserStatNotify;
@@ -313,6 +311,7 @@ void UserListModule_Impl::_userStatusNotify(IN string& pbBody)
 		module::getUserListModule()->asynNotifyObserver(module::KEY_USERLIST_USERLINESTATE,sid);
 	}
 }
+
 void UserListModule_Impl::_usersInfoResponse(IN string& pbBody)
 {	
 	IM::Buddy::IMUsersInfoRsp imUsersInfoRsp;
@@ -436,6 +435,7 @@ void UserListModule_Impl::tcpGetUserOnlieStatus(IN const std::string& sId)
 	}
 	);
 }
+
 void UserListModule_Impl::_tcpGetUserOnlieStatus(const module::UserInfoEntityVec& VecId)
 {
 	imcore::IMLibCoreStartOperationWithLambda(
@@ -454,6 +454,7 @@ void UserListModule_Impl::_tcpGetUserOnlieStatus(const module::UserInfoEntityVec
 	}
 	);
 }
+
 void UserListModule_Impl::tcpGetUserOnlieStatus(const module::UserInfoEntityVec& VecId)
 {
 	if (VecId.empty())
@@ -826,7 +827,6 @@ std::string UserListModule_Impl::randomGetUser(void)
 	return sid;
 }
 
-
 void UserListModule_Impl::_changeSignInfoResponse(IN std::string& pbBody)
 {
     IM::Buddy::IMChangeSignInfoRsp imChangeSignInfoRsp;
@@ -930,6 +930,3 @@ void UserListModule_Impl::tcpChangeMySignInfo(IN const std::string sSignInfo)
     }
     );
 }
-
-
-/******************************************************************************/

@@ -1,8 +1,11 @@
-/*******************************************************************************
-*  @file      ImCore.h 2014\09\10 13:28:49 $
-*  @author    蓝狐<lanhu@mogujie.com>
-*  @brief
-******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 自定义封装的lock_guard
+*/
+
 #include "network/Lock.h"
 
 CFastLock::CFastLock()

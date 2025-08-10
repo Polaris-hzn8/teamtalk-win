@@ -112,6 +112,6 @@
     <ClCompile Include="util.cpp">
       <Filter>util</Filter>
     </ClCompile>
-    <ClCompile Include="dll_init.cpp" />
+    <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
 </Project>

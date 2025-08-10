@@ -1,35 +1,23 @@
- /*******************************************************************************
- *  @file      ServerConfigDialog.h 2014\9\16 13:24:12 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+ 
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef SERVERCONFIGDIALOG_7A5E8519_6F0B_4583_BAE3_DD51D7A1BE7C_H__
 #define SERVERCONFIGDIALOG_7A5E8519_6F0B_4583_BAE3_DD51D7A1BE7C_H__
 
 #include "DuiLib/UIlib.h"
-/******************************************************************************/
+
 using namespace DuiLib;
 
-/**
- * The class <code>ServerConfigDialog</code> 
- *
- */
 class ServerConfigDialog final : public WindowImplBase
 {
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Constructor 
-     */
     ServerConfigDialog();
-    /**
-     * Destructor
-     */
 	virtual ~ServerConfigDialog();
-    //@}
 
 	DUI_DECLARE_MESSAGE_MAP()
 public:
@@ -51,5 +39,5 @@ private:
 	CTextUI*				m_pText;
 	CEditUI*				m_pEditAddress;
 };
-/******************************************************************************/
+
 #endif// SERVERCONFIGDIALOG_7A5E8519_6F0B_4583_BAE3_DD51D7A1BE7C_H__

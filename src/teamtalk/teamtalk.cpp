@@ -16,12 +16,12 @@
 #include "network/OperationManager.h"
 #include "network/ImCore.h"
 
+CteamtalkApp theApp;
+
 CteamtalkApp::CteamtalkApp()
 :m_pMainDialog(0) {
 	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_RESTART;
 }
-
-CteamtalkApp theApp;
 
 BOOL CteamtalkApp::InitInstance()
 {
@@ -33,10 +33,10 @@ BOOL CteamtalkApp::InitInstance()
 	//log init
 	_InitLog();
 
-	// Verify that the version of the library that we linked against is
-	// compatible with the version of the headers we compiled against.
+	// Protobuf版本兼容性检测
+	// 验证编译使用的Protobuf头文件版本和 链接使用的Protobuf库版本是否一致或兼容
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
-
+	
 	LOG__(APP, _T("===================================VersionNO:%d======BulidTime：%s--%s==========================")
 		, TEAMTALK_VERSION, util::utf8ToCString(__DATE__), util::utf8ToCString(__TIME__));
 	if (!__super::InitInstance())
@@ -44,9 +44,8 @@ BOOL CteamtalkApp::InitInstance()
 		LOG__(ERR, _T("__super::InitInstance failed."));
 		return FALSE;
 	}
-	AfxEnableControlContainer();
+	AfxEnableControlContainer();// ActiveX控件支持
 
-    //??????,?????
 	//if (_IsHaveInstance())
 	//{
 	//	LOG__(ERR, _T("Had one instance,this will exit"));
@@ -58,7 +57,9 @@ BOOL CteamtalkApp::InitInstance()
 	//	return FALSE;
 	//}
 
-	//start imcore lib
+	// 网络事件循环
+	// 1.启动任务处理线程
+	// 2.启动IO处理线程监听IO读写事件
 	if (!imcore::IMLibCoreRunEvent())
 	{
 		LOG__(ERR, _T("start imcore lib failed!"));
@@ -66,6 +67,7 @@ BOOL CteamtalkApp::InitInstance()
 	LOG__(APP, _T("start imcore lib done"));
 
 	//start ui event
+	// 启动ui事件代理窗口，从系统消息队列中获取消息并处理 一般事件和定时事件
 	if (module::getEventManager()->startup() != imcore::IMCORE_OK)
 	{
 		LOG__(ERR, _T("start ui event failed"));
@@ -77,11 +79,11 @@ BOOL CteamtalkApp::InitInstance()
 	
 	//duilib初始化
 	CPaintManagerUI::SetInstance(AfxGetInstanceHandle());
-	CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("..\\gui\\"));//track这个设置了路径，会导致base里设置的无效。
+	CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("..\\gui\\"));
 	::CoInitialize(NULL);
 	::OleInitialize(NULL);
 
-	//无需配置server
+	// 登录服务器信息配置（模态对话框）
 	module::TTConfig* pCfg = module::getSysConfigModule()->getSystemConfig();
 	if (pCfg && pCfg->loginServIP.IsEmpty())
 	{
@@ -97,7 +99,6 @@ BOOL CteamtalkApp::InitInstance()
 		LOG__(ERR, _T("login canceled"));
 		return FALSE;
 	}
-
 	LOG__(APP,_T("login success"));
 
 	//创建主窗口
@@ -108,6 +109,7 @@ BOOL CteamtalkApp::InitInstance()
 	}
 	LOG__(APP, _T("Create MianDialog done"));
 
+	// 启用Duilib的消息循环
 	CPaintManagerUI::MessageLoop();
 	CPaintManagerUI::Term();
 
@@ -168,21 +170,21 @@ BOOL CteamtalkApp::ExitInstance()
 BOOL CteamtalkApp::_CreateUsersFolder()
 {
 	module::IMiscModule* pModule = module::getMiscModule();
-	//users目录
+	// 用户目录
 	if (!util::createAllDirectories(pModule->getUsersDir()))
 	{
 		LOG__(ERR, _T("_CreateUsersFolder users direcotry failed!"));
 		return FALSE;
 	}
-	//下载目录
+	// 下载目录
 	if (!util::createAllDirectories(pModule->getDownloadDir()))
 	{
 		LOG__(ERR, _T("_CreateUsersFolder download direcotry failed!"));
 		return FALSE;
 	}
-
 	return TRUE;
 }
+
 #ifdef _DEBUG
 	#define  AppSingletonMutex _T("{7A666640-EDB3-44CC-954B-0C43F35A2E17}")
 #else
@@ -190,7 +192,6 @@ BOOL CteamtalkApp::_CreateUsersFolder()
 #endif
 BOOL CteamtalkApp::_IsHaveInstance()
 {
-	// 单实例运行
 	HANDLE hMutex = ::CreateMutex(NULL, TRUE, AppSingletonMutex);
 	if (hMutex != NULL && GetLastError() == ERROR_ALREADY_EXISTS)
 	{

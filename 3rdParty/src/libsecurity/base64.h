@@ -1,14 +1,11 @@
-/*================================================================
-*   Copyright (C) 2015 All rights reserved.
-*   
-*   文件名称：base64.h
-*   创 建 者：Zhang Yuanhao
-*   邮    箱：bluefoxah@gmail.com
-*   创建日期：2015年01月28日
-*   描    述：
-*
-#pragma once
-================================================================*/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
 #ifndef __BASE64_H__
 #define __BASE64_H__
 #include<iostream>

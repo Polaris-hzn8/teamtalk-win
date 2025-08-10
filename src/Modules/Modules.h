@@ -1,5 +1,10 @@
-// Modules.h : Modules DLL 的主头文件
-//
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: Modules DLL头文件
+*/
 
 #pragma once
 
@@ -7,8 +12,7 @@
 	#error "在包含此文件之前包含“stdafx.h”以生成 PCH 文件"
 #endif
 
-#include "resource.h"		// 主符号
-
+#include "resource.h"
 
 // CModulesApp
 // 有关此类实现的信息，请参阅 Modules.cpp
@@ -18,8 +22,6 @@ class CModulesApp : public CWinApp
 {
 public:
 	CModulesApp();
-
-// 重写
 public:
 	virtual BOOL InitInstance();
 

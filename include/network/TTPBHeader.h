@@ -1,16 +1,18 @@
-/*******************************************************************************
- *  @file      TTPBHeader.h 2014\12\25 20:48:25 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef TTPBHEADER_BE699480_6F65_405B_9E8A_F5B0F13800D0_H__
 #define TTPBHEADER_BE699480_6F65_405B_9E8A_F5B0F13800D0_H__
 
-#include "GlobalDefine.h"
 #include "UtilPdu.h"
 #include "networkdll.h"
-/******************************************************************************/
+#include "GlobalDefine.h"
+
 NAMESPACE_BEGIN(imcore)
 
 const static Int8 HEADER_LENGTH = 16;
@@ -25,26 +27,11 @@ enum
 	RESERVER_TYPE_UNREADER_MESSAGE				= TTPBHEADER_RESERVED_MASK | 0x03,		//identify unread message packet
 };
 
-/**
- * The class <code>TTPBHeader</code> 
- *
- */
 class NETWORK_DLL TTPBHeader final
 {
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Constructor 
-     */
     TTPBHeader();
-    /**
-     * Destructor
-     */
     ~TTPBHeader();
-    //@}
-
 public:
 	byte* getSerializeBuffer();
 	void unSerialize(byte* headerBuff, UInt16 len);
@@ -76,5 +63,5 @@ private:
 };
 
 NAMESPACE_END(imcore)
-/******************************************************************************/
+
 #endif// TTPBHEADER_BE699480_6F65_405B_9E8A_F5B0F13800D0_H__

@@ -1,25 +1,20 @@
-/******************************************************************************* 
- *  @file      TTPBHeader.cpp 2014\12\25 20:48:28 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "network/TTPBHeader.h"
 
-/******************************************************************************/
 NAMESPACE_BEGIN(imcore)
-
-// -----------------------------------------------------------------------------
-//  TTPBHeader: Public, Constructor
 
 TTPBHeader::TTPBHeader()
 :m_pHeaderBuff(0)
 {
 	m_pHeaderBuff = new byte[HEADER_LENGTH];
 }
-
-// -----------------------------------------------------------------------------
-//  TTPBHeader: Public, Destructor
 
 TTPBHeader::~TTPBHeader()
 {
@@ -75,4 +70,3 @@ void TTPBHeader::clear()
 }
 
 NAMESPACE_END(imcore)
-/******************************************************************************/

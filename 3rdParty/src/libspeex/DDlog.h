@@ -1,18 +1,18 @@
-/*******************************************************************************
- *  @file      DDlog.h 2014\5\5 15:59:54 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @summary   
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef DDLOG_45D14A3E_DFD2_4568_A624_F7D32AFB7707_H__
 #define DDLOG_45D14A3E_DFD2_4568_A624_F7D32AFB7707_H__
 
-/******************************************************************************/
-
+#include <time.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
-#include <time.h>
 
 #define LOGFILE "audio_errorlog.txt"
 
@@ -61,5 +61,5 @@ int WriteDebugLog(char *str)
     fclose(fp);
     return -1;
 }
-/******************************************************************************/
+
 #endif// DDLOG_45D14A3E_DFD2_4568_A624_F7D32AFB7707_H__

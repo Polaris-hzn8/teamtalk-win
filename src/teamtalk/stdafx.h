@@ -43,6 +43,6 @@
 
 #include <objbase.h>
 #include "DuiLib/UIlib.h"
-using namespace DuiLib;
 #include "GlobalConfig.h"
 #include "yaolog/yaolog.h"
+using namespace DuiLib;

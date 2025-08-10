@@ -17,12 +17,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "utility", "..\core\utility\
 		{322B08FC-4620-4E34-9834-85A2E3A3A223} = {322B08FC-4620-4E34-9834-85A2E3A3A223}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sln_define", "sln_define", "{1DDC7C59-C209-486A-A363-5AFAE19DD01F}"
-	ProjectSection(SolutionItems) = preProject
-		..\include\GlobalConfig.h = ..\include\GlobalConfig.h
-		..\include\GlobalDefine.h = ..\include\GlobalDefine.h
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Modules", "..\src\Modules\Modules.vcxproj", "{6E182BBC-17D4-4E11-8580-44A546D6ACF0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0C1A4D61-C72C-4BBC-8468-34CD700D860C} = {0C1A4D61-C72C-4BBC-8468-34CD700D860C}

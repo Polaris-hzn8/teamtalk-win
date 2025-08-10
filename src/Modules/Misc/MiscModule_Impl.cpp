@@ -1,20 +1,22 @@
-/******************************************************************************* 
- *  @file      MiscModule.cpp 2014\8\4 9:56:42 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
+#include "security.h"
+#include "network/ImCore.h"
 #include "MiscModule_Impl.h"
-#include "utility/utilCommonAPI.h"
 #include "utility/Multilingual.h"
+#include "utility/utilCommonAPI.h"
 #include "utility/utilStrCodingAPI.h"
 #include "Modules/ISysConfigModule.h"
 #include "../Core/DuiLib/Utils/DialogManager.h"
-#include "network/ImCore.h"
-#include "security.h"
-#include <MMSystem.h>
-/******************************************************************************/
+#include <mmsystem.h>
+
 namespace module
 {
 	IMiscModule* getMiscModule()
@@ -24,16 +26,10 @@ namespace module
 	}
 }
 
-// -----------------------------------------------------------------------------
-//  MiscModule: Public, Constructor
-
 MiscModule_Impl::MiscModule_Impl()
 {
 
 }
-
-// -----------------------------------------------------------------------------
-//  MiscModule: Public, Destructor
 
 MiscModule_Impl::~MiscModule_Impl()
 {
@@ -150,7 +146,7 @@ CString MiscModule_Impl::makeShortTimeDescription(IN UInt32 Intime)
 	//一年以内的
 	else if (msgTime.GetMonth() - currentTime.GetMonth())
 	{
-			return msgTime.Format(_T("%m-%d"));
+		return msgTime.Format(_T("%m-%d"));
 	}
 	else if (msgTime.GetDay() == currentTime.GetDay())
 	{
@@ -258,8 +254,7 @@ void MiscModule_Impl::doProcess1(IN std::string& pData, OUT std::string& pOutDat
 
 void MiscModule_Impl::doProcess2(IN std::string& pData, OUT std::string& pOutData)
 {
-	LOG__(DEBG, _T("DecryptMsg,pData content:%s")
-		, util::stringToCString(pData));
+	LOG__(DEBG, _T("DecryptMsg, pData content:%s"), util::stringToCString(pData));
 	if (pData.empty())
 		return;
 
@@ -280,4 +275,3 @@ void MiscModule_Impl::doProcess2(IN std::string& pData, OUT std::string& pOutDat
 	}
 }
 
-/******************************************************************************/

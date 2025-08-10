@@ -1,21 +1,16 @@
 
-/*******************************************************************************
- *  @file      EditToolbarUI.h 2015\5\5 16:04:05 $
- *  @author    доки<nansong@mogujie.com>
- *  @brief     
- ******************************************************************************/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef EDITTOOLBARUI_626E8E45_6C7F_4273_8469_1B3BEB73CC36_H__
 #define EDITTOOLBARUI_626E8E45_6C7F_4273_8469_1B3BEB73CC36_H__
 
 #include "../Common.h"
 #include "Dlgbase.h"
-/******************************************************************************/
-
-/**
- * The class <code>EditToolbarUI</code> 
- *
- */
 
 struct EditToolbarInfo
 {
@@ -74,5 +69,5 @@ private:
 	int m_iMouseMoveIdx;
 };
 
-/******************************************************************************/
 #endif// EDITTOOLBARUI_626e8e45-6c7f-4273-8469-1b3beb73cc36_H__
+

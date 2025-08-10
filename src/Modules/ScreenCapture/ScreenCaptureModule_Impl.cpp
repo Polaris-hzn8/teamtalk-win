@@ -1,9 +1,10 @@
 
-/******************************************************************************* 
- *  @file      ScreenCaptureModule_Impl.cpp 2015\5\5 15:51:49 $
- *  @author    ÄÏËÉ<nansong@mogujie.com>
- *  @brief     
- ******************************************************************************/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "ScreenCaptureModule_Impl.h"
@@ -12,7 +13,6 @@
 #include "utility/utilStrCodingAPI.h"
 #include "../../3rdParty/src/cxImage/cxImage/ximage.h"
 
-/******************************************************************************/
 namespace module
 {
 	IScreenCaptureModule* getScreenCaptureModule()
@@ -30,20 +30,20 @@ BOOL ScreenCaptureModule_Impl::initCapture(__in HWND hWnd)
 void ScreenCaptureModule_Impl::onScreenCaptureFinish(__in std::wstring resultPicPath)
 {
     //1. ¼ÓÔØµ½¼ôÇÐ°å
-    /*CxImage img;
-    img.Load(resultPicPath.c_str(), CXIMAGE_SUPPORT_PNG);
-    HBITMAP hBitmap = img.MakeBitmap();
-    if (!hBitmap)
-    {
-    return;
-    }
-    OpenClipboard(AfxGetMainWnd()->GetSafeHwnd());
-    EmptyClipboard();
-    SetClipboardData(CF_BITMAP, hBitmap);
-    CloseClipboard();
+    //CxImage img;
+    //img.Load(resultPicPath.c_str(), CXIMAGE_SUPPORT_PNG);
+    //HBITMAP hBitmap = img.MakeBitmap();
+    //if (!hBitmap)
+    //    return;
 
-    std::string strCapturePath = util::ws2s(resultPicPath);
-    asynNotifyObserver(module::MODULE_SCREEN_CAPTURE_PREFIX + "id", strCapturePath);*/
+    //OpenClipboard(AfxGetMainWnd()->GetSafeHwnd());
+    //EmptyClipboard();
+    //SetClipboardData(CF_BITMAP, hBitmap);
+    //CloseClipboard();
+
+    //std::string strCapturePath = util::ws2s(resultPicPath);
+    //asynNotifyObserver(module::MODULE_SCREEN_CAPTURE_PREFIX + "id", strCapturePath);
+
     HBITMAP hBitmap = (HBITMAP)LoadImage(NULL, resultPicPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
     if (!hBitmap)
     {
@@ -85,4 +85,3 @@ void ScreenCaptureModule_Impl::cancelCapture()
     ScreenCapture::getInstance()->cancelCapture();
 }
 
-/**************************************************************/

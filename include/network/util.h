@@ -1,3 +1,11 @@
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
 #ifndef __UTIL_H__
 #define __UTIL_H__
 

@@ -1,3 +1,4 @@
+
 #pragma once
 
 #ifndef __AFXWIN_H__
@@ -7,7 +8,6 @@
 #include "resource.h"
 
 class MainDialog;
-
 class CteamtalkApp : public CWinApp
 {
 public:

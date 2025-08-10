@@ -1,18 +1,20 @@
-/******************************************************************************* 
- *  @file      UIEventManager.cpp 2014\7\18 15:09:03 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief   
- ******************************************************************************/
 
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
+#include <memory>
+#include <algorithm>
 #include "stdafx.h"
 #include "Modules/IEvent.h"
-#include "utility/utilStrCodingAPI.h"
-#include "utility/utilCommonAPI.h"
 #include "network/Exception.h"
+#include "utility/utilCommonAPI.h"
 #include "Modules/UIEventManager.h"
-#include <algorithm>
-#include <memory>
-/******************************************************************************/
+#include "utility/utilStrCodingAPI.h"
+
 NAMESPACE_BEGIN(module)
 
 namespace
@@ -21,6 +23,7 @@ namespace
 	#define UI_EVENT_MSG				WM_USER + 1005
 
 	static const wchar_t uiEventWndClass[] = L"uiEventManager_class";
+	static const wchar_t uiEventWndName[] = L"uiEvnetManager_window";
 }
 
 namespace
@@ -56,7 +59,6 @@ UIEventManager::UIEventManager()
 
 UIEventManager::~UIEventManager()
 {
-	//捕捉可能抛出的未知异常
 	try
 	{
 		shutdown();
@@ -70,13 +72,13 @@ UIEventManager::~UIEventManager()
 
 void UIEventManager::shutdown()
 {
-	if (0 !=m_hWnd)
+	if (m_hWnd != NULL)
 	{
 		_removeEvents();
-		::KillTimer(m_hWnd, UI_TIMER_ID);
-		::DestroyWindow(m_hWnd);
-		::UnregisterClassW(uiEventWndClass, ::GetModuleHandle(NULL));
-		m_hWnd = 0;
+		KillTimer(m_hWnd, UI_TIMER_ID);
+		DestroyWindow(m_hWnd);
+		UnregisterClassW(uiEventWndClass, ::GetModuleHandle(NULL));
+		m_hWnd = NULL;
 	}
 }
 
@@ -91,23 +93,30 @@ BOOL UIEventManager::_registerClass()
 	ASSERT(ret != NULL);
 	if (NULL == ret || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS)
 		return FALSE;
-
 	return TRUE;
 }
 
-LRESULT _stdcall UIEventManager::_WindowProc(HWND hWnd
-											, UINT message
-											, WPARAM wparam
-											, LPARAM lparam)
+// 窗口过程函数
+LRESULT _stdcall UIEventManager::_WindowProc(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam)
 {
 	switch (message)
 	{
 	case UI_EVENT_MSG:
-		reinterpret_cast<UIEventManager*>(wparam)->_processEvent(reinterpret_cast<IEvent*>(lparam), TRUE);
-		break;
+	{/* 普通事件处理 */
+		IEvent* pEvent = reinterpret_cast<IEvent*>(lparam);
+		UIEventManager* pManager = reinterpret_cast<UIEventManager*>(wparam);
+		if (pManager && pEvent)
+		{
+			pManager->_processEvent(pEvent, TRUE);
+		}
+	}
+	break;
 	case WM_TIMER:
-		reinterpret_cast<UIEventManager*>(wparam)->_processTimer();
-		break;
+	{/* 定时事件处理 */
+		UIEventManager* pManager = reinterpret_cast<UIEventManager*>(wparam);
+		pManager->_processTimer();
+	}
+	break;
 	default:
 		break;
 	}
@@ -117,24 +126,37 @@ LRESULT _stdcall UIEventManager::_WindowProc(HWND hWnd
 imcore::IMCoreErrorCode UIEventManager::startup()
 {
 	IMCoreErrorCode errCode = IMCORE_OK;
-
-	if (0 != m_hWnd)
+	if (NULL != m_hWnd)
+	{
 		return IMCORE_OK;
+	}
 	else
 	{
 		if (!_registerClass())
+		{
 			return IMCORE_INVALID_HWND_ERROR;
-		m_hWnd = ::CreateWindowW(uiEventWndClass, _T("uiEvnetManager_window"),
-			0, 0, 0, 0, 0, HWND_MESSAGE, 0, GetModuleHandle(0), 0);
+		}
+
+		m_hWnd = CreateWindowW(
+			uiEventWndClass,	// 类名
+			uiEventWndName,		// 标题
+			0,					// 窗口样式
+			0, 0, 0, 0,			// x, y, width, height
+			HWND_MESSAGE,		// 特殊父窗口
+			0,					// 无菜单
+			GetModuleHandle(0),	// 当前应用实例句柄
+			0					// 附加数据
+		);
 		if (m_hWnd)
 		{
-			::SetTimer(m_hWnd, reinterpret_cast<UINT_PTR>(this), 1000, NULL);
+			// 每隔1s给窗口线程 发送WM_TIMER
+			SetTimer(m_hWnd, reinterpret_cast<UINT_PTR>(this), 1000, NULL);
 		}
 	}
-
-	if (FALSE == ::IsWindow(m_hWnd))
+	if (FALSE == IsWindow(m_hWnd))
+	{
 		errCode = IMCORE_INVALID_HWND_ERROR;
-
+	}
 	return errCode;
 }
 
@@ -154,21 +176,25 @@ void UIEventManager::_removeEvents()
 void UIEventManager::_processEvent(IEvent* pEvent, BOOL bRelease)
 {
 	assert(pEvent);
-	if (0 == pEvent)
+	if (pEvent == NULL)
 		return;
 
 	try
 	{
 		pEvent->process();
 		if (bRelease)
+		{
 			pEvent->release();
+		}
 	}
 	catch (imcore::Exception *e)
 	{
 		LOG__(ERR, _T("event run exception"));
 		pEvent->onException(e);
 		if (bRelease)
+		{
 			pEvent->release();
+		}
 		if (e)
 		{
 			LOG__(ERR, _T("event run exception:%s"), util::stringToCString(e->m_msg));
@@ -177,9 +203,11 @@ void UIEventManager::_processEvent(IEvent* pEvent, BOOL bRelease)
 	}
 	catch (...)
 	{
-		LOG__(ERR, _T("operation run exception,unknown reason"));
+		LOG__(ERR, _T("operation run exception, unknown reason"));
 		if (bRelease)
+		{
 			pEvent->release();
+		}
 		assert(FALSE);
 	}
 }
@@ -292,18 +320,14 @@ void UIEventManager::_processTimer()
 imcore::IMCoreErrorCode UIEventManager::killTimer(IN ITimerEvent* pTimerEvent)
 {
 	CAutoLock lock(&m_lock);
-	auto iter = std::remove_if(m_lstTimers.begin()
-		, m_lstTimers.end()
-		, [=](TTTimer& ttime)
-	{
+	auto iter = std::remove_if(m_lstTimers.begin(), m_lstTimers.end(), [=](TTTimer& ttime) {
 		return (pTimerEvent == ttime.pTimerEvent);
-	}
-	);
+	});
 	if (iter != m_lstTimers.end())
 	{
-		m_lstTimers.erase(iter,m_lstTimers.end());
+		m_lstTimers.erase(iter, m_lstTimers.end());
 		delete pTimerEvent;
-		pTimerEvent = 0;
+		pTimerEvent = NULL;
 		return IMCORE_OK;
 	}
 
@@ -326,4 +350,3 @@ UIEventManager* getEventManager()
 }
 
 NAMESPACE_END(module)
-/******************************************************************************/

@@ -1,12 +1,6 @@
-﻿/**
- * @file    dll_init.cpp
- * @brief   DLL加载卸载过程
- * @author  xiangwangfeng <xiangwangfeng@gmail.com>
- * @data	2011-7-5
- * @website www.xiangwangfeng.com
- */
-#include "standard_header.h"
+﻿
 #include "http_pool.h"
+#include "standard_header.h"
 
 void	onDLLProcessAttach()
 {
@@ -28,7 +22,6 @@ void	onDLLProcessDetach()
 {
 	//Http::HttpPool::freeInstance();	
 }
-
 
 BOOL APIENTRY DllMain(HANDLE hModule, 
 					  DWORD  ul_reason_for_call, 

@@ -24,6 +24,9 @@
     <ClInclude Include="UI\MainDialog.h">
       <Filter>Main</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\versioninfo.h">
+      <Filter>ProjectFils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

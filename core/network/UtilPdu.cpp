@@ -1,14 +1,15 @@
-/*
- * UtilPdu.cpp
- *
- *  Created on: 2013-8-27
- *      Author: ziteng@mogujie.com
- */
-#include "network/UtilPdu.h"
 
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
+#include "network/UtilPdu.h"
 
 ///////////// CSimpleBuffer ////////////////
 CSimpleBuffer::CSimpleBuffer()

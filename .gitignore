@@ -406,6 +406,16 @@ FodyWeavers.xsd
 !**/Flash11.tlb
 !**/flash11.tlh
 
-# pack
-package/Release
-package/users
+# common lib
+commonlib/*
+!commonlib/libprotobuf-lite.lib
+!commonlib/sqlite3.lib
+!commonlib/readme.txt
+
+# package file
+package/**
+!package/module/
+!package/module/ttlogconfig.ini
+!package/gui
+!package/data
+!package/chinese.ini

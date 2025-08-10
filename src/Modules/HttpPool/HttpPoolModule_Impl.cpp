@@ -111,8 +111,6 @@ void HttpPoolModule_Impl::_cancelAllOperations()
 	m_lstHttpOpers.clear();
 }
 
-/******************************************************************************/
-
 TTHttpThread::TTHttpThread()
 :m_bContinue(TRUE)
 {

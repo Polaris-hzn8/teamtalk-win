@@ -1,14 +1,16 @@
-/******************************************************************************* 
- *  @file      DatabaseModule_RecentSessionDB_Impl.cpp 2015\1\7 18:24:54 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "DatabaseModule_Impl.h"
 #include "utility/CppSQLite3.h"
 #include "utility/utilStrCodingAPI.h"
-/******************************************************************************/
+
 namespace
 {
 	const std::string createRecentSessionSql =
@@ -260,7 +262,6 @@ BOOL DatabaseModule_Impl::_execRecentSessionInfoCreateTableDML()
 	return TRUE;
 }
 
-
 BOOL DatabaseModule_Impl::sqlDeleteRecentSessionInfoEntity(IN const std::string& sessionId)
 {
 	try
@@ -290,4 +291,3 @@ BOOL DatabaseModule_Impl::sqlDeleteRecentSessionInfoEntity(IN const std::string&
 	return TRUE;
 }
 
-/******************************************************************************/

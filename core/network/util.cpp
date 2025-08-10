@@ -1,7 +1,14 @@
-#include "network/util.h"
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
 #include <sstream>
 using namespace std;
-
+#include "network/util.h"
 
 CRefObject::CRefObject()
 {

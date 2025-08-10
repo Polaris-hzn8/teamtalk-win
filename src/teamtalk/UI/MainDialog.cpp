@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      MainDialog.cpp 2014\7\31 15:24:26 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "Resource.h"
@@ -26,11 +28,6 @@ DUI_BEGIN_MESSAGE_MAP(MainDialog, WindowImplBase)
 	DUI_ON_MSGTYPE(DUI_MSGTYPE_TEXTCHANGED,OnTextChanged)
 DUI_END_MESSAGE_MAP()
 
-/******************************************************************************/
-
-// -----------------------------------------------------------------------------
-//  MainDialog: Public, Constructor
-
 MainDialog::MainDialog()
 :m_pbtnSysConfig(nullptr)
 ,m_pbtnOnlineStatus(nullptr)
@@ -38,14 +35,11 @@ MainDialog::MainDialog()
 ,m_ptxtUname(nullptr)
 ,m_bInstalled(false)
 ,m_bHidden(false)
-, m_pbtnClose(nullptr)
-, m_pbtnMinMize(nullptr)
-, m_pEditSignature(nullptr)
+,m_pbtnClose(nullptr)
+,m_pbtnMinMize(nullptr)
+,m_pEditSignature(nullptr)
 {
 }
-
-// -----------------------------------------------------------------------------
-//  MainDialog: Public, Destructor
 
 MainDialog::~MainDialog()
 {
@@ -386,7 +380,6 @@ void MainDialog::_UpdateTotalUnReadMsgCount(void)
         sUnreadCnt.Format(sFormat, nCount);
     }
     SetTrayTooltipText(sText + sUnreadCnt);
-
 }
 
 void MainDialog::Notify(TNotifyUI& msg)
@@ -411,6 +404,7 @@ void MainDialog::Notify(TNotifyUI& msg)
     }
     __super::Notify(msg);
 }
+
 void MainDialog::_FreshMySignature(void)
 {
     PTR_VOID(m_pEditSignature);
@@ -429,5 +423,3 @@ void MainDialog::_FreshMySignature(void)
     }
 }
 
-
-/******************************************************************************/

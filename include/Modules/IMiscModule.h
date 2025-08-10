@@ -1,22 +1,20 @@
-/*******************************************************************************
- *  @file      IMiscModule.h 2014\8\4 9:51:53 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 一些比较杂的公用接口函数
+*/
 
 #ifndef IMISCMODULE_450253C2_B143_4DD2_BD21_552FC6049D7A_H__
 #define IMISCMODULE_450253C2_B143_4DD2_BD21_552FC6049D7A_H__
 
 #include "GlobalDefine.h"
 #include "Modules/ModuleDll.h"
-/******************************************************************************/
+
 class FloatInfo;
 NAMESPACE_BEGIN(module)
 
-/**
- * The class <code>一些比较杂的公用的接口函数</code> 
- *
- */
 class MODULE_API IMiscModule
 {
 public:
@@ -97,11 +95,11 @@ public:
 	virtual void doProcess2(IN std::string& pData, OUT std::string& pOutData) = 0;
 };
 
-#define ENCRYPT_MSG(p1,p2) module::getMiscModule()->doProcess1((p1),(p2))
-#define	DECRYPT_MSG(p1,p2) module::getMiscModule()->doProcess2((p1),(p2))
+#define ENCRYPT_MSG(p1, p2) module::getMiscModule()->doProcess1((p1),(p2))
+#define	DECRYPT_MSG(p1, p2) module::getMiscModule()->doProcess2((p1),(p2))
 
 MODULE_API IMiscModule* getMiscModule();
 
 NAMESPACE_END(module)
-/******************************************************************************/
+
 #endif// IMISCMODULE_450253C2_B143_4DD2_BD21_552FC6049D7A_H__

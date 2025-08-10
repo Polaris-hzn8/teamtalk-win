@@ -1,20 +1,22 @@
-/*******************************************************************************
- *  @file      IModuleInterface.h 2014\12\18 13:37:56 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef IMODULEINTERFACE_26428D8B_4585_4660_95B3_94E8735700E9_H__
 #define IMODULEINTERFACE_26428D8B_4585_4660_95B3_94E8735700E9_H__
 
+#include <string>
+#include <functional>
 #include "GlobalDefine.h"
 #include "Modules/IEvent.h"
-#include "Modules/UIEventManager.h"
-#include "Modules/ModuleDll.h"
 #include "network/Operation.h"
-#include <functional>
-#include <string>
-/******************************************************************************/
+#include "Modules/ModuleDll.h"
+#include "Modules/UIEventManager.h"
+
 namespace imcore
 {
 	class TTPBHeader;
@@ -55,19 +57,12 @@ public:
 	}
 	virtual ~ICallbackOpertaion() {}
 protected:
-	/**
-	 * \brief 同步回调
-	 * \param std::shared_ptr<void>
-	 * \param param
-	 */
+	// 同步回调
 	void syncCallback(std::shared_ptr<void> param)
 	{
 		m_callback(param);
 	}
-	/**
-	 * \brief 异步回调，借助UIEvent
-	 * \param param std::shared_ptr<void>
-	 */
+	// 异步回调 借助UIEvent
 	void asyncCallback(std::shared_ptr<void> param)
 	{
 		CallbackOperationEvent* pEvent = new CallbackOperationEvent(m_callback, param);
@@ -81,14 +76,10 @@ private:
 struct IPduPacketParse
 {
 public:
-	/**
-	 * \brief 收到TcpClient网络包后的包解析回调接口
-	 * \param header std::auto_ptr<CImPdu> pdu
-	 * \param pbBody
-	 */
+	// 收到TcpClient网络包后的解析回调接口
 	virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody) = 0;
 };
 
 NAMESPACE_END(module)
-/******************************************************************************/
+
 #endif// IMODULEINTERFACE_26428d8b-4585-4660-95b3-94e8735700e9_H__

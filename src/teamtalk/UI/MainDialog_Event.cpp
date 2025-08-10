@@ -1,22 +1,23 @@
-/******************************************************************************* 
- *  @file      MainDialog_Event.cpp 2014\8\20 15:43:48 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "MainDialog.h"
-#include "Modules/ITcpClientModule.h"
-#include "Modules/ILoginModule.h"
 #include "Modules/IMiscModule.h"
-#include "Modules/IUserListModule.h"
+#include "Modules/ILoginModule.h"
+#include "utility/Multilingual.h"
 #include "Modules/ISessionModule.h"
+#include "Modules/IUserListModule.h"
+#include "Modules/ITcpClientModule.h"
 #include "Modules/ISysConfigModule.h"
 #include "Modules/IFileTransferModule.h"
 #include "ProtocolBuffer/IM.BaseDefine.pb.h"
-#include "utility/Multilingual.h"
 
-/******************************************************************************/
 void MainDialog::OnClick(TNotifyUI& msg)
 {
 	PTR_VOID(msg.pSender);
@@ -68,6 +69,7 @@ void MainDialog::MKOForTcpClientModuleCallBack(const std::string& keyId, MKO_TUP
 		}
 	}
 }
+
 void MainDialog::OnCopyData(IN COPYDATASTRUCT* pCopyData)
 {
 	if (nullptr == pCopyData)
@@ -76,6 +78,7 @@ void MainDialog::OnCopyData(IN COPYDATASTRUCT* pCopyData)
 	}
 	module::getSessionModule()->asynNotifyObserver(module::KEY_SESSION_TRAY_COPYDATA, pCopyData->dwData);
 }
+
 void MainDialog::MKOForLoginModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam)
 {
 	if (module::KEY_LOGIN_RELOGINOK == keyId)
@@ -222,4 +225,3 @@ void MainDialog::StopNewMsgTrayEmot()
 	KillTimer(m_hWnd, TIMER_TRAYEMOT);
 	UpdateLineStatus(module::getUserListModule()->getMyLineStatus());
 }
-/******************************************************************************/

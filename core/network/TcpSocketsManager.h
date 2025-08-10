@@ -1,31 +1,19 @@
-/*******************************************************************************
- *  @file      TcpSocketsManager.h 2014\12\1 19:54:39 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef TCPSOCKETSMANAGER_2EAF3E98_E9C6_4F3D_ADE6_387E54BCA3AC_H__
 #define TCPSOCKETSMANAGER_2EAF3E98_E9C6_4F3D_ADE6_387E54BCA3AC_H__
 
 #include "network/imconn.h"
 
-/******************************************************************************/
-
-/**
- * The class <code>TcpSocketsManager</code> 
- *
- */
 class TcpSocketsManager
 {
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Destructor
-     */
     ~TcpSocketsManager();
-    //@}
 	static TcpSocketsManager* getInstance();
 
 public:
@@ -41,5 +29,5 @@ private:
 private:
 	ConnMap_t		m_client_conn_map;
 };
-/******************************************************************************/
+
 #endif// TCPSOCKETSMANAGER_2EAF3E98_E9C6_4F3D_ADE6_387E54BCA3AC_H__

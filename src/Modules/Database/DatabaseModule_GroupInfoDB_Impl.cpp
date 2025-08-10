@@ -1,8 +1,10 @@
-/******************************************************************************* 
- *  @file      DatabaseModule_GroupInfoDB_Impl.cpp 2014\12\30 16:12:41 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief     group info db manage
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: group info db manage
+*/
 
 #include "stdafx.h"
 #include "DatabaseModule_Impl.h"
@@ -10,7 +12,7 @@
 #include "utility/utilStrCodingAPI.h"
 #include "json/reader.h"
 #include "json/writer.h"
-/******************************************************************************/
+
 namespace
 {
 	const std::string createGroupInfoSql =
@@ -353,6 +355,3 @@ BOOL DatabaseModule_Impl::sqlDeleteGroupInfoEntity(IN const std::string& groupId
 
 	return TRUE;
 }
-
-
-/******************************************************************************/

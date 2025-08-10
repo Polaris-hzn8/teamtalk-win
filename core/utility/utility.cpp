@@ -33,27 +33,16 @@
 //		请参阅 MFC 技术说明 33 和 58。
 //
 
-// CutilityApp
-
 BEGIN_MESSAGE_MAP(CutilityApp, CWinApp)
 END_MESSAGE_MAP()
 
-
-// CutilityApp 构造
+CutilityApp theApp;
 
 CutilityApp::CutilityApp()
 {
 	// TODO:  在此处添加构造代码，
 	// 将所有重要的初始化放置在 InitInstance 中
 }
-
-
-// 唯一的一个 CutilityApp 对象
-
-CutilityApp theApp;
-
-
-// CutilityApp 初始化
 
 BOOL CutilityApp::InitInstance()
 {

@@ -1,10 +1,10 @@
-//
-//  base64.cpp
-//  pushservice
-//
-//  Created by yunfan on 14/12/18.
-//  Copyright (c) 2014年 yunfan. All rights reserved.
-//
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include <stdio.h>
 #include <iostream>

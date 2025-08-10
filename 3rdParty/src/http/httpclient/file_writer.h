@@ -13,7 +13,6 @@
 
 NAMESPACE_BEGIN(Util)
 
-//写文件Wrapper类
 class FileWriter
 {
 public:
@@ -30,5 +29,5 @@ private:
 	FILE*			_file;			//文件指针
 };
 
-
 NAMESPACE_END(Util)
+

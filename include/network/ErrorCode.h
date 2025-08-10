@@ -1,21 +1,23 @@
-/*******************************************************************************
- *  @file      ErrorCode.h 2012\8\16 22:21:34 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief	   IMCORE本地错误码的定义,通信协议的错误码定义在PortErrorCode.h
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: IMCORE本地错误码的定义,通信协议的错误码定义在PortErrorCode.h
+*/
 
 #ifndef ERRORCODE_4A19179B_20B8_4BF7_AD9A_2468C3BF9AB7_H__
 #define ERRORCODE_4A19179B_20B8_4BF7_AD9A_2468C3BF9AB7_H__
 
 #include "GlobalDefine.h"
-/******************************************************************************/
+
 NAMESPACE_BEGIN(imcore)
 
-typedef UInt32  IMCoreErrorCode;
+typedef UInt32 IMCoreErrorCode;
 
 //错误掩码，error code flag
 const IMCoreErrorCode IMCORE_FLAG					= 0x000000U; // 此码代表常规错误
-const IMCoreErrorCode IMCORE_WORK_FLAG				= 0x010000U; // 此码代表后台任务opertaion,event产生的错误
+const IMCoreErrorCode IMCORE_WORK_FLAG				= 0x010000U; // 此码代表后台任务opertaion, event产生的错误
 
 //常规错误
 const IMCoreErrorCode IMCORE_OK									= IMCORE_FLAG | 0x00U;   //一切OK
@@ -34,5 +36,5 @@ const IMCoreErrorCode IMCORE_WORK_POSTMESSAGE_ERROR				= IMCORE_WORK_FLAG | 0x03
 const IMCoreErrorCode IMCORE_WORK_TIMER_INEXISTENCE_ERROR		= IMCORE_WORK_FLAG | 0x04;   //Timer不存在
 
 NAMESPACE_END(imcore)
-/******************************************************************************/
+
 #endif// ERRORCODE_4A19179B_20B8_4BF7_AD9A_2468C3BF9AB7_H__

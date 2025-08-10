@@ -1,12 +1,16 @@
+
 /*
- *  a wrap for non-block socket class for Windows, LINUX and MacOS X platform
- */
+  Reviser: Polaris_hzn8
+  Email: lch2022fox@163.com
+  Github: https://github.com/Polaris-hzn8
+  brief: a wrap for non-block socket class for Windows, LINUX and MacOS X platform
+*/
 
 #ifndef __SOCKET_H__
 #define __SOCKET_H__
 
-#include "network/ostype.h"
 #include "network/util.h"
+#include "network/ostype.h"
 
 enum
 {

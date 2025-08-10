@@ -101,7 +101,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>.\Modules.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)..\commonlib\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>utility.lib;network.lib;httpclient.lib;Winmm.lib;DuiLib.lib;libprotobuf-lite.lib;MSVCRT.lib;security.lib;mfcs140u.lib</AdditionalDependencies>
+      <AdditionalDependencies>utility.lib;network.lib;httpclient.lib;winmm.lib;DuiLib.lib;libprotobuf-lite.lib;MSVCRT.lib;security.lib;mfcs140u.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\commonlib\</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>MSVCRT.lib;mfcs120u.lib</IgnoreSpecificDefaultLibraries>
     </Link>

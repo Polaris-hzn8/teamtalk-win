@@ -1,8 +1,10 @@
-/*******************************************************************************
- *  @file      ISysConfigModule.h 2014\8\4 10:54:39 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     系统配置信息，包括系统设置和全局配置信息
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 系统配置信息，包括系统设置和全局配置信息
+*/
 
 #ifndef ISYSCONFIGMODULE_03995006_A398_4574_BAE1_549FE4543DD3_H__
 #define ISYSCONFIGMODULE_03995006_A398_4574_BAE1_549FE4543DD3_H__
@@ -10,7 +12,7 @@
 #include "GlobalDefine.h"
 #include "Modules/ModuleDll.h"
 #include "Modules/ModuleBase.h"
-/******************************************************************************/
+
 NAMESPACE_BEGIN(module)
 const UInt16 SYSCONFIG_VERSIONI = 1;
 const std::string MODULE_SYSCONFIG_PREFIX = "SysConfig";
@@ -31,10 +33,10 @@ enum
 //MusicID
 enum
 {
-	MUSIC_SOUND_DINGDONG =  0,		//叮咚声
-	MUSIC_SOUND_KEYBOARD,      //键盘声音
+	MUSIC_SOUND_DINGDONG =  0,	//叮咚声
+	MUSIC_SOUND_KEYBOARD,		//键盘声音
 	MUSIC_SOUND_DINGLIN ,       //叮铃声
-	MUSIC_SOUND_CALLMSG ,        //来电声音
+	MUSIC_SOUND_CALLMSG ,       //来电声音
 };
 
 struct TTConfigNeedCache
@@ -57,66 +59,37 @@ struct TTConfig : public TTConfigNeedCache
 	CString			fileSysAddr;
 	CString			fileSysBackUpAddr;
 	
-	std::string		msgSevPriorIP;//消息服务器地址
-	std::string		msgSevBackupIP;//消息服务器备用地址
-	UInt32			msgServPort;//消息服务器端口
+	std::string		msgSevPriorIP;	//消息服务器地址
+	std::string		msgSevBackupIP;	//消息服务器备用地址
+	UInt32			msgServPort;	//消息服务器端口
 	std::string		userId;
 };
 
-/**
- * The class <code>系统配置信息，包括系统设置和全局配置信息</code> 
- *
- */
+// 系统配置信息
+// 包括系统设置和全局配置信息
 class MODULE_API ISysConfigModule : public module::ModuleBase
 {
 public:
-	/**
-	 * 获取系统配置数据（改变配置数据之后，如果需要立即保存请调用saveData()）
-	 *
-	 * @param   SystemConfig & cfg
-	 * @return  void
-	 * @exception there is no any exception to throw.
-	 */	
+	// 获取系统配置数据
+	// 改变配置数据之后，如果需要立即保存请调用saveData
 	virtual TTConfig* getSystemConfig() = 0;
-	/**
-	* 获取用户ID
-	*
-	* @return  std::string
-	* @exception there is no any exception to throw.
-	*/
+	
+	// 获取用户ID
 	virtual std::string userID()const = 0;
 	virtual CString UserID()const = 0;
 	virtual UInt32 userId()const = 0;
-	/**
-	 * 将配置数据保存到本地
-	 *
-	 * @return  BOOL
-	 * @exception there is no any exception to throw.
-	 */
+	
+	// 将配置数据保存到本地
 	virtual BOOL saveData() = 0;
 	virtual BOOL showServerConfigDialog(IN HWND hParentWnd) = 0;
-	/**
-	 * 显示系统配置窗口
-	 *
-	 * @return  void
-	 * @exception there is no any exception to throw.
-	 */
+	
+	// 显示系统配置窗口
 	virtual void showSysConfigDialog(IN HWND hParentWnd) = 0;
-	/**
-	* 释放窗口的时候，置false；创建的时候置true
-	*
-	* @return  void
-	* @exception there is no any exception to throw.
-	*/
+	
+	// 释放窗口置false；创建置true
 	virtual void setSysConfigDialogFlag(IN BOOL bIsExist) = 0;
 	
-	/**
-	 * 账号目录下的用户信息最后更新时间(暂时放这里)
-	 *
-	 * @param   void
-	 * @return  UInt32
-	 * @exception there is no any exception to throw.
-	 */	
+	// 账号目录下的用户信息最后更新时间 (暂时放这里)	
 	virtual UInt32 getUserInfoLatestUpdateTime(void) = 0;
 	virtual void saveUserInfoLatestUpdateTime(IN const UInt32 nLatestUpdateTime) = 0;
 
@@ -130,5 +103,5 @@ public:
 MODULE_API ISysConfigModule* getSysConfigModule();
 
 NAMESPACE_END(module)
-/******************************************************************************/
+
 #endif// ISYSCONFIGMODULE_03995006_A398_4574_BAE1_549FE4543DD3_H__

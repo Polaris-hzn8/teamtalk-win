@@ -1,21 +1,16 @@
 
-/*******************************************************************************
- *  @file      ScreenCapture.h 2015\5\5 15:54:37 $
- *  @author    доки<nansong@mogujie.com>
- *  @brief     
- ******************************************************************************/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef SCREENCAPTURE_9A94982E_1F10_418A_8424_4E211A84E305_H__
 #define SCREENCAPTURE_9A94982E_1F10_418A_8424_4E211A84E305_H__
 
 #include "Common.h"
 #include <vector>
-/******************************************************************************/
-
-/**
- * The class <code>ScreenCapture</code> 
- *
- */
 
 class ScreenCaptureCallback
 {
@@ -84,5 +79,5 @@ private:
     CRITICAL_SECTION m_sInCaptureLock;
 };
 
-/******************************************************************************/
 #endif// SCREENCAPTURE_9a94982e-1f10-418a-8424-4e211a84e305_H__
+

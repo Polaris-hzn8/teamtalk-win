@@ -1,21 +1,22 @@
-/*******************************************************************************
-*  @file      ImCore.h 2014\09\10 13:28:49 $
-*  @author    蓝狐<lanhu@mogujie.com>
-*  @brief     
-******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 自定义封装的lock_guard
+*/
 
 #ifndef __LOCK_H__
 #define __LOCK_H__
 
-#include "network/networkdll.h"
 #include "network/ostype.h"
+#include "network/networkdll.h"
 
 class NETWORK_DLL CFastLock
 {
 public:
 	CFastLock();
 	~CFastLock();
-
 public:
 #ifdef _MSC_VER
 	CRITICAL_SECTION m_critical_section;
@@ -23,7 +24,6 @@ public:
 	pthread_mutex_t m_mutex;
 #endif
 };
-
 
 class NETWORK_DLL CLock
 {

@@ -1,5 +1,13 @@
-#include "EventDispatch.h"
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
 #include "BaseSocket.h"
+#include "EventDispatch.h"
 
 #define MIN_TIMER_DURATION	100	// miliseconds
 
@@ -113,7 +121,7 @@ CEventDispatch* CEventDispatch::Instance()
 }
 
 #ifdef _MSC_VER
-
+// Windows平台下IO多路复用
 void CEventDispatch::AddEvent(SOCKET fd, uint8_t socket_event)
 {
 	CAutoLock func_lock(&m_lock);
@@ -154,6 +162,7 @@ void CEventDispatch::RemoveEvent(SOCKET fd, uint8_t socket_event)
 	}
 }
 
+// 事件分发核心
 void CEventDispatch::StartDispatch(uint32_t wait_timeout)
 {
 	fd_set read_set, write_set, excep_set;
@@ -198,6 +207,8 @@ void CEventDispatch::StartDispatch(uint32_t wait_timeout)
 		{
 			continue;
 		}
+
+		// read_set
 		for (u_int i = 0; i < read_set.fd_count; i++)
 		{
 			//LOG__(NET,  "select return read count=%d\n", read_set.fd_count);
@@ -209,6 +220,8 @@ void CEventDispatch::StartDispatch(uint32_t wait_timeout)
 				pSocket->ReleaseRef();
 			}
 		}
+
+		// write_set
 		for (u_int i = 0; i < write_set.fd_count; i++)
 		{
 			//LOG__(NET,  "select return write count=%d\n", write_set.fd_count);
@@ -220,6 +233,8 @@ void CEventDispatch::StartDispatch(uint32_t wait_timeout)
 				pSocket->ReleaseRef();
 			}
 		}
+
+		// excep_set
 		for (u_int i = 0; i < excep_set.fd_count; i++)
 		{
 			LOG__(NET,  _T("select return exception count=%d"), excep_set.fd_count);
@@ -385,6 +400,5 @@ void CEventDispatch::StopDispatch()
 {
     running = false;
 }
-
 
 #endif

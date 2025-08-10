@@ -6,11 +6,11 @@
  brief:
 */
 
-#include "stdafx.h"
-#include "Modules/ModuleObserver.h"
-#include "Modules/ModuleSubject.h"
 #include <vector>
 #include <algorithm>
+#include "stdafx.h"
+#include "Modules/ModuleSubject.h"
+#include "Modules/ModuleObserver.h"
 
 NAMESPACE_BEGIN(module)
 

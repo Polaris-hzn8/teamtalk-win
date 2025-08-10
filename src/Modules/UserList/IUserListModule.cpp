@@ -1,15 +1,17 @@
-﻿/******************************************************************************* 
- *  @file      IUserListModule.cpp 2014\8\26 16:36:25 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     
- ******************************************************************************/
+﻿
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
 #include "Modules/IUserListModule.h"
 #include "Modules/ITcpClientModule.h"
 
-/******************************************************************************/
 NAMESPACE_BEGIN(module)
+
 CString UserInfoEntity::getRealName()const
 {
 	if (!csNickName.IsEmpty())
@@ -31,8 +33,8 @@ std::string UserInfoEntity::getAvatarPath()const
 	//获取当前登录状态
 	UInt8 netState = module::getTcpClientModule()->getTcpClientNetState();
 	std::string path;
-	if (module::TCPCLIENT_STATE_OK == netState 
-		&& IM::BaseDefine::USER_STATUS_OFFLINE != onlineState)
+	if (module::TCPCLIENT_STATE_OK == netState &&
+		IM::BaseDefine::USER_STATUS_OFFLINE != onlineState)
 	{
 		path = avatarLocalPath;
 		if (path.empty())
@@ -71,4 +73,3 @@ BOOL UserInfoEntity::isOnlne() const
 }
 
 NAMESPACE_END(module)
-/******************************************************************************/

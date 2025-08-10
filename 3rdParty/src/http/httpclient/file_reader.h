@@ -13,7 +13,6 @@
 
 NAMESPACE_BEGIN(Util)
 
-//读文件Wrapper类
 class	FileReader
 {
 public:
