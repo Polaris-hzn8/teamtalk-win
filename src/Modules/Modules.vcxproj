@@ -49,8 +49,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\..\$(Platform)\$(Configuration)\bin\</OutDir>
-    <IntDir>$(SolutionDir)\..\$(Platform)\$(Configuration)\$(ProjectName)_$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\$(Platform)\$(Configuration)\bin\</OutDir>
+    <IntDir>$(SolutionDir)\$(Platform)\$(Configuration)\$(ProjectName)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -92,7 +92,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;MODULE_DLL;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)..\include;$(SolutionDir)..\3rdParty\include;$(SolutionDir)..\3rdParty\src\;$(SolutionDir)..\3rdParty\src\cximage\cxImage\;$(SolutionDir)..\3rdParty\src\json\include\;$(SolutionDir)\..\core\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;$(SolutionDir)\include;$(SolutionDir)\3rdParty\include;$(SolutionDir)\3rdParty\src\;$(SolutionDir)\3rdParty\src\cximage\cxImage\;$(SolutionDir)\3rdParty\src\json\include\;$(SolutionDir)\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -100,9 +100,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>.\Modules.def</ModuleDefinitionFile>
-      <ImportLibrary>$(SolutionDir)..\commonlib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\import_lib\$(TargetName).lib</ImportLibrary>
       <AdditionalDependencies>utility.lib;network.lib;httpclient.lib;winmm.lib;DuiLib.lib;libprotobuf-lite.lib;MSVCRT.lib;security.lib;mfcs140u.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\commonlib\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\import_lib\</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>MSVCRT.lib;mfcs120u.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <Midl>

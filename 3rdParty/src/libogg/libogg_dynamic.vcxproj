@@ -72,8 +72,8 @@
     <IntDir>$(SolutionDir)\..\obj\$(Configuration)\$(ProjectName)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)\..\$(Platform)\$(Configuration)\bin\</OutDir>
-    <IntDir>$(SolutionDir)\..\$(Platform)\$(Configuration)\$(ProjectName)_$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\$(Platform)\$(Configuration)\bin\</OutDir>
+    <IntDir>$(SolutionDir)\$(Platform)\$(Configuration)\$(ProjectName)_$(Configuration)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -128,7 +128,7 @@
     </ClCompile>
     <Link>
       <ModuleDefinitionFile>ogg.def</ModuleDefinitionFile>
-      <ImportLibrary>$(SolutionDir)\..\commonlib\$(TargetName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)\import_lib\$(TargetName).lib</ImportLibrary>
     </Link>
     <BuildLog>
       <Path />

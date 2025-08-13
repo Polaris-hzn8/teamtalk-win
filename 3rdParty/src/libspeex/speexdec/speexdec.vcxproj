@@ -77,8 +77,8 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)\..\$(Platform)\$(Configuration)\bin\</OutDir>
-    <IntDir>$(SolutionDir)\..\$(Platform)\$(Configuration)\$(ProjectName)_$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\$(Platform)\$(Configuration)\bin\</OutDir>
+    <IntDir>$(SolutionDir)\$(Platform)\$(Configuration)\$(ProjectName)_$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_SSE|Win32'">
@@ -125,7 +125,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>..\include;..\..\libogg\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\..\include;$(MSBuildProjectDirectory)\..\;$(MSBuildProjectDirectory)\..\..\libogg\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;HAVE_CONFIG_H;_BIND_TO_CURRENT_VCLIBS_VERSION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling />
@@ -146,7 +146,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\commonlib\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\import_lib\</AdditionalLibraryDirectories>
     </Link>
     <BuildLog>
       <Path />
