@@ -30,15 +30,17 @@ BOOL CteamtalkApp::InitInstance()
 	InitCtrls.dwICC = ICC_WIN95_CLASSES;
 	InitCommonControlsEx(&InitCtrls);
 
-	//log init
 	_InitLog();
 
-	// Protobuf版本兼容性检测
-	// 验证编译使用的Protobuf头文件版本和 链接使用的Protobuf库版本是否一致或兼容
+	// 版本兼容性校验
+	// 验证编译与链接使用的Protobuf库版本是否兼容
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
 	
-	LOG__(APP, _T("===================================VersionNO:%d======BulidTime：%s--%s==========================")
-		, TEAMTALK_VERSION, util::utf8ToCString(__DATE__), util::utf8ToCString(__TIME__));
+	LOG__(APP, _T("===================================VersionNO:%d======BulidTime：%s--%s=========================="),
+		TEAMTALK_VERSION,
+		util::utf8ToCString(__DATE__),
+		util::utf8ToCString(__TIME__));
+
 	if (!__super::InitInstance())
 	{
 		LOG__(ERR, _T("__super::InitInstance failed."));

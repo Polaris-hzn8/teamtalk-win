@@ -6,13 +6,16 @@
  brief: 应用主窗口teamtalk
 */
 
-#ifndef MAINDIALOG_8BE12371_DCA1_4FC5_8E32_D74B82D2399B_H__
-#define MAINDIALOG_8BE12371_DCA1_4FC5_8E32_D74B82D2399B_H__
-
-#define WM_START_MOGUTALKINSTANCE WM_USER + 101
+#ifndef _MAINDIALOG_H_
+#define _MAINDIALOG_H_
 
 #include "GlobalDefine.h"
 #include "Modules/ModuleObserver.h"
+
+#define WM_START_MOGUTALKINSTANCE	WM_USER + 101
+#define WM_TRAYICON_NOTIFY			WM_USER + 1002
+
+const UInt16  TIMER_TRAYEMOT = 1;//系统托盘闪烁timer
 
 enum
 {
@@ -31,10 +34,6 @@ enum BalloonStyle
 	BALLOON_NONE,
 	BALLOON_USER,
 };
-
-#define WM_TRAYICON_NOTIFY	WM_USER+1002
-
-const UInt16  TIMER_TRAYEMOT = 1;//系统托盘闪烁timer
 
 class CNotifyIconData : public NOTIFYICONDATA
 {
@@ -119,6 +118,6 @@ private:
 	DWORD					m_dwShellVersion;
 };
 
-#endif// MAINDIALOG_8BE12371_DCA1_4FC5_8E32_D74B82D2399B_H__
+#endif// _MAINDIALOG_H_
 
 

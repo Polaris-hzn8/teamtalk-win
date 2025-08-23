@@ -6,8 +6,8 @@
  brief: im cross platform library,currently include network、opertion manager
 */
 
-#ifndef IMCORE_A19CD639_91DF_4383_9D8F_4698959A8FD1_H__
-#define IMCORE_A19CD639_91DF_4383_9D8F_4698959A8FD1_H__
+#ifndef _IMCORE_H_
+#define _IMCORE_H_
 
 #include <iostream>
 #include <string.h>
@@ -15,12 +15,6 @@
 
 #include "util.h"
 #include "GlobalDefine.h"
-using namespace std;
-
-#ifdef ANDROID
-	#include <jni.h>
-	#include <android/LOG__.h>
-#endif
 
 class ClientConn;
 struct ITcpSocketCallback;
@@ -47,7 +41,7 @@ NETWORK_DLL bool IMLibCoreStopEvent();
 NETWORK_DLL bool IMLibCoreIsRunning();
 
 // network
-NETWORK_DLL int IMLibCoreConnect(string ip, int port);
+NETWORK_DLL int IMLibCoreConnect(std::string ip, int port);
 NETWORK_DLL int IMLibCoreWrite(int key, uchar_t* data, uint32_t size);
 NETWORK_DLL void IMLibCoreShutdown(int key);
 NETWORK_DLL void IMLibCoreClose(int key);
@@ -66,28 +60,11 @@ NETWORK_DLL void IMLibCoreStartOperationWithLambda(std::function<void()> operati
 // 任务队列删除
 NETWORK_DLL void IMLibCoreClearOperationByName(std::string oper_name);
 
-#ifdef ANDROID
-JNIEXPORT void JNICALL Java_com_mogujie_im_libcore_LibCore_setJNIEnv(JNIEnv*, jobject);
-JNIEXPORT void JNICALL Java_com_mogujie_im_libcore_LibCore_runEvent(JNIEnv*, jclass);
-JNIEXPORT void JNICALL Java_com_mogujie_im_libcore_LibCore_stopEvent(JNIEnv*, jclass);
-JNIEXPORT jboolean JNICALL Java_com_mogujie_im_libcore_LibCore_isRunning(JNIEnv*, jclass);
-JNIEXPORT jint JNICALL Java_com_mogujie_im_libcore_LibCore_connect(JNIEnv*, jclass, jstring, jint);
-JNIEXPORT jint JNICALL Java_com_mogujie_im_libcore_LibCore_write(JNIEnv* env, jclass, jint, jstring);
-JNIEXPORT void JNICALL Java_com_mogujie_im_libcore_LibCore_close(JNIEnv*, jclass, jint);
-JNIEXPORT jstring JNICALL Java_com_mogujie_im_libcore_LibCore_getToken(JNIEnv*, jclass, jstring);
-char* jstringTostr(JNIEnv* env, jstring jstr);
-jstring strToJstring(JNIEnv* env, const char* pStr);
-
-void onRead(int nHandle, string strJson);
-void onClose(int nHandle);
-void onConnect(int nHandle);
-#endif
-
 #ifdef __cplusplus
 }
 #endif
 
 NAMESPACE_END(imcore)
 
-#endif// IMCORE_A19CD639_91DF_4383_9D8F_4698959A8FD1_H__
+#endif// _IMCORE_H_
 
