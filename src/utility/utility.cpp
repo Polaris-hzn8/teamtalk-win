@@ -1,12 +1,6 @@
-// utility.cpp : 定义 DLL 的初始化例程。
-//
 
 #include "stdafx.h"
 #include "utility.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
 
 //
 //TODO:  如果此 DLL 相对于 MFC DLL 是动态链接的，

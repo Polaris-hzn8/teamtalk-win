@@ -6,8 +6,8 @@
  brief: 多语言支持工具类 利用windows Ini文件实现
 */
 
-#ifndef MULTILINGUAL_93AF83ED_9E20_45F1_8C1A_48CA7C6D3FF9_H__
-#define MULTILINGUAL_93AF83ED_9E20_45F1_8C1A_48CA7C6D3FF9_H__
+#ifndef _MULTILINGUAL_H_
+#define _MULTILINGUAL_H_
 
 #include "GlobalDefine.h"
 #include "utility/utilityDll.h"
@@ -26,4 +26,4 @@ extern UTILITY_API Multilingual* getMultilingual();
 
 NAMESPACE_END(util)
 
-#endif// MULTILINGUAL_93AF83ED_9E20_45F1_8C1A_48CA7C6D3FF9_H__
+#endif// _MULTILINGUAL_H_

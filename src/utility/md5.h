@@ -31,8 +31,8 @@
  */
 #pragma once
 
-#include "utility/utilityDll.h"
 #include "GlobalDefine.h"
+#include "utility/utilityDll.h"
 
 NAMESPACE_BEGIN(util)
 

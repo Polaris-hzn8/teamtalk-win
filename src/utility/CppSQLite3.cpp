@@ -33,10 +33,10 @@
 //						-sqlite3_prepare replaced with sqlite3_prepare_v2
 //						-Added Name based parameter binding to CppSQLite3Statement.
 ////////////////////////////////////////////////////////////////////////////////
+
+#include <cstdlib>
 #include "stdafx.h"
 #include "utility/CppSQLite3.h"
-#include <cstdlib>
-
 
 // Named constant for passing to CppSQLite3Exception when passing it a string
 // that cannot be deleted.

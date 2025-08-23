@@ -10,8 +10,14 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{54871609-8514-4f45-a700-e15bb333ce30}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Json">
+    <Filter Include="share">
+      <UniqueIdentifier>{c534cfaa-b779-4ff9-86c2-d16b8bd85f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="share\json">
       <UniqueIdentifier>{450ebbf4-7b29-455a-a217-f13d3021faf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="share\md5">
+      <UniqueIdentifier>{7a7414f2-1da0-4fca-9b4e-55e2d9d27a3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,22 +40,22 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_reader.cpp">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_value.cpp">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_writer.cpp">
-      <Filter>Json</Filter>
-    </ClCompile>
-    <ClCompile Include="md5.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>share\json</Filter>
     </ClCompile>
     <ClCompile Include="IniOperation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="utilStrCodingAPI.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>share\md5</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,9 +71,6 @@
     <ClInclude Include="utility.h">
       <Filter>Project Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\utility\utilityDll.h">
-      <Filter>Project Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\utility\utilCommonAPI.h">
       <Filter>API</Filter>
     </ClInclude>
@@ -78,40 +81,37 @@
       <Filter>API</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\assertions.h">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\autolink.h">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\config.h">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\features.h">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\forwards.h">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\json.h">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\reader.h">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\value.h">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\writer.h">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\src\lib_json\json_batchallocator.h">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\src\lib_json\json_tool.h">
-      <Filter>Json</Filter>
-    </ClInclude>
-    <ClInclude Include="md5.h">
-      <Filter>Source Files</Filter>
+      <Filter>share\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\utility\TTThread.h">
       <Filter>API</Filter>
@@ -122,6 +122,12 @@
     <ClInclude Include="..\..\include\utility\utilStrCodingAPI.h">
       <Filter>API</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\utility\utilityDll.h">
+      <Filter>Project Files</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>share\md5</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\utility.rc2">
@@ -131,16 +137,16 @@
       <Filter>Project Files</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\json_internalarray.inl">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\json_internalmap.inl">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\json_valueiterator.inl">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\sconscript">
-      <Filter>Json</Filter>
+      <Filter>share\json</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

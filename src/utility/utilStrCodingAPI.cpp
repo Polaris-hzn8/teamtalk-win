@@ -50,21 +50,20 @@ CString utf8ToCString(const char* src)
 	{
 		return CString(wstr.c_str());
 	}
-
 	//std::wstring_convert<std::codecvt_utf8<wchar_t> > conv;
 	//wstr = conv.from_bytes(src);
 	//return CString(wstr.c_str());
 	wstr = s2ws(std::string(src));
-
 	return CString(wstr.c_str());
-
 }
+
 std::string cStringToUtf8(const CString& src)
 {
 	std::wstring wStr = src.GetString();
 	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
 	return conv.to_bytes(src);
 }
+
 const std::string ws2s(const std::wstring& src)
 {
 	std::locale sys_locale("");
