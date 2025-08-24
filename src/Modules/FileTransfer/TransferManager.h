@@ -7,15 +7,13 @@
 #ifndef TRANSFERMANAGER_3046D4C9_3E8D_4C36_93B4_092651F5B66F_H__
 #define TRANSFERMANAGER_3046D4C9_3E8D_4C36_93B4_092651F5B66F_H__
 
+#include <map>
+#include <list>
 #include "GlobalDefine.h"
 #include "network/Lock.h"
-#include <list>
-#include <map>
 
-/******************************************************************************/
 class TransferFile;
 class FileTransferUIThread;
-
 class TransferFileEntity
 {
 public:
@@ -106,5 +104,5 @@ private:
 	std::vector<TransferFileEntity>		m_VecFinishedFile;			//已经传输完的文件,任何操作过的文件都会被扔到这里
 	FileTransferUIThread*				m_fileUIThread;
 };
-/******************************************************************************/
+
 #endif// TRANSFERMANAGER_3046D4C9_3E8D_4C36_93B4_092651F5B66F_H__

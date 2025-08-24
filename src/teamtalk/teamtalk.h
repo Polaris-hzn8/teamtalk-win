@@ -24,5 +24,3 @@ private:
 private:
 	MainDialog* m_pMainDialog;
 };
-
-extern CteamtalkApp theApp;

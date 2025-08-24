@@ -6,7 +6,6 @@
  brief:
 */
 
-#include <MMSystem.h>
 #include "stdafx.h"
 #include "security.h"
 #include "network/ImCore.h"
@@ -15,7 +14,8 @@
 #include "utility/utilCommonAPI.h"
 #include "utility/utilStrCodingAPI.h"
 #include "Modules/ISysConfigModule.h"
-#include "../Core/DuiLib/Utils/DialogManager.h"
+#include "DuiLib/Utils/DialogManager.h"
+#include <mmsystem.h>
 
 namespace module
 {

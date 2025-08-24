@@ -12,11 +12,11 @@
 BEGIN_MESSAGE_MAP(CModulesApp, CWinApp)
 END_MESSAGE_MAP()
 
+CModulesApp theApp;
+
 CModulesApp::CModulesApp()
 {
 }
-
-CModulesApp theApp;
 
 BOOL CModulesApp::InitInstance()
 {

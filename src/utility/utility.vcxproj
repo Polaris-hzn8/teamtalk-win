@@ -11,22 +11,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{227620A9-98FE-4160-B08B-074B2FFC2784}</ProjectGuid>
-    <RootNamespace>teamtalk</RootNamespace>
-    <Keyword>MFCProj</Keyword>
-    <ProjectName>teamtalk</ProjectName>
+    <ProjectGuid>{A29131FE-41A5-4CD5-B6A7-A66A173F912B}</ProjectGuid>
+    <RootNamespace>utility</RootNamespace>
+    <Keyword>MFCDLLProj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -59,19 +58,21 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;UTILITY_DLL;_CRT_SECURE_NO_WARNINGS;JSON_DLL_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)..\include;$(SolutionDir)..\include\utility;$(SolutionDir)..\3rdParty\src\json\include\;$(SolutionDir)..\3rdParty\src;$(SolutionDir)..\3rdParty\include;$(SolutionDir)\..\..\;$(SolutionDir)\..\core;$(SolutionDir)\..\..\TTServer\cpp</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;$(SolutionDir)..\include;$(SolutionDir)..\3rdParty\include;$(SolutionDir)..\3rdParty\src\;$(SolutionDir)..\3rdParty\src\json\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>utility.lib;network.lib;DuiLib.lib;Modules.lib;GifSmiley.lib;libprotobuf-lite.lib;httpclient.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\lib\$(Configuration);$(SolutionDir)\..\3rdParty\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>.\utility.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>..\..\3rdParty\lib;$(SolutionDir)\..\lib\$(Configuration)</AdditionalLibraryDirectories>
+      <ImportLibrary>$(SolutionDir)..\lib\$(Configuration)\$(TargetName).lib</ImportLibrary>
+      <AdditionalDependencies>sqlite3.lib;network.lib;mfcs140ud.lib;MSVCRTD.lib;Netapi32.lib</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>MSVCRTD.lib;mfcs120ud.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
-      <ValidateAllParameters>true</ValidateAllParameters>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </Midl>
     <ResourceCompile>
@@ -91,22 +92,23 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;UTILITY_DLL;_CRT_SECURE_NO_WARNINGS;JSON_DLL_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory);$(SolutionDir);$(SolutionDir)\src;$(SolutionDir)\include;$(SolutionDir)\include\utility;$(SolutionDir)\3rdParty\src\json\include\;$(SolutionDir)\3rdParty\src;$(SolutionDir)\3rdParty\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\include;$(SolutionDir)\3rdParty\include;$(SolutionDir)\3rdParty\src\;$(SolutionDir)\3rdParty\src\json\include\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>utility.lib;network.lib;DuiLib.lib;Modules.lib;httpclient.lib;libprotobuf-lite.lib;mfcs140u.lib</AdditionalDependencies>
+      <ModuleDefinitionFile>.\utility.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)\import_lib\</AdditionalLibraryDirectories>
-      <IgnoreSpecificDefaultLibraries>mfcs140d.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)\import_lib\$(TargetName).lib</ImportLibrary>
+      <AdditionalDependencies>sqlite3.lib;network.lib;MSVCRT.lib;Netapi32.lib;mfcs140u.lib</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>MSVCRT.lib;mfcs140u.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
-      <ValidateAllParameters>true</ValidateAllParameters>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </Midl>
     <ResourceCompile>
@@ -119,31 +121,68 @@
     </BuildLog>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\versioninfo.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="teamtalk.h" />
-    <ClInclude Include="UI\MainDialog.h" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_reader.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_value.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_writer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CppSQLite3.cpp" />
+    <ClCompile Include="IniOperation.cpp" />
+    <ClCompile Include="md5.cpp" />
+    <ClCompile Include="Multilingual.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="teamtalk.cpp" />
-    <ClCompile Include="UI\MainDialog.cpp" />
-    <ClCompile Include="UI\MainDialog_Event.cpp" />
-    <ClCompile Include="UI\MainDialog_TrayIcon.cpp" />
+    <ClCompile Include="TTThread.cpp" />
+    <ClCompile Include="utilCommonAPI.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="utility.cpp" />
+    <ClCompile Include="utilStrCodingAPI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="teamtalk.rc" />
+    <ClInclude Include="..\..\3rdParty\src\json\include\json\assertions.h" />
+    <ClInclude Include="..\..\3rdParty\src\json\include\json\autolink.h" />
+    <ClInclude Include="..\..\3rdParty\src\json\include\json\config.h" />
+    <ClInclude Include="..\..\3rdParty\src\json\include\json\features.h" />
+    <ClInclude Include="..\..\3rdParty\src\json\include\json\forwards.h" />
+    <ClInclude Include="..\..\3rdParty\src\json\include\json\json.h" />
+    <ClInclude Include="..\..\3rdParty\src\json\include\json\reader.h" />
+    <ClInclude Include="..\..\3rdParty\src\json\include\json\value.h" />
+    <ClInclude Include="..\..\3rdParty\src\json\include\json\writer.h" />
+    <ClInclude Include="..\..\3rdParty\src\json\src\lib_json\json_batchallocator.h" />
+    <ClInclude Include="..\..\3rdParty\src\json\src\lib_json\json_tool.h" />
+    <ClInclude Include="..\..\include\utility\CppSQLite3.h" />
+    <ClInclude Include="..\..\include\utility\IniOperation.h" />
+    <ClInclude Include="..\..\include\utility\Multilingual.h" />
+    <ClInclude Include="..\..\include\utility\TTThread.h" />
+    <ClInclude Include="..\..\include\utility\utilCommonAPI.h" />
+    <ClInclude Include="..\..\include\utility\utilityDll.h" />
+    <ClInclude Include="..\..\include\utility\utilStrCodingAPI.h" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="utility.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\teamtalk.rc2" />
+    <None Include="..\..\3rdParty\src\json\src\lib_json\json_internalarray.inl" />
+    <None Include="..\..\3rdParty\src\json\src\lib_json\json_internalmap.inl" />
+    <None Include="..\..\3rdParty\src\json\src\lib_json\json_valueiterator.inl" />
+    <None Include="..\..\3rdParty\src\json\src\lib_json\sconscript" />
+    <None Include="res\utility.rc2" />
+    <None Include="utility.def" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\teamtalk.ico" />
+    <ResourceCompile Include="utility.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
