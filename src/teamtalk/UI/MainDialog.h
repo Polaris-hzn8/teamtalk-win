@@ -62,45 +62,52 @@ public:
 	virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	virtual LRESULT HandleCustomMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	virtual LRESULT ResponseDefaultKeyEvent(WPARAM wParam);
-	void OnCheckUpdateSucc(WPARAM wparam, LPARAM lparam);
-	void OnCheckUpdate(WPARAM wparam, LPARAM lparam);
+
+	// MainDialog
+	void UpdateTotalUnReadMsgCount(void);	//更新总的未读计数
+	void FreshMySignature(void);
+	//void OnCheckUpdateSucc(WPARAM wparam, LPARAM lparam);
+	//void OnCheckUpdate(WPARAM wparam, LPARAM lparam);
+
+	// TrayIcon
+	BOOL InstallIcon(LPCTSTR lpszToolTip, HICON hIcon, UINT nID, BOOL bReInstall = FALSE);
+	BOOL RemoveIcon();
+	BOOL SetTrayIcon(HICON hIcon);
+	BOOL HideIcon(void);
+	BOOL ShowIcon();
+	BOOL IsIconInstalled() { return m_bInstalled; }
+	BOOL SetTrayTooltipText(LPCTSTR pszTooltipText);
+	BOOL SetBalloonDetails(LPCTSTR pszBalloonText, LPCTSTR pszBalloonCaption, BalloonStyle style = BALLOON_INFO, UINT nTimeout = 1000, HICON hUserIcon = NULL, BOOL bNoSound = FALSE);
+	BOOL SetVersion(UINT uVersion);
+	DWORD GetShellVersion(void);
+
+	// Event
+	void MKOForTcpClientModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
+	void MKOForLoginModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
+	void MKOForUserListModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
+	void MKOForSessionModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
+	void StartNewMsgTrayEmot();				//开始系统托盘闪烁
+	void StopNewMsgTrayEmot();				//停止系统托盘闪烁
 
 private:
+	// MainDialog
 	void Initilize();
 	void CreateTrayIcon();
 	void LoadIcons();
 	void UpdateLineStatus(UInt8 status);
 	void SetTrayIconIndex(int nIndex);
 
+	void OnHotkey(__in WPARAM wParam, __in LPARAM lParam);
 	void OnWindowInitialized(TNotifyUI& msg);
+	void OnTextChanged(TNotifyUI& msg);
 	void OnClick(TNotifyUI& msg);
 	void OnCopyData(IN COPYDATASTRUCT* pCopyData);
-	void OnTextChanged(TNotifyUI& msg);
-	void OnMenuClicked(IN const CString& itemName,IN const CString& strLparam);
-	void OnTrayIconNotify(WPARAM wParam, LPARAM lParam);
-    void OnHotkey(__in WPARAM wParam, __in LPARAM lParam);
-public:
-	void MKOForTcpClientModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
-	void MKOForLoginModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
-	void MKOForUserListModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
-	void MKOForSessionModuleCallBack(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
-	
-	// 托盘区图标相关操作
-	BOOL InstallIcon(LPCTSTR lpszToolTip, HICON hIcon, UINT nID, BOOL bReInstall = FALSE);
-	BOOL RemoveIcon();
-	BOOL SetTrayIcon(HICON hIcon);
-	BOOL HideIcon(void);
-	BOOL ShowIcon();
-	BOOL IsIconInstalled();
-	BOOL SetTrayTooltipText(LPCTSTR pszTooltipText);
-	BOOL SetBalloonDetails(LPCTSTR pszBalloonText, LPCTSTR pszBalloonCaption, BalloonStyle style = BALLOON_INFO, UINT nTimeout = 1000, HICON hUserIcon = NULL, BOOL bNoSound = FALSE);
-	BOOL SetVersion(UINT uVersion);
-	DWORD GetShellVersion(void);
 
-    void _UpdateTotalUnReadMsgCount(void);	//更新总的未读计数
-    void _FreshMySignature(void);
-	void StartNewMsgTrayEmot();				//开始系统托盘闪烁
-	void StopNewMsgTrayEmot();				//停止系统托盘闪烁
+	// TrayIcon
+	void OnTrayIconNotify(WPARAM wParam, LPARAM lParam);
+
+	// Event
+	void OnMenuClicked(IN const CString& itemName, IN const CString& strLparam);
 private:
 	CButtonUI*				m_pbtnSysConfig;
 	CButtonUI*				m_pbtnOnlineStatus;

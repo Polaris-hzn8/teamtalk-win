@@ -10,13 +10,13 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{54871609-8514-4f45-a700-e15bb333ce30}</UniqueIdentifier>
     </Filter>
-    <Filter Include="share">
+    <Filter Include="Common">
       <UniqueIdentifier>{c534cfaa-b779-4ff9-86c2-d16b8bd85f16}</UniqueIdentifier>
     </Filter>
-    <Filter Include="share\json">
+    <Filter Include="Common\json">
       <UniqueIdentifier>{450ebbf4-7b29-455a-a217-f13d3021faf6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="share\md5">
+    <Filter Include="Common\md5">
       <UniqueIdentifier>{7a7414f2-1da0-4fca-9b4e-55e2d9d27a3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -40,13 +40,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_reader.cpp">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_value.cpp">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\src\json\src\lib_json\json_writer.cpp">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClCompile>
     <ClCompile Include="IniOperation.cpp">
       <Filter>Source Files</Filter>
@@ -55,7 +55,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="md5.cpp">
-      <Filter>share\md5</Filter>
+      <Filter>Common\md5</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,37 +81,37 @@
       <Filter>API</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\assertions.h">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\autolink.h">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\config.h">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\features.h">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\forwards.h">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\json.h">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\reader.h">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\value.h">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\include\json\writer.h">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\src\lib_json\json_batchallocator.h">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\json\src\lib_json\json_tool.h">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\utility\TTThread.h">
       <Filter>API</Filter>
@@ -126,7 +126,7 @@
       <Filter>Project Files</Filter>
     </ClInclude>
     <ClInclude Include="md5.h">
-      <Filter>share\md5</Filter>
+      <Filter>Common\md5</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -137,16 +137,16 @@
       <Filter>Project Files</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\json_internalarray.inl">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\json_internalmap.inl">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\json_valueiterator.inl">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </None>
     <None Include="..\..\3rdParty\src\json\src\lib_json\sconscript">
-      <Filter>share\json</Filter>
+      <Filter>Common\json</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -168,21 +168,24 @@ BOOL MainDialog::SetTrayTooltipText(LPCTSTR pszTooltipText)
 BOOL MainDialog::SetBalloonDetails(LPCTSTR pszBalloonText, LPCTSTR pszBalloonCaption, BalloonStyle style /*= BALLOON_INFO*/, UINT nTimeout /*= 1000*/, HICON hUserIcon /*= NULL*/, BOOL bNoSound /*= FALSE*/)
 {
 	if (!m_bInstalled)
-		return false;
+		return FALSE;
 
 	ATLASSERT(GetShellVersion() >= 5); //Only supported on Shell v5 or later
 
 #if (_WIN32_IE >= 0x0500)
 	m_niData.uFlags = NIF_INFO;
 #endif
+
 #if (_MSC_VER >= 1400)
 	_tcscpy_s(m_niData.szInfo, sizeof(m_niData.szInfo) / sizeof(TCHAR), pszBalloonText);
 	_tcscpy_s(m_niData.szInfoTitle, sizeof(m_niData.szInfoTitle) / sizeof(TCHAR), pszBalloonCaption);
 #else  
 	_tcscpy(m_niData.szInfo, pszBalloonText);
 	_tcscpy(m_niData.szInfoTitle, pszBalloonCaption);
-#endif  
+#endif
+
 	m_niData.uTimeout = nTimeout;
+
 #if (_WIN32_IE >= 0x0500)
 	switch (style)
 	{
@@ -210,16 +213,13 @@ BOOL MainDialog::SetBalloonDetails(LPCTSTR pszBalloonText, LPCTSTR pszBalloonCap
 		break;
 	}
 #endif
+
 #if (_WIN32_IE >= 0x0501)
 	if (bNoSound)
 		m_niData.dwInfoFlags |= NIIF_NOSOUND;
 #endif
-	return Shell_NotifyIcon(NIM_MODIFY, &m_niData) ? TRUE : false;
-}
 
-BOOL MainDialog::IsIconInstalled()
-{
-	return m_bInstalled;
+	return Shell_NotifyIcon(NIM_MODIFY, &m_niData) ? TRUE : false;
 }
 
 BOOL MainDialog::SetVersion(UINT uVersion)

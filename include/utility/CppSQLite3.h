@@ -33,6 +33,17 @@
 #ifndef _CppSQLite3_H_
 #define _CppSQLite3_H_
 
+/*
+    SQLite3数据库C++封装
+    使用面向对象的方式操作SQLite数据库 避免直接使用原始的、过程式的C语言API
+    CppSQLite3Exception     异常类
+    CppSQLite3Buffer        辅助类 字符串格式化
+    CppSQLite3Binary        辅助类 二进制数据存储与读取
+    CppSQLite3Query         查询结果集
+    CppSQLite3Table         查询结果获取
+    CppSQLite3Statement     预编译语句类 高效执行参数化查询 防止SQL注入攻击
+    CppSQLite3DB            核心数据库类 数据库连接打开\关闭
+*/
 #include <cstdio>
 #include <cstring>
 #include "utilityDll.h"

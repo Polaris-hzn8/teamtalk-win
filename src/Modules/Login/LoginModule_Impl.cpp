@@ -8,16 +8,16 @@
 
 #include "stdafx.h"
 #include "LoginDialog.h"
-#include "network/ImCore.h"
 #include "ReloginManager.h"
 #include "LoginModule_Impl.h"
+#include "network/ImCore.h"
 #include "network/TTPBHeader.h"
 #include "Modules/IMiscModule.h"
+#include "Modules/ISysConfigModule.h"
+#include "Modules/ITcpClientModule.h"
 #include "utility/Multilingual.h"
 #include "utility/utilCommonAPI.h"
-#include "Modules/ISysConfigModule.h"
 #include "utility/utilStrCodingAPI.h"
-#include "Modules/ITcpClientModule.h"
 #include "ProtocolBuffer/IM.Login.pb.h"
 #include "ProtocolBuffer/IM.Buddy.pb.h"
 #include "ProtocolBuffer/IM.Group.pb.h"
@@ -32,7 +32,7 @@ namespace module
 }
 
 LoginModule_Impl::LoginModule_Impl()
-:m_pReloginManager(0)
+:m_pReloginManager(nullptr)
 ,m_bIsOfflineByMyself(FALSE)
 {
 
@@ -41,7 +41,7 @@ LoginModule_Impl::LoginModule_Impl()
 LoginModule_Impl::~LoginModule_Impl()
 {
 	delete m_pReloginManager;
-	m_pReloginManager = 0;
+	m_pReloginManager = nullptr;
 }
 
 BOOL LoginModule_Impl::showLoginDialog()
@@ -63,9 +63,7 @@ BOOL LoginModule_Impl::showLoginDialog()
 
 void LoginModule_Impl::notifyLoginDone()
 {
-	imcore::IMLibCoreStartOperationWithLambda(
-		[]
-	{
+	imcore::IMLibCoreStartOperationWithLambda([]{
 		//获取部门信息
 		UInt32 lastTime = module::getSysConfigModule()->getDepartmentInfoLatestUpdateTime();
 		IM::Buddy::IMDepartmentReq imDepartmentReq;
