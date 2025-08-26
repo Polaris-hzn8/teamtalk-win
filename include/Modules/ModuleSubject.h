@@ -6,8 +6,8 @@
  brief:
 */
 
-#ifndef SUBJECT_4190BD99_2B5F_413C_8E1C_74EFBE2671B9_H__
-#define SUBJECT_4190BD99_2B5F_413C_8E1C_74EFBE2671B9_H__
+#ifndef _SUBJECT_H_
+#define _SUBJECT_H_
 
 #include <vector>
 #include "GlobalDefine.h"
@@ -44,4 +44,4 @@ private:
 
 NAMESPACE_END(module)
 
-#endif// SUBJECT_4190bd99-2b5f-413c-8e1c-74efbe2671b9_H__
+#endif// _SUBJECT_H_

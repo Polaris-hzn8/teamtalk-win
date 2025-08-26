@@ -29,9 +29,7 @@ MKOEvent_Impl::~MKOEvent_Impl()
 void MKOEvent_Impl::process()
 {
 	if (nullptr == m_pMko)
-	{
 		return;
-	}
 	std::vector<MKODelegate> lstMKOCallbacks;
 	m_pMko->getIObserverHandlersByModuleId(lstMKOCallbacks);
 	if (lstMKOCallbacks.empty())
