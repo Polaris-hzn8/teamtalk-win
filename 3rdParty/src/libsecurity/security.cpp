@@ -65,9 +65,9 @@ extern "C" {
         }
 
         free(pData);
-        string strEnc((char*)pEncData, nEncryptLen);
+        std::string strEnc((char*)pEncData, nEncryptLen);
         free(pEncData);
-        string strDec = base64_encode(strEnc);
+        std::string strDec = base64_encode(strEnc);
         nOutLen = (uint32_t)strDec.length();
         
         char* pTmp = (char*) malloc(nOutLen + 1);
@@ -83,7 +83,7 @@ extern "C" {
         {
             return -1;
         }
-        string strInData(pInData, nInLen);
+        std::string strInData(pInData, nInLen);
         std::string strResult = base64_decode(strInData);
         uint32_t nLen = (uint32_t)strResult.length();
         if(nLen == 0)
