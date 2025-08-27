@@ -4,7 +4,7 @@
     <Filter Include="ProjectFils">
       <UniqueIdentifier>{53ac5c2c-60ff-4140-9f6b-773b124b4bd5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Main">
+    <Filter Include="Dialog">
       <UniqueIdentifier>{1dcb2f95-42cc-475e-b123-23eeee2e9381}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -22,7 +22,7 @@
       <Filter>ProjectFils</Filter>
     </ClInclude>
     <ClInclude Include="UI\MainDialog.h">
-      <Filter>Main</Filter>
+      <Filter>Dialog</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\versioninfo.h">
       <Filter>ProjectFils</Filter>
@@ -36,13 +36,13 @@
       <Filter>ProjectFils</Filter>
     </ClCompile>
     <ClCompile Include="UI\MainDialog.cpp">
-      <Filter>Main</Filter>
+      <Filter>Dialog</Filter>
     </ClCompile>
     <ClCompile Include="UI\MainDialog_TrayIcon.cpp">
-      <Filter>Main</Filter>
+      <Filter>Dialog</Filter>
     </ClCompile>
     <ClCompile Include="UI\MainDialog_Event.cpp">
-      <Filter>Main</Filter>
+      <Filter>Dialog</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

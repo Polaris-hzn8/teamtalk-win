@@ -6,14 +6,15 @@
  brief: ini工具类封装
 */
 
-#ifndef INIOPERATION_372131CD_292F_4837_8C4D_A01CF07CC4B6_H__
-#define INIOPERATION_372131CD_292F_4837_8C4D_A01CF07CC4B6_H__
+#ifndef _INI_OPERATION_H_
+#define _INI_OPERATION_H_
 
-#include "utility/utilityDll.h"
 #include "GlobalDefine.h"
+#include "utility/utilityDll.h"
 #include <windows.h>
 
 NAMESPACE_BEGIN(util)
+
 class UTILITY_CLASS CIniReader
 {
 public:
@@ -26,7 +27,6 @@ public:
 private:
 	TCHAR m_szFileName[255];
 };
-
 
 class UTILITY_CLASS CIniWriter
 {
@@ -43,4 +43,4 @@ private:
 
 NAMESPACE_END(util)
 
-#endif// INIOPERATION_372131CD_292F_4837_8C4D_A01CF07CC4B6_H__
+#endif// _INI_OPERATION_H_

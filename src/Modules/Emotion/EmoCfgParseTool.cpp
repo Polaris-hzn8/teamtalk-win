@@ -1,16 +1,17 @@
-/******************************************************************************* 
- *  @file      EmoCfgParseTool.cpp 2015\3\17 17:33:01 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #include "stdafx.h"
+#include "json/reader.h"
 #include "EmoCfgParseTool.h"
 #include "Modules/IMiscModule.h"
 #include "utility/utilStrCodingAPI.h"
 #include "utility/utilCommonAPI.h"
-#include "json/reader.h"
-
 
 CString EmoCfgParseTool::getIDByName(IN LPCTSTR  str)
 {

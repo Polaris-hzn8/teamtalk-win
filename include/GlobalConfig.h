@@ -6,8 +6,8 @@
  brief:
 */
 
-#ifndef GLOBALCONFIG_3094B088_A869_435E_9D31_119F713F8F4B_H__
-#define GLOBALCONFIG_3094B088_A869_435E_9D31_119F713F8F4B_H__
+#ifndef _GLOBALCONFIG_H_
+#define _GLOBALCONFIG_H_
 
 #define UTIL_LOG_APPFILE			_T("applog.log")
 #define UTIL_MULTILIGNUAL			_T("chinese.ini")
@@ -18,4 +18,4 @@
 #define ERR		"error"
 #define SOCK	"socket"
 
-#endif// GLOBALCONFIG_3094B088_A869_435E_9D31_119F713F8F4B_H__
+#endif// _GLOBALCONFIG_H_

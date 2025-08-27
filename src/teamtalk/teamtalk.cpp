@@ -18,8 +18,8 @@
 
 CteamtalkApp theApp;
 
-CteamtalkApp::CteamtalkApp()
-:m_pMainDialog(0) {
+CteamtalkApp::CteamtalkApp() : m_pMainDialog(nullptr)
+{
 	m_dwRestartManagerSupportFlags = AFX_RESTART_MANAGER_SUPPORT_RESTART;
 }
 
@@ -30,15 +30,17 @@ BOOL CteamtalkApp::InitInstance()
 	InitCtrls.dwICC = ICC_WIN95_CLASSES;
 	InitCommonControlsEx(&InitCtrls);
 
-	//log init
 	_InitLog();
 
-	// Protobuf版本兼容性检测
-	// 验证编译使用的Protobuf头文件版本和 链接使用的Protobuf库版本是否一致或兼容
+	// 版本兼容性校验
+	// 验证编译与链接使用的Protobuf库版本是否兼容
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
 	
-	LOG__(APP, _T("===================================VersionNO:%d======BulidTime：%s--%s==========================")
-		, TEAMTALK_VERSION, util::utf8ToCString(__DATE__), util::utf8ToCString(__TIME__));
+	LOG__(APP, _T("===================================VersionNO:%d======BulidTime：%s--%s=========================="),
+		TEAMTALK_VERSION,
+		util::utf8ToCString(__DATE__),
+		util::utf8ToCString(__TIME__));
+
 	if (!__super::InitInstance())
 	{
 		LOG__(ERR, _T("__super::InitInstance failed."));
@@ -66,17 +68,16 @@ BOOL CteamtalkApp::InitInstance()
 	}
 	LOG__(APP, _T("start imcore lib done"));
 
-	//start ui event
-	// 启动ui事件代理窗口，从系统消息队列中获取消息并处理 一般事件和定时事件
+	// 启动UI事件代理窗口
+	// 从系统消息队列中获取消息并处理 包含普通事件与定时事件
 	if (module::getEventManager()->startup() != imcore::IMCORE_OK)
 	{
 		LOG__(ERR, _T("start ui event failed"));
 	}
 	LOG__(APP, _T("start ui event done"));
 
-	//create user folders
 	_CreateUsersFolder();
-	
+
 	//duilib初始化
 	CPaintManagerUI::SetInstance(AfxGetInstanceHandle());
 	CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("..\\gui\\"));
@@ -119,7 +120,7 @@ BOOL CteamtalkApp::InitInstance()
 BOOL CteamtalkApp::_DestroyMainDialog()
 {
 	delete m_pMainDialog;
-	m_pMainDialog = 0;
+	m_pMainDialog = nullptr;
 	return TRUE;
 }
 
@@ -128,11 +129,14 @@ BOOL CteamtalkApp::_CreateMainDialog()
 	m_pMainDialog = new MainDialog();
 	PTR_FALSE(m_pMainDialog);
 	CString csTitle = util::getMultilingual()->getStringById(_T("STRID_GLOBAL_CAPTION_NAME"));
-	if (!m_pMainDialog->Create(NULL, csTitle
-		, UI_CLASSSTYLE_DIALOG, WS_EX_STATICEDGE /*| WS_EX_APPWINDOW*/ | WS_EX_TOOLWINDOW, 0, 0, 600, 800))
+	if (!m_pMainDialog->Create(
+		NULL,
+		csTitle,
+		UI_CLASSSTYLE_DIALOG,
+		WS_EX_STATICEDGE /*| WS_EX_APPWINDOW*/ | WS_EX_TOOLWINDOW,
+		0, 0, 600, 800))
 		return FALSE;
 	m_pMainDialog->BringToTop();
-
 	return TRUE;
 }
 
@@ -185,20 +189,16 @@ BOOL CteamtalkApp::_CreateUsersFolder()
 	return TRUE;
 }
 
-#ifdef _DEBUG
-	#define  AppSingletonMutex _T("{7A666640-EDB3-44CC-954B-0C43F35A2E17}")
-#else
-	#define  AppSingletonMutex _T("{5676532A-6F70-460D-A1F0-81D6E68F046A}")
-#endif
+#define AppSingletonMutex _T("{5676532A-6F70-460D-A1F0-81D6E68F046A}")
 BOOL CteamtalkApp::_IsHaveInstance()
 {
 	HANDLE hMutex = ::CreateMutex(NULL, TRUE, AppSingletonMutex);
-	if (hMutex != NULL && GetLastError() == ERROR_ALREADY_EXISTS)
+	if (hMutex != NULL &&
+		GetLastError() == ERROR_ALREADY_EXISTS)
 	{
 		MessageBox(0, _T("上次程序运行还没完全退出，请稍后再启动！"), _T("TeamTalk"), MB_OK);
 		return TRUE;
 	}
-
 	return FALSE;
 }
 

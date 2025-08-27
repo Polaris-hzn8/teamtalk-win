@@ -10,7 +10,7 @@
 
 #include <vector>
 #include "GlobalDefine.h"
-#include "../core/DuiLib/UIlib.h"
+#include "DuiLib/UIlib.h"
 
 NAMESPACE_BEGIN(DuiLib)
 

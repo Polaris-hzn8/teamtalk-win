@@ -1,8 +1,16 @@
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
+
 #pragma once
-#include "cxImage/cxImage/ximage.h"
+#include <map>
 #include "DuiLib/UIlib.h"
 #include "GlobalDefine.h"
-#include <map>
+#include "cxImage/cxImage/ximage.h"
 using namespace DuiLib;
 
 class CEmotionButton : public CControlUI ,public INotifyUI

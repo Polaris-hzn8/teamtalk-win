@@ -14,7 +14,7 @@
 #include "utility/utilCommonAPI.h"
 #include "utility/utilStrCodingAPI.h"
 #include "Modules/ISysConfigModule.h"
-#include "../Core/DuiLib/Utils/DialogManager.h"
+#include "DuiLib/Utils/DialogManager.h"
 #include <mmsystem.h>
 
 namespace module

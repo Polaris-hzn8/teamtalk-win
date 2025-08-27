@@ -18,11 +18,13 @@ CIniReader::CIniReader(LPCTSTR szFileName)
 	memset(m_szFileName, 0x00, sizeof(m_szFileName));
 	memcpy(m_szFileName, szFileName, _tcslen(szFileName)*sizeof(TCHAR));
 }
+
 int CIniReader::ReadInteger(LPCTSTR szSection, LPCTSTR szKey, int iDefaultValue)
 {
 	int iResult = GetPrivateProfileInt(szSection, szKey, iDefaultValue, m_szFileName);
 	return iResult;
 }
+
 float CIniReader::ReadFloat(LPCTSTR szSection, LPCTSTR szKey, float fltDefaultValue)
 {
 	TCHAR szResult[255] = { 0 };
@@ -33,6 +35,7 @@ float CIniReader::ReadFloat(LPCTSTR szSection, LPCTSTR szKey, float fltDefaultVa
 	fltResult = (float)_tstof(szResult);
 	return fltResult;
 }
+
 bool CIniReader::ReadBoolean(LPCTSTR szSection, LPCTSTR szKey, bool bolDefaultValue)
 {
 	TCHAR szResult[255] = { 0 };
@@ -44,6 +47,7 @@ bool CIniReader::ReadBoolean(LPCTSTR szSection, LPCTSTR szKey, bool bolDefaultVa
 		_tcscmp(szResult, TEXT("true")) == 0) ? true : false;
 	return bolResult;
 }
+
 CString CIniReader::ReadString(LPCTSTR szSection, LPCTSTR szKey, LPCTSTR szDefaultValue)
 {
 	TCHAR szResult[255] = { 0 };
@@ -52,31 +56,33 @@ CString CIniReader::ReadString(LPCTSTR szSection, LPCTSTR szKey, LPCTSTR szDefau
 }
 
 ////////////////////////////CIniWriter//////////////////////////////////////////////
-
-
 CIniWriter::CIniWriter(LPCTSTR szFileName)
 {
 	memset(m_szFileName, 0x00, sizeof(m_szFileName));
 	memcpy(m_szFileName, szFileName, _tcslen(szFileName)*sizeof(TCHAR));
 }
+
 void CIniWriter::WriteInteger(LPCTSTR szSection, LPCTSTR szKey, int iValue)
 {
 	TCHAR szValue[255] = { 0 };
 	_stprintf_s(szValue, 255, TEXT("%d"), iValue);
 	WritePrivateProfileString(szSection, szKey, szValue, m_szFileName);
 }
+
 void CIniWriter::WriteFloat(LPCTSTR szSection, LPCTSTR szKey, float fltValue)
 {
 	TCHAR szValue[255] = { 0 };
 	_stprintf_s(szValue, 255, TEXT("%f"), fltValue);
 	WritePrivateProfileString(szSection, szKey, szValue, m_szFileName);
 }
+
 void CIniWriter::WriteBoolean(LPCTSTR szSection, LPCTSTR szKey, bool bolValue)
 {
 	TCHAR szValue[255] = {0};
 	_stprintf_s(szValue, 255, TEXT("%s"), bolValue ? TEXT("True") : TEXT("False"));
 	WritePrivateProfileString(szSection, szKey, szValue, m_szFileName);
 }
+
 void CIniWriter::WriteString(LPCTSTR szSection, LPCTSTR szKey, LPCTSTR szValue)
 {
 	WritePrivateProfileString(szSection, szKey, szValue, m_szFileName);

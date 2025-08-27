@@ -1,36 +1,22 @@
-/*******************************************************************************
- *  @file      EmoCfgParseTool.h 2015\3\17 17:32:10 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief:
+*/
 
 #ifndef EMOCFGPARSETOOL_5B1DB11A_DE23_4672_9CC0_A5F7C9F27D6B_H__
 #define EMOCFGPARSETOOL_5B1DB11A_DE23_4672_9CC0_A5F7C9F27D6B_H__
 
+#include <list>
 #include "GlobalDefine.h"
 
-#include <list>
-/******************************************************************************/
-
-/**
- * The class <code>Multilingual</code> 
- *
- */
 class  EmoCfgParseTool
 {
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Constructor 
-     */
-	EmoCfgParseTool() = default;;
-    /**
-     * Destructor
-     */
-	~EmoCfgParseTool() = default;;
-    //@}
+	EmoCfgParseTool() = default;
+	~EmoCfgParseTool() = default;
 
 public:
 	CString	   getIDByName(IN LPCTSTR strID);
@@ -42,6 +28,5 @@ public:
 private:
 	std::map<CString, CString> m_mapKey2Value;
 };
-
 
 #endif// EMOCFGPARSETOOL_5B1DB11A_DE23_4672_9CC0_A5F7C9F27D6B_H__

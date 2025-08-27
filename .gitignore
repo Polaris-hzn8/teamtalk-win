@@ -407,10 +407,9 @@ FodyWeavers.xsd
 !**/flash11.tlh
 
 # common lib
-commonlib/*
-!commonlib/libprotobuf-lite.lib
-!commonlib/sqlite3.lib
-!commonlib/readme.txt
+inport_lib/*
+!inport_lib/libprotobuf-lite.lib
+!inport_lib/sqlite3.lib
 
 # package file
 package/**

@@ -6,14 +6,13 @@
  brief:
 */
 
+#include <limits>
+#include <string>
+#include <cctype>
+#include <cassert>
 #include <stdio.h>
 #include <iostream>
-#include <string>
-#include <cassert>
-#include <limits>
 #include <stdexcept>
-#include <cctype>
-
 using namespace std;
 
 static const char b64_table[65] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

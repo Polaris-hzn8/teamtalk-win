@@ -52,8 +52,8 @@ CString getMd5CString(const char* pSrc, size_t length)
 // ±‹√‚÷ÿ∏¥º∆À„
 CString getAppPath()
 {
-	static CString g_sDllPath = _T("");
-	if (g_sDllPath.IsEmpty())
+	static CString sAppPath = _T("");
+	if (sAppPath.IsEmpty())
 	{
 		TCHAR buffer[MAX_PATH];
 		ZeroMemory(buffer, sizeof(TCHAR)* MAX_PATH);
@@ -63,26 +63,26 @@ CString getAppPath()
 		{
 			GetModuleFileName(hModule, buffer, MAX_PATH);
 			PathRemoveFileSpec(buffer);
-			g_sDllPath = buffer;
-			g_sDllPath += _T("\\");
+			sAppPath = buffer;
+			sAppPath += _T("\\");
 		}
 	}
-	return g_sDllPath;
+	return sAppPath;
 }
 
 CString getParentAppPath()
 {
-	static CString g_csParentAppPath = _T("");
-	if (g_csParentAppPath.IsEmpty())
+	static CString sParentAppPath = _T("");
+	if (sParentAppPath.IsEmpty())
 	{
-		g_csParentAppPath = getAppPath();
-		LPTSTR lpszPath = g_csParentAppPath.GetBuffer();
+		sParentAppPath = getAppPath();
+		LPTSTR lpszPath = sParentAppPath.GetBuffer();
 		PathRemoveBackslash(lpszPath);
 		PathRemoveFileSpec(lpszPath);
-		g_csParentAppPath = lpszPath;
-		g_csParentAppPath += _T("\\");
+		sParentAppPath = lpszPath;
+		sParentAppPath += _T("\\");
 	}
-	return g_csParentAppPath;
+	return sParentAppPath;
 }
 
 BOOL createAllDirectories(CString & csDir)
@@ -92,7 +92,7 @@ BOOL createAllDirectories(CString & csDir)
 		csDir = csDir.Left(csDir.GetLength() - 1);
 	}
 
-	if (::GetFileAttributes(csDir) != INVALID_FILE_ATTRIBUTES)
+	if (GetFileAttributes(csDir) != INVALID_FILE_ATTRIBUTES)
 	{
 		return TRUE;
 	}
