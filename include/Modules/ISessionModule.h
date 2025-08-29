@@ -1,8 +1,10 @@
-/*******************************************************************************
- *  @file      ISessionModule.h 2014\7\27 10:06:08 $
- *  @author    ¿ìµ¶<kuaidao@mogujie.com>
- *  @brief   
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 
+*/
 
 #ifndef ISESSIONMODULE_070C0321_0708_4487_8028_C1D8934B709D_H__
 #define ISESSIONMODULE_070C0321_0708_4487_8028_C1D8934B709D_H__
@@ -10,8 +12,8 @@
 #include "GlobalDefine.h"
 #include "Modules/ModuleDll.h"
 #include "Modules/ModuleBase.h"
-#include "Modules/IModuleInterface.h"
-/******************************************************************************/
+#include "Modules/ICallbackOpertaion.h"
+
 namespace DuiLib
 {
 	class CControlUI;

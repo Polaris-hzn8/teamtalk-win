@@ -31,9 +31,6 @@ public:
 	virtual void release() = 0;
 };
 
-struct ITimerEvent : public IEvent
-{};
-
 NAMESPACE_END(module)
 
 #endif// IEVENT_83A4713C_930E_426A_98F5_8BB8747994D3_H__

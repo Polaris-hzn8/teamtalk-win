@@ -14,6 +14,7 @@
 #include <functional>
 #include "GlobalDefine.h"
 #include "Modules/IEvent.h"
+#include "Modules/IMKOEvent.h"
 
 enum
 {
@@ -33,9 +34,6 @@ NAMESPACE_BEGIN(module)
 class ModuleSubject;
 class ModuleObserverCtx;
 
-//just tag for observer event
-struct IMKOEvent : module::IEvent{};
-
 class MKOEvent_Impl final : public IMKOEvent
 {
 public:
@@ -48,7 +46,6 @@ public:
 public:
 	std::string						m_keyId;
 
-	//callback  params
 	Int32							m_mkoInt;
 	void*							m_pmkoVoid;
 	std::string						m_mkoString;

@@ -12,6 +12,7 @@
 #include "network/imconn.h"
 #include "network/TTPBHeader.h"
 #include "Modules/ITcpClientModule.h"
+#include "Modules/ITimerEvent.h"
 
 class TcpClientModule_Impl;
 using namespace module;

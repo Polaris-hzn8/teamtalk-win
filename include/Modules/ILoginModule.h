@@ -13,7 +13,7 @@
 #include "GlobalDefine.h"
 #include "Modules/ModuleDll.h"
 #include "Modules/ModuleBase.h"
-#include "Modules/IModuleInterface.h"
+#include "Modules/ICallbackOpertaion.h"
 
 NAMESPACE_BEGIN(module)
 const std::string MODULE_LOING_PREFIX = "login";

@@ -1,14 +1,16 @@
-/******************************************************************************* 
- *  @file      ISessionModule.cpp 2015\1\8 9:16:08 $
- *  @author    ´ó·ð<dafo@mogujie.com>
- *  @brief     
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 
+*/
 
 #include "stdafx.h"
 #include "Modules/ISessionModule.h"
 #include "Modules/IUserListModule.h"
 #include "Modules/IGroupListModule.h"
-/******************************************************************************/
+
 NAMESPACE_BEGIN(module)
 SessionEntity::SessionEntity()
 :updatedTime(0)

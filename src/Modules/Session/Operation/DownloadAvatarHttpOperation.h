@@ -1,16 +1,16 @@
-/*******************************************************************************
- *  @file      DownloadImgHttpOperation.h 2014\8\14 10:18:26 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     下载图片操作
- ******************************************************************************/
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 下载图片操作
+*/
 
 #ifndef DOWNLOADIMGHTTPOPERATION_4BB88F5E_5D0E_4FBA_9530_72972EB7647C_H__
 #define DOWNLOADIMGHTTPOPERATION_4BB88F5E_5D0E_4FBA_9530_72972EB7647C_H__
 
-#include "Modules/IModuleInterface.h"
+#include "Modules/ICallbackOpertaion.h"
 #include "Modules/IHttpPoolModule.h"
 #include "Modules/IDatabaseModule.h"
-/******************************************************************************/
 
 const std::string AVATAR_FORMAT_48X48 = "_50x50";
 const std::string AVATAR_FORMAT_64X64 = "_64x64";

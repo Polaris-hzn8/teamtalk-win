@@ -1,20 +1,22 @@
-/*******************************************************************************
- *  @file      IGroupListModule.h 2014\8\6 15:29:01 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     群、讨论组相关模块
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 群、讨论组相关模块
+*/
 
 #ifndef IGROUPLISTMODULE_3AD36DFC_4041_486A_A437_948E152517E8_H__
 #define IGROUPLISTMODULE_3AD36DFC_4041_486A_A437_948E152517E8_H__
 
-#include "GlobalDefine.h"
-#include "Modules/ModuleDll.h"
-#include "Modules/IUserListModule.h"
-#include "Modules/IModuleInterface.h"
-#include "Modules/ModuleBase.h"
 #include <list>
 #include <string>
-/******************************************************************************/
+#include "GlobalDefine.h"
+#include "Modules/ModuleDll.h"
+#include "Modules/ModuleBase.h"
+#include "Modules/IUserListModule.h"
+#include "Modules/ICallbackOpertaion.h"
+
 NAMESPACE_BEGIN(module)
 const std::string MODULE_GROUPLIST_PREFIX = "grouplist";
 

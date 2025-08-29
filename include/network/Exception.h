@@ -12,7 +12,7 @@
 #include "GlobalDefine.h"
 #include "networkdll.h"
 #include <string>
-
+    
 NAMESPACE_BEGIN(imcore)
 
 #pragma warning(disable: 4251)

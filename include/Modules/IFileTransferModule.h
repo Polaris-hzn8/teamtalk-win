@@ -8,10 +8,10 @@
 #define IFILETRANSFER_425BDB8D_221E_4952_93C5_4362AF5217CB_H__
 
 #include "GlobalDefine.h"
-#include "Modules/IModuleInterface.h"
 #include "Modules/ModuleDll.h"
-#include "Modules/IMiscModule.h"
 #include "Modules/ModuleBase.h"
+#include "Modules/IMiscModule.h"
+#include "Modules/ICallbackOpertaion.h"
 #include "utility/utilCommonAPI.h"
 #include "utility/utilStrCodingAPI.h"
 /******************************************************************************/
