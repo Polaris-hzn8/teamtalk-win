@@ -7,15 +7,15 @@
 */
 
 #include "stdafx.h"
-#include "Modules/IModuleInterface.h"
-#include "SysConfigModule_Impl.h"
+#include "utility/IniOperation.h"
 #include "utility/utilCommonAPI.h"
 #include "utility/utilStrCodingAPI.h"
-#include "utility/IniOperation.h"
+#include "Modules/IMiscModule.h"
+#include "Modules/IModuleInterface.h"
+#include "Modules/Session/Operation/DownloadAvatarHttpOperation.h"
 #include "SysConfigDialog.h"
 #include "ServerConfigDialog.h"
-#include "Modules/IMiscModule.h"
-#include "../Session/Operation/DownloadAvatarHttpOperation.h"
+#include "SysConfigModule_Impl.h"
 
 namespace module
 {
@@ -29,12 +29,11 @@ namespace module
 namespace
 {
 	const CString g_config = _T("config.dat");
-	const CString g_flag = _T("$Teamtalk");
 	const CString g_account_config = _T("accountConfig.ini");
+	const CString g_flag = _T("$Teamtalk");
 }
 
-SysConfigModule_Impl::SysConfigModule_Impl()
-:m_bSysConfigDialogFlag(FALSE)
+SysConfigModule_Impl::SysConfigModule_Impl() : m_bSysConfigDialogFlag(FALSE)
 {
 	//m_Config.sysBaseFlag |= module::BASE_FLAG_NOTIPWHENNEWMSG;//TODO：由于飘窗会抢焦点，默认不打开飘窗
 	m_Config.sysBaseFlag |= module::BASE_FLAG_NOSOUNDWHENMSG;
@@ -52,7 +51,7 @@ BOOL SysConfigModule_Impl::_loadData()
 	CString fileName = util::getAppPath() + g_config;
 	if (!PathFileExists(fileName))
 	{
-		LOG__(ERR,_T("_loadData system config file is not exist"));
+		LOG__(ERR, _T("_loadData system config file is not exist"));
 		_saveData();
 		return FALSE;
 	}
@@ -207,72 +206,68 @@ BOOL SysConfigModule_Impl::showServerConfigDialog(HWND hParentWnd)
 	BOOL bRet = FALSE;
 	ServerConfigDialog* pServerConfigDialog = new ServerConfigDialog();
 	PTR_FALSE(pServerConfigDialog);
-	pServerConfigDialog->Create(hParentWnd, _T("服务器配置")
-		, UI_CLASSSTYLE_DIALOG, WS_EX_STATICEDGE | WS_EX_APPWINDOW, 0, 0, 0, 0);
+	pServerConfigDialog->Create(hParentWnd, _T("服务器配置"), UI_CLASSSTYLE_DIALOG, WS_EX_STATICEDGE | WS_EX_APPWINDOW, 0, 0, 0, 0);
 	pServerConfigDialog->CenterWindow();
 	bRet = (IDOK == pServerConfigDialog->ShowModal());
-
 	return bRet;
 }
 
 UInt32 SysConfigModule_Impl::getUserInfoLatestUpdateTime(void)
 {
-	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir() 
-		+ g_account_config;
+	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir() + g_account_config;
 	util::CIniReader iniReader(strPath);
 	UInt32 time = 0;
-	time = iniReader.ReadInteger(_T("user"), _T("LastUpdateTime"), time);
+	time = iniReader.ReadInteger(L"user", L"LastUpdateTime", time);
 	return time;
 }
 
 void SysConfigModule_Impl::saveUserInfoLatestUpdateTime(IN const UInt32 nLatestUpdateTime)
 {
-	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir() 
-		+ g_account_config;
+	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir() + g_account_config;
 	util::CIniWriter iniWriter(strPath);
-	iniWriter.WriteInteger(_T("user"), _T("LastUpdateTime"), nLatestUpdateTime);
+	iniWriter.WriteInteger(L"user", L"LastUpdateTime", nLatestUpdateTime);
 }
 
 UInt32 SysConfigModule_Impl::getRecentSessionLatestUpdateTime(void)
 {
-	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir()
-		+ g_account_config;
+	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir() + g_account_config;
 	util::CIniReader iniReader(strPath);
 	UInt32 time = 0;
-	time = iniReader.ReadInteger(_T("recentSession"), _T("LastUpdateTime"), time);
+	time = iniReader.ReadInteger(L"recentSession", L"LastUpdateTime", time);
 	return time;
 }
 
 void SysConfigModule_Impl::saveRecentSessionLatestUpdateTime(IN const UInt32 nLatestUpdateTime)
 {
-	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir()
-		+ g_account_config;
+	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir() + g_account_config;
 	util::CIniWriter iniWriter(strPath);
-	iniWriter.WriteInteger(_T("recentSession"), _T("LastUpdateTime"), nLatestUpdateTime);
+	iniWriter.WriteInteger(L"recentSession", L"LastUpdateTime", nLatestUpdateTime);
 }
 
-BOOL SysConfigModule_Impl::getImage(IN std::string sid, IN std::string url, IN BOOL bGrayScale, IN std::string& format
-	, IN module::IOperationDelegate callback, OUT std::string& sLocalPath)
+BOOL SysConfigModule_Impl::getImage(
+	IN std::string sid,
+	IN std::string url,
+	IN BOOL bGrayScale,
+	IN std::string& format,
+	IN module::IOperationDelegate callback,
+	OUT std::string& sLocalPath)
 {
 	UInt32 hashcode = util::hash_BKDR((sid + format).c_str());
 	module::ImImageEntity imageEntity;
 	module::getDatabaseModule()->sqlGetImImageEntityByHashcode(hashcode, imageEntity);
 	CString csLocalPath = module::getMiscModule()->getDownloadDir() + util::stringToCString(imageEntity.filename);
 	if (!imageEntity.filename.empty() && PathFileExists(csLocalPath))
-	{
-		//本地磁盘存在
+	{/* 本地磁盘已存在 */
 		sLocalPath = util::cStringToString(csLocalPath);
 		return TRUE;
 	}
 	else
-	{
-		////不存在则去服务器下载
+	{/* 本地磁盘不存在 - 服务器下载 */
 		//if (module::getSysConfigModule()->userID() == sid)
 		//{
 		//	format = "_60x60";
 		//}
-		//DownloadImgHttpOperation* pOper = new DownloadImgHttpOperation(sid, url, bGrayScale
-		//	, format, BIND_CALLBACK_1(callback));
+		//DownloadImgHttpOperation* pOper = new DownloadImgHttpOperation(sid, url, bGrayScale, format, BIND_CALLBACK_1(callback));
 		//module::getHttpPoolModule()->pushHttpOperation(pOper);
 	}
 	return FALSE;
@@ -280,18 +275,16 @@ BOOL SysConfigModule_Impl::getImage(IN std::string sid, IN std::string url, IN B
 
 UInt32 SysConfigModule_Impl::getDepartmentInfoLatestUpdateTime(void)
 {
-	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir()
-		+ g_account_config;
+	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir() + g_account_config;
 	util::CIniReader iniReader(strPath);
 	UInt32 time = 0;
-	time = iniReader.ReadInteger(_T("department"), _T("LastUpdateTime"), time);
+	time = iniReader.ReadInteger(L"department", L"LastUpdateTime", time);
 	return time;
 }
 
 void SysConfigModule_Impl::saveDepartmentInfoLatestUpdateTime(IN const UInt32 nLatestUpdateTime)
 {
-	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir()
-		+ g_account_config;
+	CString strPath = module::getMiscModule()->getTTCommonAppdataUserDir() + g_account_config;
 	util::CIniWriter iniWriter(strPath);
-	iniWriter.WriteInteger(_T("department"), _T("LastUpdateTime"), nLatestUpdateTime);
+	iniWriter.WriteInteger(L"department", L"LastUpdateTime", nLatestUpdateTime);
 }

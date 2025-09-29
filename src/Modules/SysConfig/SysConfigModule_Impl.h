@@ -40,10 +40,14 @@ public:
 	virtual UInt32 getRecentSessionLatestUpdateTime(void);
 	virtual void saveRecentSessionLatestUpdateTime(IN const UInt32 nLatestUpdateTime);
 
-	//TODO 统一图片获取的逻辑
-	virtual BOOL getImage(IN std::string sid, IN std::string url, IN BOOL bGrayScale
-		, IN std::string& format, IN module::IOperationDelegate callback
-		, OUT std::string& sLocalPath);
+	// 图片获取逻辑
+	virtual BOOL getImage(
+		IN std::string sid,
+		IN std::string url,
+		IN BOOL bGrayScale,
+		IN std::string& format,
+		IN module::IOperationDelegate callback,
+		OUT std::string& sLocalPath);
 private:
 	// 加载序列化的数据
 	BOOL _loadData();

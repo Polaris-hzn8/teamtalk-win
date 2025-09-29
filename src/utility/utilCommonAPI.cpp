@@ -116,7 +116,6 @@ UInt32 hash_BKDR(const char* str)
 	{
 		hash = hash * seed + (*str++);
 	}
-
 	return (hash & 0x7FFFFFFF);
 }
 
