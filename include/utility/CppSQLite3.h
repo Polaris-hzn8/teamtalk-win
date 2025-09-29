@@ -30,8 +30,6 @@
 //						-Added int64 functions to CppSQLite3Query
 //						-Added Name based parameter binding to CppSQLite3Statement.
 ////////////////////////////////////////////////////////////////////////////////
-#ifndef _CppSQLite3_H_
-#define _CppSQLite3_H_
 
 /*
     SQLite3数据库C++封装
@@ -44,10 +42,14 @@
     CppSQLite3Statement     预编译语句类 高效执行参数化查询 防止SQL注入攻击
     CppSQLite3DB            核心数据库类 数据库连接打开\关闭
 */
+
+#ifndef _CppSQLite3_H_
+#define _CppSQLite3_H_
+
 #include <cstdio>
 #include <cstring>
-#include "utilityDll.h"
 #include "sqlite3/sqlite3.h"
+#include "utility/utility_dll.h"
 
 #define CPPSQLITE_ERROR 1000
 

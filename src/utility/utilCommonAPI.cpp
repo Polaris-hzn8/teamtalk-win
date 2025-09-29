@@ -8,9 +8,9 @@
 
 #include <shlwapi.h>
 #include <shellapi.h>
+#include "md5.h"
 #include "stdafx.h"
 #include "utility/utilCommonAPI.h"
-#include "md5.h"
 
 NAMESPACE_BEGIN(util)
 

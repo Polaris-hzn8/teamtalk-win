@@ -9,9 +9,9 @@
 #ifndef UTILSTRCODING_EBFB2FF8_92ED_408B_9A6B_A59579E9942D_H__
 #define UTILSTRCODING_EBFB2FF8_92ED_408B_9A6B_A59579E9942D_H__
 
-#include "GlobalDefine.h"
-#include "utility/utilityDll.h"
 #include <string>
+#include "GlobalDefine.h"
+#include "utility/utility_dll.h"
 
 NAMESPACE_BEGIN(util)
 

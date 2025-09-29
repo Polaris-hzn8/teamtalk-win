@@ -32,7 +32,7 @@
 #pragma once
 
 #include "GlobalDefine.h"
-#include "utility/utilityDll.h"
+#include "utility/utility_dll.h"
 
 NAMESPACE_BEGIN(util)
 

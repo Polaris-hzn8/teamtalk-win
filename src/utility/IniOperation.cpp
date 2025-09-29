@@ -9,83 +9,76 @@
 #include "stdafx.h"
 #include "utility/IniOperation.h"
 #include <iostream>
+#include <algorithm>
 
 NAMESPACE_BEGIN(util)
 
 /////////////////////////////CIniReader/////////////////////////////////////////////
-CIniReader::CIniReader(LPCTSTR szFileName)
+CIniReader::CIniReader(LPCTSTR szIniPath)
 {
-	memset(m_szFileName, 0x00, sizeof(m_szFileName));
-	memcpy(m_szFileName, szFileName, _tcslen(szFileName)*sizeof(TCHAR));
+	_tcsncpy_s(m_szIniPath, szIniPath, _TRUNCATE);
 }
 
 int CIniReader::ReadInteger(LPCTSTR szSection, LPCTSTR szKey, int iDefaultValue)
 {
-	int iResult = GetPrivateProfileInt(szSection, szKey, iDefaultValue, m_szFileName);
-	return iResult;
+	return GetPrivateProfileInt(szSection, szKey, iDefaultValue, m_szIniPath);
 }
 
 float CIniReader::ReadFloat(LPCTSTR szSection, LPCTSTR szKey, float fltDefaultValue)
 {
-	TCHAR szResult[255] = { 0 };
-	TCHAR szDefault[255] = { 0 };
-	float fltResult;
-	_stprintf_s(szDefault, 255, TEXT("%f"), fltDefaultValue);
-	GetPrivateProfileString(szSection, szKey, szDefault, szResult, 255, m_szFileName);
-	fltResult = (float)_tstof(szResult);
-	return fltResult;
+	std::wstring wstr = ReadString(szSection, szKey, std::to_wstring(fltDefaultValue).c_str());
+	return static_cast<float>(_tstof(wstr.c_str()));
 }
 
 bool CIniReader::ReadBoolean(LPCTSTR szSection, LPCTSTR szKey, bool bolDefaultValue)
 {
-	TCHAR szResult[255] = { 0 };
-	TCHAR szDefault[255] = { 0 };
-	bool bolResult;
-	_stprintf_s(szDefault, 255, TEXT("%s"), bolDefaultValue ? TEXT("True") : TEXT("False"));
-	GetPrivateProfileString(szSection, szKey, szDefault, szResult, 255, m_szFileName);
-	bolResult = (_tcscmp(szResult, TEXT("True")) == 0 ||
-		_tcscmp(szResult, TEXT("true")) == 0) ? true : false;
-	return bolResult;
+	std::wstring wstr = ReadString(szSection, szKey, bolDefaultValue ? L"true" : L"false");
+	std::transform(wstr.begin(), wstr.end(), wstr.begin(), ::towlower);
+	if (wstr == L"true" || wstr == L"1")
+		return true;
+	return false;
 }
 
 CString CIniReader::ReadString(LPCTSTR szSection, LPCTSTR szKey, LPCTSTR szDefaultValue)
 {
-	TCHAR szResult[255] = { 0 };
-	GetPrivateProfileString(szSection, szKey, szDefaultValue, szResult, 255, m_szFileName);
-	return CString(szResult);
+	size_t bufferSize = 1024;
+	std::vector<TCHAR> buffer(bufferSize);
+	DWORD nCopied = 0;
+	while (true)
+	{
+		nCopied = GetPrivateProfileString(szSection, szKey, szDefaultValue, buffer.data(), static_cast<DWORD>(buffer.size()), m_szIniPath);
+		if (nCopied < buffer.size() - 1)
+			break;
+		bufferSize *= 2;
+		buffer.resize(bufferSize);
+	}
+	return CString(buffer.data(), nCopied);
 }
 
 ////////////////////////////CIniWriter//////////////////////////////////////////////
-CIniWriter::CIniWriter(LPCTSTR szFileName)
+CIniWriter::CIniWriter(LPCTSTR szIniPath)
 {
-	memset(m_szFileName, 0x00, sizeof(m_szFileName));
-	memcpy(m_szFileName, szFileName, _tcslen(szFileName)*sizeof(TCHAR));
+	_tcsncpy_s(m_szIniPath, szIniPath, _TRUNCATE);
 }
 
 void CIniWriter::WriteInteger(LPCTSTR szSection, LPCTSTR szKey, int iValue)
 {
-	TCHAR szValue[255] = { 0 };
-	_stprintf_s(szValue, 255, TEXT("%d"), iValue);
-	WritePrivateProfileString(szSection, szKey, szValue, m_szFileName);
+	WriteString(szSection, szKey, std::to_wstring(iValue).c_str());
 }
 
 void CIniWriter::WriteFloat(LPCTSTR szSection, LPCTSTR szKey, float fltValue)
 {
-	TCHAR szValue[255] = { 0 };
-	_stprintf_s(szValue, 255, TEXT("%f"), fltValue);
-	WritePrivateProfileString(szSection, szKey, szValue, m_szFileName);
+	WriteString(szSection, szKey, std::to_wstring(fltValue).c_str());
 }
 
 void CIniWriter::WriteBoolean(LPCTSTR szSection, LPCTSTR szKey, bool bolValue)
 {
-	TCHAR szValue[255] = {0};
-	_stprintf_s(szValue, 255, TEXT("%s"), bolValue ? TEXT("True") : TEXT("False"));
-	WritePrivateProfileString(szSection, szKey, szValue, m_szFileName);
+	WriteString(szSection, szKey, bolValue ? L"true" : L"false");
 }
 
 void CIniWriter::WriteString(LPCTSTR szSection, LPCTSTR szKey, LPCTSTR szValue)
 {
-	WritePrivateProfileString(szSection, szKey, szValue, m_szFileName);
+	WritePrivateProfileString(szSection, szKey, szValue, m_szIniPath);
 }
 
 NAMESPACE_END(util)

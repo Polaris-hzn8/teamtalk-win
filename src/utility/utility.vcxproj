@@ -165,7 +165,7 @@
     <ClInclude Include="..\..\include\utility\Multilingual.h" />
     <ClInclude Include="..\..\include\utility\TTThread.h" />
     <ClInclude Include="..\..\include\utility\utilCommonAPI.h" />
-    <ClInclude Include="..\..\include\utility\utilityDll.h" />
+    <ClInclude Include="..\..\include\utility\utility_dll.h" />
     <ClInclude Include="..\..\include\utility\utilStrCodingAPI.h" />
     <ClInclude Include="md5.h" />
     <ClInclude Include="Resource.h" />

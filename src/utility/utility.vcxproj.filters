@@ -122,7 +122,7 @@
     <ClInclude Include="..\..\include\utility\utilStrCodingAPI.h">
       <Filter>API</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\utility\utilityDll.h">
+    <ClInclude Include="..\..\include\utility\utility_dll.h">
       <Filter>Project Files</Filter>
     </ClInclude>
     <ClInclude Include="md5.h">

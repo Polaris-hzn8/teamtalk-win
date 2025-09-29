@@ -1,5 +1,3 @@
-// utility.h : utility DLL 的主头文件
-//
 
 #pragma once
 

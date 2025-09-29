@@ -10,7 +10,7 @@
 #define TTTHREAD_27D478B1_0BAD_4015_A6E5_8AF2DA7739BF_H__
 
 #include "GlobalDefine.h"
-#include "utilityDll.h"
+#include "utility/utility_dll.h"
 
 NAMESPACE_BEGIN(util)
 
