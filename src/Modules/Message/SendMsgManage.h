@@ -1,16 +1,20 @@
- /*******************************************************************************
- *  @file      SendMsgManage.h 2014\8\7 13:48:25 $
- *  @author    大佛<dafo@mogujie.com>
- *  @brief     发消息时序队列管理
- ******************************************************************************/
+ 
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 发消息时序队列管理
+*/
 
 #ifndef SENDMSGMANAGE_5545E32E_5320_4A45_ABD0_5AC0F09EE7AF_H__
 #define SENDMSGMANAGE_5545E32E_5320_4A45_ABD0_5AC0F09EE7AF_H__
 
+#include <list>
 #include "network/Lock.h"
 #include "Modules/IEvent.h"
+#include "Modules/ITimerEvent.h"
 #include "Modules/MessageEntity.h"
-#include <list>
+
 enum MSG_SENDSTATUS
 {
 	MSGSTATUS_TOSEND,
@@ -36,28 +40,13 @@ struct SendingMsg
 };
 typedef std::list<SendingMsg>  SendingMsgList;
 
-/******************************************************************************/
-
-/**
- * The class <code>发消息时序队列管理</code> 
- *
- */
+// 发消息时序队列管理
 class SendMsgManage
 {
 	friend class CheckSendMsgTimer;
 public:
-    /** @name Constructors and Destructor*/
-
-    //@{
-    /**
-     * Constructor 
-     */
     SendMsgManage();
-    /**
-     * Destructor
-     */
     ~SendMsgManage();
-    //@}
 public:
 	void pushSendingMsg(IN MessageEntity& msg);
 	BOOL popUpSendingMsgByAck(IN const UInt16 seqNo,IN const UInt32 msgID);
@@ -74,10 +63,7 @@ private:
 	CLock			m_lock;
 };
 
-/**
-* The class <code>定时check消息队列是否超时</code>
-*
-*/
+// 定时check消息队列是否超时
 class CheckSendMsgTimer : public module::ITimerEvent
 {
 public:

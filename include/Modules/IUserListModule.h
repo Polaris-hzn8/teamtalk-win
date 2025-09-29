@@ -16,7 +16,7 @@
 #include "Modules/ModuleBase.h"
 #include "Modules/IMiscModule.h"
 #include "Modules/IUserListModule.h"
-#include "Modules/IModuleInterface.h"
+#include "Modules/ICallbackOpertaion.h"
 #include "utility/utilStrCodingAPI.h"
 #include "ProtocolBuffer/IM.BaseDefine.pb.h"
 

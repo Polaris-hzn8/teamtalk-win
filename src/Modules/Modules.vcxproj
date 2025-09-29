@@ -646,6 +646,7 @@
     <ClInclude Include="..\..\3rdParty\src\libsecurity\aes_locl.h" />
     <ClInclude Include="..\..\3rdParty\src\libsecurity\base64.h" />
     <ClInclude Include="..\..\3rdParty\src\libsecurity\md5.h" />
+    <ClInclude Include="..\..\include\Modules\ICallbackOperationEvent.h" />
     <ClInclude Include="..\..\include\Modules\IDatabaseModule.h" />
     <ClInclude Include="..\..\include\Modules\IEmotionModule.h" />
     <ClInclude Include="..\..\include\Modules\IEvent.h" />
@@ -655,12 +656,14 @@
     <ClInclude Include="..\..\include\Modules\ILoginModule.h" />
     <ClInclude Include="..\..\include\Modules\IMessageModule.h" />
     <ClInclude Include="..\..\include\Modules\IMiscModule.h" />
-    <ClInclude Include="..\..\include\Modules\IModuleInterface.h" />
+    <ClInclude Include="..\..\include\Modules\ICallbackOpertaion.h" />
+    <ClInclude Include="..\..\include\Modules\IMKOEvent.h" />
     <ClInclude Include="..\..\include\Modules\IP2PCmdModule.h" />
     <ClInclude Include="..\..\include\Modules\IScreenCaptureModule.h" />
     <ClInclude Include="..\..\include\Modules\ISessionModule.h" />
     <ClInclude Include="..\..\include\Modules\ISysConfigModule.h" />
     <ClInclude Include="..\..\include\Modules\ITcpClientModule.h" />
+    <ClInclude Include="..\..\include\Modules\ITimerEvent.h" />
     <ClInclude Include="..\..\include\Modules\IUserListModule.h" />
     <ClInclude Include="..\..\include\Modules\UIEventManager.h" />
     <ClInclude Include="..\..\include\Modules\MessageEntity.h" />

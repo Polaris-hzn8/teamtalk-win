@@ -1,19 +1,22 @@
-/*******************************************************************************
- *  @file      FileTransferSocket.h 2014\8\30 13:31:33 $
- *  @author    快刀<kuaidao@mogujie.com>
- *  @brief     文件传输socket
- ******************************************************************************/
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 
+*/
 
 #ifndef FILETRANSFERSOCKET_612C0628_0BB6_4FF0_BE0F_F5DE2C35836D_H__
 #define FILETRANSFERSOCKET_612C0628_0BB6_4FF0_BE0F_F5DE2C35836D_H__
 
 #include "GlobalDefine.h"
 #include "Modules/IEvent.h"
+#include "Modules/ITimerEvent.h"
 #include "Modules/ITcpClientModule.h"
-#include "network/TTPBHeader.h"
 #include "network/imconn.h"
+#include "network/TTPBHeader.h"
 #include "google/protobuf/message_lite.h"
-/******************************************************************************/
+
 class CImPdu;
 class FileTransferSocket;
 class FileTransTaskBase;

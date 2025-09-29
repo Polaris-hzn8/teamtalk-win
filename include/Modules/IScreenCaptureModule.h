@@ -10,9 +10,9 @@
 #define ISCREEN_CAPTURE_5CF3E642_5F2A_4841_B497_A7C015E6E1D4_H__
 
 #include "GlobalDefine.h"
-#include "Modules/IModuleInterface.h"
-#include "Modules/ModuleBase.h"
 #include "Modules/ModuleDll.h"
+#include "Modules/ModuleBase.h"
+#include "Modules/ICallbackOpertaion.h"
 #include <string>
 
 NAMESPACE_BEGIN(module)

@@ -15,6 +15,8 @@
 #include "GlobalDefine.h"
 #include "network/Lock.h"
 #include "network/ErrorCode.h"
+#include "Modules/IEvent.h"
+#include "Modules/ITimerEvent.h"
 
 NAMESPACE_BEGIN(module)
 

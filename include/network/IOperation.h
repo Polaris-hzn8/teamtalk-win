@@ -19,7 +19,7 @@ struct NETWORK_DLL IOperation
 {
 public:
 	virtual void process() = 0;
-	virtual void release() = 0;//必须让容器来释放自己
+	virtual void release() = 0;
 };
 
 NAMESPACE_END(imcore)

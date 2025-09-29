@@ -12,7 +12,7 @@
 #include "network/ImCore.h"
 #include "ProtocolBuffer/im.Login.pb.h"
 #include "ProtocolBuffer/im.Other.pb.h"
-#include "Modules/IModuleInterface.h"
+#include "Modules/ICallbackOpertaion.h"
 #include "Modules/ILoginModule.h"
 #include "Modules/IUserListModule.h"
 #include "Modules/IP2PCmdModule.h"

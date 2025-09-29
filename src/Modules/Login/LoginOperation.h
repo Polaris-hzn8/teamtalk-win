@@ -9,7 +9,7 @@
 #ifndef LOGINOPERATION_9610A313_DC31_429E_B9E9_09A34ABA8063_H__
 #define LOGINOPERATION_9610A313_DC31_429E_B9E9_09A34ABA8063_H__
 
-#include "Modules/IModuleInterface.h"
+#include "Modules/ICallbackOpertaion.h"
 #include "ProtocolBuffer/im.Login.pb.h"
 
 enum

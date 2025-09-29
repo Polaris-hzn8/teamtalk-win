@@ -923,11 +923,8 @@
     <ClInclude Include="..\..\include\Modules\ModuleSubject.h">
       <Filter>Base\MKO</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Modules\IModuleInterface.h">
+    <ClInclude Include="..\..\include\Modules\ICallbackOpertaion.h">
       <Filter>Base\MKO</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Modules\IEvent.h">
-      <Filter>Base\UIEvent</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Modules\UIEventManager.h">
       <Filter>Base\UIEvent</Filter>
@@ -1045,6 +1042,18 @@
     </ClInclude>
     <ClInclude Include="..\..\3rdParty\src\libsecurity\md5.h">
       <Filter>thridParty\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Modules\ICallbackOperationEvent.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Modules\IEvent.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Modules\IMKOEvent.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Modules\ITimerEvent.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
