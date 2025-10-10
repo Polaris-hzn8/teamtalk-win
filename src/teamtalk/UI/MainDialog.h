@@ -89,6 +89,8 @@ public:
 	void StartNewMsgTrayEmot();				//开始系统托盘闪烁
 	void StopNewMsgTrayEmot();				//停止系统托盘闪烁
 
+	void _FreshMySignature(void);
+	void _UpdateTotalUnReadMsgCount(void);//更新总的未读计数
 private:
 	// MainDialog
 	void Initilize();

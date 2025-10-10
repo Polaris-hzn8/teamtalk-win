@@ -10,6 +10,7 @@
 #include "MainDialog.h"
 #include "Modules/IMiscModule.h"
 #include "Modules/ILoginModule.h"
+#include "Modules/IMessageModule.h"
 #include "Modules/ISessionModule.h"
 #include "Modules/IUserListModule.h"
 #include "Modules/ITcpClientModule.h"
@@ -182,4 +183,51 @@ void MainDialog::StopNewMsgTrayEmot()
 {
 	KillTimer(m_hWnd, TIMER_TRAYEMOT);
 	UpdateLineStatus(module::getUserListModule()->getMyLineStatus());
+}
+
+void MainDialog::_FreshMySignature(void)
+{
+	PTR_VOID(m_pEditSignature);
+	module::UserInfoEntity myInfo;
+	if (module::getUserListModule()->getMyInfo(myInfo))
+	{
+		m_pEditSignature->SetText(util::stringToCString(myInfo.signature));
+		if (myInfo.signature.empty())
+		{
+			m_pEditSignature->SetToolTip(_T("编辑个性签名"));
+		}
+		else
+		{
+			m_pEditSignature->SetToolTip(util::stringToCString(myInfo.signature));
+		}
+	}
+}
+
+void MainDialog::_UpdateTotalUnReadMsgCount(void)
+{
+	PTR_VOID(m_pTextUnreadMsgCount);
+	UInt32 nCount = module::getMessageModule()->getTotalUnReadMsgCount();
+	if (0 == nCount)//没有消息
+	{
+		m_pTextUnreadMsgCount->SetVisible(false);
+	}
+	else if (nCount <= 99)
+	{
+		m_pTextUnreadMsgCount->SetText(util::int32ToCString(nCount));
+		m_pTextUnreadMsgCount->SetVisible(true);
+	}
+	else if (nCount > 99)
+	{
+		m_pTextUnreadMsgCount->SetText(_T("99+"));
+		m_pTextUnreadMsgCount->SetVisible(true);
+	}
+
+	CString sText = util::getMultilingual()->getStringById(_T("STRID_GLOBAL_CAPTION_NAME"));
+	CString sUnreadCnt;
+	if (0 != nCount)
+	{
+		CString sFormat = util::getMultilingual()->getStringById(_T("STRID_MAINDIALOG_TOOLTIP_MSGCNT"));
+		sUnreadCnt.Format(sFormat, nCount);
+	}
+	SetTrayTooltipText(sText + sUnreadCnt);
 }

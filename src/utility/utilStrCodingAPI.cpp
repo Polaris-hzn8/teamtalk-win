@@ -6,11 +6,11 @@
  brief:
 */
 
+#include "stdafx.h"
+#include "utility/utilStrCodingAPI.h"
 #include <stdio.h>
 #include <locale>
 #include <codecvt>
-#include "stdafx.h"
-#include "utility/utilStrCodingAPI.h"
 
 NAMESPACE_BEGIN(util)
 

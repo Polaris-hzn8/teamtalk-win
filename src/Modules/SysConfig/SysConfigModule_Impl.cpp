@@ -11,7 +11,7 @@
 #include "utility/utilCommonAPI.h"
 #include "utility/utilStrCodingAPI.h"
 #include "Modules/IMiscModule.h"
-#include "Modules/IModuleInterface.h"
+#include "Modules/ICallbackOpertaion.h"
 #include "Modules/Session/Operation/DownloadAvatarHttpOperation.h"
 #include "SysConfigDialog.h"
 #include "ServerConfigDialog.h"
