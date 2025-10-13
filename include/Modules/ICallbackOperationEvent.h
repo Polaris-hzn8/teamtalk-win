@@ -17,13 +17,18 @@
 
 NAMESPACE_BEGIN(module)
 
-typedef std::function<void(std::shared_ptr<void>)> IOperationDelegate;	// 操作回调委托
+// 回调函数类型
+typedef std::function<void(std::shared_ptr<void>)> IOperationDelegate;
 
-// 异步事件
+// 回调函数类型 泛型版
+//template<typename T>
+//using IOperationDelegate = std::function<void(std::shared_ptr<T>)>;
+
+// 操作回调事件
 class ICallbackOperationEvent : public module::IEvent
 {
 public:
-	ICallbackOperationEvent(IOperationDelegate & callback, std::shared_ptr<void> param)
+	ICallbackOperationEvent(IOperationDelegate& callback, std::shared_ptr<void> param)
 		:m_callback(callback), m_param(param) {}
 	virtual ~ICallbackOperationEvent() {}
 	virtual void process() { m_callback(m_param); }

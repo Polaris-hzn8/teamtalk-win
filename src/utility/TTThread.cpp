@@ -11,8 +11,9 @@
 
 NAMESPACE_BEGIN(util)
 
-TTThread::TTThread()
-:m_hThread(0)
+TTThread::TTThread():
+	m_hThread(NULL),
+	m_dwThreadID(0)
 {
 
 }
@@ -20,42 +21,44 @@ TTThread::TTThread()
 TTThread::~TTThread()
 {
 	if (m_hThread)
-		::CloseHandle(m_hThread);
-	m_hThread = 0;
+	{
+		CloseHandle(m_hThread);
+		m_hThread = NULL;
+	}
 }
 
 BOOL TTThread::create()
 {
-	m_hThread = (HANDLE)_beginthreadex(0,0, _threadProc, this, 0, (unsigned*)&m_dwThreadID);
-
-	if (m_hThread < (HANDLE)2)
+	m_hThread = (HANDLE)_beginthreadex(NULL, 0, _threadProc, this, 0, (unsigned*)&m_dwThreadID);
+	if (m_hThread == NULL)
 	{
-		m_hThread = 0;
 		m_dwThreadID = 0;
+		return FALSE;
 	}
-
-	return m_hThread >(HANDLE)1;
+	return TRUE;
 }
 
 void TTThread::destory()
 {
 	if (m_hThread)
 	{
-		::TerminateThread(m_hThread, 0);
+		TerminateThread(m_hThread, 0);
 		WaitForSingleObject(m_hThread, 500);
-		::CloseHandle(m_hThread);
-		m_hThread = 0;
+		CloseHandle(m_hThread);
+		m_hThread = NULL;
 		m_dwThreadID = 0;
 	}
 }
 
 BOOL TTThread::wait(DWORD dwWaitTime)
 {
-	if (m_hThread == 0)
+	if (m_hThread == NULL)
 		return TRUE;
-	return (::WaitForSingleObject(m_hThread, dwWaitTime) != WAIT_TIMEOUT);
+	DWORD dwResult = WaitForSingleObject(m_hThread, dwWaitTime);
+	return (dwResult != WAIT_TIMEOUT);
 }
 
+// ÖØÐ´´¦ÀíÂß¼­
 UInt32 TTThread::process()
 {
 	return 0;
@@ -65,7 +68,7 @@ UInt32 __stdcall TTThread::_threadProc(void *lpParam)
 {
 	TTThread* pThread = (TTThread*)lpParam;
 	assert(pThread);
-	if (pThread != 0)
+	if (pThread != NULL)
 	{
 		pThread->process();
 	}

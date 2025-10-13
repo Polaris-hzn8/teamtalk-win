@@ -19,18 +19,18 @@ class UTILITY_CLASS TTThread
 public:
     TTThread();
     ~TTThread();
-public:
+
 	BOOL create();
 	void destory();
 	BOOL wait(DWORD dwWaitTime);
 	inline DWORD getThreadId() { return m_dwThreadID; }
+
 protected:
 	virtual UInt32 process();
 
 private:
 	static UInt32 __stdcall _threadProc(void *lpParam);
 
-private:
 	HANDLE		m_hThread;
 	DWORD		m_dwThreadID;
 };

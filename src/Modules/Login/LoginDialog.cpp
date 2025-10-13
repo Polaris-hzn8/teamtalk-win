@@ -191,8 +191,7 @@ void LoginDialog::_DoLogin()
 
 	//连接登陆服务器
 	DoLoginServerParam param;
-	DoLoginServerHttpOperation* pOper = new DoLoginServerHttpOperation(
-		BIND_CALLBACK_1(LoginDialog::OnHttpCallbackOperation), param);
+	DoLoginServerHttpOperation* pOper = new DoLoginServerHttpOperation(BIND_CALLBACK_1(LoginDialog::OnHttpCallbackOperation), param);
 	module::getHttpPoolModule()->pushHttpOperation(pOper);
 }
 
@@ -207,8 +206,7 @@ void LoginDialog::OnHttpCallbackOperation(std::shared_ptr<void> param)
 		loginparam.csUserName = pCfg->userName;
 		loginparam.password = pCfg->password;
 		loginparam.csUserName.Trim();
-		LoginOperation* pOperation = new LoginOperation(
-			BIND_CALLBACK_1(LoginDialog::OnOperationCallback), loginparam);
+		LoginOperation* pOperation = new LoginOperation(BIND_CALLBACK_1(LoginDialog::OnOperationCallback), loginparam);
 		imcore::IMLibCoreStartOperation(pOperation);
 	}
 	else
