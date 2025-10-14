@@ -1,6 +1,6 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" modified="2025-10-13T08:35:24.685Z" etag="s1MMTiq7WhFKyPQ5bdx-" version="22.1.2" type="device">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" modified="2025-10-14T08:03:02.887Z" etag="rsiCHfc02b1ndvQFQuZM" version="22.1.2" type="device">
   <diagram name="第 1 页" id="TiUcTzkpdyk3yZOjxuos">
-    <mxGraphModel dx="1182" dy="683" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1418" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -55,7 +55,7 @@
         <mxCell id="KeHWz8IUv0lWX7vgZlp7-1" value="ICallbackOperation" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="220" y="307" width="200" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-8" value="- m_callback:IOperationDelegate" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="KeHWz8IUv0lWX7vgZlp7-1">
+        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-8" value="- m_callback:IOperationDelegate" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="KeHWz8IUv0lWX7vgZlp7-1" vertex="1">
           <mxGeometry y="26" width="200" height="24" as="geometry" />
         </mxCell>
         <mxCell id="KeHWz8IUv0lWX7vgZlp7-4" value="&lt;font color=&quot;#ff0000&quot;&gt;&lt;b&gt;+ syncCallbak(void): void&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;b&gt;+ asyncCallbak(void): void&lt;/b&gt;&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="KeHWz8IUv0lWX7vgZlp7-1" vertex="1">
@@ -283,22 +283,22 @@
         <mxCell id="KeHWz8IUv0lWX7vgZlp7-115" value="observer event" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="815" y="396" width="100" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-1" value="&lt;font style=&quot;font-size: 18px;&quot; color=&quot;#ff0000&quot;&gt;事件&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-1" value="&lt;font style=&quot;font-size: 18px;&quot; color=&quot;#ff0000&quot;&gt;事件&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="830" y="116" width="60" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-2" value="&lt;font style=&quot;font-size: 18px;&quot; color=&quot;#ff0000&quot;&gt;操作&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-2" value="&lt;font style=&quot;font-size: 18px;&quot; color=&quot;#ff0000&quot;&gt;操作&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="290" y="14" width="60" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-3" value="&lt;font style=&quot;font-size: 12px;&quot; color=&quot;#ff0000&quot;&gt;&lt;b&gt;定时器事件&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-3" value="&lt;font style=&quot;font-size: 12px;&quot; color=&quot;#ff0000&quot;&gt;&lt;b&gt;定时器事件&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="1010" y="285" width="80" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-5" value="&lt;font color=&quot;#ff0000&quot;&gt;&lt;b&gt;订阅事件/UI事件&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-5" value="&lt;font color=&quot;#ff0000&quot;&gt;&lt;b&gt;订阅事件/UI事件&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="811" y="286" width="110" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-6" value="&lt;font color=&quot;#ff0000&quot;&gt;&lt;b&gt;操作回调事件&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-6" value="&lt;font color=&quot;#ff0000&quot;&gt;&lt;b&gt;操作回调事件&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="623" y="286" width="100" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-7" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;typedef std::function&amp;lt;void(std::shared_ptr&amp;lt;void&amp;gt;)&amp;gt; IOperationDelegate;&#x9;// 操作回调&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="vcTNj_C4Jv3_yuXoIw0A-7" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;typedef std::function&amp;lt;void(std::shared_ptr&amp;lt;void&amp;gt;)&amp;gt; IOperationDelegate;&#x9;// 操作回调&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="526" y="60" width="680" height="40" as="geometry" />
         </mxCell>
       </root>

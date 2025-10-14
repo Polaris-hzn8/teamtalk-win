@@ -18,18 +18,27 @@ enum
 	LOGIN_OK = 0,               //登陆成功
 };
 
+// 登录参数
 struct LoginParam
 {
-public:
-	Int8            result = LOGIN_FAIL;
-	UInt8			server_result = IM::BaseDefine::REFUSE_REASON_NONE;
-	UInt8           mySelectedStatus = IM::BaseDefine::USER_STATUS_ONLINE;
-	UInt32          serverTime = 0;
-	CString			csUserName;
-	CString			errInfo;
-	std::string		password;
+	Int8            result;				// 登录结果
+	UInt8			server_result;		// 服务器返回结果
+	UInt8           mySelectedStatus;	// 用户在线状态
+	UInt32          serverTime;			// 服务器时间戳
+	CString			csUserName;			// 用户名
+	CString			errInfo;			// 错误信息
+	std::string		password;			// 密码
+
+	LoginParam():
+		result(LOGIN_FAIL),
+		server_result(IM::BaseDefine::REFUSE_REASON_NONE),
+		mySelectedStatus(IM::BaseDefine::USER_STATUS_ONLINE),
+		serverTime(0)
+	{
+	}
 };
 
+// 登录操作
 class LoginOperation : public module::ICallbackOpertaion
 {
 public:

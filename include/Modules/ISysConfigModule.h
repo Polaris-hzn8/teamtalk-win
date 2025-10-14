@@ -52,16 +52,17 @@ struct TTConfigNeedCache
 
 struct TTConfig : public TTConfigNeedCache
 {
-	UInt8			myselectStatus;
-	UInt32			loginServPort = 0;
-	CString			csUserId;
-	CString			token;
-	CString			fileSysAddr;
-	CString			fileSysBackUpAddr;
+	UInt8			myselectStatus;			// 用户状态
+	UInt32			loginServPort = 0;		// 登录服务器端口
+
+	CString			csUserId;				// 用户ID
+	CString			token;					// 登录令牌
+	CString			fileSysAddr;			// 文件服务器地址
+	CString			fileSysBackUpAddr;		// 文件服务器备用地址
 	
-	std::string		msgSevPriorIP;	//消息服务器地址
-	std::string		msgSevBackupIP;	//消息服务器备用地址
-	UInt32			msgServPort;	//消息服务器端口
+	std::string		msgSevPriorIP;	// 消息服务器地址
+	std::string		msgSevBackupIP;	// 消息服务器备用地址
+	UInt32			msgServPort;	// 消息服务器端口
 	std::string		userId;
 };
 

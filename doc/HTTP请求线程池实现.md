@@ -44,3 +44,57 @@ private:
 };
 ```
 
+### HttpPoolModule_Impl
+
+```cpp
+class HttpPoolModule_Impl final : public module::IHttpPoolModule
+{
+	friend class TTHttpThread;
+public:
+	HttpPoolModule_Impl();
+    virtual ~HttpPoolModule_Impl();
+
+	virtual void    pushHttpOperation(module::IHttpOperation* pOperaion, BOOL bHighPriority = FALSE);
+	virtual void    shutdown();
+private:
+	BOOL  _launchThread();			// 线程增加
+	void  _cancelAllOperations();	// 取消所有任务
+
+	std::list<module::IHttpOperation*>		m_lstHttpOpers;		// http操作队列
+	std::vector<TTHttpThread*>				m_vecHttpThread;	// http线程池
+	HANDLE									m_hSemaphore;
+	CLock									m_mtxLock;
+
+	int										m_maxThreadCount;	// 线程池最大线程数
+	volatile BOOL							m_bShutdown;		// 是否关闭
+};
+```
+
+### HTTP操作抽象
+
+![image-20251014100037486](C:\Users\vamtoo\AppData\Roaming\Typora\typora-user-images\image-20251014100037486.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

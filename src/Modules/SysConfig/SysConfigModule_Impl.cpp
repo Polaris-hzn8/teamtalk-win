@@ -82,6 +82,7 @@ BOOL SysConfigModule_Impl::_loadData()
 	return TRUE;
 }
 
+// 数据序列化保存
 BOOL SysConfigModule_Impl::_saveData()
 {
 	CString fileName = util::getAppPath() + g_config;

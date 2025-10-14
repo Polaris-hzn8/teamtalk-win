@@ -217,18 +217,16 @@ void TcpClientModule_Impl::_sendPacket(google::protobuf::MessageLite* pbBody)
 
 void TcpClientModule_Impl::startHeartbeat()
 {
-	module::getEventManager()->scheduleTimerWithLambda(5, TRUE,
-		[=]()
-	{
-		imcore::IMLibCoreStartOperationWithLambda(
-			[=]()
-		{
+	auto sendHeartbeat = [this]() {
+		imcore::IMLibCoreStartOperationWithLambda([this]() {
 			IM::Other::IMHeartBeat imHearBeat;
-			sendPacket(IM::BaseDefine::SID_OTHER, IM::BaseDefine::CID_OTHER_HEARTBEAT, &imHearBeat);
-		}
-		);
-	}
-	, &m_pHearbeatTimer);
+			sendPacket(
+				IM::BaseDefine::SID_OTHER,
+				IM::BaseDefine::CID_OTHER_HEARTBEAT,
+				&imHearBeat);
+		});
+	};
+	module::getEventManager()->scheduleTimerWithLambda(5, TRUE, sendHeartbeat, &m_pHearbeatTimer);
 }
 
 void TcpClientModule_Impl::_stopHearbeat()

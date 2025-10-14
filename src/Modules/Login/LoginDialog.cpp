@@ -189,7 +189,7 @@ void LoginDialog::_DoLogin()
 	m_pBtnLogin->SetText(csTxt);
 	m_pBtnLogin->SetEnabled(false);
 
-	//连接登陆服务器
+	// 发起登录请求http
 	DoLoginServerParam param;
 	DoLoginServerHttpOperation* pOper = new DoLoginServerHttpOperation(BIND_CALLBACK_1(LoginDialog::OnHttpCallbackOperation), param);
 	module::getHttpPoolModule()->pushHttpOperation(pOper);

@@ -15,8 +15,8 @@
 #include "GlobalConfig.h"
 
 LoginOperation::LoginOperation(module::IOperationDelegate callback, LoginParam& param)
-:ICallbackOpertaion(callback)
-,m_loginParam(param)
+	:ICallbackOpertaion(callback)
+	,m_loginParam(param)
 {
 
 }
@@ -28,25 +28,32 @@ LoginOperation::~LoginOperation()
 
 void LoginOperation::processOpertion()
 {
-	LOG__(APP,_T("login start,uname:%s,status:%d"), m_loginParam.csUserName
-		, m_loginParam.mySelectedStatus);
+	LOG__(APP,_T("login start, uname:%s, status:%d"), m_loginParam.csUserName, m_loginParam.mySelectedStatus);
 
 	LoginParam* pParam = new LoginParam;
 	pParam->csUserName = m_loginParam.csUserName;
 	pParam->mySelectedStatus = m_loginParam.mySelectedStatus;
 
-	//连接消息服务器
+	// 连接消息服务器
 	module::TTConfig* pCfg = module::getSysConfigModule()->getSystemConfig();
-	CString server = util::stringToCString(pCfg->msgSevPriorIP);
-	LOG__(APP, _T("MsgServeIp:%s,Port:%d"), server, pCfg->msgServPort);
-	IM::Login::IMLoginRes* pImLoginResp = (IM::Login::IMLoginRes*)module::getTcpClientModule()
-		->doLogin(server, pCfg->msgServPort,m_loginParam.csUserName,m_loginParam.password);
-	if (pImLoginResp == 0 ||
-		pImLoginResp->result_code() != IM::BaseDefine::REFUSE_REASON_NONE ||
-		!pImLoginResp->has_user_info())
+	CString msgServerIp = util::stringToCString(pCfg->msgSevPriorIP);
+	CString msgBackupIp = util::stringToCString(pCfg->msgSevBackupIP);
+	UInt32 msgServerPort = pCfg->msgServPort;
+
+	LOG__(APP, _T("MsgServeIp:%s, Port:%d"), msgServerIp, msgServerPort);
+
+	IM::Login::IMLoginRes* pImLoginResp = (IM::Login::IMLoginRes*)module::getTcpClientModule()->doLogin(
+		msgServerIp,
+		msgServerPort,
+		m_loginParam.csUserName,
+		m_loginParam.password);
+
+	if (pImLoginResp == NULL
+		|| pImLoginResp->result_code() != IM::BaseDefine::REFUSE_REASON_NONE
+		|| !pImLoginResp->has_user_info())
 	{
-		//TODO,若失败，尝试备用IP
-		LOG__(ERR,_T("add:%s:%d,uname:%s,login for msg server failed"),server,pCfg->msgServPort, m_loginParam.csUserName);
+		// 登录失败使用备用ip
+		LOG__(ERR,_T("add:%s:%d, uname:%s,login for msg server failed"), msgServerIp, msgServerPort, m_loginParam.csUserName);
 		if (pImLoginResp)
 		{
 			CString errInfo = util::stringToCString(pImLoginResp->result_string());
@@ -63,16 +70,19 @@ void LoginOperation::processOpertion()
 		asyncCallback(std::shared_ptr<void>(pParam));
 		return;
 	}
+
+	// 登录成功
 	pParam->result = LOGIN_OK;
 	pParam->serverTime = pImLoginResp->server_time();
 	pParam->mySelectedStatus = pImLoginResp->online_status();
 
-	//存储服务器端返回的userId
 	IM::BaseDefine::UserInfo userInfo = pImLoginResp->user_info();
+
+	// user_id
 	pCfg->userId = util::uint32ToString(userInfo.user_id());
 	pCfg->csUserId = util::stringToCString(pCfg->userId);
 
-	//登陆成功，创建自己的信息
+	// user_info
 	module::UserInfoEntity myInfo;
 	myInfo.sId = pCfg->userId;
 	myInfo.csName = m_loginParam.csUserName;
