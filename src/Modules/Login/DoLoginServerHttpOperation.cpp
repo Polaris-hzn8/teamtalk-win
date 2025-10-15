@@ -28,10 +28,11 @@ void DoLoginServerHttpOperation::processOpertion()
 	std::string& loginAddr = util::cStringToString(pCfg->loginServIP);
 	std::string url = loginAddr;
 	
+	// 发起请求
 	DoLoginServerParam* pPamram = new DoLoginServerParam();
 	pPamram->resMsg = util::getMultilingual()->getStringById(_T("STRID_LOGINDIALOG_LOGIN_HTTP_DEFERROR"));
-	Http::HttpResponse	response;
 	Http::HttpClient	client;
+	Http::HttpResponse	response;
 	Http::HttpRequest	request("get", url);
 	if (!client.execute(&request, &response))
 	{
@@ -44,7 +45,8 @@ void DoLoginServerHttpOperation::processOpertion()
 	}
 	std::string body = response.getBody();
 	client.killSelf();
-
+	
+	// 解析响应
 	try
 	{
 		Json::Reader reader;
@@ -63,8 +65,7 @@ void DoLoginServerHttpOperation::processOpertion()
 			LOG__(APP, _T("get msgSvr IP succeed!"));
 			pCfg->msgSevPriorIP = root.get("priorIP", "").asString();
 			pCfg->msgSevBackupIP = root.get("backupIP", "").asString();
-			std::string strPort = root.get("port", "").asString();
-			pCfg->msgServPort = util::stringToInt32(strPort);
+			pCfg->msgServPort = util::stringToInt32(root.get("port", "").asString());
 
 			pCfg->fileSysAddr = util::stringToCString(root.get("msfsPrior", "").asString());
 			pCfg->fileSysBackUpAddr = util::stringToCString(root.get("msfsBackup", "").asString());

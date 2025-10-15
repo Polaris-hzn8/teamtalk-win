@@ -160,14 +160,16 @@ void LoginDialog::_DoLogin()
 		m_ptxtTip->SetText(csTip);
 		return;
 	}
+
+	// 保存用户名和密码
 	module::TTConfig* pCfg = module::getSysConfigModule()->getSystemConfig();
 	pCfg->userName = userName;
 	if (m_bPassChanged)
 	{
-		std::string sPass = util::cStringToString(CString(password));
+		std::string strPass = util::cStringToString(CString(password));
 		char* pOutData = 0;
 		uint32_t nOutLen = 0;
-		int retCode = EncryptPass(sPass.c_str(), sPass.length(), &pOutData, nOutLen);
+		int retCode = EncryptPass(strPass.c_str(), strPass.length(), &pOutData, nOutLen);
 		if (retCode == 0 && nOutLen > 0 && pOutData != 0)
 		{
 			pCfg->password = std::string(pOutData, nOutLen);
@@ -181,15 +183,15 @@ void LoginDialog::_DoLogin()
 			return;
 		}
 	}
-
 	pCfg->isRememberPWD = m_pChkRememberPWD->GetCheck();
 	module::getSysConfigModule()->saveData();
 
+	// 设置登录按钮状态
 	CString csTxt = util::getMultilingual()->getStringById(_T("STRID_LOGINDIALOG_BTN_DOLOGIN"));
 	m_pBtnLogin->SetText(csTxt);
 	m_pBtnLogin->SetEnabled(false);
 
-	// 发起登录请求http
+	// 发起请求http
 	DoLoginServerParam param;
 	DoLoginServerHttpOperation* pOper = new DoLoginServerHttpOperation(BIND_CALLBACK_1(LoginDialog::OnHttpCallbackOperation), param);
 	module::getHttpPoolModule()->pushHttpOperation(pOper);

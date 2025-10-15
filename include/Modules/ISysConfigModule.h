@@ -57,8 +57,8 @@ struct TTConfig : public TTConfigNeedCache
 
 	CString			csUserId;				// 用户ID
 	CString			token;					// 登录令牌
-	CString			fileSysAddr;			// 文件服务器地址
-	CString			fileSysBackUpAddr;		// 文件服务器备用地址
+	CString			fileSysAddr;			// msfs文件服务器地址
+	CString			fileSysBackUpAddr;		// msfs文件服务器备用地址
 	
 	std::string		msgSevPriorIP;	// 消息服务器地址
 	std::string		msgSevBackupIP;	// 消息服务器备用地址

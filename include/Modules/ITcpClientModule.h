@@ -47,7 +47,8 @@ enum TCPCLIENT_STATE
 class MODULE_API ITcpClientModule : public module::ModuleBase
 {
 public:
-	virtual IM::Login::IMLoginRes* doLogin(CString &linkaddr, UInt16 port
+	virtual IM::Login::IMLoginRes* doLogin(
+		CString &linkaddr, UInt16 port
 		,CString& uName, std::string& pass) = 0;
 	virtual void shutdown() = 0;
 	// 发送协议包
