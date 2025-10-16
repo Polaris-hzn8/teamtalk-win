@@ -1,4 +1,4 @@
-# HTTP请求线程池实现
+# 请求线程池实现http
 
 ---
 
@@ -70,9 +70,17 @@ private:
 };
 ```
 
-### HTTP操作抽象
+### 通用代码抽象
 
 ![image-20251014100037486](C:\Users\vamtoo\AppData\Roaming\Typora\typora-user-images\image-20251014100037486.png)
+
+```cpp
+
+```
+
+
+
+
 
 
 
