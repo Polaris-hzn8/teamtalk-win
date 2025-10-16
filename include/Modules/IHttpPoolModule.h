@@ -31,7 +31,6 @@ private:
 
 const std::string MODULE_HTTPPOOL_PREFIX = "httppool";
 //KEYID
-
 const std::string KEY_HTTPPOOL_CALLBACK = MODULE_HTTPPOOL_PREFIX + "callback";
 
 class MODULE_API IHttpPoolModule : public module::ModuleBase

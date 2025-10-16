@@ -11,8 +11,8 @@
 
 #include "network/imconn.h"
 #include "network/TTPBHeader.h"
-#include "Modules/ITcpClientModule.h"
 #include "Modules/ITimerEvent.h"
+#include "Modules/ITcpClientModule.h"
 
 class TcpClientModule_Impl;
 using namespace module;
@@ -40,22 +40,23 @@ class TcpClientModule_Impl final :
 public:
 	TcpClientModule_Impl();
     virtual ~TcpClientModule_Impl();
+
+	virtual void onClose();
+	virtual void onReceiveData(const char* data, int32_t size);
+	virtual void onReceiveError();
+	virtual void onConnectDone();
+
 public:
-	virtual IM::Login::IMLoginRes* doLogin(CString &linkaddr, UInt16 port
-		, CString& uName, std::string& pass);
+	virtual IM::Login::IMLoginRes* doLogin(
+		CString &linkaddr, UInt16 port,
+		CString& uName, std::string& pass);
 	virtual void shutdown();
 	virtual void sendPacket(UInt16 moduleId, google::protobuf::MessageLite* pbBody);
 	virtual void sendPacket(UInt16 moduleId, UInt16 cmdId, google::protobuf::MessageLite* pbBody);
 	virtual void sendPacket(UInt16 moduleId, UInt16 cmdId, UInt16 seq,google::protobuf::MessageLite* pbBody);
 
 	virtual void startHeartbeat();
-	virtual UInt8 getTcpClientNetState()const;
-
-public:
-	virtual void onReceiveData(const char* data, int32_t size);
-	virtual void onReceiveError();
-	virtual void onConnectDone();
-	virtual void onClose();
+	virtual UInt8 getTcpClientNetState() const;
 
 private:
 	void _stopHearbeat();
@@ -67,13 +68,17 @@ private:
 
 private:
 	IM::Login::IMLoginRes*			m_pImLoginResp;
+
 	module::ITimerEvent*			m_pHearbeatTimer;
 	ServerPingTimer*				m_pServerPingTimer;
-	BOOL							m_bDoReloginServerNow;
+
 	UInt8							m_tcpClientState;
 	HANDLE							m_eventConnected;
 	HANDLE							m_eventReceived;
 	int								m_socketHandle;
+
+	BOOL							m_bDoReloginServerNow;
+
 	imcore::TTPBHeader				m_TTPBHeader;
 };
 

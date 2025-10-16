@@ -22,9 +22,6 @@
 
 #define READ_BUF_SIZE	1024 * 128
 
-class CImConn;
-typedef unordered_map<net_handle_t, CImConn*>		ConnMap_t;
-
 struct ITcpSocketCallback
 {
 	virtual void onClose() = 0;
@@ -64,6 +61,9 @@ protected:
 
 	ITcpSocketCallback*	m_pTcpSocketCB;
 };
+
+// CImConn对象与TCP连接绑定
+typedef unordered_map<net_handle_t, CImConn*>		ConnMap_t;
 
 void imconn_callback(void* callback_data, uint8_t msg, uint32_t handle, void* pParam);
 

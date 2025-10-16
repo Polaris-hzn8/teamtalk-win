@@ -57,7 +57,7 @@ private:
 	UInt16		m_moduleId = 0;
 	UInt16		m_commandId = 0;
 	UInt16		m_seqNumber = 0;	// ∞¸–Ú∫≈
-	UInt16		m_reserved = 0; // ±£¡Ù
+	UInt16		m_reserved = 0;		// ±£¡Ù
 
 	byte*		m_pHeaderBuff = 0;
 };

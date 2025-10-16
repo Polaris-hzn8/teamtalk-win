@@ -1,4 +1,4 @@
-# 逻辑队列&代理窗口事件处理
+# ui代理窗口事件处理
 
 ---
 
@@ -6,74 +6,6 @@
 
 1. 网络IO线程负责处理IO数据的读写操作
 2. 主线程用于界面消息循环与用户交互，并且与IO线程进行数据交换
-
-### 1.逻辑队列
-
-逻辑队列的启动方式，OperationManager::startup()启动逻辑队列处理线程，进行while循环处理std::list
-
-```cpp
-IMCoreErrorCode OperationManager::startup()
-{
-    m_operationThread = std::thread([&]
-    {
-        std::unique_lock <std::mutex> lck(m_cvMutex);
-        Operation* pOperation = nullptr;
-        while (m_bContinue)
-        {
-            if (!m_bContinue)
-                break;
-            if (m_vecRealtimeOperations.empty())
-                m_CV.wait(lck);//没有任务，线程进行条件等待
-            if (!m_bContinue)
-                break;
-            {
-                std::lock_guard<std::mutex> lock(m_mutexOperation);
-                if (m_vecRealtimeOperations.empty())
-                    continue;
-                pOperation = m_vecRealtimeOperations.front();
-                m_vecRealtimeOperations.pop_front();
-            }
-            if (!m_bContinue)
-                break;
-            if (pOperation)
-            {
-                pOperation->process();//有任务，任务出队，调用任务的process函数处理
-                pOperation->release();//处理完即自己释放掉
-            }
-        }
-    });
-    return IMCORE_OK;
-}
-
-void Operation::process()
-{
-    try
-    {
-        m_state = OPERATION_RUNNING;
-        processOpertion();这是一个纯虚函数，该类是抽象类，不同任务类继承该类，并重写该函数，处理不同的逻辑任务
-    }
-    catch (Exception& exc)
-    {
-        assert(false);
-        LOG__(ERR, _T("process exception,reason:%s"),exc.what());
-    }
-    catch (std::exception& exc)
-    {
-        assert(false);
-        LOG__(ERR, _T("process exception,reason:%s"), exc.what());
-    }
-    catch (...)
-    {
-        assert(false);
-        LOG__(ERR, _T("process unknown exception"));
-    }
-    m_state = OPERATION_FINISHED;
-}
-```
-
-OperationManager作为任务管理类，拥有这个逻辑队列，并可以对逻辑任务队列进行添加删除任务，
-
-添加任务有两种方式，普通插入添加startOperation，和使用lambda表达式添加startOperationWithLambda
 
 ### 2.HTTP队列实现方式
 

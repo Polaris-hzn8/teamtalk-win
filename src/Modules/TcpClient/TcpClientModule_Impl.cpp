@@ -29,6 +29,7 @@ namespace module
 		return &module;
 	}
 }
+
 namespace
 {
 	UInt16 g_seqNum = 0;
@@ -65,11 +66,12 @@ namespace
 }
 
 TcpClientModule_Impl::TcpClientModule_Impl()
-:m_tcpClientState(TCPCLIENT_STATE_OK)
-,m_pImLoginResp(0)
-,m_pHearbeatTimer(0)
-,m_pServerPingTimer(0)
-,m_bDoReloginServerNow(FALSE)
+	:m_tcpClientState(TCPCLIENT_STATE_OK)
+	,m_pImLoginResp(nullptr)
+	,m_pHearbeatTimer(nullptr)
+	,m_pServerPingTimer(nullptr)
+	,m_bDoReloginServerNow(FALSE)
+	,m_socketHandle(-1)
 {
 	m_eventReceived = CreateEvent(NULL, FALSE, FALSE, NULL);
 	m_eventConnected = CreateEvent(NULL, FALSE, FALSE, NULL);
@@ -81,14 +83,16 @@ TcpClientModule_Impl::~TcpClientModule_Impl()
 	CloseHandle(m_eventConnected);
 	CloseHandle(m_eventReceived);
 	delete m_pImLoginResp;
-	m_pImLoginResp = 0;
+	m_pImLoginResp = nullptr;
 }
 
 void TcpClientModule_Impl::onClose()
 {
-	LOG__(ERR, _T("on socket onClose,handle:%d"),m_socketHandle);
+	LOG__(ERR, _T("on socket onClose,handle:%d"), m_socketHandle);
+
 	m_tcpClientState = TCPCLIENT_STATE_DISCONNECT;
 	module::getTcpClientModule()->asynNotifyObserver(KEY_TCPCLIENT_STATE);
+
 	_stopHearbeat();
 	
 	imcore::IMLibCoreClose(m_socketHandle);
@@ -101,15 +105,15 @@ void TcpClientModule_Impl::onReceiveData(const char* data, int32_t size)
 		m_pServerPingTimer->m_bHasReceivedPing = TRUE;
 
 	imcore::TTPBHeader header;
-	header.unSerialize((byte*)data, imcore::HEADER_LENGTH);	
-	if (IM::BaseDefine::CID_OTHER_HEARTBEAT == header.getCommandId() && IM::BaseDefine::SID_OTHER == header.getModuleId())
+	header.unSerialize((byte*)data, imcore::HEADER_LENGTH);
+	if (IM::BaseDefine::CID_OTHER_HEARTBEAT == header.getCommandId() &&
+		IM::BaseDefine::SID_OTHER == header.getModuleId())
 	{
 		//模块器端过来的心跳包，不跳到业务层派发
 		return;
 	}
 
-	LOG__(NET, _T("receiveData message moduleId:0x%x,commandId:0x%x")
-		, header.getModuleId(), header.getCommandId());
+	LOG__(NET, _T("receiveData message moduleId:0x%x, commandId:0x%x"),header.getModuleId(), header.getCommandId());
 
 	if (g_seqNum == header.getSeqNumber())
 	{
@@ -138,8 +142,9 @@ void TcpClientModule_Impl::onConnectDone()
 	}
 }
 
-IM::Login::IMLoginRes* TcpClientModule_Impl::doLogin(CString &linkaddr, UInt16 port
-	,CString& uName,std::string& pass)
+IM::Login::IMLoginRes* TcpClientModule_Impl::doLogin(
+	CString& linkaddr, UInt16 port,
+	CString& uName, std::string& pass)
 {
 	m_socketHandle = imcore::IMLibCoreConnect(util::cStringToString(linkaddr), port);
 	imcore::IMLibCoreRegisterCallback(m_socketHandle, this);
@@ -156,8 +161,7 @@ IM::Login::IMLoginRes* TcpClientModule_Impl::doLogin(CString &linkaddr, UInt16 p
 		if (TCPCLIENT_STATE_OK != m_tcpClientState)
 			return 0;
 
-		sendPacket(IM::BaseDefine::SID_LOGIN, IM::BaseDefine::CID_LOGIN_REQ_USERLOGIN, ++g_seqNum
-			, &imLoginReq);
+		sendPacket(IM::BaseDefine::SID_LOGIN, IM::BaseDefine::CID_LOGIN_REQ_USERLOGIN, ++g_seqNum, &imLoginReq);
 		m_pImLoginResp->Clear();
 		util::waitSingleObject(m_eventReceived, 10000);
 	}
@@ -245,8 +249,7 @@ void TcpClientModule_Impl::_handlePacketOperation(const char* data, UInt32 size)
 		imcore::TTPBHeader header;
 		header.unSerialize((byte*)copyInBuffer.data(),imcore::HEADER_LENGTH);
 
-		module::IPduPacketParse* pModule
-			= (module::IPduPacketParse*)__getModule(header.getModuleId());
+		module::IPduPacketParse* pModule = (module::IPduPacketParse*)__getModule(header.getModuleId());
 		if (!pModule)
 		{
 			assert(FALSE);
@@ -285,9 +288,10 @@ UInt8 TcpClientModule_Impl::getTcpClientNetState() const
 	return m_tcpClientState;
 }
 
+///////////////////////////////// ServerPingTimer /////////////////////////////////
 ServerPingTimer::ServerPingTimer(TcpClientModule_Impl* pTcpClient)
-:m_pTcpClient(pTcpClient)
-,m_bHasReceivedPing(FALSE)
+	:m_pTcpClient(pTcpClient)
+	,m_bHasReceivedPing(FALSE)
 {
 
 }

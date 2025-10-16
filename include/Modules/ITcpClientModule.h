@@ -23,8 +23,8 @@ namespace IM
 	}
 }
 NAMESPACE_BEGIN(module)
-const std::string MODULE_TCPCLIENT_PREFIX = "TcpClient";
 
+const std::string MODULE_TCPCLIENT_PREFIX = "TcpClient";
 //KEYID
 const std::string KEY_TCPCLIENT_STATE = MODULE_TCPCLIENT_PREFIX + "State";	//TCP长连状态变更
 
