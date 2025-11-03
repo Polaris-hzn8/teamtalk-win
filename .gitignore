@@ -407,14 +407,6 @@ FodyWeavers.xsd
 !**/flash11.tlh
 
 # common lib
-inport_lib/*
-!inport_lib/libprotobuf-lite.lib
-!inport_lib/sqlite3.lib
-
-# package file
-package/**
-!package/module/
-!package/module/ttlogconfig.ini
-!package/gui
-!package/data
-!package/chinese.ini
+import_lib/*
+!import_lib/libprotobuf-lite.lib
+!import_lib/sqlite3.lib
