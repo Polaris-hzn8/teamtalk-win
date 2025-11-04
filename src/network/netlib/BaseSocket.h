@@ -9,8 +9,8 @@
 #ifndef __SOCKET_H__
 #define __SOCKET_H__
 
-#include "network/util.h"
-#include "network/ostype.h"
+#include "util.h"
+#include "ostype.h"
 
 enum
 {

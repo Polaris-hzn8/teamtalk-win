@@ -9,7 +9,7 @@
 #ifndef __NETLIB_H__
 #define __NETLIB_H__
 
-#include "network/ostype.h"
+#include "ostype.h"
 
 #define NETLIB_OPT_SET_CALLBACK			1	
 #define NETLIB_OPT_SET_CALLBACK_DATA	2

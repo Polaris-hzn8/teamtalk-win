@@ -15,7 +15,7 @@
 #include "utility/utilStrCodingAPI.h"
 #include "ProtocolBuffer/IM.Message.pb.h"
 #include "network/ImCore.h"
-#include "network/TTPBHeader.h"
+#include "network/ImPduBase.h"
 
 namespace
 {

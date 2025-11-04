@@ -17,7 +17,7 @@
 #include "cxImage/cxImage/ximage.h"
 #include "ProtocolBuffer/IM.Buddy.pb.h"
 #include "network/ImCore.h"
-#include "network/TTPBHeader.h"
+#include "network/ImPduBase.h"
 #include "../Session/Operation/DownloadAvatarHttpOperation.h"
 #include <random>
 

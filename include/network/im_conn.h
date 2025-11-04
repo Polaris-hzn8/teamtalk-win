@@ -11,9 +11,9 @@
 
 #include <map>
 #include <string>
+#include "util.h"
 #include "netlib.h"
-#include "UtilPdu.h"
-#include "network/util.h"
+#include "ImPduUtil.h"
 
 #define SERVER_HEARTBEAT_INTERVAL	5000
 #define SERVER_TIMEOUT				30000

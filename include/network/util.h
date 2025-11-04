@@ -11,10 +11,8 @@
 
 #define _CRT_SECURE_NO_DEPRECATE	// remove warning C4996, 
 
-#include "ostype.h"
 #include "Lock.h"
-#include "yaolog/yaolog.h"
-#include "GlobalConfig.h"
+#include "ostype.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,13 +24,15 @@
 #include <sys/stat.h>
 #include <assert.h>
 
+#include "GlobalConfig.h"
+#include "yaolog/yaolog.h"
 
 #ifdef _MSC_VER
 #define	snprintf	sprintf_s
 #else
+#include <time.h>
 #include <stdarg.h>
 #include <pthread.h>
-#include <time.h>
 #include <sys/time.h>
 #endif
 

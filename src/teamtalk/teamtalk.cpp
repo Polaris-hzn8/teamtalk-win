@@ -13,7 +13,7 @@
 #include "Modules/ISysConfigModule.h"
 #include "Modules/ITcpClientModule.h"
 #include "Modules/UIEventManager.h"
-#include "network/OperationManager.h"
+#include "network/operations/OperationManager.h"
 #include "network/ImCore.h"
 
 CteamtalkApp theApp;

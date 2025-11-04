@@ -6,7 +6,7 @@
  brief:
 */
 
-#include "network/TTPBHeader.h"
+#include "ImPduBase.h"
 
 NAMESPACE_BEGIN(imcore)
 

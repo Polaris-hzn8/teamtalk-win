@@ -6,10 +6,10 @@
  brief:
 */
 
+#include "im_conn.h"
+#include "ImPduBase.h"
 #include "GlobalDefine.h"
-#include "network/imconn.h"
 #include "TcpSocketsManager.h"
-#include "network/TTPBHeader.h"
 
 void imconn_callback(void* callback_data, uint8_t msg, uint32_t handle, void* pParam)
 {

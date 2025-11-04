@@ -16,7 +16,7 @@
 #include "ReceiveMsgManage.h"
 #include "SendMsgManage.h"
 #include "network/ImCore.h"
-#include "network/TTPBHeader.h"
+#include "network/ImPduBase.h"
 
 /******************************************************************************/
 namespace module

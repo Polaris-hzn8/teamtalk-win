@@ -13,7 +13,7 @@
 #include "utility/Multilingual.h"
 #include "FileTransfer/TransferManager.h"
 #include "ProtocolBuffer/IM.File.pb.h"
-#include "network/TTPBHeader.h"
+#include "network/ImPduBase.h"
 #include "network/ImCore.h"
 /******************************************************************************/
 namespace module

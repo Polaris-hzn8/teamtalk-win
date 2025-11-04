@@ -29,7 +29,7 @@
 #include "ProtocolBuffer/IM.Message.pb.h"
 #include "ProtocolBuffer/IM.File.pb.h"
 #include "network/ImCore.h"
-#include "network/TTPBHeader.h"
+#include "network/ImPduBase.h"
 /******************************************************************************/
 
 

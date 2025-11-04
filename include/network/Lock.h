@@ -9,8 +9,8 @@
 #ifndef __LOCK_H__
 #define __LOCK_H__
 
-#include "network/ostype.h"
-#include "network/networkdll.h"
+#include "ostype.h"
+#include "networkdll.h"
 
 class NETWORK_DLL CFastLock
 {

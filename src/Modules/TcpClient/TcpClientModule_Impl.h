@@ -9,8 +9,8 @@
 #ifndef TCPCLIENTMODULE_IMPL_7C021D09_7902_44DE_BE96_F22561B99198_H__
 #define TCPCLIENTMODULE_IMPL_7C021D09_7902_44DE_BE96_F22561B99198_H__
 
-#include "network/imconn.h"
-#include "network/TTPBHeader.h"
+#include "network/im_conn.h"
+#include "network/ImPduBase.h"
 #include "Modules/ITimerEvent.h"
 #include "Modules/ITcpClientModule.h"
 

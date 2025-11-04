@@ -24,7 +24,7 @@
 #include "utility/Multilingual.h"
 #include "Session/SessionManager.h"
 #include "network/ImCore.h"
-#include "network/TTPBHeader.h"
+#include "network/ImPduBase.h"
 
 /******************************************************************************/
 namespace module

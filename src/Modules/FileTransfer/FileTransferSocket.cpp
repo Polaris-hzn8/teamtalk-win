@@ -7,7 +7,6 @@
 #include "StdAfx.h"
 #include "FileTransferSocket.h"
 #include "TransferManager.h"
-#include "network/imconn.h"
 #include "Modules/IFileTransferModule.h"
 #include "Modules/IMiscModule.h"
 #include "Modules/ISysConfigModule.h"
@@ -15,8 +14,9 @@
 #include "TransferFile.h"
 #include "ProtocolBuffer/IM.File.pb.h"
 #include "ProtocolBuffer/IM.Other.pb.h"
-#include "network/TTPBHeader.h"
+#include "network/ImPduBase.h"
 #include "network/ImCore.h"
+#include "network/im_conn.h"
 /******************************************************************************/
 FileTransferSocket::FileTransferSocket(std::string& taskId)
 : m_pPingTimer(0)

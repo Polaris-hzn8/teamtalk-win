@@ -11,13 +11,13 @@
 #include "Modules/ISessionModule.h"
 #include "Modules/ITcpClientModule.h"
 #include "Modules/ISysConfigModule.h"
-#include "utility/utilStrCodingAPI.h"
-#include "utility/Multilingual.h"
+#include "Modules/Session/Operation/DownloadAvatarHttpOperation.h"
 #include "UI/CreateDiscussionGrpDialog.h"
 #include "UI/ChangeDiscussionGrpMemberDialog.h"
-#include "../Session/Operation/DownloadAvatarHttpOperation.h"
 #include "network/ImCore.h"
-#include "network/TTPBHeader.h"
+#include "network/ImPduBase.h"
+#include "utility/utilStrCodingAPI.h"
+#include "utility/Multilingual.h"
 #include <TUPLE>
 /******************************************************************************/
 namespace module

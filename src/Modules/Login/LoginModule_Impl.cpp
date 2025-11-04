@@ -11,7 +11,7 @@
 #include "ReloginManager.h"
 #include "LoginModule_Impl.h"
 #include "network/ImCore.h"
-#include "network/TTPBHeader.h"
+#include "network/ImPduBase.h"
 #include "Modules/IMiscModule.h"
 #include "Modules/ISysConfigModule.h"
 #include "Modules/ITcpClientModule.h"

@@ -8,7 +8,7 @@
 #ifndef TCPSOCKETSMANAGER_2EAF3E98_E9C6_4F3D_ADE6_387E54BCA3AC_H__
 #define TCPSOCKETSMANAGER_2EAF3E98_E9C6_4F3D_ADE6_387E54BCA3AC_H__
 
-#include "network/imconn.h"
+#include "im_conn.h"
 
 class TcpSocketsManager
 {

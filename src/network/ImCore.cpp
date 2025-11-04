@@ -7,9 +7,10 @@
 */
 
 #include <process.h>
-#include "network/ImCore.h"
-#include "OperationManager.h"
-#include "TcpSocketsManager.h"
+#include "ImCore.h"
+#include "netlib/TcpSocketsManager.h"
+#include "operations/OperationManager.h"
+
 using namespace std;
 
 NAMESPACE_BEGIN(imcore)

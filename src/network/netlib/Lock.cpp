@@ -6,7 +6,7 @@
  brief: 自定义封装的lock_guard
 */
 
-#include "network/Lock.h"
+#include "Lock.h"
 
 CFastLock::CFastLock()
 {

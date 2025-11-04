@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "network/UtilPdu.h"
+#include "ImPduUtil.h"
 
 ///////////// CSimpleBuffer ////////////////
 CSimpleBuffer::CSimpleBuffer()

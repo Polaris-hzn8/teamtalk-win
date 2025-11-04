@@ -9,7 +9,7 @@
 #ifndef TTPBHEADER_BE699480_6F65_405B_9E8A_F5B0F13800D0_H__
 #define TTPBHEADER_BE699480_6F65_405B_9E8A_F5B0F13800D0_H__
 
-#include "UtilPdu.h"
+#include "ImPduUtil.h"
 #include "networkdll.h"
 #include "GlobalDefine.h"
 
