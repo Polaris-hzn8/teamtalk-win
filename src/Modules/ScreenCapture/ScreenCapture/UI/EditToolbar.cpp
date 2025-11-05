@@ -9,7 +9,7 @@
 #include "stdafx.h"
 #include "EditToolbarUI.h"
 #include "../ScreenSnapshot.h"
-#include "../../3rdParty/src/cxImage/cxImage/ximage.h"
+#include "cxImage/cxImage/ximage.h"
 
 IMP_DIALOG_PROC(EditToolbarUI)
 

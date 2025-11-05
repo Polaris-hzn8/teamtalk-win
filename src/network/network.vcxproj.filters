@@ -45,9 +45,6 @@
     <ClInclude Include="..\..\include\network\ErrorCode.h">
       <Filter>Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\3rdParty\src\yaolog\yaolog.h">
-      <Filter>yaolog</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\network\IOperation.h">
       <Filter>Operations</Filter>
     </ClInclude>
@@ -84,6 +81,9 @@
     <ClInclude Include="operations\OperationManager.h">
       <Filter>Operations</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\3rdParty\share\yaolog\yaolog.h">
+      <Filter>yaolog</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -94,9 +94,6 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>ProjectFils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\yaolog\yaolog.cpp">
-      <Filter>yaolog</Filter>
     </ClCompile>
     <ClCompile Include="ImCore.cpp">
       <Filter>API</Filter>
@@ -133,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="operations\OperationManager.cpp">
       <Filter>Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rdParty\share\yaolog\yaolog.cpp">
+      <Filter>yaolog</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

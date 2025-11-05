@@ -20,7 +20,7 @@
 #include "utility/Multilingual.h"
 #include "utility/utilStrCodingAPI.h"
 #include "UIIMEdit.h"
-#include "../../3rdParty/src/cxImage/cxImage/ximage.h"
+#include "cxImage/cxImage/ximage.h"
 
 #define  TIMER_STOP_WRITING  1
 #define  TIMER_WRITING_NOTIFY 2

@@ -90,9 +90,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;MODULE_DLL;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;MODULE_DLL;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;SECURITY_WIN32=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.\;$(SolutionDir)\include;$(SolutionDir)\3rdParty\include;$(SolutionDir)\3rdParty\src\;$(SolutionDir)\3rdParty\src\cximage\cxImage\;$(SolutionDir)\3rdParty\src\json\include\;$(SolutionDir)\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\src;$(SolutionDir)\include;$(SolutionDir)\3rdParty\;$(SolutionDir)\3rdParty\share;$(SolutionDir)\3rdParty\share\protobuf\include;$(SolutionDir)\3rdParty\share\libsecurity;$(SolutionDir)\3rdParty\share\sqlite3\include;$(SolutionDir)\3rdParty\httpclient;$(SolutionDir)\3rdParty\share\jsoncpp\include;$(SolutionDir)\src\Modules</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -119,376 +119,286 @@
     </BuildLog>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximabmp.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximabmp.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximaenc.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximaenc.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximaexif.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximaexif.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximage.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximage.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximagif.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximagif.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximainfo.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximainfo.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximajpg.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximajpg.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximalpha.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximalpha.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximalyr.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximalyr.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximapal.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximapal.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximapng.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximapng.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximatran.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximatran.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximawbmp.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximawbmp.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\ximawnd.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\ximawnd.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\cxImage\xmemfile.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\cxImage\xmemfile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcapimin.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcapimin.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcapistd.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcapistd.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jccoefct.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jccoefct.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jccolor.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jccolor.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcdctmgr.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcdctmgr.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jchuff.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jchuff.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcinit.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcinit.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcmainct.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcmainct.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcmarker.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcmarker.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcmaster.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcmaster.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcomapi.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcomapi.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcparam.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcparam.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcphuff.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcphuff.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcprepct.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcprepct.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jcsample.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jcsample.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jctrans.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jctrans.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdapimin.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdapimin.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdapistd.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdapistd.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdatadst.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdatadst.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdatasrc.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdatasrc.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdcoefct.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdcoefct.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdcolor.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdcolor.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jddctmgr.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jddctmgr.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdhuff.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdhuff.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdinput.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdinput.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdmainct.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdmainct.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdmarker.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdmarker.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdmaster.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdmaster.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdmerge.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdmerge.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdphuff.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdphuff.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdpostct.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdpostct.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdsample.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdsample.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jdtrans.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jdtrans.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jerror.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jerror.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jfdctflt.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jfdctflt.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jfdctfst.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jfdctfst.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jfdctint.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jfdctint.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jidctflt.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jidctflt.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jidctfst.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jidctfst.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jidctint.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jidctint.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jidctred.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jidctred.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jmemmgr.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jmemmgr.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jmemnobs.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jmemnobs.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jquant1.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jquant1.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jquant2.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jquant2.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\jpeg\jutils.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\jpeg\jutils.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\png.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\png.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngerror.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngerror.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pnggccrd.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pnggccrd.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngget.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngget.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngmem.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngmem.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngpread.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngpread.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngread.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngread.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngrio.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngrio.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngrtran.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngrtran.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngrutil.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngrutil.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngset.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngset.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngtrans.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngtrans.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngvcrd.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngvcrd.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngwio.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngwio.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngwrite.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngwrite.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngwtran.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngwtran.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\png\pngwutil.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\png\pngwutil.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\adler32.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\adler32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\compress.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\compress.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\crc32.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\crc32.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\deflate.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\deflate.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\gzio.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\gzio.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\infback.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\infback.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\inffast.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\inffast.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\inflate.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\inflate.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\inftrees.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\inftrees.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\trees.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\trees.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\uncompr.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\uncompr.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\cxImage\zlib\zutil.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    <ClCompile Include="..\..\3rdParty\share\cxImage\zlib\zutil.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\libsecurity\aes_core.cpp">
+    <ClCompile Include="..\..\3rdParty\share\libsecurity\aes_core.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\libsecurity\base64.cpp">
+    <ClCompile Include="..\..\3rdParty\share\libsecurity\base64.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\libsecurity\md5.cpp">
+    <ClCompile Include="..\..\3rdParty\share\libsecurity\md5.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\3rdParty\src\libsecurity\security.cpp">
+    <ClCompile Include="..\..\3rdParty\share\libsecurity\security.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\include\ProtocolBuffer\IM.BaseDefine.pb.cc">
@@ -604,48 +514,48 @@
     <ClCompile Include="UserList\UserListModule_Impl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\3rdParty\include\security.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\xfile.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\ximabmp.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\ximacfg.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\ximadef.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\ximage.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\ximagif.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\ximaiter.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\ximajpg.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\ximapng.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\ximath.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\ximawbmp.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\xiofile.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\cxImage\xmemfile.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\jpeg\jchuff.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\jpeg\jconfig.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\jpeg\jdct.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\jpeg\jdhuff.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\jpeg\jerror.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\jpeg\jinclude.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\jpeg\jmemsys.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\jpeg\jmorecfg.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\jpeg\jpegint.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\jpeg\jpeglib.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\jpeg\jversion.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\png\png.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\png\pngconf.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\zlib\crc32.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\zlib\deflate.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\zlib\inffast.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\zlib\inffixed.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\zlib\inflate.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\zlib\inftrees.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\zlib\trees.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\zlib\zconf.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\zlib\zconf.in.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\zlib\zlib.h" />
-    <ClInclude Include="..\..\3rdParty\src\cxImage\zlib\zutil.h" />
-    <ClInclude Include="..\..\3rdParty\src\libsecurity\aes.h" />
-    <ClInclude Include="..\..\3rdParty\src\libsecurity\aes_locl.h" />
-    <ClInclude Include="..\..\3rdParty\src\libsecurity\base64.h" />
-    <ClInclude Include="..\..\3rdParty\src\libsecurity\md5.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\xfile.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\ximabmp.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\ximacfg.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\ximadef.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\ximage.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\ximagif.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\ximaiter.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\ximajpg.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\ximapng.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\ximath.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\ximawbmp.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\xiofile.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\cxImage\xmemfile.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\jpeg\jchuff.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\jpeg\jconfig.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\jpeg\jdct.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\jpeg\jdhuff.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\jpeg\jerror.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\jpeg\jinclude.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\jpeg\jmemsys.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\jpeg\jmorecfg.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\jpeg\jpegint.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\jpeg\jpeglib.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\jpeg\jversion.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\png\png.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\png\pngconf.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\zlib\crc32.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\zlib\deflate.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\zlib\inffast.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\zlib\inffixed.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\zlib\inflate.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\zlib\inftrees.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\zlib\trees.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\zlib\zconf.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\zlib\zconf.in.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\zlib\zlib.h" />
+    <ClInclude Include="..\..\3rdParty\share\cxImage\zlib\zutil.h" />
+    <ClInclude Include="..\..\3rdParty\share\libsecurity\aes.h" />
+    <ClInclude Include="..\..\3rdParty\share\libsecurity\aes_locl.h" />
+    <ClInclude Include="..\..\3rdParty\share\libsecurity\base64.h" />
+    <ClInclude Include="..\..\3rdParty\share\libsecurity\md5.h" />
+    <ClInclude Include="..\..\3rdParty\share\libsecurity\security.h" />
     <ClInclude Include="..\..\include\Modules\ICallbackOperationEvent.h" />
     <ClInclude Include="..\..\include\Modules\IDatabaseModule.h" />
     <ClInclude Include="..\..\include\Modules\IEmotionModule.h" />
@@ -744,20 +654,17 @@
     <ClInclude Include="UserList\UserListModule_Impl.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\3rdParty\src\cxImage\jpeg\Jpeg.dsp" />
-    <None Include="..\..\3rdParty\src\cxImage\png\ANNOUNCE" />
-    <None Include="..\..\3rdParty\src\cxImage\png\CHANGES" />
-    <None Include="..\..\3rdParty\src\cxImage\png\INSTALL" />
-    <None Include="..\..\3rdParty\src\cxImage\png\KNOWNBUG" />
-    <None Include="..\..\3rdParty\src\cxImage\png\LICENSE" />
-    <None Include="..\..\3rdParty\src\cxImage\png\png.dsp" />
-    <None Include="..\..\3rdParty\src\cxImage\png\README" />
-    <None Include="..\..\3rdParty\src\cxImage\png\TODO" />
-    <None Include="..\..\3rdParty\src\cxImage\png\Y2KINFO" />
-    <None Include="..\..\3rdParty\src\cxImage\zlib\ChangeLog" />
-    <None Include="..\..\3rdParty\src\cxImage\zlib\FAQ" />
-    <None Include="..\..\3rdParty\src\cxImage\zlib\README" />
-    <None Include="..\..\3rdParty\src\cxImage\zlib\zlib.dsp" />
+    <None Include="..\..\3rdParty\share\cxImage\png\ANNOUNCE" />
+    <None Include="..\..\3rdParty\share\cxImage\png\CHANGES" />
+    <None Include="..\..\3rdParty\share\cxImage\png\INSTALL" />
+    <None Include="..\..\3rdParty\share\cxImage\png\KNOWNBUG" />
+    <None Include="..\..\3rdParty\share\cxImage\png\LICENSE" />
+    <None Include="..\..\3rdParty\share\cxImage\png\README" />
+    <None Include="..\..\3rdParty\share\cxImage\png\TODO" />
+    <None Include="..\..\3rdParty\share\cxImage\png\Y2KINFO" />
+    <None Include="..\..\3rdParty\share\cxImage\zlib\ChangeLog" />
+    <None Include="..\..\3rdParty\share\cxImage\zlib\FAQ" />
+    <None Include="..\..\3rdParty\share\cxImage\zlib\README" />
     <None Include="Modules.def" />
     <None Include="res\Modules.rc2" />
   </ItemGroup>
@@ -765,11 +672,10 @@
     <ResourceCompile Include="Modules.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\3rdParty\src\cxImage\jpeg\change.log" />
-    <Text Include="..\..\3rdParty\src\cxImage\jpeg\filelist.txt" />
-    <Text Include="..\..\3rdParty\src\cxImage\jpeg\Readme.txt" />
-    <Text Include="..\..\3rdParty\src\cxImage\png\libpng-1.2.24.txt" />
-    <Text Include="..\..\3rdParty\src\cxImage\zlib\algorithm.txt" />
+    <Text Include="..\..\3rdParty\share\cxImage\jpeg\filelist.txt" />
+    <Text Include="..\..\3rdParty\share\cxImage\jpeg\Readme.txt" />
+    <Text Include="..\..\3rdParty\share\cxImage\png\libpng-1.2.24.txt" />
+    <Text Include="..\..\3rdParty\share\cxImage\zlib\algorithm.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,7 +6,7 @@
 
 #include "stdafx.h"
 #include "DownloadAvatarHttpOperation.h"
-#include "http/httpclient/http.h"
+#include "httpclient/http.h"
 #include "Modules/IMiscModule.h"
 #include "Modules/IDatabaseModule.h"
 #include "Modules/ISysConfigModule.h"

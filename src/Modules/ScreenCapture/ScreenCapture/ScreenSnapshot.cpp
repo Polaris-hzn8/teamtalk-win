@@ -8,7 +8,7 @@
 
 #include "stdafx.h"
 #include "ScreenSnapshot.h"
-#include "../../3rdParty/src/cxImage/cxImage/ximage.h"
+#include "cxImage/cxImage/ximage.h"
 
 ScreenSnapshot::ScreenSnapshot()
 :m_hMemDC(NULL),

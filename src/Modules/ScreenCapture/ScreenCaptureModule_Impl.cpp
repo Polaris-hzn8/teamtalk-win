@@ -11,7 +11,7 @@
 #include "ScreenCapture/ScreenCapture.h"
 #include "utility/utilCommonAPI.h"
 #include "utility/utilStrCodingAPI.h"
-#include "../../3rdParty/src/cxImage/cxImage/ximage.h"
+#include "cxImage/cxImage/ximage.h"
 
 namespace module
 {

@@ -6,7 +6,7 @@
 
 #include "stdafx.h"
 #include "SendImgHttpOperation.h"
-#include "http/httpclient/http.h"
+#include "httpclient/http.h"
 #include "utility/utilStrCodingAPI.h"
 #include "cxImage/cxImage/ximage.h"
 #include "Modules/ISysConfigModule.h"

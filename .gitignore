@@ -410,3 +410,6 @@ FodyWeavers.xsd
 import_lib/*
 !import_lib/libprotobuf-lite.lib
 !import_lib/sqlite3.lib
+
+# protobuff
+3rdParty/share/protobuf/protobuf-2.6.1/*

@@ -10,7 +10,7 @@
 #include <shellapi.h>
 #include "stdafx.h"
 #include "utility/utilCommonAPI.h"
-#include "md5.h"
+#include "sk_md5.h"
 
 NAMESPACE_BEGIN(util)
 

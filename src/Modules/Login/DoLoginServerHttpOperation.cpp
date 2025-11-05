@@ -8,7 +8,7 @@
 
 #include "stdafx.h"
 #include "json/reader.h"
-#include "http/httpclient/http.h"
+#include "httpclient/http.h"
 #include "utility/Multilingual.h"
 #include "utility/utilStrCodingAPI.h"
 #include "Modules/ISysConfigModule.h"

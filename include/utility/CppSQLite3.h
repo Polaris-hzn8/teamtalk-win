@@ -48,7 +48,7 @@
 
 #include <cstdio>
 #include <cstring>
-#include "sqlite3/sqlite3.h"
+#include "sqlite3.h"
 #include "utility/utility_dll.h"
 
 #define CPPSQLITE_ERROR 1000
