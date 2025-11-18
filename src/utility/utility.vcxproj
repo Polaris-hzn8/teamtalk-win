@@ -189,7 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\utility.rc2" />
-    <None Include="utility.def" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="utility.rc" />

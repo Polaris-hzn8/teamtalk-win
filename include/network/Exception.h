@@ -9,9 +9,9 @@
 #ifndef EXCEPTION_7889B422_4F2F_495F_AFAC_180F657486D2_H__
 #define EXCEPTION_7889B422_4F2F_495F_AFAC_180F657486D2_H__
 
-#include "GlobalDefine.h"
-#include "networkdll.h"
 #include <string>
+#include "ostype.h"
+#include "GlobalDefine.h"
     
 NAMESPACE_BEGIN(imcore)
 

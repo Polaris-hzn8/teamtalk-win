@@ -10,8 +10,8 @@
 #define IOPERATION123_D8CF1B19_B95A_4A75_82FB_7572A1BB9A30_H__
 
 #include <memory>
+#include "ostype.h"
 #include "GlobalDefine.h"
-#include "network/networkdll.h"
 
 NAMESPACE_BEGIN(imcore)
 

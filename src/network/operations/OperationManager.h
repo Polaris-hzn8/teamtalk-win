@@ -17,7 +17,7 @@
 #include <string>
 #include <functional>
 #include <condition_variable>
-#include "network/ErrorCode.h"
+#include "ErrorCode.h"
 
 NAMESPACE_BEGIN(imcore)
 

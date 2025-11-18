@@ -9,9 +9,9 @@
 #ifndef OPERATION_D8F2BC78_108D_4219_9D6E_F1728D1B8C95_H__
 #define OPERATION_D8F2BC78_108D_4219_9D6E_F1728D1B8C95_H__
 
+#include "ostype.h"
 #include "IOperation.h"
 #include "GlobalDefine.h"
-#include "network/networkdll.h"
 
 NAMESPACE_BEGIN(imcore)
 

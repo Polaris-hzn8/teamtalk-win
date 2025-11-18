@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ProjectFils">
-      <UniqueIdentifier>{fb3a020b-2f33-435c-90f5-a6edb469be6a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="API">
       <UniqueIdentifier>{804301a3-7407-4a7b-81b5-64272e7045c6}</UniqueIdentifier>
     </Filter>
@@ -22,23 +19,14 @@
     <Filter Include="netlib\impdu">
       <UniqueIdentifier>{468c9161-d381-4bce-b6ac-cb6df7c0dd05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="netlib\core">
+      <UniqueIdentifier>{0d4f3f59-c7ae-4177-a028-639af52ecf7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="netlib\utility">
+      <UniqueIdentifier>{ee4af447-c4d6-4032-8076-f9fab667261d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h">
-      <Filter>ProjectFils</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>ProjectFils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\network\networkdll.h">
-      <Filter>ProjectFils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\network\im_conn.h">
-      <Filter>netlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\network\netlib.h">
-      <Filter>netlib</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\network\ImCore.h">
       <Filter>API</Filter>
     </ClInclude>
@@ -54,26 +42,11 @@
     <ClInclude Include="..\..\include\network\Exception.h">
       <Filter>Operations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\network\util.h">
-      <Filter>netlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\network\ostype.h">
-      <Filter>netlib</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\network\Lock.h">
-      <Filter>netlib</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\network\ImPduBase.h">
       <Filter>netlib\impdu</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\network\ImPduUtil.h">
       <Filter>netlib\impdu</Filter>
-    </ClInclude>
-    <ClInclude Include="netlib\BaseSocket.h">
-      <Filter>netlib</Filter>
-    </ClInclude>
-    <ClInclude Include="netlib\EventDispatch.h">
-      <Filter>netlib</Filter>
     </ClInclude>
     <ClInclude Include="netlib\TcpSocketsManager.h">
       <Filter>TcpScoketManager</Filter>
@@ -84,17 +57,29 @@
     <ClInclude Include="..\..\3rdParty\share\yaolog\yaolog.h">
       <Filter>yaolog</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\network\netlib.h">
+      <Filter>netlib\core</Filter>
+    </ClInclude>
+    <ClInclude Include="netlib\core\BaseSocket.h">
+      <Filter>netlib\core</Filter>
+    </ClInclude>
+    <ClInclude Include="netlib\core\EventDispatch.h">
+      <Filter>netlib\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\network\Lock.h">
+      <Filter>netlib\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\network\util.h">
+      <Filter>netlib\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\network\im_conn.h">
+      <Filter>netlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\network\ostype.h">
+      <Filter>netlib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>ProjectFils</Filter>
-    </ClCompile>
-    <ClCompile Include="network.cpp">
-      <Filter>ProjectFils</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>ProjectFils</Filter>
-    </ClCompile>
     <ClCompile Include="ImCore.cpp">
       <Filter>API</Filter>
     </ClCompile>
@@ -103,24 +88,6 @@
     </ClCompile>
     <ClCompile Include="netlib\impdu\ImPduUtil.cpp">
       <Filter>netlib\impdu</Filter>
-    </ClCompile>
-    <ClCompile Include="netlib\im_conn.cpp">
-      <Filter>netlib</Filter>
-    </ClCompile>
-    <ClCompile Include="netlib\BaseSocket.cpp">
-      <Filter>netlib</Filter>
-    </ClCompile>
-    <ClCompile Include="netlib\EventDispatch.cpp">
-      <Filter>netlib</Filter>
-    </ClCompile>
-    <ClCompile Include="netlib\Lock.cpp">
-      <Filter>netlib</Filter>
-    </ClCompile>
-    <ClCompile Include="netlib\netlib.cpp">
-      <Filter>netlib</Filter>
-    </ClCompile>
-    <ClCompile Include="netlib\util.cpp">
-      <Filter>netlib</Filter>
     </ClCompile>
     <ClCompile Include="netlib\TcpSocketsManager.cpp">
       <Filter>TcpScoketManager</Filter>
@@ -133,6 +100,24 @@
     </ClCompile>
     <ClCompile Include="..\..\3rdParty\share\yaolog\yaolog.cpp">
       <Filter>yaolog</Filter>
+    </ClCompile>
+    <ClCompile Include="netlib\core\BaseSocket.cpp">
+      <Filter>netlib\core</Filter>
+    </ClCompile>
+    <ClCompile Include="netlib\core\EventDispatch.cpp">
+      <Filter>netlib\core</Filter>
+    </ClCompile>
+    <ClCompile Include="netlib\core\netlib.cpp">
+      <Filter>netlib\core</Filter>
+    </ClCompile>
+    <ClCompile Include="netlib\utility\Lock.cpp">
+      <Filter>netlib\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="netlib\utility\util.cpp">
+      <Filter>netlib\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="netlib\im_conn.cpp">
+      <Filter>netlib</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

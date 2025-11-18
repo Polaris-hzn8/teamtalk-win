@@ -77,9 +77,6 @@
     <ClInclude Include="stdafx.h">
       <Filter>Project Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Project Files</Filter>
-    </ClInclude>
     <ClInclude Include="utility.h">
       <Filter>Project Files</Filter>
     </ClInclude>
@@ -149,12 +146,12 @@
     <ClInclude Include="..\..\3rdParty\share\libsecurity\security.h">
       <Filter>3rdParty\libsecurity</Filter>
     </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Project Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\utility.rc2">
-      <Filter>Project Files</Filter>
-    </None>
-    <None Include="utility.def">
       <Filter>Project Files</Filter>
     </None>
   </ItemGroup>
