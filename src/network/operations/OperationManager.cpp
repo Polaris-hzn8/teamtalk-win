@@ -187,7 +187,7 @@ IMCoreErrorCode OperationManager::startOperationWithLambda(
 	std::string oper_name)
 {
     LambdaOperation* pLambdaOper = new LambdaOperation(operationRun);
-    pLambdaOper->set_name(oper_name);
+    pLambdaOper->setName(oper_name);
     return startOperation(pLambdaOper, delay);
 }
 
@@ -199,7 +199,7 @@ IMCoreErrorCode OperationManager::clearOperationByName(std::string oper_name)
 		m_vecRealtimeOperations.end(),
         [&](Operation* pOper)
     {
-        if (pOper->name() == oper_name)
+        if (pOper->getName() == oper_name)
         {
             LOG__(APP, _T("clearOperationByName - %S"), oper_name.c_str());
             pOper->release();

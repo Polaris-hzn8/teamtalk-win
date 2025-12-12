@@ -16,15 +16,15 @@ NAMESPACE_BEGIN(imcore)
 const std::string OPERATION_NAME_COMMON = "operation_name_common";
 
 Operation::Operation()
-:m_state(OPERATION_IDLE)
-, m_name(OPERATION_NAME_COMMON)
+	:m_optState(OPERATION_IDLE)
+	,m_optName(OPERATION_NAME_COMMON)
 {
 
 }
 
 Operation::Operation(const std::string& name)
-:m_state(OPERATION_IDLE)
-,m_name(name)
+	:m_optState(OPERATION_IDLE)
+	,m_optName(name)
 {
 
 }
@@ -38,7 +38,7 @@ void Operation::process()
 {
 	try
 	{
-		m_state = OPERATION_RUNNING;
+		m_optState = OPERATION_RUNNING;
 		processOpertion();
 	}
 	catch (Exception& exc)
@@ -56,7 +56,7 @@ void Operation::process()
 		assert(false);
 		LOG__(ERR, _T("process unknown exception"));
 	}
-	m_state = OPERATION_FINISHED;
+	m_optState = OPERATION_FINISHED;
 }
 
 void Operation::release()

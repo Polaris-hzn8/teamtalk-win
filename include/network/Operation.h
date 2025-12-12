@@ -38,12 +38,15 @@ public:
 	virtual void process();
 	virtual void release();
 
-    inline std::string name() const { return m_name; }
-    inline void set_name(__in std::string name){ m_name = name; }
-
+    inline std::string getName() const {
+		return m_optName;
+	}
+	inline void setName(const std::string& optName) {
+		m_optName = optName;
+	}
 private:
-	OperationState			m_state;
-    std::string				m_name;
+	std::string				m_optName;
+	OperationState			m_optState;
 };
 
 NAMESPACE_END(imcore)
