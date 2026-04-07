@@ -1,0 +1,108 @@
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 系统配置信息，管理系统的设置和安全证书配置信息
+*/
+
+#ifndef ISYSCONFIGMODULE_03995006_A398_4574_BAE1_549FE4543DD3_H__
+#define ISYSCONFIGMODULE_03995006_A398_4574_BAE1_549FE4543DD3_H__
+
+#include <global_define.h>
+#include <module_dll.h>
+#include <modules/Base/ModuleBase.h>
+
+NAMESPACE_BEGIN(module)
+const UInt16 SYSCONFIG_VERSIONI = 1;
+const std::string MODULE_SYSCONFIG_PREFIX = "SysConfig";
+
+//KEYID
+const std::string KEY_SYSCONFIG_UPDATED					= MODULE_SYSCONFIG_PREFIX + "Update";//界面刷新更新
+const std::string KEY_SYSCONFIG_SHOW_USERDETAILDIALOG	= MODULE_SYSCONFIG_PREFIX + "ShowUserDetailDialog";//展示用户详细信息窗口
+
+//BaseFlag
+enum
+{
+	BASE_FLAG_TOPMOST = 1 << 0,						//是否置顶，当前的窗体最前
+	BASE_FLAG_NOTIPWHENNEWMSG = 1 << 1,				//有新消息时是否提示
+	BASE_FLAG_NOSOUNDWHENMSG = 1 << 2,				//是否关闭消息声音提示
+	BASE_FLAG_SENDIMG_BY_CTRLENTER = 1 << 3,        //Ctrl + Enter发送消息替代Enter
+};
+
+//MusicID
+enum
+{
+	MUSIC_SOUND_DINGDONG =  0,	//叮咚声
+	MUSIC_SOUND_KEYBOARD,		//键盘声
+	MUSIC_SOUND_DINGLIN ,       //丁零声
+	MUSIC_SOUND_CALLMSG ,       //呼叫消息
+};
+
+struct TTConfigNeedCache
+{
+	UInt16			version = 0;
+	BOOL			isRememberPWD = TRUE;
+	CString			userName;
+	std::string		password;
+	CString			loginServIP = _T("http://access.teamtalk.im:8080/msg_server");				//默认的寻服务器地址
+	Int32			sysBaseFlag = 0;			//系统配置
+	Int32			sysSoundTypeBaseFlag = 0;	//系统配置
+};
+
+struct TTConfig : public TTConfigNeedCache
+{
+	UInt8			myselectStatus;			// 用户状态
+	UInt32			loginServPort = 0;		// 登录服务端口
+
+	CString			csUserId;				// 用户ID
+	CString			token;					// 登录令牌
+	CString			fileSysAddr;			// msfs文件服务器的地址
+	CString			fileSysBackUpAddr;		// msfs文件服务器备用的地址
+	
+	std::string		msgSevPriorIP;	// 消息服务优先地址
+	std::string		msgSevBackupIP;	// 消息服务备用地址
+	UInt32			msgServPort;	// 消息服务端口
+	std::string		userId;
+};
+
+// 系统配置信息
+// 包括系统设置和安全证书信息
+class MODULE_API ISysConfigModule : public module::ModuleBase
+{
+public:
+	// 获取系统配置信息
+	// 改变配置信息之后，需要手动的调用saveData
+	virtual TTConfig* getSystemConfig() = 0;
+	
+	// 获取用户ID
+	virtual std::string userID()const = 0;
+	virtual CString UserID()const = 0;
+	virtual UInt32 userId()const = 0;
+	
+	// 把配置数据保存到磁盘
+	virtual BOOL saveData() = 0;
+	virtual BOOL showServerConfigDialog(IN HWND hParentWnd) = 0;
+	
+	// 显示系统设置窗口
+	virtual void showSysConfigDialog(IN HWND hParentWnd) = 0;
+	
+	// 释放窗口标记false为存在，true为销毁
+	virtual void setSysConfigDialogFlag(IN BOOL bIsExist) = 0;
+	
+	// 账户目录下的用户信息更新时间 (暂时不使用)	
+	virtual UInt32 getUserInfoLatestUpdateTime(void) = 0;
+	virtual void saveUserInfoLatestUpdateTime(IN const UInt32 nLatestUpdateTime) = 0;
+
+	virtual UInt32 getDepartmentInfoLatestUpdateTime(void) = 0;
+	virtual void saveDepartmentInfoLatestUpdateTime(IN const UInt32 nLatestUpdateTime) = 0;
+
+	virtual UInt32 getRecentSessionLatestUpdateTime(void) = 0;
+	virtual void saveRecentSessionLatestUpdateTime(IN const UInt32 nLatestUpdateTime) = 0;
+};
+
+MODULE_API ISysConfigModule* getSysConfigModule();
+
+NAMESPACE_END(module)
+
+#endif// ISYSCONFIGMODULE_03995006_A398_4574_BAE1_549FE4543DD3_H__
