@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <utility/utilStrCodingAPI.h>
 #include <modules/IUserListModule.h>
 #include <modules/IDatabaseModule.h>
@@ -132,6 +133,7 @@ void UserDetailInfoDialog::_refreshAvatar(IN const std::string& avatarPath)
 		module::getHttpPoolModule()->pushHttpOperation(m_pDownHttpOper);
 	}
 }
+
 void UserDetailInfoDialog::onHttpGetAvatarCallback(std::shared_ptr<void> param)
 {
 	m_pDownHttpOper = 0;
@@ -145,6 +147,7 @@ void UserDetailInfoDialog::onHttpGetAvatarCallback(std::shared_ptr<void> param)
 		}
 	}
 }
+
 void UserDetailInfoDialog::OnClick(TNotifyUI& msg)
 {
 	PTR_VOID(msg.pSender);

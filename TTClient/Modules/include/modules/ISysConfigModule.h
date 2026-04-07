@@ -10,7 +10,7 @@
 #define ISYSCONFIGMODULE_03995006_A398_4574_BAE1_549FE4543DD3_H__
 
 #include <global_define.h>
-#include <module_dll.h>
+#include <modules/module_dll.h>
 #include <modules/Base/ModuleBase.h>
 
 NAMESPACE_BEGIN(module)

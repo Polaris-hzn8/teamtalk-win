@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/IMiscModule.h>
 #include <modules/Session/UI/UIGroupsTreelist.h>
 #include <modules/IGroupListModule.h>

@@ -10,7 +10,7 @@
 #define IP2PCMDMODULE_A5B625AF_2FEF_4DDC_9A60_BC8E12EC25A1_H__
 
 #include <global_define.h>
-#include <module_dll.h>
+#include <modules/module_dll.h>
 #include <modules/Base/ModuleBase.h>
 #include <modules/Base/ICallbackOpertaion.h>
 

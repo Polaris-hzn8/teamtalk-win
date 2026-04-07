@@ -1,10 +1,12 @@
 
-#include <modules/Session/SessionManager.h>
+
+#include "stdafx.h"
 #include <modules/IUserListModule.h>
 #include <modules/IGroupListModule.h>
-#include <modules/UI/Session/SessionDialog.h>
 #include <modules/ISysConfigModule.h>
 #include <modules/IDatabaseModule.h>
+#include <modules/Session/SessionManager.h>
+#include <modules/Session/UI/Session/SessionDialog.h>
 #include <algorithm>
 
 SessionEntityManager::SessionEntityManager()

@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/Session/UI/Search/SearchLayout.h>
 #include <modules/IUserListModule.h>
 #include <modules/IGroupListModule.h>

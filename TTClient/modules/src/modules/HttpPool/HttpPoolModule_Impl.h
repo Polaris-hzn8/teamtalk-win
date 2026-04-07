@@ -12,7 +12,7 @@
 #include <list>
 #include <vector>
 #include <utility/TTThread.h>
-#include <Utility/Lock.h>
+#include <network/basic/lock.h>
 #include <modules/IHttpPoolModule.h>
 
 class HttpPoolModule_Impl;

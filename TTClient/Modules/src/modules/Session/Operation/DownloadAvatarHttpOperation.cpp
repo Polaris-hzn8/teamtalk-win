@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <httpclient/http.h>
 #include <cxImage/cxImage/ximage.h>
 #include <modules/IMiscModule.h>

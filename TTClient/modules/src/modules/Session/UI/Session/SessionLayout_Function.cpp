@@ -1,4 +1,7 @@
 
+#include "stdafx.h"
+#include <json/reader.h>
+#include <json/writer.h>
 #include <modules/MessageEntity.h>
 #include <modules/Session/UI/Session/SessionLayout.h>
 #include <modules/ISysConfigModule.h>
@@ -11,8 +14,6 @@
 #include <modules/Message/SendMsgManage.h>
 #include <modules/Session/Operation/SendImgHttpOperation.h>
 #include <modules/Session/SessionManager.h>
-#include <json/reader.h>
-#include <json/writer.h>
 #include <modules/Session/UI/UIIMEdit.h>
 #include <utility/Multilingual.h>
 #include <utility/utilStrCodingAPI.h>

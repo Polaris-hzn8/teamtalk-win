@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <global_define.h>
 #include <utility/Multilingual.h>
 #include <utility/utilStrCodingAPI.h>

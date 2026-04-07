@@ -6,14 +6,15 @@
  brief:
 */
 
-#include <modules/ICallbackOpertaion.h>
+#include "stdafx.h"
 #include <modules/ILoginModule.h>
 #include <modules/IUserListModule.h>
 #include <modules/IP2PCmdModule.h>
 #include <modules/ISessionModule.h>
 #include <modules/IGroupListModule.h>
 #include <modules/IFileTransferModule.h>
-#include <modules/Base/UIEventManager.h>
+#include <modules/base/UIEventManager.h>
+#include <modules/base/ICallbackOpertaion.h>
 #include <network/ImCore.h>
 #include <protocol/IM.Login.pb.h>
 #include <protocol/IM.Other.pb.h>
@@ -23,11 +24,11 @@
 
 namespace module
 {
-	ITcpClientModule* getTcpClientModule()
-	{
-		static TcpClientModule_Impl module;
-		return &module;
-	}
+ITcpClientModule* getTcpClientModule()
+{
+	static TcpClientModule_Impl module;
+	return &module;
+}
 }
 
 namespace
@@ -151,7 +152,7 @@ IM::Login::IMLoginRes* TcpClientModule_Impl::doLogin(
 	if(util::waitSingleObject(m_eventConnected, 5000))
 	{
 		IM::Login::IMLoginReq imLoginReq;
-		string& name = util::cStringToString(uName);
+		std::string& name = util::cStringToString(uName);
 		imLoginReq.set_user_name(name);
 		imLoginReq.set_password(pass);
 		imLoginReq.set_online_status(IM::BaseDefine::USER_STATUS_ONLINE);

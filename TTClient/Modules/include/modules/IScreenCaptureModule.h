@@ -9,11 +9,11 @@
 #ifndef ISCREEN_CAPTURE_5CF3E642_5F2A_4841_B497_A7C015E6E1D4_H__
 #define ISCREEN_CAPTURE_5CF3E642_5F2A_4841_B497_A7C015E6E1D4_H__
 
+#include <string>
 #include <global_define.h>
-#include <module_dll.h>
+#include <modules/module_dll.h>
 #include <modules/Base/ModuleBase.h>
 #include <modules/Base/ICallbackOpertaion.h>
-#include <string>
 
 NAMESPACE_BEGIN(module)
 const std::string MODULE_SCREEN_CAPTURE_PREFIX = "screen_capture";

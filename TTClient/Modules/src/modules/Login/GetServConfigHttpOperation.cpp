@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <json/reader.h>
 #include <modules/ISysConfigModule.h>
 #include <modules/Login/GetServConfigHttpOperation.h>
@@ -12,8 +13,6 @@ GetServConfigHttpOperation::GetServConfigHttpOperation(module::IOperationDelegat
 
 }
 
-
-
 GetServConfigHttpOperation::~GetServConfigHttpOperation()
 {
 
@@ -22,7 +21,7 @@ GetServConfigHttpOperation::~GetServConfigHttpOperation()
 void GetServConfigHttpOperation::processOpertion()
 {
 	module::TTConfig* pCfg = module::getSysConfigModule()->getSystemConfig();
-	std::string& phpAddr = pCfg->phpServerAddr;
+	std::string& phpAddr = util::cStringToString(pCfg->loginServIP);
 	std::string url = phpAddr + "/config/json";
 	
 	GetServConfigParam* pPamram = new GetServConfigParam();
@@ -40,7 +39,8 @@ void GetServConfigHttpOperation::processOpertion()
 	}
 	std::string body = response.getBody();
 	client.killSelf();
-	//json潩潩
+
+	// JSON响应解析
 	try
 	{
 		Json::Reader reader;
@@ -62,8 +62,7 @@ void GetServConfigHttpOperation::processOpertion()
 			goto End;
 		}
 		std::string loginIP = loginAddr.substr(0, startIndex);
-		std::string loginPort = loginAddr.substr(startIndex + 1
-			, loginAddr.length() - startIndex);
+		std::string loginPort = loginAddr.substr(startIndex + 1, loginAddr.length() - startIndex);
 		pCfg->loginServIP = util::stringToCString(loginIP);
 		pCfg->loginServPort = util::cstringToInt32(util::stringToCString(loginPort));
 		if (0 == pCfg->loginServPort)

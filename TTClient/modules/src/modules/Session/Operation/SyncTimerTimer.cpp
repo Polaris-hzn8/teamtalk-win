@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <network/ImCore.h>
 #include <protocol/IM.Message.pb.h>
 #include <modules/ITcpClientModule.h>

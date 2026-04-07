@@ -10,8 +10,8 @@
 #define IDATABASEMODULE_086C113C_CEE3_423B_81D1_D771B443A991_H__
 
 #include <vector>
-#include <module_dll.h>
 #include <global_define.h>
+#include <modules/module_dll.h>
 #include <modules/Base/ModuleBase.h>
 #include <modules/ISessionModule.h>
 #include <modules/IUserListModule.h>

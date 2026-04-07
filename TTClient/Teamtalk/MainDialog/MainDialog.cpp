@@ -1,4 +1,4 @@
-
+﻿
 /*
  Reviser: Polaris_hzn8
  Email: lch2022fox@163.com
@@ -9,18 +9,18 @@
 #include "stdafx.h"
 #include "Resource.h"
 #include "MainDialog.h"
-#include "versioninfo.h"
-#include "Modules/ISessionModule.h"
-#include "Modules/ILoginModule.h"
-#include "Modules/ISysConfigModule.h"
-#include "Modules/IMessageModule.h"
-#include "Modules/IMiscModule.h"
-#include "Modules/IUserListModule.h"
-#include "Modules/ITcpClientModule.h"
-#include "Modules/UIEventManager.h"
-#include "Modules/IScreenCaptureModule.h"
-#include "utility/Multilingual.h"
-#include "protocol/IM.BaseDefine.pb.h"
+#include <version_info.h>
+#include <modules/ISessionModule.h>
+#include <modules/ILoginModule.h>
+#include <modules/ISysConfigModule.h>
+#include <modules/IMessageModule.h>
+#include <modules/IMiscModule.h>
+#include <modules/IUserListModule.h>
+#include <modules/ITcpClientModule.h>
+#include <modules/IScreenCaptureModule.h>
+#include <modules/base/UIEventManager.h>
+#include <utility/Multilingual.h>
+#include <protocol/IM.BaseDefine.pb.h>
 
 DUI_BEGIN_MESSAGE_MAP(MainDialog, WindowImplBase)
 	DUI_ON_MSGTYPE(DUI_MSGTYPE_WINDOWINIT, OnWindowInitialized)

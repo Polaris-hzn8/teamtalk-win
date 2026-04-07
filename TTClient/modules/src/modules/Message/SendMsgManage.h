@@ -10,7 +10,7 @@
 #define SENDMSGMANAGE_5545E32E_5320_4A45_ABD0_5AC0F09EE7AF_H__
 
 #include <list>
-#include <Utility/Lock.h>
+#include <network/basic/lock.h>
 #include <modules/Base/IEvent.h>
 #include <modules/Base/ITimerEvent.h>
 #include <modules/MessageEntity.h>

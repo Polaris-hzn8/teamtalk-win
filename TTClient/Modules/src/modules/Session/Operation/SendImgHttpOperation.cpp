@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/Session/Operation/SendImgHttpOperation.h>
 #include <httpclient/http.h>
 #include <utility/utilStrCodingAPI.h>

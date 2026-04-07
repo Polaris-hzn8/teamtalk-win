@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <regex>
 #include <modules/Message/ReceiveMsgManage.h>
 #include <modules/Session/SessionManager.h>

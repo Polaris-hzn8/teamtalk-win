@@ -1,11 +1,12 @@
 
-#include <modules/Session/UI/UIIMList.h>
+#include "stdafx.h"
 #include <modules/IUserListModule.h>
 #include <modules/IGroupListModule.h>
 #include <modules/ITcpClientModule.h>
+#include <modules/Session/UI/UIIMList.h>
+#include <modules/Session/SessionManager.h>
 #include <utility/utilStrCodingAPI.h>
 #include <utility/Multilingual.h>
-#include <modules/Session/SessionManager.h>
 
 const TCHAR* const kLogoButtonControlName = _T("logo");
 const TCHAR* const kLogoContainerControlName = _T("logo_container");

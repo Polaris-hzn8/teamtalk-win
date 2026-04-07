@@ -1,11 +1,12 @@
 
-#include <modules/GroupList/UI/ChangeDiscussionGrpMemberDialog.h>
-#include <modules/ITcpClientModule.h>
+#include "stdafx.h"
 #include <modules/IUserListModule.h>
 #include <modules/IGroupListModule.h>
-#include <modules/Session/UI/Search/SearchLayout.h>
+#include <modules/ITcpClientModule.h>
 #include <modules/ISysConfigModule.h>
 #include <modules/Session/UI/UIIMList.h>
+#include <modules/Session/UI/Search/SearchLayout.h>
+#include <modules/GroupList/UI/ChangeDiscussionGrpMemberDialog.h>
 #include <protocol/IM.Group.pb.h>
 #include <network/ImCore.h>
 

@@ -6,6 +6,7 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <json/reader.h>
 #include <httpclient/http.h>
 #include <utility/Multilingual.h>

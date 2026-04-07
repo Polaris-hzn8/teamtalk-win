@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/GroupList/UI/ListGroupMembers.h>
 
 const int kGroupListFolderItemHeight = 32;

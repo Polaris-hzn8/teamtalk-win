@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/Message/MessageModule_Impl.h>
 #include <modules/Message/ReceiveMsgManage.h>
 #include <modules/Message/SendMsgManage.h>

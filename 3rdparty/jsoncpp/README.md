@@ -1,5 +1,9 @@
-Introduction
-------------
+# JsonCpp
+
+[![Conan Center](https://img.shields.io/conan/v/jsoncpp)](https://conan.io/center/recipes/jsoncpp)
+[![badge](https://img.shields.io/badge/license-MIT-blue)](https://github.com/open-source-parsers/jsoncpp/blob/master/LICENSE)
+[![badge](https://img.shields.io/badge/document-doxygen-brightgreen)](http://open-source-parsers.github.io/jsoncpp-docs/doxygen/index.html)
+[![Coverage Status](https://coveralls.io/repos/github/open-source-parsers/jsoncpp/badge.svg?branch=master)](https://coveralls.io/github/open-source-parsers/jsoncpp?branch=master)
 
 [JSON][json-org] is a lightweight data-interchange format. It can represent
 numbers, strings, ordered sequences of values, and collections of name/value
@@ -9,214 +13,92 @@ pairs.
 
 JsonCpp is a C++ library that allows manipulating JSON values, including
 serialization and deserialization to and from strings. It can also preserve
-existing comment in unserialization/serialization steps, making it a convenient
+existing comment in deserialization/serialization steps, making it a convenient
 format to store user input files.
 
+## Project Status
 
-Using JsonCpp in your project
------------------------------
+JsonCpp is a mature project in maintenance mode. Our priority is providing a stable,
+reliable JSON library for the long tail of C++ development.
 
-The recommended approach to integrating JsonCpp in your project is to build the
-the amalgamated source (a single `.cpp` file) with your own build system. This
-ensures consistency of compilation flags and ABI compatibility. See the section
-"Generating amalgamated source and header" for instructions.
-  
-The `include/` should be added to your compiler include path. Jsoncpp headers
-should be included as follow:
+### Current Focus
 
-    #include <json/json.h>
+* **Security:** Addressing vulnerabilities and fuzzing results.
+* **Compatibility:** Ensuring the library builds without warnings on the latest versions of GCC,
+Clang, and MSVC.
+* **Reliability:** Fixing regressions and critical logical bugs.
 
-If JsonCpp was build as a dynamic library on Windows, then your project needs to
-define the macro `JSON_DLL`.
+### Out of Scope
 
+* **Performance:** We are not competing with SIMD-accelerated or reflection-based parsers.
+* **Features:** We are generally not accepting requests for new data formats or major API changes.
 
-Building and testing with new CMake
------------------------------------
+JsonCpp remains a primary choice for developers who require comment preservation and support for
+legacy toolchains where modern C++ standards are unavailable. The library is intended to be a
+reliable dependency that does not require frequent updates or major migration efforts.
 
-[CMake][] is a C++ Makefiles/Solution generator. It is usually available on most
-Linux system as package. On Ubuntu:
+## A note on backward-compatibility
 
-    sudo apt-get install cmake
+* **`1.y.z` (master):** Actively maintained. Requires C++11.
 
-[CMake]: http://www.cmake.org
+* **`0.y.z`:** Legacy support for pre-C++11 compilers. Maintenance is limited to critical security fixes.
 
-Note that Python is also required to run the JSON reader/writer tests. If
-missing, the build will skip running those tests.
+* **`00.11.z`:** Discontinued.
 
-When running CMake, a few parameters are required:
+Major versions maintain binary compatibility. Critical security fixes are accepted for both the `master` and `0.y.z` branches.
 
-* a build directory where the makefiles/solution are generated. It is also used
-  to store objects, libraries and executables files.
-* the generator to use: makefiles or Visual Studio solution? What version or
-  Visual Studio, 32 or 64 bits solution? 
+## Integration
 
-Steps for generating solution/makefiles using `cmake-gui`:
+> [!NOTE]
+> Package manager ports (vcpkg, Conan, etc.) are community-maintained. Please report outdated versions or missing generators to their respective repositories.
 
-* Make "source code" point to the source directory.
-* Make "where to build the binary" point to the directory to use for the build.
-* Click on the "Grouped" check box.
-* Review JsonCpp build options (tick `JSONCPP_LIB_BUILD_SHARED` to build as a
-  dynamic library).
-* Click the configure button at the bottom, then the generate button.
-* The generated solution/makefiles can be found in the binary directory.
+### vcpkg
+Add `jsoncpp` to your `vcpkg.json` manifest:
 
-Alternatively, from the command-line on Unix in the source directory:
+```json
+{
+  "dependencies": ["jsoncpp"]
+}
+```
 
-    mkdir -p ../build/debug
-    cd ../build/debug
-    cmake -DCMAKE_BUILD_TYPE=debug -DJSONCPP_LIB_BUILD_SHARED=OFF -G "Unix Makefiles" ../../jsoncpp-src
-    make
+Or install via classic mode: `vcpkg install jsoncpp`.
 
-Running `cmake -`" will display the list of available generators (passed using
-the `-G` option).
+### Conan
 
-By default CMake hides compilation commands. This can be modified by specifying
-`-DCMAKE_VERBOSE_MAKEFILE=true` when generating makefiles.
+```sh
+conan install --requires="jsoncpp/[*]" --build=missing
+```
 
+If you are using a `conanfile.txt` in a Conan 2 project, ensure you use the appropriate generators:
 
-Building and testing with SCons
--------------------------------
+```ini
+[requires]
+jsoncpp/[*]
 
-**Note:** The SCons-based build system is deprecated. Please use CMake; see the
-section above.
+[generators]
+CMakeToolchain
+CMakeDeps
+```
 
-JsonCpp can use [Scons][] as a build system. Note that SCons requires Python to
-be installed.
+### Meson
 
-[SCons]: http://www.scons.org/
+```sh
+meson wrap install jsoncpp
+```
 
-Invoke SCons as follows:
+### Amalgamated source
 
-    scons platform=$PLATFORM [TARGET]
+> [!NOTE]
+> This approach may be outdated.
 
-where `$PLATFORM` may be one of:
+For projects requiring a single-header approach, see the [Wiki entry](https://github.com/open-source-parsers/jsoncpp/wiki/Amalgamated-(Possibly-outdated)).
 
-* `suncc`: Sun C++ (Solaris)
-* `vacpp`: Visual Age C++ (AIX)
-* `mingw`
-* `msvc6`: Microsoft Visual Studio 6 service pack 5-6
-* `msvc70`: Microsoft Visual Studio 2002
-* `msvc71`: Microsoft Visual Studio 2003
-* `msvc80`: Microsoft Visual Studio 2005
-* `msvc90`: Microsoft Visual Studio 2008
-* `linux-gcc`: Gnu C++ (linux, also reported to work for Mac OS X)
+## Documentation
 
-If you are building with Microsoft Visual Studio 2008, you need to set up the
-environment by running `vcvars32.bat` (e.g. MSVC 2008 command prompt) before
-running SCons.
+Documentation is generated via [Doxygen](http://open-source-parsers.github.io/jsoncpp-docs/doxygen/index.html). 
+Additional information is available on the [Project Wiki](https://github.com/open-source-parsers/jsoncpp/wiki).
 
+## License
 
-Running the tests manually
---------------------------
-
-Note that test can be run using SCons using the `check` target:
-
-    scons platform=$PLATFORM check
-
-You need to run tests manually only if you are troubleshooting an issue.
-
-In the instructions below, replace `path/to/jsontest` with the path of the
-`jsontest` executable that was compiled on your platform.
-
-    cd test
-    # This will run the Reader/Writer tests
-    python runjsontests.py path/to/jsontest
-    
-    # This will run the Reader/Writer tests, using JSONChecker test suite
-    # (http://www.json.org/JSON_checker/).
-    # Notes: not all tests pass: JsonCpp is too lenient (for example,
-    # it allows an integer to start with '0'). The goal is to improve
-    # strict mode parsing to get all tests to pass.
-    python runjsontests.py --with-json-checker path/to/jsontest
-    
-    # This will run the unit tests (mostly Value)
-    python rununittests.py path/to/test_lib_json
-    
-    # You can run the tests using valgrind:
-    python rununittests.py --valgrind path/to/test_lib_json
-
-
-Building the documentation
---------------------------
-
-Run the Python script `doxybuild.py` from the top directory:
-
-    python doxybuild.py --doxygen=$(which doxygen) --open --with-dot
-
-See `doxybuild.py --help` for options.
-
-
-Generating amalgamated source and header
-----------------------------------------
-
-JsonCpp is provided with a script to generate a single header and a single
-source file to ease inclusion into an existing project. The amalgamated source
-can be generated at any time by running the following command from the
-top-directory (this requires Python 2.6):
-
-    python amalgamate.py
-
-It is possible to specify header name. See the `-h` option for detail.
-
-By default, the following files are generated:
-* `dist/jsoncpp.cpp`: source file that needs to be added to your project.
-* `dist/json/json.h`: corresponding header file for use in your project. It is
-  equivalent to including `json/json.h` in non-amalgamated source. This header
-  only depends on standard headers.
-* `dist/json/json-forwards.h`: header that provides forward declaration of all
-  JsonCpp types.
-
-The amalgamated sources are generated by concatenating JsonCpp source in the
-correct order and defining the macro `JSON_IS_AMALGAMATION` to prevent inclusion
-of other headers.
-
-
-Adding a reader/writer test
----------------------------
-
-To add a test, you need to create two files in test/data:
-
-* a `TESTNAME.json` file, that contains the input document in JSON format.
-* a `TESTNAME.expected` file, that contains a flatened representation of the
-  input document.
-
-The `TESTNAME.expected` file format is as follows:
-
-* each line represents a JSON element of the element tree represented by the
-  input document.
-* each line has two parts: the path to access the element separated from the
-  element value by `=`. Array and object values are always empty (i.e.
-  represented by either `[]` or `{}`).
-* element path: `.` represents the root element, and is used to separate object
-  members. `[N]` is used to specify the value of an array element at index `N`.
-
-See the examples `test_complex_01.json` and `test_complex_01.expected` to better
-understand element paths.
-
-
-Understanding reader/writer test output
----------------------------------------
-
-When a test is run, output files are generated beside the input test files.
-Below is a short description of the content of each file:
-
-* `test_complex_01.json`: input JSON document.
-* `test_complex_01.expected`: flattened JSON element tree used to check if
-  parsing was corrected.
-* `test_complex_01.actual`: flattened JSON element tree produced by `jsontest`
-  from reading `test_complex_01.json`.
-* `test_complex_01.rewrite`: JSON document written by `jsontest` using the
-  `Json::Value` parsed from `test_complex_01.json` and serialized using
-  `Json::StyledWritter`.
-* `test_complex_01.actual-rewrite`: flattened JSON element tree produced by
-  `jsontest` from reading `test_complex_01.rewrite`.
-* `test_complex_01.process-output`: `jsontest` output, typically useful for
-  understanding parsing errors.
-
-
-License
--------
-
-See the `LICENSE` file for details. In summary, JsonCpp is licensed under the
-MIT license, or public domain if desired and recognized in your jurisdiction.
-
+JsonCpp is licensed under the MIT license, or public domain where recognized.
+See [LICENSE](./LICENSE) for details.

@@ -6,19 +6,21 @@
  brief:
 */
 
-#include <modules/ScreenCapture/ScreenCaptureModule_Impl.h>
-#include <modules/ScreenCapture/ScreenCapture/ScreenCapture.h>
+#include "stdafx.h"
+#include <cxImage/cxImage/ximage.h>
 #include <utility/utilCommonAPI.h>
 #include <utility/utilStrCodingAPI.h>
-#include <cxImage/cxImage/ximage.h>
+#include <modules/IScreenCaptureModule.h>
+#include <modules/ScreenCapture/ScreenCapture.h>
+#include <modules/ScreenCapture/ScreenCaptureModule_Impl.h>
 
 namespace module
 {
-	IScreenCaptureModule* getScreenCaptureModule()
-	{
-		static ScreenCaptureModule_Impl module;
-		return &module;
-	}
+IScreenCaptureModule* getScreenCaptureModule()
+{
+	static ScreenCaptureModule_Impl module;
+	return &module;
+}
 }
 
 BOOL ScreenCaptureModule_Impl::initCapture(__in HWND hWnd)
@@ -28,7 +30,6 @@ BOOL ScreenCaptureModule_Impl::initCapture(__in HWND hWnd)
 
 void ScreenCaptureModule_Impl::onScreenCaptureFinish(__in std::wstring resultPicPath)
 {
-    //1. ùùù?ùùùù?ù
     //CxImage img;
     //img.Load(resultPicPath.c_str(), CXIMAGE_SUPPORT_PNG);
     //HBITMAP hBitmap = img.MakeBitmap();

@@ -12,7 +12,7 @@
 #include <global_define.h>
 #include <modules/Base/ModuleBase.h>
 #include <google/protobuf/message_lite.h>
-#include <module_dll.h>
+#include <modules/module_dll.h>
 
 class CImPdu;
 namespace IM

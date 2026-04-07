@@ -6,8 +6,9 @@
  brief:
 */
 
+#include "stdafx.h"
+#include <global_define.h>
 #include <modules/SysConfig/ServerConfigDialog.h>
-#include <GlobalDefine.h>
 #include <modules/ISysConfigModule.h>
 #include <modules/IMiscModule.h>
 #include <utility/utilStrCodingAPI.h>

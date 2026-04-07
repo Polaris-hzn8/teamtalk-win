@@ -9,8 +9,9 @@
 #ifndef MESSAGEENTITY_35FE027F_F23D_4444_B013_9FCF04145DD6_H__
 #define MESSAGEENTITY_35FE027F_F23D_4444_B013_9FCF04145DD6_H__
 
+#include "stdafx.h"
 #include <global_define.h>
-#include <module_dll.h>
+#include <modules/module_dll.h>
 
 // 消息服务器类型定义与服务器相同
 enum MSG_TYPE_SERVER{

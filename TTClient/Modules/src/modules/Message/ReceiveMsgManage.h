@@ -9,11 +9,11 @@
 #ifndef RECEIVEMSGMANAGE_B3CDCA98_9B4E_482C_8342_7F2DF985F6D3_H__
 #define RECEIVEMSGMANAGE_B3CDCA98_9B4E_482C_8342_7F2DF985F6D3_H__
 
-#include <modules/MessageEntity.h>
-#include <modules/Base/IEvent.h>
-#include <Utility/Lock.h>
-#include <list>
 #include <map>
+#include <list>
+#include <network/basic/lock.h>
+#include <modules/Base/IEvent.h>
+#include <modules/MessageEntity.h>
 
 
 typedef std::list<MessageEntity> SessionMessage_List;

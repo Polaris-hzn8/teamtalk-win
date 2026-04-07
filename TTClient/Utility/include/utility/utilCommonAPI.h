@@ -12,7 +12,8 @@
 #include <list>
 #include <string>
 #include <global_define.h>
-#include "utility_dll.h"
+#include <utility/utility_dll.h>
+#include "stdafx.h"
 
 NAMESPACE_BEGIN(util)
 

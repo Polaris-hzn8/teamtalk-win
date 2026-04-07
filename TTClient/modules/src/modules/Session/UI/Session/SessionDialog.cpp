@@ -1,3 +1,5 @@
+
+#include "stdafx.h"
 #include <modules/Session/SessionManager.h>
 #include <modules/Session/UI/Session/SessionLayout.h>
 #include <modules/Session/UI/Session/SessionDialog.h>

@@ -6,6 +6,7 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <modules/Login/LoginDialog.h>
 #include <modules/Login/ReloginManager.h>
 #include <modules/Login/LoginModule_Impl.h>
@@ -21,13 +22,11 @@
 #include <protocol/IM.Buddy.pb.h>
 #include <protocol/IM.Group.pb.h>
 
-namespace module
-{
-	ILoginModule* getLoginModule()
-	{
-		static LoginModule_Impl module;
-		return &module;
-	}
+namespace module {
+ILoginModule* getLoginModule() {
+	static LoginModule_Impl module;
+	return &module;
+}
 }
 
 LoginModule_Impl::LoginModule_Impl()

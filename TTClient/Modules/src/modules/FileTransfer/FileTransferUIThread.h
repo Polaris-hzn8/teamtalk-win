@@ -3,8 +3,8 @@
 #define FILETRANSFERUITHREAD_16C2B941_3E94_4B6F_B488_0B82EC2B3F26_H__
 
 #include <list>
-#include <Utility/Lock.h>
 #include <utility/TTThread.h>
+#include <network/basic/lock.h>
 
 using namespace util;
 class FileTransferSocket;

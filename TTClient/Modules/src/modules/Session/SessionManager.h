@@ -3,7 +3,7 @@
 #define SESSIONMANAGER_863FBDB8_F00A_4A46_8F57_1AECBC9D277E_H__
 
 #include <global_define.h>
-#include <Utility/Lock.h>
+#include <network/basic/lock.h>
 #include <modules/ISessionModule.h>
 
 class SessionDialog;

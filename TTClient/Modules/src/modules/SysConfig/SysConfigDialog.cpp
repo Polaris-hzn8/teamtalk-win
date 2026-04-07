@@ -6,7 +6,8 @@
  brief:
 */
 
-#include <GlobalDefine.h>
+#include "stdafx.h"
+#include <global_define.h>
 #include <modules/SysConfig/SysConfigDialog.h>
 #include <modules/IMiscModule.h>
 #include <modules/ISysConfigModule.h>

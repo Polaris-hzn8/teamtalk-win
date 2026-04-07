@@ -15,9 +15,9 @@
 #include <modules/Base/ModuleBase.h>
 #include <modules/Base/ICallbackOpertaion.h>
 #include <modules/IMiscModule.h>
+#include <modules/module_dll.h>
 #include <utility/utilStrCodingAPI.h>
 #include <protocol/IM.BaseDefine.pb.h>
-#include <module_dll.h>
 
 #define		PREFIX_GRAY_AVATAR		_T("gray_")
 

@@ -59,7 +59,7 @@ template<> struct hash<std::string> {
 #endif
 
 #include <yaolog/yaolog.h>
-#include <global_config.h>
+#include <global_define.h>
 #include <network/ostype.h>
 #include <network/basic/lock.h>
 

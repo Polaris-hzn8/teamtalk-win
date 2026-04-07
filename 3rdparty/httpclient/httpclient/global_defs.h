@@ -5,7 +5,7 @@
  * @data	2011-4-23
  * @website www.xiangwangfeng.com
  */
-#include "GlobalDefine.h"
+#include <global_define.h>
 
 #pragma once
 

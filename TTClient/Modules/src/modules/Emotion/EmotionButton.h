@@ -7,10 +7,13 @@
 */
 
 #pragma once
+
 #include <map>
 #include <DuiLib/UIlib.h>
 #include <global_define.h>
 #include <cxImage/cxImage/ximage.h>
+#include "stdafx.h"
+
 using namespace DuiLib;
 
 class CEmotionButton : public CControlUI ,public INotifyUI

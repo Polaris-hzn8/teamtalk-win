@@ -11,7 +11,8 @@
 
 #include <string>
 #include <global_define.h>
-#include "utility_dll.h"
+#include <utility/utility_dll.h>
+#include "stdafx.h"
 
 NAMESPACE_BEGIN(util)
 
@@ -31,7 +32,9 @@ UTILITY_API CString		HZ2AllPY(IN  CString szHZ);//汉字转成全拼
 UTILITY_API const std::string ws2s(const std::wstring& src);
 UTILITY_API const std::wstring s2ws(const std::string& src);
 
-UTILITY_API Int32       splitString(__in std::wstring src, __in std::vector<std::wstring> _vecSpliter,
+UTILITY_API Int32       splitString(
+    __in std::wstring src, 
+    __in std::vector<std::wstring> _vecSpliter,
     __out std::vector<std::wstring> &_splitList);
 
 NAMESPACE_END(util)

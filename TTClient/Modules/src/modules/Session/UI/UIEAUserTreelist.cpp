@@ -1,9 +1,12 @@
 
-#include <modules/Session/UI/UIEAUserTreelist.h>
+#include "stdafx.h"
+#include <json/reader.h>
+#include <json/writer.h>
 #include <modules/IUserListModule.h>
 #include <modules/ISysConfigModule.h>
-#include <modules/Session/SessionManager.h>
 #include <modules/Message/ReceiveMsgManage.h>
+#include <modules/Session/SessionManager.h>
+#include <modules/Session/UI/UIEAUserTreelist.h>
 #include <utility/Multilingual.h>
 #include <utility/utilStrCodingAPI.h>
 

@@ -6,6 +6,7 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <modules/ScreenCapture/UI/Dlgbase.h>
 
 CDlgBase::CDlgBase()

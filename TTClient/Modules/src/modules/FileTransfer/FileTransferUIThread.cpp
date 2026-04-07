@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <algorithm>
 #include <modules/FileTransfer/FileTransferUIThread.h>
 #include <modules/FileTransfer/FileTransferSocket.h>

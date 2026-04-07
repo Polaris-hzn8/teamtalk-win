@@ -149,7 +149,6 @@
     <ClCompile Include="cxImage\ximawbmp.cpp" />
     <ClCompile Include="cxImage\ximawnd.cpp" />
     <ClCompile Include="cxImage\xmemfile.cpp" />
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="jpeg\jcapimin.c" />
     <ClCompile Include="jpeg\jcapistd.c" />
     <ClCompile Include="jpeg\jccoefct.c" />

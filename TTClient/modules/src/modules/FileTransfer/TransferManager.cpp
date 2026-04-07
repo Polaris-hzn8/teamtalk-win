@@ -1,4 +1,6 @@
 
+#include "stdafx.h"
+#include <yaolog/yaolog.h>
 #include <modules/IMiscModule.h>
 #include <modules/FileTransfer/TransferFile.h>
 #include <modules/FileTransfer/TransferManager.h>
@@ -8,9 +10,9 @@
 #include <protocol/IM.BaseDefine.pb.h>
 
 TransferFileEntity::TransferFileEntity():
-	nFileSize(nullptr), 
-	nClientMode(nullptr),
-	nProgress(nullptr),
+	nFileSize(0), 
+	nClientMode(0),
+	nProgress(0),
 	pFileObject(nullptr)
 {
 	sSavePath.Empty();

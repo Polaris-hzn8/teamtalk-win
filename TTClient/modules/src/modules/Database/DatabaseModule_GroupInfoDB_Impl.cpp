@@ -6,6 +6,7 @@
  brief: group info db manage
 */
 
+#include "stdafx.h"
 #include <json/reader.h>
 #include <json/writer.h>
 #include <utility/CppSQLite3.h>

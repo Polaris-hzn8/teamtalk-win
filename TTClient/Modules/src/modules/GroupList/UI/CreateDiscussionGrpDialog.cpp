@@ -1,8 +1,13 @@
 
+#include "stdafx.h"
+#include <modules/IUserListModule.h>
+#include <modules/ISysConfigModule.h>
+#include <modules/ITcpClientModule.h>
+#include <modules/Session/UI/UIGroupsTreelist.h>
 #include <modules/GroupList/UI/CreateDiscussionGrpDialog.h>
-#include <modules/Session/UI/UIGroups.hpp>
-#include <modules/Session/UI/CUISessionList.h>
-
+#include <utility/Multilingual.h>
+#include <network/ImCore.h>
+#include <protocol/IM.Group.pb.h>
 
 DUI_BEGIN_MESSAGE_MAP(CreateDiscussionGrpDialog, WindowImplBase)
 	DUI_ON_MSGTYPE(DUI_MSGTYPE_WINDOWINIT, OnPrepare)
@@ -16,6 +21,12 @@ CreateDiscussionGrpDialog::CreateDiscussionGrpDialog()
 CreateDiscussionGrpDialog::~CreateDiscussionGrpDialog()
 {
 
+}
+
+CreateDiscussionGrpDialog::CreateDiscussionGrpDialog(const std::string& sid)
+	: m_currentSessionId(sid)
+{
+	
 }
 
 LPCTSTR CreateDiscussionGrpDialog::GetWindowClassName() const
@@ -74,8 +85,8 @@ void CreateDiscussionGrpDialog::OnPrepare(TNotifyUI& msg)
 	{
 		m_TextErrorTip->SetText(_T(""));
 	}
-	const module::DepartmentMap mapDeparments
-		= module::getUserListModule()->getAllDepartments();
+
+	const module::DepartmentMap mapDeparments = module::getUserListModule()->getAllDepartments();
 	for (auto itDepart : mapDeparments)
 	{
 		module::DepartmentEntity& depart = itDepart.second;
@@ -159,8 +170,8 @@ void CreateDiscussionGrpDialog::OnItemClick(TNotifyUI& msg)
 void CreateDiscussionGrpDialog::OnClick(TNotifyUI& msg)
 {
 	__super::OnClick(msg);
-	if (0 == _tcsicmp(msg.pSender->GetName(), _T("okbtn"))
-		&& m_pListCreatFrom && m_pListGroupMembers)
+	if (0 == _tcsicmp(msg.pSender->GetName(), _T("okbtn")) &&
+		m_pListCreatFrom && m_pListGroupMembers)
 	{
 		CDuiString groupName = m_editGroupName->GetText();
 		if (groupName.IsEmpty())
@@ -186,11 +197,10 @@ void CreateDiscussionGrpDialog::OnClick(TNotifyUI& msg)
 				vecMembers.push_back(util::cStringToString(strID));
 			}
 		}
-		std::string strGroupName = util::cStringToString(CString(groupName));
-		imcore::IMLibCoreStartOperationWithLambda(		//创建讨论组
-			[=]()
-		{
 
+		//创建讨论组
+		std::string strGroupName = util::cStringToString(CString(groupName));
+		imcore::IMLibCoreStartOperationWithLambda([=]() {
 			IM::Group::IMGroupCreateReq imGroupCreateReq;
 			imGroupCreateReq.set_user_id(module::getSysConfigModule()->userId());
 			imGroupCreateReq.set_group_type(IM::BaseDefine::GroupType::GROUP_TYPE_TMP);
@@ -200,9 +210,10 @@ void CreateDiscussionGrpDialog::OnClick(TNotifyUI& msg)
 			{
 				imGroupCreateReq.add_member_id_list(util::stringToInt32(sid));
 			}
-			module::getTcpClientModule()->sendPacket(IM::BaseDefine::ServiceID::SID_GROUP
-				, IM::BaseDefine::GroupCmdID::CID_GROUP_CREATE_REQUEST
-				, &imGroupCreateReq);
+			module::getTcpClientModule()->sendPacket(
+				IM::BaseDefine::ServiceID::SID_GROUP,
+				IM::BaseDefine::GroupCmdID::CID_GROUP_CREATE_REQUEST,
+				&imGroupCreateReq);
 		}
 		);
 		Close(IDCANCEL);			
@@ -213,7 +224,6 @@ void CreateDiscussionGrpDialog::OnClick(TNotifyUI& msg)
 		if (pListElement)
 		{
 			m_pListGroupMembers->Remove(pListElement);
-
 			_refreshUIAddedNum();
 		}
 	}

@@ -13,8 +13,8 @@
 #include <modules/Base/IEvent.h>
 #include <modules/Base/ITimerEvent.h>
 #include <modules/ITcpClientModule.h>
-#include <network/im_conn.h>
-#include <network/ImPduBase.h>
+#include <network/core/ImPduBase.h>
+#include <network/core/im_conn.h>
 #include <google/protobuf/message_lite.h>
 
 class CImPdu;

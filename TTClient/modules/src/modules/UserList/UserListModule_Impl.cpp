@@ -6,6 +6,7 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <random>
 #include <network/ImCore.h>
 #include <network/core/ImPduBase.h>
@@ -22,11 +23,11 @@
 
 namespace module
 {
-	module::IUserListModule* getUserListModule()
-	{
-		static UserListModule_Impl module;
-		return &module;
-	}
+module::IUserListModule* getUserListModule()
+{
+	static UserListModule_Impl module;
+	return &module;
+}
 }
 
 UserListModule_Impl::UserListModule_Impl()
@@ -79,7 +80,7 @@ void UserListModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBo
 	}
 }
 
-void UserListModule_Impl::_allUserlistResponse(IN string& pbBody)
+void UserListModule_Impl::_allUserlistResponse(IN std::string& pbBody)
 {
 	IM::Buddy::IMAllUserRsp imAllUserRsp;
 	if (!imAllUserRsp.ParseFromString(pbBody))
@@ -132,7 +133,7 @@ void UserListModule_Impl::_allUserlistResponse(IN string& pbBody)
 
 }
 
-void UserListModule_Impl::_usersLineStatusResponse(IN string& pbBody)
+void UserListModule_Impl::_usersLineStatusResponse(IN std::string& pbBody)
 {
 	IM::Buddy::IMUsersStatRsp imUsersStatRsp;
 	if (!imUsersStatRsp.ParseFromString(pbBody))
@@ -156,7 +157,7 @@ void UserListModule_Impl::_usersLineStatusResponse(IN string& pbBody)
 	module::getUserListModule()->asynNotifyObserver(module::KEY_USERLIST_ALLUSERLINESTATE);
 }
 
-void UserListModule_Impl::_changeAvatarResponse(IN string& pbBody)
+void UserListModule_Impl::_changeAvatarResponse(IN std::string& pbBody)
 {
 	IM::Buddy::IMChangeAvatarRsp imChangeAvatarRsp;
 	if (!imChangeAvatarRsp.ParseFromString(pbBody))
@@ -241,7 +242,7 @@ void UserListModule_Impl::_departmentResponse(IN std::string& pbBody)
 	}
 }
 
-void UserListModule_Impl::_recentlistResponse(IN string& pbBody)//最近联系人群信息
+void UserListModule_Impl::_recentlistResponse(IN std::string& pbBody)//最近联系人群信息
 {	
 	IM::Buddy::IMRecentContactSessionRsp imRecentContactSessionRsp;
 	if (!imRecentContactSessionRsp.ParseFromString(pbBody))
@@ -292,7 +293,7 @@ void UserListModule_Impl::_recentlistResponse(IN string& pbBody)//最近联系�
 	module::getUserListModule()->asynNotifyObserver(module::KEY_USERLIST_UPDATE_RECENTLIST);
 }
 
-void UserListModule_Impl::_userStatusNotify(IN string& pbBody)
+void UserListModule_Impl::_userStatusNotify(IN std::string& pbBody)
 {	
 	IM::Buddy::IMUserStatNotify imUserStatNotify;
 	if (!imUserStatNotify.ParseFromString(pbBody))
@@ -311,7 +312,7 @@ void UserListModule_Impl::_userStatusNotify(IN string& pbBody)
 	}
 }
 
-void UserListModule_Impl::_usersInfoResponse(IN string& pbBody)
+void UserListModule_Impl::_usersInfoResponse(IN std::string& pbBody)
 {	
 	IM::Buddy::IMUsersInfoRsp imUsersInfoRsp;
 	if (!imUsersInfoRsp.ParseFromString(pbBody))
@@ -351,7 +352,7 @@ void UserListModule_Impl::_usersInfoResponse(IN string& pbBody)
 	module::getUserListModule()->asynNotifyObserver(module::KEY_USERLIST_UPDATE_DEPARTMENTLIST);
 }
 
-void UserListModule_Impl::_removeSessionResponse(IN string& pbBody)
+void UserListModule_Impl::_removeSessionResponse(IN std::string& pbBody)
 {
 	IM::Buddy::IMRemoveSessionRsp imRemoveSessionRsp;
 	if (!imRemoveSessionRsp.ParseFromString(pbBody))
@@ -741,7 +742,7 @@ void UserListModule_Impl::onCallbackOperation(std::shared_ptr<void> param)
 		}
 		std::tuple<std::string, std::string>* pTuple = new std::tuple<std::string, std::string>;
 		*pTuple = std::tie(module::MODULE_USERLIST_PREFIX, pDownParam->m_sId);
-		module::getUserListModule()->asynNotifyObserver(module::KEY_USERLIST_DOWNAVATAR_SUCC, shared_ptr<void>(pTuple));
+		module::getUserListModule()->asynNotifyObserver(module::KEY_USERLIST_DOWNAVATAR_SUCC, std::shared_ptr<void>(pTuple));
 	}
 }
 

@@ -6,6 +6,7 @@
  brief: HTTP连接池模块
 */
 
+#include "stdafx.h"
 #include <modules/HttpPool/HttpPoolModule_Impl.h>
 
 namespace module

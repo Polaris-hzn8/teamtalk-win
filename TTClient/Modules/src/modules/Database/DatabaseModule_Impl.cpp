@@ -6,6 +6,7 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <utility/utilStrCodingAPI.h>
 #include <utility/CppSQLite3.h>
 #include <utility/utilCommonAPI.h>

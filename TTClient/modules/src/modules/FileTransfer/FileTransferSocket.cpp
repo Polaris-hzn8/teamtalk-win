@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <protocol/IM.File.pb.h>
 #include <protocol/IM.Other.pb.h>
 
@@ -13,7 +14,7 @@
 
 #include <network/ImCore.h>
 #include <network/core/im_conn.h>
-#include <network/ImPduBase.h>
+#include <network/core/ImPduBase.h>
 
 FileTransferSocket::FileTransferSocket(std::string& taskId)
 	:m_pPingTimer(nullptr),

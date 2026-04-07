@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/Message/SendMsgManage.h>
 #include <modules/ITcpClientModule.h>
 #include <modules/IMessageModule.h>
@@ -9,7 +10,7 @@
 #include <utility/utilStrCodingAPI.h>
 #include <protocol/IM.Message.pb.h>
 #include <network/ImCore.h>
-#include <network/ImPduBase.h>
+#include <network/core/ImPduBase.h>
 
 namespace
 {

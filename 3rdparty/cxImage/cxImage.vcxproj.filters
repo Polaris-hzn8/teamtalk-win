@@ -17,7 +17,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="cxImage\ximabmp.cpp">
       <Filter>cxImage</Filter>
     </ClCompile>

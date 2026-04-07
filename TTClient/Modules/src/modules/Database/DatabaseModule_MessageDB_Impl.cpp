@@ -6,6 +6,7 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <json/writer.h>
 #include <json/reader.h>
 #include <utility/CppSQLite3.h>

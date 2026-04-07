@@ -2,6 +2,7 @@
 #ifndef SEARCHLAYOUT_444A5D88_D118_4093_8D80_C63672830D2D_H__
 #define SEARCHLAYOUT_444A5D88_D118_4093_8D80_C63672830D2D_H__
 
+#include <string>
 #include <DuiLib/UIlib.h>
 
 using namespace DuiLib;

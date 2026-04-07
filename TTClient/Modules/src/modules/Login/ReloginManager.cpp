@@ -6,16 +6,18 @@
  brief:
 */
 
-#include <modules/Login/ReloginManager.h>
-#include <modules/Login/LoginOperation.h>
-#include <modules/IUserListModule.h>
-#include <modules/ISysConfigModule.h>
+#include "stdafx.h"
+#include <network/ImCore.h>
+#include <modules/IMiscModule.h>
 #include <modules/ILoginModule.h>
 #include <modules/ISessionModule.h>
-#include <modules/IMiscModule.h>
-#include <modules/ITcpClientModule.h>
 #include <modules/IMessageModule.h>
-#include <network/ImCore.h>
+#include <modules/IUserListModule.h>
+#include <modules/ISysConfigModule.h>
+#include <modules/ITcpClientModule.h>
+#include <modules/Base/ModuleObserver.h>
+#include <modules/Login/ReloginManager.h>
+#include <modules/Login/LoginOperation.h>
 #include <utility/Multilingual.h>
 #include <protocol/IM.Buddy.pb.h>
 

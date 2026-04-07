@@ -1,20 +1,21 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "teamtalk.h"
-#include "UI/MainDialog.h"
-#include "GlobalConfig.h"
-#include "versioninfo.h"
-#include "google/protobuf/stubs/common.h"
-#include "utility/utilCommonAPI.h"
-#include "utility/Multilingual.h"
-#include "utility/utilStrCodingAPI.h"
-#include "Modules/IHttpPoolModule.h"
-#include "Modules/ILoginModule.h"
-#include "Modules/IMiscModule.h"
-#include "Modules/ISysConfigModule.h"
-#include "Modules/ITcpClientModule.h"
-#include "Modules/UIEventManager.h"
-#include "network/operations/OperationManager.h"
-#include "network/ImCore.h"
+#include "MainDialog/MainDialog.h"
+
+#include <version_info.h>
+#include <global_define.h>
+#include <utility/Multilingual.h>
+#include <utility/utilCommonAPI.h>
+#include <utility/utilStrCodingAPI.h>
+#include <modules/IHttpPoolModule.h>
+#include <modules/ILoginModule.h>
+#include <modules/IMiscModule.h>
+#include <modules/ISysConfigModule.h>
+#include <modules/ITcpClientModule.h>
+#include <modules/base/UIEventManager.h>
+#include <network/ImCore.h>
+#include <network/operation/OperationManager.h>
+#include <google/protobuf/stubs/common.h>
 
 CteamtalkApp theApp;
 

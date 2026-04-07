@@ -1,4 +1,4 @@
-
+﻿
 /*
  Reviser: Polaris_hzn8
  Email: lch2022fox@163.com
@@ -8,16 +8,16 @@
 
 #include "stdafx.h"
 #include "MainDialog.h"
-#include "Modules/IMiscModule.h"
-#include "Modules/ILoginModule.h"
-#include "Modules/IMessageModule.h"
-#include "Modules/ISessionModule.h"
-#include "Modules/IUserListModule.h"
-#include "Modules/ITcpClientModule.h"
-#include "Modules/ISysConfigModule.h"
-#include "Modules/IFileTransferModule.h"
-#include "utility/Multilingual.h"
-#include "ProtocolBuffer/IM.BaseDefine.pb.h"
+#include <modules/IMiscModule.h>
+#include <modules/ILoginModule.h>
+#include <modules/IMessageModule.h>
+#include <modules/ISessionModule.h>
+#include <modules/IUserListModule.h>
+#include <modules/ITcpClientModule.h>
+#include <modules/ISysConfigModule.h>
+#include <modules/IFileTransferModule.h>
+#include <utility/Multilingual.h>
+#include <protocol/IM.BaseDefine.pb.h>
 
 void MainDialog::OnMenuClicked(IN const CString& itemName, IN const CString& strLparam)
 {

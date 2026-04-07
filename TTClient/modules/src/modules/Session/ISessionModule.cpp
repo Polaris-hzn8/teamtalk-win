@@ -6,9 +6,10 @@
  brief: 
 */
 
+#include "stdafx.h"
 #include <modules/ISessionModule.h>
-#include <modules/UserList/IUserListModule.h>
-#include <modules/GroupList/IGroupListModule.h>
+#include <modules/IUserListModule.h>
+#include <modules/IGroupListModule.h>
 
 NAMESPACE_BEGIN(module)
 SessionEntity::SessionEntity()

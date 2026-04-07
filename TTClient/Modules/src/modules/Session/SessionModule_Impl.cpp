@@ -1,6 +1,7 @@
-﻿
+
+#include "stdafx.h"
 #include <network/ImCore.h>
-#include <network/ImPduBase.h>
+#include <network/core/ImPduBase.h>
 #include <utility/Multilingual.h>
 #include <protocol/IM.Message.pb.h>
 #include <modules/MessageEntity.h>

@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/Session/UI/UIIMEdit.h>
 #include <modules/IMiscModule.h>
 #include <modules/IP2PCmdModule.h>

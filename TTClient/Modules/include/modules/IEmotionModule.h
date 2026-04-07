@@ -10,7 +10,7 @@
 #define IEMOTIONMODULE_8E431B43_8F05_4934_8B5B_BB839730F3A6_H__
 
 #include <global_define.h>
-#include <module_dll.h>
+#include <modules/module_dll.h>
 #include <modules/Base/ModuleBase.h>
 
 NAMESPACE_BEGIN(module)

@@ -1,9 +1,10 @@
 
 #ifndef HISTORYMSGMODULE_IMPL_C28C3F8C_9A47_48DF_840B_BE394EAFFFEA_H__
 #define HISTORYMSGMODULE_IMPL_C28C3F8C_9A47_48DF_840B_BE394EAFFFEA_H__
-#include <Utility/Lock.h>
-#include <modules/IMessageModule.h>
+
 #include <map>
+#include <network/basic/lock.h>
+#include <modules/IMessageModule.h>
 
 class CppSQLite3DB;
 class MessageModule_Impl final : public module::IMessageModule

@@ -10,7 +10,7 @@
 #define IMISCMODULE_450253C2_B143_4DD2_BD21_552FC6049D7A_H__
 
 #include <global_define.h>
-#include <module_dll.h>
+#include <modules/module_dll.h>
 
 class FloatInfo;
 NAMESPACE_BEGIN(module)

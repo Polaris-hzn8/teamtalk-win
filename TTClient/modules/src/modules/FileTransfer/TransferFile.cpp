@@ -1,4 +1,6 @@
 
+#include "stdafx.h"
+#include <yaolog\yaolog.H>
 #include <utility/utilCommonAPI.h>
 #include <modules/FileTransfer/TransferFile.h>
 
@@ -48,8 +50,9 @@ TransferFile::FilePrivate::FilePrivate(const CString& path, BOOL bsave)
 			}
 		}
 	}
-	if (!file)
-		LOG__(APP,_T("Could not open file %s"), path);
+	if (!file) {
+		LOG__(APP, _T("Could not open file %s"), path);
+	}
 }
 
 TransferFile::TransferFile(const CString &path, BOOL bsave)

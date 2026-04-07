@@ -11,7 +11,7 @@
 
 #include <windows.h>
 #include <global_define.h>
-#include "utility_dll.h"
+#include <utility/utility_dll.h>
 
 NAMESPACE_BEGIN(util)
 

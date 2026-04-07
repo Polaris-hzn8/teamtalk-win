@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <utility/Multilingual.h>
 #include <modules/ITcpClientModule.h>
 #include <modules/ISysConfigModule.h>
@@ -7,7 +8,7 @@
 #include <modules/FileTransfer/FileTransferDialog.h>
 #include <modules/FileTransfer/FileTransferModule_Impl.h>
 #include <network/ImCore.h>
-#include <network/ImPduBase.h>
+#include <network/core/ImPduBase.h>
 #include <protocol/IM.File.pb.h>
 
 namespace module

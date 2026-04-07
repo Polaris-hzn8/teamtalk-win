@@ -6,6 +6,7 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <modules/Emotion/EmotionDialog.h>
 #include <modules/Emotion/EmotionButton.h>
 

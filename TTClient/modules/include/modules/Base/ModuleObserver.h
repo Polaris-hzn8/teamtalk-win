@@ -27,8 +27,8 @@ enum
 typedef std::tuple<std::string, Int32, std::shared_ptr<void>, void*> MKO_TUPLE_PARAM;
 typedef std::function<void(std::string, MKO_TUPLE_PARAM)> MKODelegate;
 
-#define BIND_CALLBACK_1(func)   std::bind(&func, this, placeholders::_1)
-#define BIND_CALLBACK_2(func)	std::bind(&func, this, placeholders::_1, placeholders::_2)
+#define BIND_CALLBACK_1(func)   std::bind(&func, this, std::placeholders::_1)
+#define BIND_CALLBACK_2(func)	std::bind(&func, this, std::placeholders::_1, std::placeholders::_2)
 
 NAMESPACE_BEGIN(module)
 class ModuleSubject;

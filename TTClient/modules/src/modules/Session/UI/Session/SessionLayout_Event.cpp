@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/Session/UI/Session/SessionLayout.h>
 #include <modules/IEmotionModule.h>
 #include <modules/IMiscModule.h>

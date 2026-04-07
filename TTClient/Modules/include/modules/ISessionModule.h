@@ -10,7 +10,7 @@
 #define ISESSIONMODULE_070C0321_0708_4487_8028_C1D8934B709D_H__
 
 #include <global_define.h>
-#include <module_dll.h>
+#include <modules/module_dll.h>
 #include <modules/Base/ModuleBase.h>
 #include <modules/Base/ICallbackOpertaion.h>
 

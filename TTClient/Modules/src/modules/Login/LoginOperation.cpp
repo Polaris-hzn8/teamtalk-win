@@ -6,12 +6,13 @@
  brief: 执行登录请求
 */
 
-#include <modules/Login/LoginOperation.h>
+#include "stdafx.h"
+#include <global_define.h>
 #include <utility/utilStrCodingAPI.h>
-#include <modules/ISysConfigModule.h>
 #include <modules/IUserListModule.h>
+#include <modules/ISysConfigModule.h>
 #include <modules/ITcpClientModule.h>
-#include <GlobalConfig.h>
+#include <modules/Login/LoginOperation.h>
 
 LoginOperation::LoginOperation(module::IOperationDelegate callback, LoginParam& param)
 	:ICallbackOpertaion(callback)

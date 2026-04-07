@@ -9,8 +9,9 @@
 #ifndef _MAINDIALOG_H_
 #define _MAINDIALOG_H_
 
-#include "GlobalDefine.h"
-#include "Modules/ModuleObserver.h"
+#include "stdafx.h"
+#include <global_define.h>
+#include <modules/base/ModuleObserver.h>
 
 #define WM_START_MOGUTALKINSTANCE	WM_USER + 101
 #define WM_TRAYICON_NOTIFY			WM_USER + 1002

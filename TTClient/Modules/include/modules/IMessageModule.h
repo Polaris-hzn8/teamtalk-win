@@ -11,8 +11,8 @@
 
 #include <list>
 #include <global_define.h>
+#include <modules/module_dll.h>
 #include <modules/MessageEntity.h>
-#include <module_dll.h>
 
 class MessageEntity;
 class TransferFileEntity;

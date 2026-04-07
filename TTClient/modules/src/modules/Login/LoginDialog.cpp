@@ -6,17 +6,13 @@
  brief:
 */
 
+#include "stdafx.h"
+#include <global_define.h>
 #include <network/ImCore.h>
-#include <security/security.h>
-#include <modules/Login/LoginDialog.h>
-#include <GlobalDefine.h>
-#include <modules/Login/LoginOperation.h>
-#include <modules/Login/DoLoginServerHttpOperation.h>
-
+#include <libsecurity/security.h>
 #include <utility/Multilingual.h>
 #include <utility/utilCommonAPI.h>
 #include <utility/utilStrCodingAPI.h>
-
 #include <modules/IMiscModule.h>
 #include <modules/ILoginModule.h>
 #include <modules/IMessageModule.h>
@@ -24,6 +20,9 @@
 #include <modules/IHttpPoolModule.h>
 #include <modules/ITcpClientModule.h>
 #include <modules/ISysConfigModule.h>
+#include <modules/Login/LoginDialog.h>
+#include <modules/Login/LoginOperation.h>
+#include <modules/Login/DoLoginServerHttpOperation.h>
 
 DUI_BEGIN_MESSAGE_MAP(LoginDialog, WindowImplBase)
 	DUI_ON_MSGTYPE(DUI_MSGTYPE_WINDOWINIT, OnWindowInitialized)
@@ -33,12 +32,12 @@ DUI_BEGIN_MESSAGE_MAP(LoginDialog, WindowImplBase)
 DUI_END_MESSAGE_MAP()
 
 LoginDialog::LoginDialog()
-:m_ptxtTip(0)
-,m_pedtUserName(0)
-,m_pedtPassword(0)
-,m_pBtnSysSetting(0)
-,m_pChkRememberPWD(0)
-,m_bPassChanged(FALSE)
+	:m_ptxtTip(nullptr)
+	,m_pedtUserName(nullptr)
+	,m_pedtPassword(nullptr)
+	,m_pBtnSysSetting(nullptr)
+	,m_pChkRememberPWD(nullptr)
+	,m_bPassChanged(FALSE)
 {
 
 }
@@ -78,7 +77,8 @@ void LoginDialog::OnFinalMessage(HWND hWnd)
 
 LRESULT LoginDialog::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	if (WM_NCLBUTTONDBLCLK == uMsg)//禁用双击标题栏最大化
+	//禁用双击标题栏最大化
+	if (WM_NCLBUTTONDBLCLK == uMsg)
 	{
 		return 0;
 	}

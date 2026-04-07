@@ -6,7 +6,10 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <json/reader.h>
+#include <global_define.h>
+#include <yaolog/yaolog.h>
 #include <utility/utilCommonAPI.h>
 #include <utility/utilStrCodingAPI.h>
 #include <modules/IMiscModule.h>

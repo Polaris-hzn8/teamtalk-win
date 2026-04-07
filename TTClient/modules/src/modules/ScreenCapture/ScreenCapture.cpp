@@ -6,6 +6,7 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <modules/ScreenCapture/ScreenCapture.h>
 #include <modules/ScreenCapture/ScreenSnapshot.h>
 #include <modules/ScreenCapture/UI/UIMgr.h>

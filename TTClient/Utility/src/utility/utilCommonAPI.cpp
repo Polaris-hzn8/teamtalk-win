@@ -10,9 +10,9 @@
 #include <shlwapi.h>
 #include <shellapi.h>
 
-#include <security/sk_md5.h>
 #include <utility/TTThread.h>
 #include <utility/utilCommonAPI.h>
+#include <libsecurity/sk_md5.h>
 
 NAMESPACE_BEGIN(util)
 

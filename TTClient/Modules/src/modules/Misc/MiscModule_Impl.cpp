@@ -6,8 +6,9 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <mmsystem.h>
-#include <security/security.h>
+#include <libsecurity/security.h>
 #include <modules/Misc/MiscModule_Impl.h>
 #include <DuiLib/Utils/DialogManager.h>
 #include <utility/Multilingual.h>

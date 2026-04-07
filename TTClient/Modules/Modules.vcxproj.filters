@@ -84,33 +84,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Project Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.BaseDefine.pb.cc">
-      <Filter>Protocal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Buddy.pb.cc">
-      <Filter>Protocal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.File.pb.cc">
-      <Filter>Protocal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Group.pb.cc">
-      <Filter>Protocal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Login.pb.cc">
-      <Filter>Protocal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Message.pb.cc">
-      <Filter>Protocal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Other.pb.cc">
-      <Filter>Protocal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Server.pb.cc">
-      <Filter>Protocal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.SwitchService.pb.cc">
-      <Filter>Protocal</Filter>
-    </ClCompile>
     <ClCompile Include="src\modules\UserList\IUserListModule.cpp">
       <Filter>UserList</Filter>
     </ClCompile>
@@ -342,6 +315,33 @@
     <ClCompile Include="src\modules\Misc\MiscModule_Impl.cpp">
       <Filter>Misc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Message.pb.cc">
+      <Filter>Protocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Other.pb.cc">
+      <Filter>Protocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Server.pb.cc">
+      <Filter>Protocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.SwitchService.pb.cc">
+      <Filter>Protocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.BaseDefine.pb.cc">
+      <Filter>Protocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Buddy.pb.cc">
+      <Filter>Protocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.File.pb.cc">
+      <Filter>Protocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Group.pb.cc">
+      <Filter>Protocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Login.pb.cc">
+      <Filter>Protocal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -352,36 +352,6 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Project Files</Filter>
-    </ClInclude>
-    <ClInclude Include="module_dll.h">
-      <Filter>Project Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\protocal\IM.BaseDefine.pb.h">
-      <Filter>Protocal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Buddy.pb.h">
-      <Filter>Protocal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\protocal\IM.File.pb.h">
-      <Filter>Protocal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Group.pb.h">
-      <Filter>Protocal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Login.pb.h">
-      <Filter>Protocal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Message.pb.h">
-      <Filter>Protocal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Other.pb.h">
-      <Filter>Protocal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Server.pb.h">
-      <Filter>Protocal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\protocal\IM.SwitchService.pb.h">
-      <Filter>Protocal</Filter>
     </ClInclude>
     <ClInclude Include="include\modules\IUserListModule.h">
       <Filter>UserList</Filter>
@@ -637,6 +607,36 @@
     </ClInclude>
     <ClInclude Include="src\modules\Misc\MiscModule_Impl.h">
       <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Message.pb.h">
+      <Filter>Protocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Other.pb.h">
+      <Filter>Protocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Server.pb.h">
+      <Filter>Protocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\protocol\IM.SwitchService.pb.h">
+      <Filter>Protocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\protocol\IM.BaseDefine.pb.h">
+      <Filter>Protocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Buddy.pb.h">
+      <Filter>Protocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\protocol\IM.File.pb.h">
+      <Filter>Protocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Group.pb.h">
+      <Filter>Protocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Login.pb.h">
+      <Filter>Protocal</Filter>
+    </ClInclude>
+    <ClInclude Include="include\modules\module_dll.h">
+      <Filter>Project Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

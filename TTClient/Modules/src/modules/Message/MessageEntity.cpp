@@ -6,10 +6,11 @@
  brief:
 */
 
-#include <modules/Message/MessageEntity.h>
+#include "stdafx.h"
+#include <string>
+#include <modules/MessageEntity.h>
 #include <modules/ISysConfigModule.h>
 #include <modules/IGroupListModule.h>
-#include <string>
 
 MessageEntity::MessageEntity()
 : msgType(0)

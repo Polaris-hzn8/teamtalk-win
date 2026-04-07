@@ -9,6 +9,7 @@
 #ifndef IEVENT_83A4713C_930E_426A_98F5_8BB8747994D3_H__
 #define IEVENT_83A4713C_930E_426A_98F5_8BB8747994D3_H__
 
+#include <yaolog/yaolog.h>
 #include <global_define.h>
 #include <utility/utilCommonAPI.h>
 

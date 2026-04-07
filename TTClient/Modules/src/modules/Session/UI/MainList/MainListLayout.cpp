@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/Session/UI/UIEAUserTreelist.h>
 #include <modules/Session/UI/UIGroupsTreelist.h>
 #include <modules/Session/UI/UIRecentSessionList.h>

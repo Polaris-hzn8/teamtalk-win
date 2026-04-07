@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/IMiscModule.h>
 #include <modules/IMessageModule.h>
 #include <modules/IUserListModule.h>

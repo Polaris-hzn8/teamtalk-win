@@ -1,4 +1,4 @@
-﻿
+
 /*
  Reviser: Polaris_hzn8
  Email: lch2022fox@163.com
@@ -6,7 +6,8 @@
  brief:
 */
 
-#include <golabl_define.h>
+#include "stdafx.h"
+#include <global_define.h>
 #include <modules/IUserListModule.h>
 #include <modules/ITcpClientModule.h>
 

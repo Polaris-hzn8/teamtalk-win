@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <comutil.h>
 #include <json/writer.h>
 #include <json/reader.h>

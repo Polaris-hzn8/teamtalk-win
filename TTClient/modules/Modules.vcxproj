@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,7 +21,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
@@ -58,9 +58,10 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;MODULE_DLL;JSON_DLL;_SCL_SECURE_NO_WARNINGS;_CRTDBG_MAP_ALLOC;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;MODULE_DLL;JSON_DLL;_SCL_SECURE_NO_WARNINGS;_CRTDBG_MAP_ALLOC;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_WINSOCKAPI_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>.\;$(SolutionDir)..\include;$(SolutionDir)..\3rdParty\include;$(SolutionDir)..\3rdParty\src\;$(SolutionDir)..\3rdParty\src\cximage\cxImage\;$(SolutionDir)..\3rdParty\src\cximage\cxImage\zlib;$(SolutionDir)..\3rdParty\src\json\include\;$(SolutionDir)\..\core\</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -94,6 +95,7 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;MODULE_DLL;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;SECURITY_WIN32=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)3rdparty;$(SolutionDir)3rdparty\jsoncpp\include;$(SolutionDir)3rdparty\protobuf\include;$(SolutionDir)3rdparty\sqlite3\include;$(SolutionDir)3rdparty\httpclient;$(SolutionDir)sharesrc;$(SolutionDir)sharesrc\libsecurity;$(SolutionDir)sharesrc\protocol;$(SolutionDir)TTClient\Network\include;$(SolutionDir)TTClient\Utility\include;$(ProjectDir)src;$(ProjectDir)include;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -102,8 +104,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>.\Modules.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)\sharelib\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>utility.lib;network.lib;httpclient.lib;winmm.lib;DuiLib.lib;libprotobuf-lite.lib;MSVCRT.lib;security.lib;mfcs140u.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)\import_lib\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>utility.lib;network.lib;httpclient.lib;winmm.lib;DuiLib.lib;libprotobuf-lite.lib;MSVCRT.lib;cxImage.lib;jsoncpp.lib;mfcs140u.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\sharelib\</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>MSVCRT.lib;mfcs120u.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <Midl>
@@ -120,129 +122,300 @@
     </BuildLog>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.BaseDefine.pb.cc">
+    <ClCompile Include="..\..\sharesrc\libsecurity\aes_core.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Buddy.pb.cc">
+    <ClCompile Include="..\..\sharesrc\libsecurity\base64.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.File.pb.cc">
+    <ClCompile Include="..\..\sharesrc\libsecurity\md5.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Group.pb.cc">
+    <ClCompile Include="..\..\sharesrc\libsecurity\security.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Login.pb.cc">
+    <ClCompile Include="..\..\sharesrc\libsecurity\sk_md5.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Message.pb.cc">
+    <ClCompile Include="..\..\sharesrc\protocol\IM.BaseDefine.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Other.pb.cc">
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Buddy.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.Server.pb.cc">
+    <ClCompile Include="..\..\sharesrc\protocol\IM.File.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\sharesrc\protocal\IM.SwitchService.pb.cc">
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Group.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\modules\Base\ModuleBase.cpp" />
-    <ClCompile Include="src\modules\Base\ModuleObserver.cpp" />
-    <ClCompile Include="src\modules\Base\ModuleSubject.cpp" />
-    <ClCompile Include="src\modules\Base\UIEventManager.cpp" />
-    <ClCompile Include="src\modules\Database\DatabaseModule_DepartmentInfoDB_Impl.cpp" />
-    <ClCompile Include="src\modules\Database\DatabaseModule_FileTransferHistory_Impl.cpp" />
-    <ClCompile Include="src\modules\Database\DatabaseModule_GroupInfoDB_Impl.cpp" />
-    <ClCompile Include="src\modules\Database\DatabaseModule_ImageDB_Impl.cpp" />
-    <ClCompile Include="src\modules\Database\DatabaseModule_Impl.cpp" />
-    <ClCompile Include="src\modules\Database\DatabaseModule_MessageDB_Impl.cpp" />
-    <ClCompile Include="src\modules\Database\DatabaseModule_RecentSessionDB_Impl.cpp" />
-    <ClCompile Include="src\modules\Database\DatabaseModule_UserInfoDB_Impl.cpp" />
-    <ClCompile Include="src\modules\Emotion\EmoCfgParseTool.cpp" />
-    <ClCompile Include="src\modules\Emotion\EmotionButton.cpp" />
-    <ClCompile Include="src\modules\Emotion\EmotionDialog.cpp" />
-    <ClCompile Include="src\modules\Emotion\EmotionModule_Impl.cpp" />
-    <ClCompile Include="src\modules\FileTransfer\FileTransferDialog.cpp" />
-    <ClCompile Include="src\modules\FileTransfer\FileTransferModule_Impl.cpp" />
-    <ClCompile Include="src\modules\FileTransfer\FileTransferSocket.cpp" />
-    <ClCompile Include="src\modules\FileTransfer\FileTransferUIThread.cpp" />
-    <ClCompile Include="src\modules\FileTransfer\TransferFile.cpp" />
-    <ClCompile Include="src\modules\FileTransfer\TransferManager.cpp" />
-    <ClCompile Include="src\modules\GroupList\GroupListModule_Impl.cpp" />
-    <ClCompile Include="src\modules\GroupList\UI\ChangeDiscussionGrpMemberDialog.cpp" />
-    <ClCompile Include="src\modules\GroupList\UI\CreateDiscussionGrpDialog.cpp" />
-    <ClCompile Include="src\modules\GroupList\UI\ListCreatFrom.cpp" />
-    <ClCompile Include="src\modules\GroupList\UI\ListGroupMembers.cpp" />
-    <ClCompile Include="src\modules\HttpPool\HttpPoolModule_Impl.cpp" />
-    <ClCompile Include="src\modules\Login\DoLoginServerHttpOperation.cpp" />
-    <ClCompile Include="src\modules\Login\GetServConfigHttpOperation.cpp" />
-    <ClCompile Include="src\modules\Login\LoginDialog.cpp" />
-    <ClCompile Include="src\modules\Login\LoginModule_Impl.cpp" />
-    <ClCompile Include="src\modules\Login\LoginOperation.cpp" />
-    <ClCompile Include="src\modules\Login\ReloginManager.cpp" />
-    <ClCompile Include="src\modules\Message\MessageEntity.cpp" />
-    <ClCompile Include="src\modules\Message\MessageModule_Impl.cpp" />
-    <ClCompile Include="src\modules\Message\ReceiveMsgManage.cpp" />
-    <ClCompile Include="src\modules\Message\SendMsgManage.cpp" />
-    <ClCompile Include="src\modules\Misc\MiscModule_Impl.cpp" />
-    <ClCompile Include="src\modules\P2PCmd\P2PCmdModule_Impl.cpp" />
-    <ClCompile Include="src\modules\ScreenCapture\CaptureMode\AutoSelectMode.cpp" />
-    <ClCompile Include="src\modules\ScreenCapture\CaptureMode\CaptureMode.cpp" />
-    <ClCompile Include="src\modules\ScreenCapture\CaptureMode\ManalEditMode.cpp" />
-    <ClCompile Include="src\modules\ScreenCapture\CaptureMode\ManalSelectMode.cpp" />
-    <ClCompile Include="src\modules\ScreenCapture\ScreenCapture.cpp" />
-    <ClCompile Include="src\modules\ScreenCapture\ScreenCaptureModule_Impl.cpp" />
-    <ClCompile Include="src\modules\ScreenCapture\ScreenSnapshot.cpp" />
-    <ClCompile Include="src\modules\ScreenCapture\UI\BkgroundUI.cpp" />
-    <ClCompile Include="src\modules\ScreenCapture\UI\DlgBase.cpp" />
-    <ClCompile Include="src\modules\ScreenCapture\UI\EditToolbar.cpp" />
-    <ClCompile Include="src\modules\ScreenCapture\UI\UIMgr.cpp" />
-    <ClCompile Include="src\modules\Session\ISessionModule.cpp" />
-    <ClCompile Include="src\modules\Session\Operation\DownloadAvatarHttpOperation.cpp" />
-    <ClCompile Include="src\modules\Session\Operation\SendImgHttpOperation.cpp" />
-    <ClCompile Include="src\modules\Session\Operation\SyncTimerTimer.cpp" />
-    <ClCompile Include="src\modules\Session\SessionManager.cpp" />
-    <ClCompile Include="src\modules\Session\SessionModule_Impl.cpp" />
-    <ClCompile Include="src\modules\Session\UI\MainList\MainListLayout.cpp" />
-    <ClCompile Include="src\modules\Session\UI\MainList\MainListLayout_Event.cpp" />
-    <ClCompile Include="src\modules\Session\UI\Search\SearchLayout.cpp" />
-    <ClCompile Include="src\modules\Session\UI\Session\SessionDialog.cpp" />
-    <ClCompile Include="src\modules\Session\UI\Session\SessionLayout.cpp" />
-    <ClCompile Include="src\modules\Session\UI\Session\SessionLayout_Event.cpp" />
-    <ClCompile Include="src\modules\Session\UI\Session\SessionLayout_Function.cpp" />
-    <ClCompile Include="src\modules\Session\UI\UIEAUserTreelist.cpp" />
-    <ClCompile Include="src\modules\Session\UI\UIGroupsTreelist.cpp" />
-    <ClCompile Include="src\modules\Session\UI\UIIMEdit.cpp" />
-    <ClCompile Include="src\modules\Session\UI\UIIMList.cpp" />
-    <ClCompile Include="src\modules\Session\UI\UIIMListCommonDefine.cpp" />
-    <ClCompile Include="src\modules\Session\UI\UIRecentSessionList.cpp" />
-    <ClCompile Include="src\modules\Session\UI\UserDetailInfo\UserDetailInfoDialog.cpp" />
-    <ClCompile Include="src\modules\SysConfig\ServerConfigDialog.cpp" />
-    <ClCompile Include="src\modules\SysConfig\SysConfigDialog.cpp" />
-    <ClCompile Include="src\modules\SysConfig\SysConfigModule_Impl.cpp" />
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Login.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Message.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Other.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.Server.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\protocol\IM.SwitchService.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Base\ModuleBase.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Base\ModuleObserver.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Base\ModuleSubject.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Base\UIEventManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Database\DatabaseModule_DepartmentInfoDB_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Database\DatabaseModule_FileTransferHistory_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Database\DatabaseModule_GroupInfoDB_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Database\DatabaseModule_ImageDB_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Database\DatabaseModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Database\DatabaseModule_MessageDB_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Database\DatabaseModule_RecentSessionDB_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Database\DatabaseModule_UserInfoDB_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Emotion\EmoCfgParseTool.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Emotion\EmotionButton.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Emotion\EmotionDialog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Emotion\EmotionModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\FileTransfer\FileTransferDialog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\FileTransfer\FileTransferModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\FileTransfer\FileTransferSocket.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\FileTransfer\FileTransferUIThread.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\FileTransfer\TransferFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\FileTransfer\TransferManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\GroupList\GroupListModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\GroupList\UI\ChangeDiscussionGrpMemberDialog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\GroupList\UI\CreateDiscussionGrpDialog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\GroupList\UI\ListCreatFrom.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\GroupList\UI\ListGroupMembers.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\HttpPool\HttpPoolModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Login\DoLoginServerHttpOperation.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Login\GetServConfigHttpOperation.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Login\LoginDialog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Login\LoginModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Login\LoginOperation.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Login\ReloginManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Message\MessageEntity.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Message\MessageModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Message\ReceiveMsgManage.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Message\SendMsgManage.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Misc\MiscModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\P2PCmd\P2PCmdModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\ScreenCapture\CaptureMode\AutoSelectMode.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\ScreenCapture\CaptureMode\CaptureMode.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\ScreenCapture\CaptureMode\ManalEditMode.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\ScreenCapture\CaptureMode\ManalSelectMode.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\ScreenCapture\ScreenCapture.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\ScreenCapture\ScreenCaptureModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\ScreenCapture\ScreenSnapshot.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\ScreenCapture\UI\BkgroundUI.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\ScreenCapture\UI\DlgBase.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\ScreenCapture\UI\EditToolbar.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\ScreenCapture\UI\UIMgr.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\ISessionModule.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\Operation\DownloadAvatarHttpOperation.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\Operation\SendImgHttpOperation.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\Operation\SyncTimerTimer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\SessionManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\SessionModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\MainList\MainListLayout.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\MainList\MainListLayout_Event.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\Search\SearchLayout.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\Session\SessionDialog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\Session\SessionLayout.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\Session\SessionLayout_Event.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\Session\SessionLayout_Function.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\UIEAUserTreelist.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\UIGroupsTreelist.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\UIIMEdit.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\UIIMList.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\UIIMListCommonDefine.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\UIRecentSessionList.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\Session\UI\UserDetailInfo\UserDetailInfoDialog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\SysConfig\ServerConfigDialog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\SysConfig\SysConfigDialog.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\modules\SysConfig\SysConfigModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\modules\TcpClient\TcpClientModule_Impl.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\modules\UserList\IUserListModule.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\modules\UserList\UserListModule_Impl.cpp" />
+    <ClCompile Include="src\modules\UserList\UserListModule_Impl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\sharesrc\protocal\IM.BaseDefine.pb.h" />
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Buddy.pb.h" />
-    <ClInclude Include="..\..\sharesrc\protocal\IM.File.pb.h" />
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Group.pb.h" />
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Login.pb.h" />
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Message.pb.h" />
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Other.pb.h" />
-    <ClInclude Include="..\..\sharesrc\protocal\IM.Server.pb.h" />
-    <ClInclude Include="..\..\sharesrc\protocal\IM.SwitchService.pb.h" />
+    <ClInclude Include="..\..\sharesrc\libsecurity\aes.h" />
+    <ClInclude Include="..\..\sharesrc\libsecurity\aes_locl.h" />
+    <ClInclude Include="..\..\sharesrc\libsecurity\base64.h" />
+    <ClInclude Include="..\..\sharesrc\libsecurity\md5.h" />
+    <ClInclude Include="..\..\sharesrc\libsecurity\security.h" />
+    <ClInclude Include="..\..\sharesrc\libsecurity\sk_md5.h" />
+    <ClInclude Include="..\..\sharesrc\protocol\IM.BaseDefine.pb.h" />
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Buddy.pb.h" />
+    <ClInclude Include="..\..\sharesrc\protocol\IM.File.pb.h" />
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Group.pb.h" />
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Login.pb.h" />
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Message.pb.h" />
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Other.pb.h" />
+    <ClInclude Include="..\..\sharesrc\protocol\IM.Server.pb.h" />
+    <ClInclude Include="..\..\sharesrc\protocol\IM.SwitchService.pb.h" />
     <ClInclude Include="include\modules\Base\ICallbackOperationEvent.h" />
     <ClInclude Include="include\modules\Base\ICallbackOpertaion.h" />
     <ClInclude Include="include\modules\Base\IEvent.h" />
@@ -266,7 +439,7 @@
     <ClInclude Include="include\modules\ISysConfigModule.h" />
     <ClInclude Include="include\modules\ITcpClientModule.h" />
     <ClInclude Include="include\modules\IUserListModule.h" />
-    <ClInclude Include="module_dll.h" />
+    <ClInclude Include="include\modules\module_dll.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="src\modules\Database\DatabaseModule_Impl.h" />
     <ClInclude Include="src\modules\Emotion\EmoCfgParseTool.h" />

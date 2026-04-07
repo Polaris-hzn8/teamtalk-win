@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/Session/UI/UIIMListCommonDefine.h>
 
 double CalculateDelay(double state)

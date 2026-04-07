@@ -57,4 +57,15 @@ typedef unsigned char                   byte;
 #define  OUT
 
 
+// Configuration constants
+#define UTIL_LOG_APPFILE			_T("applog.log")
+#define UTIL_MULTILIGNUAL			_T("chinese.ini")
+
+#define APP		"app"
+#define NET		"net"
+#define DEBG	"debug"
+#define ERR		"error"
+#define SOCK	"socket"
+
+
 #endif// _GLOBAL_DEFINE_H_

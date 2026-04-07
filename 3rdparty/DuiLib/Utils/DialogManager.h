@@ -9,7 +9,7 @@
 #define DIALOGMANAGER_1119417E_2736_419F_B096_964E2676382E_H__
 
 #include <vector>
-#include "GlobalDefine.h"
+#include <global_define.h>
 #include "DuiLib/UIlib.h"
 
 NAMESPACE_BEGIN(DuiLib)

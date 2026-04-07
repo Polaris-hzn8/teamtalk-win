@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <TUPLE>
 #include <modules/GroupList/GroupListModule_Impl.h>
 #include <modules/IMiscModule.h>
@@ -9,7 +10,7 @@
 #include <modules/GroupList/UI/CreateDiscussionGrpDialog.h>
 #include <modules/GroupList/UI/ChangeDiscussionGrpMemberDialog.h>
 #include <network/ImCore.h>
-#include <network/ImPduBase.h>
+#include <network/core/ImPduBase.h>
 #include <utility/Multilingual.h>
 #include <utility/utilStrCodingAPI.h>
 #include <protocol/IM.Group.pb.h>
@@ -127,9 +128,7 @@ void GroupListModule_Impl::tcpGetGroupsInfo(IN const module::GroupVec& VecGroupI
 	{
 		return;
 	}
-	imcore::IMLibCoreStartOperationWithLambda(
-		[=]()
-	{
+	imcore::IMLibCoreStartOperationWithLambda([=]() {
 		IM::Group::IMGroupInfoListReq imGroupInfoListReq;
 		imGroupInfoListReq.set_user_id(module::getSysConfigModule()->userId());		
 		for (auto groupId : VecGroupId)
@@ -140,16 +139,16 @@ void GroupListModule_Impl::tcpGetGroupsInfo(IN const module::GroupVec& VecGroupI
 			pGroupVersionInfo->set_group_id(groupID);
 			pGroupVersionInfo->set_version(0);
 		}
+
 		imGroupInfoListReq.set_user_id(module::getSysConfigModule()->userId());		
-		module::getTcpClientModule()->sendPacket(IM::BaseDefine::ServiceID::SID_GROUP
-			, IM::BaseDefine::GroupCmdID::CID_GROUP_INFO_REQUEST
-			, &imGroupInfoListReq);
-	}
-	);
+		module::getTcpClientModule()->sendPacket(
+			IM::BaseDefine::ServiceID::SID_GROUP,
+			IM::BaseDefine::GroupCmdID::CID_GROUP_INFO_REQUEST,
+			&imGroupInfoListReq);
+	});
 }
 
-void GroupListModule_Impl::tcpGetGroupInfo(IN const std::string& groupId)
-{
+void GroupListModule_Impl::tcpGetGroupInfo(IN const std::string& groupId) {
 	if (groupId.empty())
 	{
 		return;
@@ -159,12 +158,9 @@ void GroupListModule_Impl::tcpGetGroupInfo(IN const std::string& groupId)
 	tcpGetGroupsInfo(VecGroupId);
 }
 
-
 void GroupListModule_Impl::tcpShieldGroup(IN const std::string& groupId, IN UInt32 shieldStatus)
 {
-	imcore::IMLibCoreStartOperationWithLambda(
-		[=]()
-	{
+	imcore::IMLibCoreStartOperationWithLambda([=]() {
 		IM::Group::IMGroupShieldReq imGroupShieldReq;
 		imGroupShieldReq.set_user_id(module::getSysConfigModule()->userId());
 		UInt32 groupID = util::stringToInt32(getOriginalSId(groupId));
@@ -172,16 +168,20 @@ void GroupListModule_Impl::tcpShieldGroup(IN const std::string& groupId, IN UInt
 		imGroupShieldReq.set_shield_status(shieldStatus);
 
 		LOG__(APP, _T("IMGroupShieldReq, groupID = %d,shieldStatus = %d"), groupID, shieldStatus);
-		module::getTcpClientModule()->sendPacket(IM::BaseDefine::ServiceID::SID_GROUP
-			, IM::BaseDefine::GroupCmdID::CID_GROUP_SHIELD_GROUP_REQUEST
-			, &imGroupShieldReq);
-	}
-	);
+		module::getTcpClientModule()->sendPacket(
+			IM::BaseDefine::ServiceID::SID_GROUP,
+			IM::BaseDefine::GroupCmdID::CID_GROUP_SHIELD_GROUP_REQUEST,
+			&imGroupShieldReq);
+	});
 }
+
 void GroupListModule_Impl::onCreateDiscussionGrpDialog(const std::string& currentSessionId)
 {
 	CreateDiscussionGrpDialog* pFrame = new CreateDiscussionGrpDialog(currentSessionId);
-	if (pFrame == NULL) return;
+	if (pFrame == NULL)
+	{
+		return;
+	}
 	CString strWinName = util::getMultilingual()->getStringById(_T("STRID_GROUPLISTMODULE_CREATGROUPWNDNAME"));
 	pFrame->Create(NULL, strWinName, UI_WNDSTYLE_FRAME, WS_EX_STATICEDGE | WS_EX_APPWINDOW, 0, 0, 600, 800);
 	pFrame->CenterWindow();
@@ -191,7 +191,10 @@ void GroupListModule_Impl::onCreateDiscussionGrpDialog(const std::string& curren
 void GroupListModule_Impl::onChangeDiscussionGrpMemberDialog(const std::string& currentSessionId)
 {
 	ChangeDiscussionGrpMemberDialog* pFrame = new ChangeDiscussionGrpMemberDialog(currentSessionId);
-	if (pFrame == NULL) return;
+	if (pFrame == NULL)
+	{
+		return;
+	}
 	CString strWinName = util::getMultilingual()->getStringById(_T("STRID_GROUPLISTMODULE_CHANGEGROUPNUM"));
 	pFrame->Create(NULL, strWinName, UI_WNDSTYLE_FRAME, WS_EX_STATICEDGE | WS_EX_APPWINDOW, 0, 0, 600, 800);
 	pFrame->CenterWindow();
@@ -207,6 +210,7 @@ std::string GroupListModule_Impl::makeGroupSId(const std::string& sid)
 	std::string sessionID = ("group_") + sid;
 	return sessionID;
 }
+
 std::string GroupListModule_Impl::getOriginalSId(const std::string& sid)
 {
 	std::string::size_type len = sid.size();

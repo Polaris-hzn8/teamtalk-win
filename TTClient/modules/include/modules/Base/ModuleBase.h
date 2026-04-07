@@ -9,8 +9,8 @@
 #ifndef MODULEBASE_A97FF157_CFAF_41B8_B21C_59ED6AA5A8ED_H__
 #define MODULEBASE_A97FF157_CFAF_41B8_B21C_59ED6AA5A8ED_H__
 
-#include <module_dll.h>
 #include <global_define.h>
+#include <modules/module_dll.h>
 #include <modules/Base/ModuleObserver.h>
 
 NAMESPACE_BEGIN(module)

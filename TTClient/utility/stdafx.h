@@ -8,8 +8,7 @@
 #define VC_EXTRALEAN            // 从 Windows 头中排除极少使用的资料
 #endif
 
-#include "targetver.h"
-  // 怎么都没找到min，max的头文件-_-
+#include "targetver.h"
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // 某些 CString 构造函数将是显式的
 
 #include <afxwin.h>         // MFC 核心组件和标准组件

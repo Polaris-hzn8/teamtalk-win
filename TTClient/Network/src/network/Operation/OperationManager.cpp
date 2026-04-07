@@ -7,7 +7,7 @@
 */
 
 #include <algorithm>
-#include <global_config.h>
+#include <global_define.h>
 #include <yaolog/yaolog.h>
 #include <network/operation/Operation.h>
 #include <network/operation/OperationManager.h>

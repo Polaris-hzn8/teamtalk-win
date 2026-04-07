@@ -6,6 +6,7 @@
  brief: 客户端与客户端之间数据传输 如:正在输入、窗口抖动等
 */
 
+#include "stdafx.h"
 #include <json/reader.h>
 #include <json/writer.h>
 #include <modules/Message/ReceiveMsgManage.h>
@@ -18,7 +19,7 @@
 #include <utility/Multilingual.h>
 #include <utility/utilStrCodingAPI.h>
 #include <network/ImCore.h>
-#include <network/ImPduBase.h>
+#include <network/core/ImPduBase.h>
 #include <protocol/IM.SwitchService.pb.h>
 #include <protocol/IM.BaseDefine.pb.h>
 

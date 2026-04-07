@@ -13,31 +13,16 @@
     <Filter Include="sharesrc">
       <UniqueIdentifier>{6d1b5355-b884-4adb-80f8-281d94c35d83}</UniqueIdentifier>
     </Filter>
-    <Filter Include="sharesrc\security">
-      <UniqueIdentifier>{dd510594-833b-4ae5-9c72-acb4596a7aa4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="sharesrc\yaolog">
       <UniqueIdentifier>{1f4b53c1-ce3f-4cfc-847d-5a8f57f745cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharesrc\libsecurity">
+      <UniqueIdentifier>{dd510594-833b-4ae5-9c72-acb4596a7aa4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Project Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\security\aes_core.cpp">
-      <Filter>sharesrc\security</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\security\base64.cpp">
-      <Filter>sharesrc\security</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\security\md5.cpp">
-      <Filter>sharesrc\security</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\security\security.cpp">
-      <Filter>sharesrc\security</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sharesrc\security\sk_md5.cpp">
-      <Filter>sharesrc\security</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharesrc\yaolog\yaolog.cpp">
       <Filter>sharesrc\yaolog</Filter>
@@ -60,6 +45,21 @@
     <ClCompile Include="src\utility\utilStrCodingAPI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sharesrc\libsecurity\aes_core.cpp">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\libsecurity\base64.cpp">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\libsecurity\md5.cpp">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\libsecurity\security.cpp">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\libsecurity\sk_md5.cpp">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resource.h">
@@ -70,27 +70,6 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Project Files</Filter>
-    </ClInclude>
-    <ClInclude Include="utility_dll.h">
-      <Filter>Project Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\security\aes.h">
-      <Filter>sharesrc\security</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\security\aes_locl.h">
-      <Filter>sharesrc\security</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\security\base64.h">
-      <Filter>sharesrc\security</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\security\md5.h">
-      <Filter>sharesrc\security</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\security\security.h">
-      <Filter>sharesrc\security</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\sharesrc\security\sk_md5.h">
-      <Filter>sharesrc\security</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharesrc\yaolog\yaolog.h">
       <Filter>sharesrc\yaolog</Filter>
@@ -112,6 +91,27 @@
     </ClInclude>
     <ClInclude Include="include\utility\utilStrCodingAPI.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\aes.h">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\aes_locl.h">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\base64.h">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\md5.h">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\security.h">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\sk_md5.h">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\utility_dll.h">
+      <Filter>Project Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

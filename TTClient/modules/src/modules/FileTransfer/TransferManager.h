@@ -5,7 +5,7 @@
 #include <map>
 #include <list>
 #include <global_define.h>
-#include <Utility/Lock.h>
+#include <network/Basic/lock.h>
 
 class TransferFile;
 class FileTransferUIThread;

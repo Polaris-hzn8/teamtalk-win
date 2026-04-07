@@ -367,7 +367,9 @@ CString HZ2AllPY(IN CString szHZ)
 	return str;
 }
 
- Int32 splitString(__in std::wstring src, __in std::vector<std::wstring> _vecSpliter,
+ Int32 splitString(
+	 __in std::wstring src,
+	 __in std::vector<std::wstring> _vecSpliter,
      __out std::vector<std::wstring> &_splitList)
  {
      if (src.empty() || _vecSpliter.empty())
@@ -419,7 +421,6 @@ CString HZ2AllPY(IN CString szHZ)
 
      return _splitList.size();
  }
-
 
 NAMESPACE_END(util)
 

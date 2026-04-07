@@ -6,6 +6,7 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <modules/ScreenCapture/ScreenSnapshot.h>
 #include <cxImage/cxImage/ximage.h>
 

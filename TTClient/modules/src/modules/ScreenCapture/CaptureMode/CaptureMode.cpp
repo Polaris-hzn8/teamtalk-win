@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include <modules/ScreenCapture/CaptureMode/CaptureMode.h>
 #include <modules/ScreenCapture/CaptureMode/AutoSelectMode.h>
 #include <modules/ScreenCapture/CaptureMode/ManalSelectMode.h>

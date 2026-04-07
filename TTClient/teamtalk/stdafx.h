@@ -42,7 +42,7 @@
 #endif
 
 #include <objbase.h>
-#include "DuiLib/UIlib.h"
-#include "GlobalConfig.h"
-#include "yaolog/yaolog.h"
+#include <global_define.h>
+#include <DuiLib/UIlib.h>
+#include <yaolog/yaolog.h>
 using namespace DuiLib;

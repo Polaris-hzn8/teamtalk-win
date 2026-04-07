@@ -6,9 +6,10 @@
  brief:
 */
 
-#include <modules/Emotion/EmotionModule_Impl.h>
-#include <modules/Emotion/EmotionDialog.h>
+#include "stdafx.h"
 #include <modules/IMiscModule.h>
+#include <modules/Emotion/EmotionDialog.h>
+#include <modules/Emotion/EmotionModule_Impl.h>
 
 namespace module
 {
@@ -90,6 +91,4 @@ void EmotionModule_Impl::getAllEmotionFileNames(OUT std::list<CString>& nameList
 		m_pEmotionKey->getAllNames(nameList);
 	}
 }
-
-
 

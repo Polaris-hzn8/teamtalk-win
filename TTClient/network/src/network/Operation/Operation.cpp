@@ -6,7 +6,7 @@
  brief: 封装的操作对象operation
 */
 
-#include <global_config.h>
+#include <global_define.h>
 #include <yaolog/yaolog.h>
 #include <network/operation/Operation.h>
 #include <network/operation/Exception.h>

@@ -2,7 +2,7 @@
 #ifndef GROUPLISTMODULE_IMPL_A4D4E682_0D42_4CF1_BF4B_B05E2F62C248_H__
 #define GROUPLISTMODULE_IMPL_A4D4E682_0D42_4CF1_BF4B_B05E2F62C248_H__
 
-#include <Utility/Lock.h>
+#include <network/basic/lock.h>
 #include <modules/IGroupListModule.h>
 
 class CImPdu;

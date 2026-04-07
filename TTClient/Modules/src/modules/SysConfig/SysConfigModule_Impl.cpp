@@ -6,6 +6,7 @@
  brief:
 */
 
+#include "stdafx.h"
 #include <utility/IniOperation.h>
 #include <utility/utilCommonAPI.h>
 #include <utility/utilStrCodingAPI.h>
@@ -18,11 +19,11 @@
 
 namespace module
 {
-	ISysConfigModule* getSysConfigModule()
-	{
-		static SysConfigModule_Impl module;
-		return &module;
-	}
+ISysConfigModule* getSysConfigModule()
+{
+	static SysConfigModule_Impl module;
+	return &module;
+}
 }
 
 namespace
