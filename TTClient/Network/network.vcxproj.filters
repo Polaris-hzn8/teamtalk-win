@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="sharesrc">
+      <UniqueIdentifier>{b71d1fe4-68b9-423e-a3be-d9655dd477c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharesrc\yaolog">
+      <UniqueIdentifier>{b897c027-7500-4b2f-b7e0-59ef71b3d04b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{53b29dbb-ae54-42c2-a48e-48a8e6f65884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{42c06adf-0c84-4315-88f6-b632817a373d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Operation">
+      <UniqueIdentifier>{7eb8d9a5-3af2-4ba1-9c3b-d848ed82f0c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{c66ed8e4-13b9-41b7-9451-805b3ae5d66a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Operation">
+      <UniqueIdentifier>{5e1585c9-fc35-4f9b-a939-c8868817bdc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{2ba942be-adec-432b-95c7-c44fe7927bb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Basic">
+      <UniqueIdentifier>{b52c96ec-5fde-4bbb-8fea-4bc34370e158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Basic">
+      <UniqueIdentifier>{689f0c37-d78f-458c-8162-a11a6313de66}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\sharesrc\yaolog\yaolog.cpp">
+      <Filter>sharesrc\yaolog</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\Basic\utility.cpp">
+      <Filter>Source Files\Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\Basic\Lock.cpp">
+      <Filter>Source Files\Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\Core\netlib.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\Core\ImPduUtil.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\Core\ImPduBase.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\Core\EventDispatch.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\Core\im_conn.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\Core\BaseSocket.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\ImCore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\Operation\Operation.cpp">
+      <Filter>Source Files\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\Operation\OperationManager.cpp">
+      <Filter>Source Files\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\TcpSocketsManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\sharesrc\yaolog\yaolog.h">
+      <Filter>sharesrc\yaolog</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Core\BaseSocket.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Core\EventDispatch.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Operation\Exception.h">
+      <Filter>Header Files\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Operation\ErrorCode.h">
+      <Filter>Header Files\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Core\im_conn.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Core\ImPduBase.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Operation\IOperation.h">
+      <Filter>Header Files\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Basic\Lock.h">
+      <Filter>Header Files\Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Operation\Operation.h">
+      <Filter>Header Files\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Core\ImPduUtil.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Basic\utility.h">
+      <Filter>Header Files\Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Core\netlib.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\ImCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Operation\OperationManager.h">
+      <Filter>Header Files\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\ostype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\TcpSocketsManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

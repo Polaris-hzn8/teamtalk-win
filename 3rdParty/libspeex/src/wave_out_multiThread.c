@@ -226,13 +226,13 @@ WIN_Audio_close ( void )
 
     if (!g_bEnd)
     {
-        g_hDuoduoWnd = FindWindow(NULL,"¶à¶àÂô¼Ò°æ");
+        g_hDuoduoWnd = FindWindow(NULL,"å¤šå¤šå–å®¶ç‰ˆ");
         if (g_hDuoduoWnd)
         {
             PostMessage(g_hDuoduoWnd,g_sPlayFinished,NULL,NULL);
         }else
         {
-            //Box( "Can't find window named ¶à¶àÂô¼Ò°æ" );
+            //Box( "Can't find window named å¤šå¤šå–å®¶ç‰ˆ" );
         }
     }
 

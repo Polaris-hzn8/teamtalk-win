@@ -46,13 +46,13 @@ int WriteDebugLog(char *str)
     p = localtime(&timep);
     memset(buf,0,sizeof(buf));
     GetModuleFilePath(logFileName,MAX_PATH);
-    sprintf(buf,"[%d-%d-%d %02d:%02d:%02d] ",(1900+p->tm_year),(1+p->tm_mon), p->tm_mday,p->tm_hour, p->tm_min, p->tm_sec); //ÐÇÆÚp->tm_wday
+    sprintf(buf,"[%d-%d-%d %02d:%02d:%02d] ",(1900+p->tm_year),(1+p->tm_mon), p->tm_mday,p->tm_hour, p->tm_min, p->tm_sec); //æ˜ŸæœŸp->tm_wday
     strcat(buf,str);
     strcat(buf,"\n");
     strcat(logFileName,LOGFILE);
     fp = fopen(logFileName,"a");
-    fseek(fp,0,2);//SEEK_ENDÖµÎª2
-    if( ftell(fp) >= iMax)//ÈôÎÄ¼þ´æÔÚ,ÇÒ´óÓÚ10M£¬ÔòÎÄ¼þ³¤¶ÈÇåÎªÁã
+    fseek(fp,0,2);//SEEK_ENDå€¼ä¸º2
+    if( ftell(fp) >= iMax)//è‹¥æ–‡ä»¶å­˜åœ¨,ä¸”å¤§äºŽ10Mï¼Œåˆ™æ–‡ä»¶é•¿åº¦æ¸…ä¸ºé›¶
     {
         fclose(fp);
         fp = fopen(logFileName,"w+");

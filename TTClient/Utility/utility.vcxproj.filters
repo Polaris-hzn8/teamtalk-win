@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Project Files">
+      <UniqueIdentifier>{f25a53ea-9185-4bc7-8e7e-0095cd659011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{a2c83c1c-6e2f-42d4-8374-bfe94e08df43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{cbd92d4c-828f-4f63-b0b6-4fb3a33bb2ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharesrc">
+      <UniqueIdentifier>{6d1b5355-b884-4adb-80f8-281d94c35d83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharesrc\security">
+      <UniqueIdentifier>{dd510594-833b-4ae5-9c72-acb4596a7aa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharesrc\yaolog">
+      <UniqueIdentifier>{1f4b53c1-ce3f-4cfc-847d-5a8f57f745cf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Project Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\security\aes_core.cpp">
+      <Filter>sharesrc\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\security\base64.cpp">
+      <Filter>sharesrc\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\security\md5.cpp">
+      <Filter>sharesrc\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\security\security.cpp">
+      <Filter>sharesrc\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\security\sk_md5.cpp">
+      <Filter>sharesrc\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\yaolog\yaolog.cpp">
+      <Filter>sharesrc\yaolog</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\CppSQLite3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\IniOperation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\Multilingual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\TTThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\utilCommonAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\utilStrCodingAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>Project Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Project Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Project Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utility_dll.h">
+      <Filter>Project Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\security\aes.h">
+      <Filter>sharesrc\security</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\security\aes_locl.h">
+      <Filter>sharesrc\security</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\security\base64.h">
+      <Filter>sharesrc\security</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\security\md5.h">
+      <Filter>sharesrc\security</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\security\security.h">
+      <Filter>sharesrc\security</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\security\sk_md5.h">
+      <Filter>sharesrc\security</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\yaolog\yaolog.h">
+      <Filter>sharesrc\yaolog</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\CppSQLite3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\IniOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\Multilingual.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\TTThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\utilCommonAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utility\utilStrCodingAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="utility.rc">
+      <Filter>Project Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
