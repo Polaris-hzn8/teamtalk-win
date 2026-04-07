@@ -3,9 +3,6 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
-# 自定义排除目录
-obj/*
-
 # User-specific files
 *.rsuser
 *.suo
@@ -401,20 +398,21 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# 加入版本控制的特殊文件 否则编译不通过
+# flash
 *.exp
 !**/Flash11.tlb
 !**/flash11.tlh
 
 # common lib
-inport_lib/*
-!inport_lib/libprotobuf-lite.lib
-!inport_lib/sqlite3.lib
+import_lib/*
+!import_lib/libprotobuf-lite.lib
+!import_lib/sqlite3.lib
 
-# package file
-package/**
-!package/module/
-!package/module/ttlogconfig.ini
-!package/gui
-!package/data
-!package/chinese.ini
+# protobuff
+3rdParty/protobuf/protobuf-2.6.1/*
+
+# Build results
+[Dd]ebug*/
+[Rr]elease*/
+
+*.bak

@@ -1,0 +1,57 @@
+
+/*
+ Reviser: Polaris_hzn8
+ Email: lch2022fox@163.com
+ Github: https://github.com/Polaris-hzn8
+ brief: 下载图片操作
+*/
+
+#ifndef DOWNLOADIMGHTTPOPERATION_4BB88F5E_5D0E_4FBA_9530_72972EB7647C_H__
+#define DOWNLOADIMGHTTPOPERATION_4BB88F5E_5D0E_4FBA_9530_72972EB7647C_H__
+
+#include <modules/Base/ICallbackOpertaion.h>
+#include <modules/IHttpPoolModule.h>
+#include <modules/IDatabaseModule.h>
+
+const std::string AVATAR_FORMAT_48X48 = "_50x50";
+const std::string AVATAR_FORMAT_64X64 = "_64x64";
+const std::string AVATAR_FORMAT_170X170 = "_170x170";
+
+class DownloadImgParam
+{
+public:
+	enum
+	{
+		DOWNLOADIMG_OK = 0,             //下载成功
+		DOWNLOADIMG_ERROR,				//下载错误
+	};
+
+public:
+	UInt8						m_result;
+	std::string					m_sId;
+	module::ImImageEntity		m_imgEntity;
+};
+
+// 下载图片操作
+class DownloadAvatarHttpOperation : public module::IHttpOperation
+{
+public:
+	DownloadAvatarHttpOperation(
+		IN std::string sId,
+		IN std::string& downUrl,
+		IN BOOL bGrayScale,
+		const std::string format,
+		module::IOperationDelegate callback);
+    virtual ~DownloadAvatarHttpOperation();
+public:
+	virtual void processOpertion();
+	virtual void release();
+
+private:
+	std::string		m_downUrl;
+	std::string		m_sId;
+	std::string		m_format;
+	BOOL			m_bGrayScale;
+};
+
+#endif// DOWNLOADIMGHTTPOPERATION_4BB88F5E_5D0E_4FBA_9530_72972EB7647C_H__
