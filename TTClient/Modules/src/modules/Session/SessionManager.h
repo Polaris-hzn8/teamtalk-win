@@ -4,7 +4,7 @@
 
 #include <global_define.h>
 #include <modules/ISessionModule.h>
-#include <network/basic/lock.h>
+#include <mutex>
 
 class SessionDialog;
 class SessionEntityManager {
@@ -30,7 +30,7 @@ class SessionEntityManager {
   void _removeAllSessionEntity();
 
  private:
-  CLock m_lock;
+  std::mutex m_lock;
   std::map<std::string, module::SessionEntity*> m_mapSessionEntity;
   std::vector<std::string> m_vecRecentSession;  // 最近联系的ID列表
   UInt32 m_globalUpdatedTime = 0;

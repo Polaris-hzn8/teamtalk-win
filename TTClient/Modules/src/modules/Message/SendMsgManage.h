@@ -13,7 +13,7 @@
 #include <modules/Base/IEvent.h>
 #include <modules/Base/ITimerEvent.h>
 #include <modules/MessageEntity.h>
-#include <network/basic/lock.h>
+#include <mutex>
 
 enum MSG_SENDSTATUS {
   MSGSTATUS_TOSEND,
@@ -52,7 +52,7 @@ class SendMsgManage {
 
  private:
   SendingMsgList m_ListSendingMsg;
-  CLock m_lock;
+  std::mutex m_lock;
 };
 
 // 定时check消息管理器，是否超时

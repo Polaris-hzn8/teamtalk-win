@@ -68,7 +68,7 @@ BOOL GroupListModule_Impl::startup() {
   return TRUE;
 }
 BOOL GroupListModule_Impl::getGroupInfoBySId(IN const std::string& sID, OUT module::GroupInfoEntity& groupInfo) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   module::GroupInfoMap::iterator it = m_mapGroups.find(sID);
   if (it != m_mapGroups.end()) {
     groupInfo = it->second;
@@ -83,7 +83,7 @@ BOOL GroupListModule_Impl::popAddedMemberVecBySId(IN const std::string& sID,
   if (it != m_mapAddedMember.end()) {
     AddedMemberVec = it->second;
     {
-      CAutoLock lock(&m_lock);
+      std::lock_guard<std::mutex> lock(m_lock);
       m_mapAddedMember.erase(it);
     }
     return TRUE;
@@ -97,7 +97,7 @@ BOOL GroupListModule_Impl::popRemovedMemberVecBySId(IN const std::string& sID,
   if (it != m_mapRemovedMember.end()) {
     RemovedMemberVec = it->second;
     {
-      CAutoLock lock(&m_lock);
+      std::lock_guard<std::mutex> lock(m_lock);
       m_mapRemovedMember.erase(it);
     }
     return TRUE;
@@ -221,7 +221,7 @@ void GroupListModule_Impl::_groupNormalListResponse(IN std::string& body) {
       pGroupVersionInfo->set_group_id(util::stringToInt32(getOriginalSId(groupinfo.gId)));  // 传本地保存的群的版本号
       pGroupVersionInfo->set_version(groupinfo.version);
       {
-        CAutoLock lock(&m_lock);
+        std::lock_guard<std::mutex> lock(m_lock);
         m_mapGroups[groupId] = groupinfo;
       }
     }
@@ -264,7 +264,7 @@ void GroupListModule_Impl::_groupInfoResponse(IN std::string& body) {
     if (!groupinfo.groupMemeberList.empty())  // 可能存在无效的空群
     {
       {
-        CAutoLock lock(&m_lock);
+        std::lock_guard<std::mutex> lock(m_lock);
         m_mapGroups[groupId] = groupinfo;
       }
       pGroupIDs->push_back(groupId);
@@ -315,7 +315,7 @@ void GroupListModule_Impl::_groupCreateDiscussGroupResponse(IN std::string& body
     _safePushBack(userId, groupInfo.groupMemeberList);
   }
   {
-    CAutoLock lock(&m_lock);
+    std::lock_guard<std::mutex> lock(m_lock);
     m_mapGroups[groupId] = groupInfo;
   }
   // 保存群信息到sqllite
@@ -426,7 +426,7 @@ void GroupListModule_Impl::_groupChangeMemberNotify(IN std::string& body) {
   if (IM::BaseDefine::GroupModifyType::GROUP_MODIFY_TYPE_ADD == imGroupChangeMemberNotify.change_type())  // 增加成会员
   {
     for (int n = 0; n < imGroupChangeMemberNotify.chg_user_id_list_size(); ++n) {
-      CAutoLock lock(&m_lock);
+      std::lock_guard<std::mutex> lock(m_lock);
       std::string& sid = util::uint32ToString(imGroupChangeMemberNotify.chg_user_id_list(n));
       bExistMySelf = (sid == module::getSysConfigModule()->userID());
       LOG__(APP, _T("add sid = %s"), util::stringToCString(sid));
@@ -561,7 +561,7 @@ void GroupListModule_Impl::_safePushBack(IN const std::string& Id, OUT std::list
 
 BOOL GroupListModule_Impl::deleteGroupInfoById(IN const std::string& sGroupId) {
   // 删除内存数据
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   module::GroupInfoMap::iterator it = m_mapGroups.find(sGroupId);
   if (it != m_mapGroups.end()) {
     m_mapGroups.erase(it);

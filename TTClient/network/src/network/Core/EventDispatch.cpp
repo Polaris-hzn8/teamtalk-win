@@ -42,11 +42,11 @@ CEventDispatch::~CEventDispatch() {
 void CEventDispatch::AddTimer(callback_t callback, void* user_data, uint64_t interval) {
   std::list<TimerItem*>::iterator it;
   for (it = m_timer_list.begin(); it != m_timer_list.end(); it++) {
-    TimerItem* pItem = *it;
-    if (pItem->callback == callback && pItem->user_data == user_data) {
-      pItem->interval = interval;
-      pItem->next_tick = get_tick_count() + interval;
-      return;
+      TimerItem* pItem = *it;
+      if (pItem->callback == callback && pItem->user_data == user_data) {
+        pItem->interval = interval;
+        pItem->next_tick = util::get_tick_count() + interval;
+        return;
     }
   }
 
@@ -54,7 +54,7 @@ void CEventDispatch::AddTimer(callback_t callback, void* user_data, uint64_t int
   pItem->callback = callback;
   pItem->user_data = user_data;
   pItem->interval = interval;
-  pItem->next_tick = get_tick_count() + interval;
+  pItem->next_tick = util::get_tick_count() + interval;
   m_timer_list.push_back(pItem);
 }
 
@@ -71,7 +71,7 @@ void CEventDispatch::RemoveTimer(callback_t callback, void* user_data) {
 }
 
 void CEventDispatch::_CheckTimer() {
-  uint64_t curr_tick = get_tick_count();
+  uint64_t curr_tick = util::get_tick_count();
   std::list<TimerItem*>::iterator it;
 
   for (it = m_timer_list.begin(); it != m_timer_list.end();) {
@@ -106,7 +106,7 @@ CEventDispatch* CEventDispatch::Instance() {
 #ifdef _MSC_VER
 // Windows平台下IO多路复用
 void CEventDispatch::AddEvent(SOCKET fd, uint8_t socket_event) {
-  CAutoLock func_lock(&m_lock);
+  std::lock_guard<std::mutex> func_lock(m_lock);
 
   if ((socket_event & SOCKET_READ) != 0) {
     FD_SET(fd, &m_read_set);
@@ -122,7 +122,7 @@ void CEventDispatch::AddEvent(SOCKET fd, uint8_t socket_event) {
 }
 
 void CEventDispatch::RemoveEvent(SOCKET fd, uint8_t socket_event) {
-  CAutoLock func_lock(&m_lock);
+  std::lock_guard<std::mutex> func_lock(m_lock);
 
   if ((socket_event & SOCKET_READ) != 0) {
     FD_CLR(fd, &m_read_set);

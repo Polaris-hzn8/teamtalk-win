@@ -28,7 +28,7 @@ SendMsgManage::~SendMsgManage() {}
 
 void SendMsgManage::pushSendingMsg(IN MessageEntity& msg) {
   SendingMsg sendingMsg;
-  CAutoLock autoLock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   if (m_ListSendingMsg.empty()) {
     sendingMsg.sendtime = static_cast<long>(clock());
     sendingMsg.msg = msg;
@@ -57,7 +57,7 @@ void SendMsgManage::pushSendingMsg(IN MessageEntity& msg) {
   }
 }
 void SendMsgManage::getSendFailedMsgs(OUT SendingMsgList& FailedMsgList) {
-  CAutoLock autoLock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   if (m_ListSendingMsg.empty()) {
     return;
   }
@@ -82,7 +82,7 @@ UInt32 SendMsgManage::_getSeqNo(void) {
 }
 
 BOOL SendMsgManage::popUpSendingMsgByAck(IN const UInt16 seqNo, IN const UInt32 msgID) {
-  CAutoLock autoLock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   // 找到对应的seqNo的缓存的项，erase掉
   SendingMsgList::iterator iter = m_ListSendingMsg.begin();
   for (; iter != m_ListSendingMsg.end(); ++iter) {
@@ -137,7 +137,7 @@ void CheckSendMsgTimer::process() {
     return;
   }
 
-  CAutoLock autoLock(&m_pMsgCheck->m_lock);
+  std::lock_guard<std::mutex> lock(m_pMsgCheck->m_lock);
   if (m_pMsgCheck->m_ListSendingMsg.empty()) {
     return;
   }

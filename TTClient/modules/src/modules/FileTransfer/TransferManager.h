@@ -5,7 +5,7 @@
 #include <global_define.h>
 #include <list>
 #include <map>
-#include <network/Basic/lock.h>
+#include <mutex>
 
 class TransferFile;
 class FileTransferUIThread;
@@ -94,7 +94,7 @@ class TransferFileEntityManager {
   TransferFileEntityManager();
 
  private:
-  CLock m_lock;
+  std::mutex m_lock;
   TransferFileMap m_MapFile;
   std::vector<TransferFileEntity> m_VecFinishedFile;  // 已经传输完的文件,任何操作过的文件都会被扔到这里
   FileTransferUIThread* m_fileUIThread;

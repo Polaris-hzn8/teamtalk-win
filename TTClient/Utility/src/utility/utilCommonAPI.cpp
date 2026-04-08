@@ -9,10 +9,18 @@
 #include "stdafx.h"
 #include <shellapi.h>
 #include <shlwapi.h>
+#include <sys/stat.h>
 
 #include <libsecurity/sk_md5.h>
 #include <utility/TTThread.h>
 #include <utility/utilCommonAPI.h>
+
+#ifdef _MSC_VER
+#include <windows.h>
+#else
+#include <sys/time.h>
+#include <unistd.h>
+#endif
 
 NAMESPACE_BEGIN(util)
 
@@ -178,6 +186,79 @@ BOOL waitSingleObject(HANDLE handle, Int32 timeout) {
   } while ((WAIT_TIMEOUT == waitResult) && (t < timeout));
 
   return (WAIT_OBJECT_0 == waitResult);
+}
+
+uint64_t get_tick_count() {
+#ifdef _MSC_VER
+  LARGE_INTEGER liCounter;
+  LARGE_INTEGER liCurrent;
+
+  if (!QueryPerformanceFrequency(&liCounter))
+    return GetTickCount();
+
+  QueryPerformanceCounter(&liCurrent);
+  return (uint64_t)(liCurrent.QuadPart * 1000 / liCounter.QuadPart);
+#else
+  struct timeval tval;
+  uint64_t ret_tick;
+
+  gettimeofday(&tval, NULL);
+
+  ret_tick = tval.tv_sec * 1000L + tval.tv_usec / 1000L;
+  return ret_tick;
+#endif
+}
+
+void util_sleep(uint32_t millisecond) {
+#ifdef _MSC_VER
+  Sleep(millisecond);
+#else
+  usleep(millisecond * 1000);
+#endif
+}
+
+size_t get_file_size(const char* path) {
+  size_t filesize = -1;
+  struct stat statbuff;
+  if (stat(path, &statbuff) < 0) {
+    return filesize;
+  } else {
+    filesize = statbuff.st_size;
+  }
+  return filesize;
+}
+
+char* long2ip(const unsigned int in) {
+  unsigned short v1, v2, v3, v4;
+  v4 = in % 256;
+  v3 = (in >> 8) % 256;
+  v2 = (in >> 16) % 256;
+  v1 = (in >> 24) % 256;
+  static char output[16];
+  sprintf_s(output, sizeof(output), "%hd.%hd.%hd.%hd", v1, v2, v3, v4);
+  return output;
+}
+
+unsigned int ip2long(const char* ip) {
+  unsigned short v1, v2, v3, v4;
+  sscanf_s(ip, "%hd.%hd.%hd.%hd", &v1, &v2, &v3, &v4);
+  unsigned int vl = (v1 << 24) + (v2 << 16) + (v3 << 8) + v4;
+  return vl;
+}
+
+void writePid() {
+  uint32_t curPid;
+#ifdef _MSC_VER
+  curPid = (uint32_t)GetCurrentProcess();
+#else
+  curPid = (uint32_t)getpid();
+#endif
+  FILE* f = fopen("server.pid", "w");
+  assert(f);
+  char szPid[32];
+  sprintf_s(szPid, sizeof(szPid), "%d", curPid);
+  fwrite(szPid, strlen(szPid), 1, f);
+  fclose(f);
 }
 
 NAMESPACE_END(util)

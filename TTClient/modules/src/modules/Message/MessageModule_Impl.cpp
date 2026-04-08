@@ -88,12 +88,12 @@ BOOL MessageModule_Impl::getHistoryMessage(IN const std::string& sId,
 }
 
 void MessageModule_Impl::setSessionTopMsgId(const std::string& sId, UInt32 msgId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   m_mapSessionTopMsgId[sId] = msgId;
 }
 
 UInt32 MessageModule_Impl::_getSessionTopMsgId(const std::string& sId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   auto iterMsgId = m_mapSessionTopMsgId.find(sId);
   UInt32 topMsgId = 0;
   if (iterMsgId != m_mapSessionTopMsgId.end()) {

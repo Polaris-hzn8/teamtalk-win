@@ -25,22 +25,16 @@
     <Filter Include="Source Files\Core">
       <UniqueIdentifier>{2ba942be-adec-432b-95c7-c44fe7927bb0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Basic">
-      <UniqueIdentifier>{b52c96ec-5fde-4bbb-8fea-4bc34370e158}</UniqueIdentifier>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{787359a9-8c8d-44f5-b3ff-6dd039b37bcc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Basic">
-      <UniqueIdentifier>{689f0c37-d78f-458c-8162-a11a6313de66}</UniqueIdentifier>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{e9b7036d-b0e4-482b-8869-bda91f5a48c5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sharesrc\yaolog\yaolog.cpp">
       <Filter>sharesrc\yaolog</Filter>
-    </ClCompile>
-    <ClCompile Include="src\network\Basic\utility.cpp">
-      <Filter>Source Files\Basic</Filter>
-    </ClCompile>
-    <ClCompile Include="src\network\Basic\Lock.cpp">
-      <Filter>Source Files\Basic</Filter>
     </ClCompile>
     <ClCompile Include="src\network\Core\netlib.cpp">
       <Filter>Source Files\Core</Filter>
@@ -72,6 +66,12 @@
     <ClCompile Include="src\network\TcpSocketsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\network\Utils\CRefObject.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\Utils\BasicTools.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sharesrc\yaolog\yaolog.h">
@@ -98,17 +98,11 @@
     <ClInclude Include="include\network\Operation\IOperation.h">
       <Filter>Header Files\Operation</Filter>
     </ClInclude>
-    <ClInclude Include="include\network\Basic\Lock.h">
-      <Filter>Header Files\Basic</Filter>
-    </ClInclude>
     <ClInclude Include="include\network\Operation\Operation.h">
       <Filter>Header Files\Operation</Filter>
     </ClInclude>
     <ClInclude Include="include\network\Core\ImPduUtil.h">
       <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="include\network\Basic\utility.h">
-      <Filter>Header Files\Basic</Filter>
     </ClInclude>
     <ClInclude Include="include\network\Core\netlib.h">
       <Filter>Header Files\Core</Filter>
@@ -124,6 +118,15 @@
     </ClInclude>
     <ClInclude Include="include\network\TcpSocketsManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Core\CRefObject.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Utils\CRefObject.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\network\Utils\BasicTools.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

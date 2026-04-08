@@ -25,7 +25,7 @@ SessionEntityManager* SessionEntityManager::getInstance() {
 void SessionEntityManager::setSessionEntity(IN const module::SessionEntity& sessionInfo) {
   module::SessionEntity* pSessionEntity = createSessionEntity(sessionInfo.sessionID);
   if (nullptr != pSessionEntity) {
-    CAutoLock lock(&m_lock);
+    std::lock_guard<std::mutex> lock(m_lock);
     *pSessionEntity = sessionInfo;
     auto iterSessionID = std::find_if(m_vecRecentSession.begin(), m_vecRecentSession.end(), [=](std::string sessionId) {
       return sessionId == sessionInfo.sessionID;
@@ -44,7 +44,7 @@ module::SessionEntity* SessionEntityManager::createSessionEntity(const std::stri
     pSessionEntity->sessionID = sId;
     pSessionEntity->setUpdatedTimeByServerTime();
     {
-      CAutoLock lock(&m_lock);
+      std::lock_guard<std::mutex> lock(m_lock);
       m_mapSessionEntity[sId] = pSessionEntity;
     }
   }
@@ -52,7 +52,7 @@ module::SessionEntity* SessionEntityManager::createSessionEntity(const std::stri
 }
 
 module::SessionEntity* SessionEntityManager::getSessionEntityBySId(IN const std::string& sId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   auto iter = m_mapSessionEntity.find(sId);
   if (iter != m_mapSessionEntity.end()) {
     return iter->second;
@@ -61,7 +61,7 @@ module::SessionEntity* SessionEntityManager::getSessionEntityBySId(IN const std:
 }
 
 BOOL SessionEntityManager::removeSessionEntity(const std::string& sId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   auto iterMap = m_mapSessionEntity.find(sId);
   if (iterMap == m_mapSessionEntity.end())
     return FALSE;
@@ -74,7 +74,7 @@ BOOL SessionEntityManager::removeSessionEntity(const std::string& sId) {
 }
 
 void SessionEntityManager::_removeAllSessionEntity() {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   auto iter = m_mapSessionEntity.begin();
   for (; iter != m_mapSessionEntity.end(); ++iter) {
     delete iter->second;

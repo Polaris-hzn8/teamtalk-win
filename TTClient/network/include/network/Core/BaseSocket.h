@@ -6,12 +6,14 @@
   brief: a wrap for non-block socket class for Windows, LINUX and MacOS X platform
 */
 
-#ifndef __SOCKET_H__
-#define __SOCKET_H__
+#ifndef _BASE_SOCKET_H_
+#define _BASE_SOCKET_H_
 
-#include <network\basic\utility.h>
-#include <network\ostype.h>
 #include <string>
+#include <network\ostype.h>
+#include <network\Core\CRefObject.h>
+
+namespace network {
 
 enum {
   SOCKET_STATE_IDLE,
@@ -86,4 +88,6 @@ class CBaseSocket : public CRefObject {
 
 CBaseSocket* FindBaseSocket(net_handle_t fd);
 
-#endif
+}  // namespace network
+
+#endif // _BASE_SOCKET_H_

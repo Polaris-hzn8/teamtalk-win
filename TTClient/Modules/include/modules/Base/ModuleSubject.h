@@ -11,7 +11,7 @@
 
 #include <global_define.h>
 #include <modules/Base/ModuleObserver.h>
-#include <network/basic/lock.h>
+#include <mutex>
 #include <vector>
 
 NAMESPACE_BEGIN(module)
@@ -39,7 +39,7 @@ class ModuleSubject final {
 
  private:
   std::vector<ModuleObserverCtx*> m_vecObservers;
-  CLock m_lockObserver;
+  std::mutex m_lockObserver;
 };
 
 NAMESPACE_END(module)

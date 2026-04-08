@@ -9,11 +9,11 @@
 #ifndef UTILPDU_H_
 #define UTILPDU_H_
 
-#include <list>
 #include <map>
-#include <network/ostype.h>
 #include <set>
+#include <list>
 #include <string>
+#include <network/ostype.h>
 
 #define ERROR_CODE_PARSE_FAILED 1
 #define ERROR_CODE_WRONG_SERVICE_ID 2

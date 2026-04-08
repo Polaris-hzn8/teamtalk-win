@@ -13,7 +13,7 @@
 #include <map>
 #include <modules/Base/IEvent.h>
 #include <modules/MessageEntity.h>
-#include <network/basic/lock.h>
+#include <mutex>
 
 typedef std::list<MessageEntity> SessionMessage_List;
 typedef std::map<std::string, SessionMessage_List> SessionMessageMap;
@@ -63,7 +63,7 @@ class ReceiveMsgManage {
 
  private:
   SessionMessageMap m_mapSessionMsg;
-  CLock m_lock;
+  std::mutex m_lock;
   std::vector<CString> m_scanUrls;
 
  public:

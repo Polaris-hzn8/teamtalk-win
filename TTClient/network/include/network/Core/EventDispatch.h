@@ -12,10 +12,9 @@
 #define __EVENT_DISPATCH_H__
 
 #include <list>
-#include <network\basic\lock.h>
-#include <network\basic\utility.h>
-#include <network\ostype.h>
+#include <mutex>
 #include <string>
+#include <network\ostype.h>
 
 enum { SOCKET_READ = 0x1, SOCKET_WRITE = 0x2, SOCKET_EXCEP = 0x4, SOCKET_ALL = 0x7 };
 
@@ -63,7 +62,7 @@ class CEventDispatch {
 #else
   int m_epfd;
 #endif
-  CLock m_lock;
+  std::mutex m_lock;
   std::list<TimerItem*> m_timer_list;
   std::list<TimerItem*> m_loop_list;
 

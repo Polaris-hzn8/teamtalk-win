@@ -6,9 +6,12 @@
  brief:
 */
 
+#include <unordered_map>
+#include <network\ostype.h>
 #include <network\core\BaseSocket.h>
 #include <network\core\EventDispatch.h>
-#include <unordered_map>
+
+namespace network {
 
 typedef std::unordered_map<net_handle_t, CBaseSocket*> SocketMap;
 SocketMap g_socket_map;
@@ -293,3 +296,5 @@ void CBaseSocket::_AcceptNewSocket() {
     m_callback(m_callback_data, NETLIB_MSG_CONNECT, (net_handle_t)fd, NULL);
   }
 }
+
+}  // namespace network

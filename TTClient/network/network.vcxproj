@@ -14,12 +14,6 @@
     <ClCompile Include="..\..\sharesrc\yaolog\yaolog.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\network\Basic\Lock.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\network\Basic\utility.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="src\network\Core\BaseSocket.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -50,12 +44,13 @@
     <ClCompile Include="src\network\TcpSocketsManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\network\Utils\BasicTools.cpp" />
+    <ClCompile Include="src\network\Utils\CRefObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sharesrc\yaolog\yaolog.h" />
-    <ClInclude Include="include\network\Basic\Lock.h" />
-    <ClInclude Include="include\network\Basic\utility.h" />
     <ClInclude Include="include\network\Core\BaseSocket.h" />
+    <ClInclude Include="include\network\Core\CRefObject.h" />
     <ClInclude Include="include\network\Core\EventDispatch.h" />
     <ClInclude Include="include\network\Core\ImPduBase.h" />
     <ClInclude Include="include\network\Core\ImPduUtil.h" />
@@ -69,6 +64,8 @@
     <ClInclude Include="include\network\Operation\OperationManager.h" />
     <ClInclude Include="include\network\ostype.h" />
     <ClInclude Include="include\network\TcpSocketsManager.h" />
+    <ClInclude Include="include\network\Utils\BasicTools.h" />
+    <ClInclude Include="include\network\Utils\CRefObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3436D6F0-A195-4BA4-A357-640A79612530}</ProjectGuid>
@@ -142,7 +139,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_WINSOCK_DEPRECATED_NO_WARNINGS;NETWORK_EXPORTS;BUILD_PDU;CLIENT;_CRT_SECURE_NO_WARNINGS;YAOLOG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)sharesrc;$(ProjectDir)include;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)TTClient\utility\include;$(SolutionDir)sharesrc;$(ProjectDir)include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

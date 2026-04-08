@@ -3,11 +3,13 @@
 #define __OS_TYPE_H__
 
 #ifdef _MSC_VER
-#include <WinBase.h>
-#include <WinSock2.h>
-#include <Windows.h>
 #include <direct.h>
 #include <stdint.h>
+#include <Windows.h>
+#include <WinSock2.h>
+#include <yaolog\yaolog.h>
+#include <global_define.h>
+#define snprintf sprintf_s
 #else
 #ifdef __APPLE__
 #include <sys/event.h>
@@ -71,8 +73,6 @@ enum {
   NETLIB_MSG_LOOP,
 };
 
-typedef void (*callback_t)(void* callback_data, uint8_t msg, uint32_t handle, void* pParam);
-
 #ifdef WIN32
 #ifdef NETWORK_EXPORTS
 #define NETWORK_DLL __declspec(dllexport)
@@ -82,5 +82,9 @@ typedef void (*callback_t)(void* callback_data, uint8_t msg, uint32_t handle, vo
 #else
 #define NETWORK_DLL
 #endif
+
+#define NOTUSED_ARG(v) ((void)v)  // used this to remove warning C4100, unreferenced parameter
+
+typedef void (*callback_t)(void* callback_data, uint8_t msg, uint32_t handle, void* pParam);
 
 #endif

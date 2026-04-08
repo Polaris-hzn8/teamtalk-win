@@ -30,14 +30,14 @@ void ModuleSubject::addObserver(IN void* pObserObject, IN MKODelegate handle) {
     return;
   ModuleObserverCtx* pMkoCtx = new ModuleObserverCtx(handle, pObserObject);
   {
-    CAutoLock lock(&m_lockObserver);
+    std::lock_guard<std::mutex> lock(m_lockObserver);
     m_vecObservers.push_back(pMkoCtx);
   }
 }
 
 void ModuleSubject::removeObserver(IN void* pObserObject) {
   std::vector<ModuleObserverCtx*> vecRemove;
-  CAutoLock lock(&m_lockObserver);
+  std::lock_guard<std::mutex> lock(m_lockObserver);
   auto iter = std::remove_if(m_vecObservers.begin(), m_vecObservers.end(), [=](ModuleObserverCtx* pCtxItem) {
     bool b = (pObserObject == pCtxItem->m_pObserverObject);
     if (b) {
@@ -52,7 +52,7 @@ void ModuleSubject::removeObserver(IN void* pObserObject) {
 }
 
 void ModuleSubject::_removeAllObservers() {
-  CAutoLock lock(&m_lockObserver);
+  std::lock_guard<std::mutex> lock(m_lockObserver);
   for (ModuleObserverCtx* pCtx : m_vecObservers) {
     delete pCtx;
     pCtx = 0;
@@ -90,7 +90,7 @@ void ModuleSubject::asynNotifyObserver(IN const std::string& keyId, IN std::shar
 }
 
 BOOL ModuleSubject::isObserverExist(IN const void* pObserObject) {
-  CAutoLock lock(&m_lockObserver);
+  std::lock_guard<std::mutex> lock(m_lockObserver);
   auto iterObserver = std::find_if(m_vecObservers.begin(), m_vecObservers.end(), [=](ModuleObserverCtx* pMKOCtx) {
     return (pObserObject == pMKOCtx->m_pObserverObject);
   });
@@ -103,7 +103,7 @@ void ModuleSubject::_asynNotifyObserver(IN const std::string& keyId, IN MKOEvent
 }
 
 void ModuleSubject::getIObserverHandlersByModuleId(OUT std::vector<MKODelegate>& vecMKOCallbacks) {
-  CAutoLock lock(&m_lockObserver);
+  std::lock_guard<std::mutex> lock(m_lockObserver);
   for (ModuleObserverCtx* pContext : m_vecObservers) {
     vecMKOCallbacks.push_back(pContext->callback);
   }

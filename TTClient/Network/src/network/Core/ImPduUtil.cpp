@@ -6,10 +6,10 @@
  brief:
 */
 
-#include <network\core\ImPduUtil.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <network\core\ImPduUtil.h>
 
 ///////////// CSimpleBuffer ////////////////
 CSimpleBuffer::CSimpleBuffer() {

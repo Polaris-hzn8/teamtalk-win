@@ -9,6 +9,7 @@
 #include "stdafx.h"
 #include <codecvt>
 #include <locale>
+#include <sstream>
 #include <stdio.h>
 #include <utility/utilStrCodingAPI.h>
 
@@ -415,6 +416,57 @@ Int32 splitString(__in std::wstring src,
   }
 
   return _splitList.size();
+}
+
+std::string int2string(uint32_t user_id) {
+  std::stringstream ss;
+  ss << user_id;
+  return ss.str();
+}
+
+uint32_t string2int(const std::string& value) {
+  return (uint32_t)atoi(value.c_str());
+}
+
+void replace_mark(std::string& str, std::string& new_value, uint32_t& begin_pos) {
+  std::string::size_type pos = str.find('?', begin_pos);
+  if (pos == std::string::npos) {
+    return;
+  }
+
+  std::string prime_new_value = "'" + new_value + "'";
+  str.replace(pos, 1, prime_new_value);
+
+  begin_pos = pos + prime_new_value.size();
+}
+
+void replace_mark(std::string& str, uint32_t new_value, uint32_t& begin_pos) {
+  std::stringstream ss;
+  ss << new_value;
+
+  std::string str_value = ss.str();
+  std::string::size_type pos = str.find('?', begin_pos);
+  if (pos == std::string::npos) {
+    return;
+  }
+
+  str.replace(pos, 1, str_value);
+  begin_pos = pos + str_value.size();
+}
+
+char* replaceStr(char* pSrc, char oldChar, char newChar) {
+  if (NULL == pSrc) {
+    return NULL;
+  }
+
+  char* pHead = pSrc;
+  while (*pHead != '\0') {
+    if (*pHead == oldChar) {
+      *pHead = newChar;
+    }
+    ++pHead;
+  }
+  return pSrc;
 }
 
 NAMESPACE_END(util)

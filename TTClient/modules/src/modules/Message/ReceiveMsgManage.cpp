@@ -40,7 +40,7 @@ BOOL ReceiveMsgManage::pushMessageBySId(const std::string& sId, MessageEntity& m
     LOG__(ERR, _T("sId is empty!"));
     return FALSE;
   }
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   try {
     SessionMessage_List* listChatMsg = _getChatMsgListBySID(sId);
     if (listChatMsg) {
@@ -59,7 +59,7 @@ BOOL ReceiveMsgManage::pushMessageBySId(const std::string& sId, MessageEntity& m
   return TRUE;
 }
 BOOL ReceiveMsgManage::popMessageBySId(const std::string& sId, MessageEntity& msg) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   SessionMessage_List* listChatMsg = _getChatMsgListBySID(sId);
   if (listChatMsg && !listChatMsg->empty()) {
     msg = listChatMsg->front();
@@ -74,7 +74,7 @@ BOOL ReceiveMsgManage::popMessageBySId(const std::string& sId, MessageEntity& ms
   return FALSE;
 }
 BOOL ReceiveMsgManage::frontMessageBySId(const std::string& sId, MessageEntity& msg) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   SessionMessage_List* listChatMsg = _getChatMsgListBySID(sId);
   if (listChatMsg && !listChatMsg->empty()) {
     msg = listChatMsg->back();
@@ -88,7 +88,7 @@ BOOL ReceiveMsgManage::popMessagesBySId(IN const std::string& sId,
                                         OUT SessionMessage_List& msgList,
                                         IN MSG_TYPE_STATUS status /*= MESSAGE_TYPE_NONE*/,
                                         IN const UINT32 msgId /* = 0*/) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   SessionMessage_List* listChatMsg = _getChatMsgListBySID(sId);
   if (listChatMsg && !listChatMsg->empty()) {
     SessionMessage_List::iterator it = listChatMsg->begin();
@@ -119,7 +119,7 @@ BOOL ReceiveMsgManage::popMessagesBySId(IN const std::string& sId,
 }
 
 UInt32 ReceiveMsgManage::getUnReadMsgCountBySId(const std::string& sId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   SessionMessage_List* listChatMsg = _getChatMsgListBySID(sId);
   if (listChatMsg) {
     SessionMessage_List& msgList = *listChatMsg;
@@ -136,7 +136,7 @@ UInt32 ReceiveMsgManage::getUnReadMsgCountBySId(const std::string& sId) {
 
 UInt32 ReceiveMsgManage::getTotalUnReadMsgCount() {
   UInt32 nTotalCount = 0;
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   for (auto itmap : m_mapSessionMsg) {
     const SessionMessage_List& msgList = itmap.second;
     for (MessageEntity msg : msgList) {
@@ -149,7 +149,7 @@ UInt32 ReceiveMsgManage::getTotalUnReadMsgCount() {
 }
 
 void ReceiveMsgManage::removeAllMessage() {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   // 记录下程序退出时所有的消息列表，并且记录下来，这个会成为离线消息
   SessionMessageMap::iterator iterMap = m_mapSessionMsg.begin();
   LOG__(ERR, _T("MessageMananger unread message trace begin："));
@@ -172,7 +172,7 @@ void ReceiveMsgManage::removeAllMessage() {
 }
 
 void ReceiveMsgManage::removeMessageBySId(const std::string& sId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   SessionMessage_List* listChatMsg = _getChatMsgListBySID(sId);
   if (listChatMsg && !listChatMsg->empty()) {
     listChatMsg->clear();
@@ -251,7 +251,7 @@ void ReceiveMsgManage::parseContent(CString& content, BOOL bFloatForm, Int32 cha
 }
 
 SessionMessage_List* ReceiveMsgManage::_getChatMsgListBySID(const std::string& sId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   SessionMessageMap::iterator iter = m_mapSessionMsg.find(sId);
   if (iter == m_mapSessionMsg.end())
     return 0;

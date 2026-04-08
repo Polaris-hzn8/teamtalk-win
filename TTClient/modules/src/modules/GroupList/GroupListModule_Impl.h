@@ -3,7 +3,7 @@
 #define GROUPLISTMODULE_IMPL_A4D4E682_0D42_4CF1_BF4B_B05E2F62C248_H__
 
 #include <modules/IGroupListModule.h>
-#include <network/basic/lock.h>
+#include <mutex>
 
 class CImPdu;
 class GroupListModule_Impl final : public module::IGroupListModule {
@@ -52,7 +52,7 @@ class GroupListModule_Impl final : public module::IGroupListModule {
   void _safePushBack(IN const std::string& Id, OUT std::list<std::string>& IdList);
 
  private:
-  CLock m_lock;
+  std::mutex m_lock;
 
   module::GroupInfoMap m_mapGroups;  // 每个群详细信息
 

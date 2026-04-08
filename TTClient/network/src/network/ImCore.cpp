@@ -6,16 +6,17 @@
  brief:
 */
 
+#include <mutex>
+#include <process.h>
 #include <network/ImCore.h>
 #include <network/TcpSocketsManager.h>
 #include <network/operation/OperationManager.h>
-#include <process.h>
 
 using namespace std;
 
 NAMESPACE_BEGIN(imcore)
 
-static CLock g_lock;
+static std::mutex g_lock;
 
 #ifdef _MSC_VER
 HANDLE g_hEventThread = NULL;
@@ -42,7 +43,7 @@ bool IMLibCoreRunEvent() {
   // start thread -> operation tasklist
   getOperationManager()->startup();
 
-  CAutoLock lock(&g_lock);
+  std::lock_guard<std::mutex> lock(g_lock);
   if (netlib_is_running())
     return true;
 

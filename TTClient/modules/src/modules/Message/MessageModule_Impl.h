@@ -4,7 +4,7 @@
 
 #include <map>
 #include <modules/IMessageModule.h>
-#include <network/basic/lock.h>
+#include <mutex>
 
 class CppSQLite3DB;
 class MessageModule_Impl final : public module::IMessageModule {
@@ -30,7 +30,7 @@ class MessageModule_Impl final : public module::IMessageModule {
   UInt32 _getSessionTopMsgId(const std::string& sId);
 
  private:
-  CLock m_lock;
+  std::mutex m_lock;
   std::map<std::string, UInt32> m_mapSessionTopMsgId;  // 会话顶部最新一条显示信息的msg_id
 };
 

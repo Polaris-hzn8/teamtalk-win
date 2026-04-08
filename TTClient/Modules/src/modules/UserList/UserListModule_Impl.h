@@ -10,7 +10,7 @@
 #define IUSERLISTMODULE_IMPL_9768C185_67AE_45BB_B840_F0A66E6A7044_H__
 
 #include <modules/IUserListModule.h>
-#include <network/basic/lock.h>
+#include <mutex>
 #include <network/core/ImPduBase.h>
 #include <string>
 
@@ -71,7 +71,7 @@ class UserListModule_Impl final : public module::IUserListModule {
   std::string _getGrayLocalPathFromFilename(std::string& finename);
 
  private:
-  CLock m_lock;
+  std::mutex m_lock;
   module::DepartmentMap m_mapDepartment;      // 部门信息
   module::UserInfoEntityMap m_mapUsers;       // 所以用户的信息
   UInt32 m_tcpGetUserFriendInfoListTime;      // trick,请求用户信息的次数，一次请求所有人有问题。

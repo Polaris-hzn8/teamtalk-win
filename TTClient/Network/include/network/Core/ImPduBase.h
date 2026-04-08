@@ -10,8 +10,8 @@
 #define TTPBHEADER_BE699480_6F65_405B_9E8A_F5B0F13800D0_H__
 
 #include <global_define.h>
-#include <network/core/ImPduUtil.h>
 #include <network/ostype.h>
+#include <network/core/ImPduUtil.h>
 
 NAMESPACE_BEGIN(imcore)
 

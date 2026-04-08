@@ -15,7 +15,7 @@
 #include <modules/Base/IEvent.h>
 #include <modules/Base/ITimerEvent.h>
 #include <modules/module_dll.h>
-#include <network/basic/lock.h>
+#include <mutex>
 #include <network/operation/ErrorCode.h>
 
 NAMESPACE_BEGIN(module)
@@ -65,7 +65,7 @@ class MODULE_CLASS UIEventManager final {
 
  private:
   HWND m_hWnd;
-  CLock m_lock;
+  std::mutex m_lock;
   std::list<TTTimer> m_lstTimers;
 };
 

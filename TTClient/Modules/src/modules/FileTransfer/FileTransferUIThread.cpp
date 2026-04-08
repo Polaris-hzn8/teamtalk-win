@@ -95,7 +95,7 @@ void FileTransferUIThread::openFileSocketByTaskId(std::string& taskId) {
 }
 
 void FileTransferUIThread::closeFileSocketByTaskId(std::string& taskId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   auto fileSockIter =
     std::remove_if(m_lstFileTransSockets.begin(), m_lstFileTransSockets.end(), [=](FileTransferSocket* pFileSocket) {
       return (taskId == pFileSocket->m_sTaskId);
@@ -199,7 +199,7 @@ BOOL FileTransferUIThread::cancelFileTransfer(const std::string& taskId) {
 }
 
 FileTransferSocket* FileTransferUIThread::_findFileSocketByTaskId(const std::string& taskId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   auto iter = std::find_if(m_lstFileTransSockets.begin(),
                            m_lstFileTransSockets.end(),
                            [=](FileTransferSocket* fileSock) { return (taskId == fileSock->m_sTaskId); });

@@ -126,7 +126,7 @@ imcore::IMCoreErrorCode UIEventManager::startup() {
 }
 
 void UIEventManager::_removeEvents() {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   for (auto& pTimer : m_lstTimers) {
     if (pTimer.pTimerEvent) {
       pTimer.pTimerEvent->release();
@@ -210,7 +210,7 @@ imcore::IMCoreErrorCode UIEventManager::scheduleTimer(IN ITimerEvent* pTimerEven
     asynFireUIEvent(pTimerEvent);
   }
   {
-    CAutoLock lock(&m_lock);
+    std::lock_guard<std::mutex> lock(m_lock);
     TTTimer ctx;
     ctx.bRepeat = bRepeat;
     ctx.nDelay = delay;
@@ -229,7 +229,7 @@ imcore::IMCoreErrorCode UIEventManager::scheduleTimer(IN ITimerEvent* pTimerEven
 }
 
 void UIEventManager::_processTimer() {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   for (auto iter = m_lstTimers.begin(); iter != m_lstTimers.end();) {
     TTTimer& ctx = *iter;
     if (++ctx.nElapse < ctx.nDelay) {
@@ -252,7 +252,7 @@ void UIEventManager::_processTimer() {
 }
 
 imcore::IMCoreErrorCode UIEventManager::killTimer(IN ITimerEvent* pTimerEvent) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   auto iter = std::remove_if(
     m_lstTimers.begin(), m_lstTimers.end(), [=](TTTimer& ttime) { return (pTimerEvent == ttime.pTimerEvent); });
   if (iter != m_lstTimers.end()) {

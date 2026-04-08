@@ -63,7 +63,7 @@ TransferFileEntityManager* TransferFileEntityManager::getInstance() {
 }
 
 BOOL TransferFileEntityManager::getFileInfoByTaskId(IN const std::string& sID, OUT TransferFileEntity& FileInfo) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   TransferFileMap::iterator it = m_MapFile.find(sID);
   if (it != m_MapFile.end()) {
     FileInfo = it->second;
@@ -73,7 +73,7 @@ BOOL TransferFileEntityManager::getFileInfoByTaskId(IN const std::string& sID, O
 }
 
 BOOL TransferFileEntityManager::DeleteFileInfoByTaskId(IN const std::string& sID) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   TransferFileMap::iterator it = m_MapFile.find(sID);
   if (it != m_MapFile.end()) {
     m_MapFile.erase(it);
@@ -83,7 +83,7 @@ BOOL TransferFileEntityManager::DeleteFileInfoByTaskId(IN const std::string& sID
 }
 
 BOOL TransferFileEntityManager::kickMapFileItemToVecFile(IN std::string& sfId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   TransferFileMap::iterator it = m_MapFile.find(sfId);
   if (it != m_MapFile.end()) {
     TransferFileEntity& fileInfo = it->second;
@@ -95,7 +95,7 @@ BOOL TransferFileEntityManager::kickMapFileItemToVecFile(IN std::string& sfId) {
 }
 
 BOOL TransferFileEntityManager::updateFileInfoBysTaskID(IN const TransferFileEntity& info) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   TransferFileMap::iterator it = m_MapFile.find(info.sTaskID);
   if (it != m_MapFile.end()) {
     it->second = info;
@@ -149,7 +149,7 @@ BOOL TransferFileEntityManager::openFileFolderByTaskID(IN const std::string& sID
 
 BOOL TransferFileEntityManager::checkIfIsSending(IN CString sFilePath) {
   sFilePath.Replace(_T("\\"), _T("/"));
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   TransferFileMap::iterator it = m_MapFile.begin();
   for (; it != m_MapFile.end(); ++it) {
     CString sfileName = util::stringToCString(it->second.sFileName);
@@ -164,7 +164,7 @@ BOOL TransferFileEntityManager::checkIfIsSending(IN CString sFilePath) {
 }
 
 BOOL TransferFileEntityManager::pushTransferFileEntity(IN TransferFileEntity& FileInfo) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   TransferFileMap::iterator it = m_MapFile.find(FileInfo.sTaskID);
   if (it != m_MapFile.end()) {
     return FALSE;
@@ -234,6 +234,6 @@ void TransferFileEntityManager::closeFileSocketByTaskId(std::string& taskId) {
 }
 
 void TransferFileEntityManager::pushTransferFileEntityToVec(IN TransferFileEntity& FileInfo) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   m_VecFinishedFile.push_back(FileInfo);
 }

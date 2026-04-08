@@ -39,7 +39,7 @@ void HttpPoolModule_Impl::pushHttpOperation(module::IHttpOperation* pOperaion, B
   if (NULL == pOperaion)
     return;
 
-  CAutoLock lock(&m_mtxLock);
+  std::lock_guard<std::mutex> lock(m_mtxLock);
   if (m_bShutdown) {
     LOG__(ERR, _T("HttpPoolModule_Impl::pushHttpOperation called after shutdown; releasing op"));
     try {
@@ -95,8 +95,7 @@ void HttpPoolModule_Impl::shutdown() {
 }
 
 BOOL HttpPoolModule_Impl::_launchThread() {
-  CAutoLock lock(&m_mtxLock);
-
+  std::lock_guard<std::mutex> lock(m_mtxLock);
   if ((int)m_vecHttpThread.size() >= m_maxThreadCount) {
     return TRUE;
   }
@@ -118,8 +117,7 @@ BOOL HttpPoolModule_Impl::_launchThread() {
 }
 
 void HttpPoolModule_Impl::_cancelAllOperations() {
-  CAutoLock lock(&m_mtxLock);
-
+  std::lock_guard<std::mutex> lock(m_mtxLock);
   for (module::IHttpOperation* pOper : m_lstHttpOpers) {
     try {
       pOper->release();
@@ -152,7 +150,7 @@ UInt32 TTHttpThread::process() {
       break;
 
     {
-      CAutoLock lock(&(pPool->m_mtxLock));
+      std::lock_guard<std::mutex> lock(pPool->m_mtxLock);
       if (!pPool->m_lstHttpOpers.empty()) {
         pHttpOper = pPool->m_lstHttpOpers.front();
         pPool->m_lstHttpOpers.pop_front();

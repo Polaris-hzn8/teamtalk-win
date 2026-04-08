@@ -103,7 +103,7 @@ void UserListModule_Impl::_allUserlistResponse(IN std::string& pbBody) {
       userInfoEntity.status = userInfo.status();
       userInfoEntity.signature = userInfo.sign_info();
       if (userInfoEntity.sId != module::getSysConfigModule()->userID()) {
-        CAutoLock lock(&m_lock);
+        std::lock_guard<std::mutex> lock(m_lock);
         m_mapUsers[userInfoEntity.sId] = userInfoEntity;
       }
       _pushUserIdToDepartment(userInfoEntity.sId, userInfoEntity.department);  // 生成部门信息
@@ -129,7 +129,7 @@ void UserListModule_Impl::_usersLineStatusResponse(IN std::string& pbBody) {
   }
   const UInt32 nSize = imUsersStatRsp.user_stat_list_size();
   LOG__(APP, _T("IMUsersStatRsp,Size = %d"), nSize);
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   for (UInt32 i = 0; i < nSize; ++i) {
     IM::BaseDefine::UserStat userStat = imUsersStatRsp.user_stat_list(i);
     std::string sId = util::uint32ToString(userStat.user_id());
@@ -197,7 +197,7 @@ void UserListModule_Impl::_departmentResponse(IN std::string& pbBody) {
       departmentEntity.name = util::stringToCString(departInfo.dept_name());
       departmentEntity.status = departInfo.dept_status();
       {
-        CAutoLock lock(&m_lock);
+        std::lock_guard<std::mutex> lock(m_lock);
         module::DepartmentMap::iterator itMap = m_mapDepartment.find(departmentEntity.dId);
         if (itMap == m_mapDepartment.end() || itMap->second.members.empty()) {
           m_mapDepartment[departmentEntity.dId] = departmentEntity;
@@ -273,7 +273,7 @@ void UserListModule_Impl::_userStatusNotify(IN std::string& pbBody) {
         userStat.status());  // 扰乱日志，暂时不打印
   module::UserInfoEntityMap::iterator itUser = m_mapUsers.find(sid);
   if (itUser != m_mapUsers.end()) {
-    CAutoLock lock(&m_lock);
+    std::lock_guard<std::mutex> lock(m_lock);
     itUser->second.onlineState = userStat.status();
     module::getUserListModule()->asynNotifyObserver(module::KEY_USERLIST_USERLINESTATE, sid);
   }
@@ -304,7 +304,7 @@ void UserListModule_Impl::_usersInfoResponse(IN std::string& pbBody) {
     userInfoEntity.status = userInfo.status();
     userInfoEntity.signature = userInfo.sign_info();  // 个性签名
     if (userInfoEntity.sId != module::getSysConfigModule()->userID()) {
-      CAutoLock lock(&m_lock);
+      std::lock_guard<std::mutex> lock(m_lock);
       m_mapUsers[userInfoEntity.sId] = userInfoEntity;
     }
     _downloadAvatarImgBySId(sId);                                            // 更新用户的头像
@@ -336,14 +336,14 @@ void UserListModule_Impl::_removeSessionResponse(IN std::string& pbBody) {
 }
 
 const module::DepartmentMap& UserListModule_Impl::getAllDepartments() {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   return m_mapDepartment;
 }
 void UserListModule_Impl::getAllUsersInfo(module::UserInfoEntityMap& MapUsers) const {
   MapUsers = m_mapUsers;
 }
 BOOL UserListModule_Impl::getUserInfoBySId(IN std::string sid, OUT module::UserInfoEntity& userInfo) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   // 据说map在find之前需要判空
   if (m_mapUsers.empty())
     return FALSE;
@@ -507,7 +507,7 @@ BOOL UserListModule_Impl::getMyInfo(OUT module::UserInfoEntity& myInfo) {
 }
 
 void UserListModule_Impl::_pushUserIdToDepartment(const std::string& sId, const std::string& dId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   module::DepartmentMap::iterator itDepartment = m_mapDepartment.find(dId);
   if (itDepartment != m_mapDepartment.end())  // 该部门已存在
   {
@@ -568,7 +568,7 @@ void UserListModule_Impl::getSearchDepartmentsByShortName(IN const CString& sSho
 }
 
 BOOL UserListModule_Impl::_downloadAvatarImgBySId(IN const std::string& sId) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   module::UserInfoEntityMap::iterator iter = m_mapUsers.find(sId);
   if (iter == m_mapUsers.end())
     return FALSE;
@@ -641,7 +641,7 @@ void UserListModule_Impl::onCallbackOperation(std::shared_ptr<void> param) {
 }
 
 BOOL UserListModule_Impl::createUserInfo(IN const module::UserInfoEntity& info) {
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   module::UserInfoEntity infoTemp;
   if (getUserInfoBySId(info.sId, infoTemp))
     return FALSE;
@@ -690,7 +690,7 @@ std::string UserListModule_Impl::randomGetUser(void) {
   module::UserInfoEntity myInfo;
   module::getUserListModule()->getMyInfo(myInfo);
   module::UserInfoEntityVec allUserVec;
-  CAutoLock lock(&m_lock);
+  std::lock_guard<std::mutex> lock(m_lock);
   for (auto kvp : m_mapUsers) {
     if (kvp.second.gender != myInfo.gender)  // 只获取跟自己性别不同的
     {
@@ -730,7 +730,7 @@ void UserListModule_Impl::_changeSignInfoResponse(IN std::string& pbBody) {
     return;
   }
   {
-    CAutoLock lock(&m_lock);
+    std::lock_guard<std::mutex> lock(m_lock);
     userInfo.signature = sSignInfo;
     m_mapUsers[userInfo.sId] = userInfo;
   }
@@ -755,7 +755,7 @@ void UserListModule_Impl::_avatarChangeNotify(IN std::string& pbBody)  // 修改
     return;
   }
   {
-    CAutoLock lock(&m_lock);
+    std::lock_guard<std::mutex> lock(m_lock);
     userInfo.avatarUrl = sAvatarUrl;
     m_mapUsers[userInfo.sId] = userInfo;
   }
@@ -781,7 +781,7 @@ void UserListModule_Impl::_signInfoChangedNotify(IN std::string& pbBody)  // 修
     return;
   }
   {
-    CAutoLock lock(&m_lock);
+    std::lock_guard<std::mutex> lock(m_lock);
     userInfo.signature = sSignInfo;
     m_mapUsers[userInfo.sId] = userInfo;
   }

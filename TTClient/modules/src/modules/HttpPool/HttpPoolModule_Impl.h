@@ -11,7 +11,7 @@
 
 #include <list>
 #include <modules/IHttpPoolModule.h>
-#include <network/basic/lock.h>
+#include <mutex>
 #include <utility/TTThread.h>
 #include <vector>
 
@@ -48,7 +48,7 @@ class HttpPoolModule_Impl final : public module::IHttpPoolModule {
   std::list<module::IHttpOperation*> m_lstHttpOpers;  // http操作队列
   std::vector<TTHttpThread*> m_vecHttpThread;         // http线程池
   HANDLE m_hSemaphore;
-  CLock m_mtxLock;
+  std::mutex m_mtxLock;
 
   int m_maxThreadCount;       // 线程池最大线程数
   volatile BOOL m_bShutdown;  // 是否关闭
