@@ -10,8 +10,8 @@
 #define TTPBHEADER_BE699480_6F65_405B_9E8A_F5B0F13800D0_H__
 
 #include <global_define.h>
-#include <network/ostype.h>
 #include <network/core/ImPduUtil.h>
+#include <network/ostype.h>
 
 NAMESPACE_BEGIN(imcore)
 
@@ -20,48 +20,48 @@ const static Int16 VERSION = 1;
 
 const UInt32 TTPBHEADER_RESERVED_MASK = 0xff00U;
 
-enum
-{
-	RESERVED_TYPE_HISTORY_MESSAGE				= TTPBHEADER_RESERVED_MASK | 0x01,		//identify send history message packet
-	RESERVED_TYPE_HISTORY_SCROLLBOTTOM_MESSAGE	= TTPBHEADER_RESERVED_MASK | 0x02,		//identify send history message packet which will scroll bottom
-	RESERVER_TYPE_UNREADER_MESSAGE				= TTPBHEADER_RESERVED_MASK | 0x03,		//identify unread message packet
+enum {
+  RESERVED_TYPE_HISTORY_MESSAGE = TTPBHEADER_RESERVED_MASK | 0x01,  // identify send history message packet
+  RESERVED_TYPE_HISTORY_SCROLLBOTTOM_MESSAGE =
+    TTPBHEADER_RESERVED_MASK | 0x02,  // identify send history message packet which will scroll bottom
+  RESERVER_TYPE_UNREADER_MESSAGE = TTPBHEADER_RESERVED_MASK | 0x03,  // identify unread message packet
 };
 
-class NETWORK_DLL TTPBHeader final
-{
-public:
-    TTPBHeader();
-    ~TTPBHeader();
-public:
-	byte* getSerializeBuffer();
-	void unSerialize(byte* headerBuff, UInt16 len);
-	void clear();
-	inline void setLength(UInt32 length) { m_length = length; }
-	inline void setModuleId(UInt16 moduleId) { m_moduleId = moduleId; }
-	inline void setCommandId(UInt16 cmdId) { m_commandId = cmdId; }
-	inline void setSeqNumber(UInt16 seq) { m_seqNumber = seq; }
-	inline void setReserved(UInt16 reservId) { m_reserved = reservId; }
+class NETWORK_DLL TTPBHeader final {
+ public:
+  TTPBHeader();
+  ~TTPBHeader();
 
-	inline UInt16 getModuleId()const { return m_moduleId; }
-	inline UInt16 getCommandId()const { return m_commandId; }
-	inline UInt16 getReserved()const { return m_reserved; }
-	inline UInt16 getSeqNumber()const {  return m_seqNumber; }
+ public:
+  byte* getSerializeBuffer();
+  void unSerialize(byte* headerBuff, UInt16 len);
+  void clear();
+  inline void setLength(UInt32 length) { m_length = length; }
+  inline void setModuleId(UInt16 moduleId) { m_moduleId = moduleId; }
+  inline void setCommandId(UInt16 cmdId) { m_commandId = cmdId; }
+  inline void setSeqNumber(UInt16 seq) { m_seqNumber = seq; }
+  inline void setReserved(UInt16 reservId) { m_reserved = reservId; }
 
-private:
-	void _serialize();
+  inline UInt16 getModuleId() const { return m_moduleId; }
+  inline UInt16 getCommandId() const { return m_commandId; }
+  inline UInt16 getReserved() const { return m_reserved; }
+  inline UInt16 getSeqNumber() const { return m_seqNumber; }
 
-private:
-	UInt32 		m_length = 0;
-	UInt16 		m_version = VERSION;
-	UInt16		m_flag = 0;
-	UInt16		m_moduleId = 0;
-	UInt16		m_commandId = 0;
-	UInt16		m_seqNumber = 0;	// 包序号
-	UInt16		m_reserved = 0;		// 保留
+ private:
+  void _serialize();
 
-	byte*		m_pHeaderBuff = 0;
+ private:
+  UInt32 m_length = 0;
+  UInt16 m_version = VERSION;
+  UInt16 m_flag = 0;
+  UInt16 m_moduleId = 0;
+  UInt16 m_commandId = 0;
+  UInt16 m_seqNumber = 0;  // 包序号
+  UInt16 m_reserved = 0;   // 保留
+
+  byte* m_pHeaderBuff = 0;
 };
 
 NAMESPACE_END(imcore)
 
-#endif// TTPBHEADER_BE699480_6F65_405B_9E8A_F5B0F13800D0_H__
+#endif  // TTPBHEADER_BE699480_6F65_405B_9E8A_F5B0F13800D0_H__

@@ -9,29 +9,26 @@
 #ifndef IEVENT_83A4713C_930E_426A_98F5_8BB8747994D3_H__
 #define IEVENT_83A4713C_930E_426A_98F5_8BB8747994D3_H__
 
-#include <yaolog/yaolog.h>
 #include <global_define.h>
 #include <utility/utilCommonAPI.h>
+#include <yaolog/yaolog.h>
 
-namespace imcore
-{
-	struct Exception;
+namespace imcore {
+struct Exception;
 }
 
 NAMESPACE_BEGIN(module)
 
-struct IEvent
-{
-public:
-	virtual void process() = 0;
-	virtual void onException(imcore::Exception* e)
-	{
-		LOG__(ERR, _T("IEvent exception,%d"));
-		assert(FALSE);
-	}
-	virtual void release() = 0;
+struct IEvent {
+ public:
+  virtual void process() = 0;
+  virtual void onException(imcore::Exception* e) {
+    LOG__(ERR, _T("IEvent exception,%d"));
+    assert(FALSE);
+  }
+  virtual void release() = 0;
 };
 
 NAMESPACE_END(module)
 
-#endif// IEVENT_83A4713C_930E_426A_98F5_8BB8747994D3_H__
+#endif  // IEVENT_83A4713C_930E_426A_98F5_8BB8747994D3_H__

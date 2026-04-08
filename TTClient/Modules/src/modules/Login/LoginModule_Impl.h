@@ -12,24 +12,24 @@
 #include <modules/ILoginModule.h>
 
 class ReloginManager;
-class LoginModule_Impl final : public module::ILoginModule
-{
-public:
-	LoginModule_Impl();
-    virtual ~LoginModule_Impl();
-	virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody);
-public:
-	virtual BOOL showLoginDialog();
-	virtual void notifyLoginDone();
-	virtual void relogin(BOOL bForce);
-	virtual BOOL isOfflineByMyself()const;
-	virtual void setOfflineByMyself(BOOL b);
+class LoginModule_Impl final : public module::ILoginModule {
+ public:
+  LoginModule_Impl();
+  virtual ~LoginModule_Impl();
+  virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody);
 
-private:
-	void _kickUserResponse(IN std::string& pbBody);// 消息过滤器
-private:
-	ReloginManager*				m_pReloginManager;
-	BOOL						m_bIsOfflineByMyself;
+ public:
+  virtual BOOL showLoginDialog();
+  virtual void notifyLoginDone();
+  virtual void relogin(BOOL bForce);
+  virtual BOOL isOfflineByMyself() const;
+  virtual void setOfflineByMyself(BOOL b);
+
+ private:
+  void _kickUserResponse(IN std::string& pbBody);  // 消息过滤器
+ private:
+  ReloginManager* m_pReloginManager;
+  BOOL m_bIsOfflineByMyself;
 };
 
-#endif// LOGINMODULE_IMPL_9020B75A_241C_4250_94F5_66F0EC1C9DD9_H__
+#endif  // LOGINMODULE_IMPL_9020B75A_241C_4250_94F5_66F0EC1C9DD9_H__

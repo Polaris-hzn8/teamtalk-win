@@ -12,20 +12,20 @@
 #include <modules/Base/IEvent.h>
 #include <modules/Base/ITimerEvent.h>
 
-class SyncTimeTimer : public module::ITimerEvent
-{
-public:
-    SyncTimeTimer();
-    virtual ~SyncTimeTimer() = default;
-	virtual void process();
-    virtual void release();
-public:
-    inline Int32 getTime()const { return m_serverTime;}
-    inline void setTime(UInt32 time) { m_serverTime = time;}
+class SyncTimeTimer : public module::ITimerEvent {
+ public:
+  SyncTimeTimer();
+  virtual ~SyncTimeTimer() = default;
+  virtual void process();
+  virtual void release();
 
-private:
-    UInt32                  m_serverTime;           //服务器时间
-    UInt32                  m_timeCount;            //时间计数器
+ public:
+  inline Int32 getTime() const { return m_serverTime; }
+  inline void setTime(UInt32 time) { m_serverTime = time; }
+
+ private:
+  UInt32 m_serverTime;  // 服务器时间
+  UInt32 m_timeCount;   // 时间计数器
 };
 
-#endif// SYNCTIMERTIMER_33883969_3CB9_47FD_BC38_4E860C0731F8_H__
+#endif  // SYNCTIMERTIMER_33883969_3CB9_47FD_BC38_4E860C0731F8_H__

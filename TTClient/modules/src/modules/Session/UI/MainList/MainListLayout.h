@@ -12,51 +12,52 @@ class CUIRecentSessionList;
 class UIIMList;
 class Node;
 
-class MainListLayout :public CHorizontalLayoutUI,public INotifyUI
-{
-public:
-    MainListLayout();
-    ~MainListLayout();
-public:
-	virtual LPVOID GetInterface(LPCTSTR pstrName);
-	virtual LPCTSTR GetClass() const;
+class MainListLayout : public CHorizontalLayoutUI, public INotifyUI {
+ public:
+  MainListLayout();
+  ~MainListLayout();
 
-	virtual void DoInit();
-	virtual void Notify(TNotifyUI& msg);
+ public:
+  virtual LPVOID GetInterface(LPCTSTR pstrName);
+  virtual LPCTSTR GetClass() const;
 
-public:
-	void MKOForUserlistModuleCallback(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
-	void MKOForGrouplistModuleCallback(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
-	void MKOForSessionModuleCallback(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
-	void MKOForSysConfigModuleCallback(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
-	void MKOForFileTransferModuleCallback(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
-	//@}
+  virtual void DoInit();
+  virtual void Notify(TNotifyUI& msg);
 
-private:
-	void _CreatSessionDialog(IN UIIMList* pList,IN CControlUI* pMsgSender);
-	void _CreateMenu(IN const TNotifyUI& msg);
-	void _LoadAllDepartment();
+ public:
+  void MKOForUserlistModuleCallback(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
+  void MKOForGrouplistModuleCallback(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
+  void MKOForSessionModuleCallback(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
+  void MKOForSysConfigModuleCallback(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
+  void MKOForFileTransferModuleCallback(const std::string& keyId, MKO_TUPLE_PARAM mkoParam);
+  //@}
 
-	void _AddGroupList();
-	void _AddDiscussGroupList();
-	void _AddRecentSessionListToUI();
-	void _NewGroupAdded(std::string& gId);
-	void _NewGroupsUpdate(std::shared_ptr<void> pGroupIDs);
-	void _GroupMembersChanged(std::shared_ptr<void> pMembers);
-	void _NewMsgUpdate(std::string& sId);			//收到新消息更新
-	void _CreatNewDiscussGroupRes(std::string& sId);//创建新的讨论组结果
+ private:
+  void _CreatSessionDialog(IN UIIMList* pList, IN CControlUI* pMsgSender);
+  void _CreateMenu(IN const TNotifyUI& msg);
+  void _LoadAllDepartment();
 
-	void _UpdateRecentSessionItem(IN const std::string& sessionId, IN const UInt32 sessionType);
-	void _UpdateGroupList(IN const std::string& groupID);
-	void _MySelfKickedFromDiscusGrp(IN const std::string& groupID);
-private:
-	CTabLayoutUI*			m_Tab;
-	CEAUserTreelistUI*		m_EAuserTreelist;
-	CGroupsTreelistUI*		m_GroupList;
-	CUIRecentSessionList*	m_UIRecentConnectedList;
+  void _AddGroupList();
+  void _AddDiscussGroupList();
+  void _AddRecentSessionListToUI();
+  void _NewGroupAdded(std::string& gId);
+  void _NewGroupsUpdate(std::shared_ptr<void> pGroupIDs);
+  void _GroupMembersChanged(std::shared_ptr<void> pMembers);
+  void _NewMsgUpdate(std::string& sId);             // 收到新消息更新
+  void _CreatNewDiscussGroupRes(std::string& sId);  // 创建新的讨论组结果
 
-	Node*					m_groupRootParent;
-	Node*					m_DiscussGroupRootParent;
+  void _UpdateRecentSessionItem(IN const std::string& sessionId, IN const UInt32 sessionType);
+  void _UpdateGroupList(IN const std::string& groupID);
+  void _MySelfKickedFromDiscusGrp(IN const std::string& groupID);
+
+ private:
+  CTabLayoutUI* m_Tab;
+  CEAUserTreelistUI* m_EAuserTreelist;
+  CGroupsTreelistUI* m_GroupList;
+  CUIRecentSessionList* m_UIRecentConnectedList;
+
+  Node* m_groupRootParent;
+  Node* m_DiscussGroupRootParent;
 };
 
-#endif// LISTPANEL_00907A2F_35FC_48EE_B385_4C5DE6018C6A_H__
+#endif  // LISTPANEL_00907A2F_35FC_48EE_B385_4C5DE6018C6A_H__

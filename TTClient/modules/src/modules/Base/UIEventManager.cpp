@@ -6,346 +6,270 @@
  brief:
 */
 
-#include <memory>
 #include <algorithm>
+#include <memory>
 #include <modules/Base/IEvent.h>
 #include <modules/Base/UIEventManager.h>
+#include <network/operation/Exception.h>
 #include <utility/utilCommonAPI.h>
 #include <utility/utilStrCodingAPI.h>
-#include <network/operation/Exception.h>
 
 NAMESPACE_BEGIN(module)
 
-namespace
-{
-	#define UI_TIMER_ID					WM_USER + 1004
-	#define UI_EVENT_MSG				WM_USER + 1005
+namespace {
+#define UI_TIMER_ID WM_USER + 1004
+#define UI_EVENT_MSG WM_USER + 1005
 
-	static const wchar_t uiEventWndClass[] = L"uiEventManager_class";
-	static const wchar_t uiEventWndName[] = L"uiEvnetManager_window";
+static const wchar_t uiEventWndClass[] = L"uiEventManager_class";
+static const wchar_t uiEventWndName[] = L"uiEvnetManager_window";
+}  // namespace
+
+namespace {
+template <class base>
+class LambdaEvent : public base {
+ public:
+  LambdaEvent(std::function<void()> eventRun) : m_eventRun(eventRun) {}
+
+  virtual void process() { m_eventRun(); }
+
+  virtual void release() { delete this; }
+
+ private:
+  std::function<void()> m_eventRun;
+};
+}  // namespace
+
+UIEventManager::UIEventManager() : m_hWnd(0) {}
+
+UIEventManager::~UIEventManager() {
+  try {
+    shutdown();
+  } catch (...) {
+    LOG__(ERR, _T("shutdown throw unknown exception"));
+    assert(FALSE);
+  }
 }
 
-namespace
-{
-	template<class base>
-	class LambdaEvent : public base
-	{
-	public:
-		LambdaEvent(std::function<void()> eventRun)
-			:m_eventRun(eventRun)
-		{
-		}
-
-		virtual void process()
-		{
-			m_eventRun();
-		}
-
-		virtual void release()
-		{
-			delete this;
-		}
-
-	private:
-		std::function<void()> m_eventRun;
-	};
+void UIEventManager::shutdown() {
+  if (m_hWnd != NULL) {
+    _removeEvents();
+    KillTimer(m_hWnd, UI_TIMER_ID);
+    DestroyWindow(m_hWnd);
+    UnregisterClassW(uiEventWndClass, ::GetModuleHandle(NULL));
+    m_hWnd = NULL;
+  }
 }
 
-UIEventManager::UIEventManager()
-:m_hWnd(0)
-{
-}
-
-UIEventManager::~UIEventManager()
-{
-	try
-	{
-		shutdown();
-	}
-	catch (...)
-	{
-		LOG__(ERR, _T("shutdown throw unknown exception"));
-		assert(FALSE);
-	}
-}
-
-void UIEventManager::shutdown()
-{
-	if (m_hWnd != NULL)
-	{
-		_removeEvents();
-		KillTimer(m_hWnd, UI_TIMER_ID);
-		DestroyWindow(m_hWnd);
-		UnregisterClassW(uiEventWndClass, ::GetModuleHandle(NULL));
-		m_hWnd = NULL;
-	}
-}
-
-BOOL UIEventManager::_registerClass()
-{
-	WNDCLASSEXW wc = { 0 };
-	wc.cbSize = sizeof(wc);
-	wc.lpfnWndProc = _WindowProc;
-	wc.hInstance = ::GetModuleHandle(0);
-	wc.lpszClassName = uiEventWndClass;
-	ATOM ret = ::RegisterClassExW(&wc);
-	ASSERT(ret != NULL);
-	if (NULL == ret || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS)
-		return FALSE;
-	return TRUE;
+BOOL UIEventManager::_registerClass() {
+  WNDCLASSEXW wc = {0};
+  wc.cbSize = sizeof(wc);
+  wc.lpfnWndProc = _WindowProc;
+  wc.hInstance = ::GetModuleHandle(0);
+  wc.lpszClassName = uiEventWndClass;
+  ATOM ret = ::RegisterClassExW(&wc);
+  ASSERT(ret != NULL);
+  if (NULL == ret || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS)
+    return FALSE;
+  return TRUE;
 }
 
 // 窗口过程函数
-LRESULT _stdcall UIEventManager::_WindowProc(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam)
-{
-	switch (message)
-	{
-	case UI_EVENT_MSG:
-	{/* 普通事件处理 */
-		IEvent* pEvent = reinterpret_cast<IEvent*>(lparam);
-		UIEventManager* pManager = reinterpret_cast<UIEventManager*>(wparam);
-		if (pManager && pEvent)
-		{
-			pManager->_processEvent(pEvent, TRUE);
-		}
-	}
-	break;
-	case WM_TIMER:
-	{/* 定时事件处理 */
-		UIEventManager* pManager = reinterpret_cast<UIEventManager*>(wparam);
-		pManager->_processTimer();
-	}
-	break;
-	default:
-		break;
-	}
-	return ::DefWindowProc(hWnd, message, wparam, lparam);
+LRESULT _stdcall UIEventManager::_WindowProc(HWND hWnd, UINT message, WPARAM wparam, LPARAM lparam) {
+  switch (message) {
+    case UI_EVENT_MSG: { /* 普通事件处理 */
+      IEvent* pEvent = reinterpret_cast<IEvent*>(lparam);
+      UIEventManager* pManager = reinterpret_cast<UIEventManager*>(wparam);
+      if (pManager && pEvent) {
+        pManager->_processEvent(pEvent, TRUE);
+      }
+    } break;
+    case WM_TIMER: { /* 定时事件处理 */
+      UIEventManager* pManager = reinterpret_cast<UIEventManager*>(wparam);
+      pManager->_processTimer();
+    } break;
+    default:
+      break;
+  }
+  return ::DefWindowProc(hWnd, message, wparam, lparam);
 }
 
-imcore::IMCoreErrorCode UIEventManager::startup()
-{
-	IMCoreErrorCode errCode = IMCORE_OK;
-	if (NULL != m_hWnd)
-	{
-		return IMCORE_OK;
-	}
-	else
-	{
-		if (!_registerClass())
-		{
-			return IMCORE_INVALID_HWND_ERROR;
-		}
+imcore::IMCoreErrorCode UIEventManager::startup() {
+  IMCoreErrorCode errCode = IMCORE_OK;
+  if (NULL != m_hWnd) {
+    return IMCORE_OK;
+  } else {
+    if (!_registerClass()) {
+      return IMCORE_INVALID_HWND_ERROR;
+    }
 
-		m_hWnd = CreateWindowW(
-			uiEventWndClass,	// 类名
-			uiEventWndName,		// 标题
-			0,					// 窗口样式
-			0, 0, 0, 0,			// x, y, width, height
-			HWND_MESSAGE,		// 特殊父窗口
-			0,					// 无菜单
-			GetModuleHandle(0),	// 当前应用实例句柄
-			0					// 附加数据
-		);
-		if (m_hWnd)
-		{
-			// 每隔1s给窗口线程 发送WM_TIMER
-			SetTimer(m_hWnd, reinterpret_cast<UINT_PTR>(this), 1000, NULL);
-		}
-	}
-	if (FALSE == IsWindow(m_hWnd))
-	{
-		errCode = IMCORE_INVALID_HWND_ERROR;
-	}
-	return errCode;
+    m_hWnd = CreateWindowW(uiEventWndClass,  // 类名
+                           uiEventWndName,   // 标题
+                           0,                // 窗口样式
+                           0,
+                           0,
+                           0,
+                           0,                   // x, y, width, height
+                           HWND_MESSAGE,        // 特殊父窗口
+                           0,                   // 无菜单
+                           GetModuleHandle(0),  // 当前应用实例句柄
+                           0                    // 附加数据
+    );
+    if (m_hWnd) {
+      // 每隔1s给窗口线程 发送WM_TIMER
+      SetTimer(m_hWnd, reinterpret_cast<UINT_PTR>(this), 1000, NULL);
+    }
+  }
+  if (FALSE == IsWindow(m_hWnd)) {
+    errCode = IMCORE_INVALID_HWND_ERROR;
+  }
+  return errCode;
 }
 
-void UIEventManager::_removeEvents()
-{
-	CAutoLock lock(&m_lock);
-	for (auto &pTimer : m_lstTimers)
-	{
-		if (pTimer.pTimerEvent)
-		{
-			pTimer.pTimerEvent->release();
-		}
-	}
-	m_lstTimers.clear();
+void UIEventManager::_removeEvents() {
+  CAutoLock lock(&m_lock);
+  for (auto& pTimer : m_lstTimers) {
+    if (pTimer.pTimerEvent) {
+      pTimer.pTimerEvent->release();
+    }
+  }
+  m_lstTimers.clear();
 }
 
-void UIEventManager::_processEvent(IEvent* pEvent, BOOL bRelease)
-{
-	assert(pEvent);
-	if (pEvent == NULL)
-		return;
+void UIEventManager::_processEvent(IEvent* pEvent, BOOL bRelease) {
+  assert(pEvent);
+  if (pEvent == NULL)
+    return;
 
-	try
-	{
-		pEvent->process();
-		if (bRelease)
-		{
-			pEvent->release();
-		}
-	}
-	catch (imcore::Exception *e)
-	{
-		LOG__(ERR, _T("event run exception"));
-		pEvent->onException(e);
-		if (bRelease)
-		{
-			pEvent->release();
-		}
-		if (e)
-		{
-			LOG__(ERR, _T("event run exception:%s"), util::stringToCString(e->m_msg));
-			assert(FALSE);
-		}
-	}
-	catch (...)
-	{
-		LOG__(ERR, _T("operation run exception, unknown reason"));
-		if (bRelease)
-		{
-			pEvent->release();
-		}
-		assert(FALSE);
-	}
+  try {
+    pEvent->process();
+    if (bRelease) {
+      pEvent->release();
+    }
+  } catch (imcore::Exception* e) {
+    LOG__(ERR, _T("event run exception"));
+    pEvent->onException(e);
+    if (bRelease) {
+      pEvent->release();
+    }
+    if (e) {
+      LOG__(ERR, _T("event run exception:%s"), util::stringToCString(e->m_msg));
+      assert(FALSE);
+    }
+  } catch (...) {
+    LOG__(ERR, _T("operation run exception, unknown reason"));
+    if (bRelease) {
+      pEvent->release();
+    }
+    assert(FALSE);
+  }
 }
 
-module::IMCoreErrorCode UIEventManager::asynFireUIEvent(IN const IEvent* const pEvent)
-{
-	assert(m_hWnd);
-	assert(pEvent);
-	if (0 == m_hWnd || 0 == pEvent)
-		return IMCORE_ARGUMENT_ERROR;
+module::IMCoreErrorCode UIEventManager::asynFireUIEvent(IN const IEvent* const pEvent) {
+  assert(m_hWnd);
+  assert(pEvent);
+  if (0 == m_hWnd || 0 == pEvent)
+    return IMCORE_ARGUMENT_ERROR;
 
-	if (FALSE == ::PostMessage(m_hWnd, UI_EVENT_MSG, reinterpret_cast<WPARAM>(this), reinterpret_cast<WPARAM>(pEvent)))
-		return IMCORE_WORK_POSTMESSAGE_ERROR;
+  if (FALSE == ::PostMessage(m_hWnd, UI_EVENT_MSG, reinterpret_cast<WPARAM>(this), reinterpret_cast<WPARAM>(pEvent)))
+    return IMCORE_WORK_POSTMESSAGE_ERROR;
 
-	return IMCORE_OK;
+  return IMCORE_OK;
 }
 
-imcore::IMCoreErrorCode UIEventManager::asynFireUIEventWithLambda(std::function<void()> eventRun)
-{
-	assert(m_hWnd);
-	if (0 == m_hWnd)
-		return IMCORE_ARGUMENT_ERROR;
+imcore::IMCoreErrorCode UIEventManager::asynFireUIEventWithLambda(std::function<void()> eventRun) {
+  assert(m_hWnd);
+  if (0 == m_hWnd)
+    return IMCORE_ARGUMENT_ERROR;
 
-	//注：todo...这里再应用退出时,可能会引起内存泄露，因为释放是靠windows消息队列来的
-	LambdaEvent<IEvent>* pLambdaEvent = new LambdaEvent<IEvent>(eventRun);
-	return asynFireUIEvent(pLambdaEvent);
+  // 注：todo...这里再应用退出时,可能会引起内存泄露，因为释放是靠windows消息队列来的
+  LambdaEvent<IEvent>* pLambdaEvent = new LambdaEvent<IEvent>(eventRun);
+  return asynFireUIEvent(pLambdaEvent);
 }
 
-imcore::IMCoreErrorCode UIEventManager::scheduleTimerWithLambda(IN UInt32 delay
-																,IN BOOL bRepeat
-																,IN std::function<void()> timerRun
-																,OUT ITimerEvent** ppTimer)
-{
-	LambdaEvent<ITimerEvent>* pLambdaEvent = new LambdaEvent<ITimerEvent>(timerRun);
-	imcore::IMCoreErrorCode errCode = scheduleTimer(pLambdaEvent, delay, bRepeat);
-	*ppTimer = pLambdaEvent;
-	if (IMCORE_OK != errCode)
-	{
-		delete pLambdaEvent;
-		pLambdaEvent = nullptr;
-		*ppTimer = 0;
-	}
-	return errCode;
+imcore::IMCoreErrorCode UIEventManager::scheduleTimerWithLambda(IN UInt32 delay,
+                                                                IN BOOL bRepeat,
+                                                                IN std::function<void()> timerRun,
+                                                                OUT ITimerEvent** ppTimer) {
+  LambdaEvent<ITimerEvent>* pLambdaEvent = new LambdaEvent<ITimerEvent>(timerRun);
+  imcore::IMCoreErrorCode errCode = scheduleTimer(pLambdaEvent, delay, bRepeat);
+  *ppTimer = pLambdaEvent;
+  if (IMCORE_OK != errCode) {
+    delete pLambdaEvent;
+    pLambdaEvent = nullptr;
+    *ppTimer = 0;
+  }
+  return errCode;
 }
 
-imcore::IMCoreErrorCode UIEventManager::scheduleTimer(IN ITimerEvent* pTimerEvent
-													 , IN UInt32 delay
-													 , IN BOOL bRepeat)
-{
-	assert(pTimerEvent);
-	if (0 == pTimerEvent)
-	{
-		return IMCORE_ARGUMENT_ERROR;
-	}
-	if (0 == delay)
-	{
-		asynFireUIEvent(pTimerEvent);
-	}
-	{
-		CAutoLock lock(&m_lock);
-		TTTimer ctx;
-		ctx.bRepeat = bRepeat;
-		ctx.nDelay = delay;
-		ctx.pTimerEvent = pTimerEvent;
+imcore::IMCoreErrorCode UIEventManager::scheduleTimer(IN ITimerEvent* pTimerEvent, IN UInt32 delay, IN BOOL bRepeat) {
+  assert(pTimerEvent);
+  if (0 == pTimerEvent) {
+    return IMCORE_ARGUMENT_ERROR;
+  }
+  if (0 == delay) {
+    asynFireUIEvent(pTimerEvent);
+  }
+  {
+    CAutoLock lock(&m_lock);
+    TTTimer ctx;
+    ctx.bRepeat = bRepeat;
+    ctx.nDelay = delay;
+    ctx.pTimerEvent = pTimerEvent;
 
-		for (TTTimer& timer : m_lstTimers)
-		{
-			if (timer.pTimerEvent == pTimerEvent)
-			{
-				timer = ctx;
-				return IMCORE_OK;
-			}
-		}
-		m_lstTimers.push_back(ctx);
-	}
+    for (TTTimer& timer : m_lstTimers) {
+      if (timer.pTimerEvent == pTimerEvent) {
+        timer = ctx;
+        return IMCORE_OK;
+      }
+    }
+    m_lstTimers.push_back(ctx);
+  }
 
-	return IMCORE_OK;
+  return IMCORE_OK;
 }
 
-void UIEventManager::_processTimer()
-{
-	CAutoLock lock(&m_lock);
-	for (auto iter = m_lstTimers.begin(); iter != m_lstTimers.end();)
-	{
-		TTTimer& ctx = *iter;
-		if (++ctx.nElapse < ctx.nDelay)
-		{
-			++iter;
-			continue;
-		}
-		if (!ctx.bRepeat)
-		{
-			TTTimer ctxBak = *iter;
-			iter = m_lstTimers.erase(iter);
-			_processEvent(ctxBak.pTimerEvent, TRUE);
-		}
-		else
-		{
-			if (0 == (ctx.nElapse % ctx.nDelay))
-			{
-				_processEvent(ctx.pTimerEvent, FALSE);
-				++iter;
-				ctx.nElapse = 0;
-				continue;
-			}
-		}
-	}
+void UIEventManager::_processTimer() {
+  CAutoLock lock(&m_lock);
+  for (auto iter = m_lstTimers.begin(); iter != m_lstTimers.end();) {
+    TTTimer& ctx = *iter;
+    if (++ctx.nElapse < ctx.nDelay) {
+      ++iter;
+      continue;
+    }
+    if (!ctx.bRepeat) {
+      TTTimer ctxBak = *iter;
+      iter = m_lstTimers.erase(iter);
+      _processEvent(ctxBak.pTimerEvent, TRUE);
+    } else {
+      if (0 == (ctx.nElapse % ctx.nDelay)) {
+        _processEvent(ctx.pTimerEvent, FALSE);
+        ++iter;
+        ctx.nElapse = 0;
+        continue;
+      }
+    }
+  }
 }
 
-imcore::IMCoreErrorCode UIEventManager::killTimer(IN ITimerEvent* pTimerEvent)
-{
-	CAutoLock lock(&m_lock);
-	auto iter = std::remove_if(m_lstTimers.begin(), m_lstTimers.end(), [=](TTTimer& ttime) {
-		return (pTimerEvent == ttime.pTimerEvent);
-	});
-	if (iter != m_lstTimers.end())
-	{
-		m_lstTimers.erase(iter, m_lstTimers.end());
-		delete pTimerEvent;
-		pTimerEvent = NULL;
-		return IMCORE_OK;
-	}
+imcore::IMCoreErrorCode UIEventManager::killTimer(IN ITimerEvent* pTimerEvent) {
+  CAutoLock lock(&m_lock);
+  auto iter = std::remove_if(
+    m_lstTimers.begin(), m_lstTimers.end(), [=](TTTimer& ttime) { return (pTimerEvent == ttime.pTimerEvent); });
+  if (iter != m_lstTimers.end()) {
+    m_lstTimers.erase(iter, m_lstTimers.end());
+    delete pTimerEvent;
+    pTimerEvent = NULL;
+    return IMCORE_OK;
+  }
 
-	return IMCORE_WORK_TIMER_INEXISTENCE_ERROR;
+  return IMCORE_WORK_TIMER_INEXISTENCE_ERROR;
 }
 
-TTTimer::TTTimer() 
-:nElapse(0)
-,nDelay(0)
-,bRepeat(TRUE)
-,pTimerEvent(0)
-{
+TTTimer::TTTimer() : nElapse(0), nDelay(0), bRepeat(TRUE), pTimerEvent(0) {}
 
-}
-
-UIEventManager* getEventManager()
-{
-	static UIEventManager manager;
-	return &manager;
+UIEventManager* getEventManager() {
+  static UIEventManager manager;
+  return &manager;
 }
 
 NAMESPACE_END(module)

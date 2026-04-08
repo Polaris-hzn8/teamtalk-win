@@ -9,19 +9,18 @@
 #ifndef IOPERATION123_D8CF1B19_B95A_4A75_82FB_7572A1BB9A30_H__
 #define IOPERATION123_D8CF1B19_B95A_4A75_82FB_7572A1BB9A30_H__
 
-#include <memory>
 #include <global_define.h>
+#include <memory>
 #include <network/ostype.h>
 
 NAMESPACE_BEGIN(imcore)
 
-struct NETWORK_DLL IOperation
-{
-public:
-	virtual void process() = 0;
-	virtual void release() = 0;
+struct NETWORK_DLL IOperation {
+ public:
+  virtual void process() = 0;
+  virtual void release() = 0;
 };
 
 NAMESPACE_END(imcore)
 
-#endif// IOPERATION123_D8CF1B19_B95A_4A75_82FB_7572A1BB9A30_H__
+#endif  // IOPERATION123_D8CF1B19_B95A_4A75_82FB_7572A1BB9A30_H__

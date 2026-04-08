@@ -10,57 +10,49 @@
 #define ITCPCLIENTMODULE_66DE1A78_4D88_4416_BFC6_F4F16832ECBB_H__
 
 #include <global_define.h>
-#include <modules/Base/ModuleBase.h>
 #include <google/protobuf/message_lite.h>
+#include <modules/Base/ModuleBase.h>
 #include <modules/module_dll.h>
 
 class CImPdu;
-namespace IM
-{
-	namespace Login
-	{
-		class IMLoginRes;
-	}
+namespace IM {
+namespace Login {
+class IMLoginRes;
 }
+}  // namespace IM
 NAMESPACE_BEGIN(module)
 
 const std::string MODULE_TCPCLIENT_PREFIX = "TcpClient";
-//KEYID
-const std::string KEY_TCPCLIENT_STATE = MODULE_TCPCLIENT_PREFIX + "State";	//TCP连接状态变化
+// KEYID
+const std::string KEY_TCPCLIENT_STATE = MODULE_TCPCLIENT_PREFIX + "State";  // TCP连接状态变化
 
-struct ITcpClientSocketCallback
-{
-	virtual void onClose(int error) = 0;
-	virtual void onReceiveData(const char* data, UInt32 size) = 0;
-	virtual void onParseError() = 0;
-	virtual void onConnectDone() = 0;
+struct ITcpClientSocketCallback {
+  virtual void onClose(int error) = 0;
+  virtual void onReceiveData(const char* data, UInt32 size) = 0;
+  virtual void onParseError() = 0;
+  virtual void onConnectDone() = 0;
 };
 
-enum TCPCLIENT_STATE
-{
-	TCPCLIENT_STATE_OK = 0,
-	TCPCLIENT_STATE_DISCONNECT
-};
+enum TCPCLIENT_STATE { TCPCLIENT_STATE_OK = 0, TCPCLIENT_STATE_DISCONNECT };
 
 // 客户端TCP网络收发模块
 // 与TcpClientScoket是同一层级
-class MODULE_API ITcpClientModule : public module::ModuleBase
-{
-public:
-	virtual IM::Login::IMLoginRes* doLogin(CString &linkaddr, UInt16 port, CString& uName, std::string& pass) = 0;
-	virtual void shutdown() = 0;
-	// 发送协议包
-	virtual void sendPacket(CImPdu* pdu) {} ;
-	virtual void sendPacket(UInt16 moduleId, google::protobuf::MessageLite* pbBody) = 0;
-	virtual void sendPacket(UInt16 moduleId, UInt16 cmdId, google::protobuf::MessageLite* pbBody) = 0;
-	virtual void sendPacket(UInt16 moduleId, UInt16 cmdId, UInt16 reserved, google::protobuf::MessageLite* pbBody) = 0;
-	// 客户端网络收发模块
-	virtual void startHeartbeat() = 0;
-	virtual UInt8 getTcpClientNetState()const = 0;
+class MODULE_API ITcpClientModule : public module::ModuleBase {
+ public:
+  virtual IM::Login::IMLoginRes* doLogin(CString& linkaddr, UInt16 port, CString& uName, std::string& pass) = 0;
+  virtual void shutdown() = 0;
+  // 发送协议包
+  virtual void sendPacket(CImPdu* pdu) {};
+  virtual void sendPacket(UInt16 moduleId, google::protobuf::MessageLite* pbBody) = 0;
+  virtual void sendPacket(UInt16 moduleId, UInt16 cmdId, google::protobuf::MessageLite* pbBody) = 0;
+  virtual void sendPacket(UInt16 moduleId, UInt16 cmdId, UInt16 reserved, google::protobuf::MessageLite* pbBody) = 0;
+  // 客户端网络收发模块
+  virtual void startHeartbeat() = 0;
+  virtual UInt8 getTcpClientNetState() const = 0;
 };
 
 MODULE_API ITcpClientModule* getTcpClientModule();
 
 NAMESPACE_END(module)
 
-#endif// ITCPCLIENTMODULE_66DE1A78_4D88_4416_BFC6_F4F16832ECBB_H__
+#endif  // ITCPCLIENTMODULE_66DE1A78_4D88_4416_BFC6_F4F16832ECBB_H__

@@ -15,11 +15,8 @@
 
 NAMESPACE_BEGIN(module)
 
-struct ITimerEvent : public IEvent
-{
-
-};
+struct ITimerEvent : public IEvent {};
 
 NAMESPACE_END(module)
 
-#endif// _ITIMEREVENT_H_
+#endif  // _ITIMEREVENT_H_

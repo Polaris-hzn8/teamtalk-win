@@ -11,42 +11,41 @@
 #include <modules/ScreenCapture/Common.h>
 #include <modules/ScreenCapture/UI/Dlgbase.h>
 
-class BkgroundUI :public CDlgBase, public Singleton<BkgroundUI>
-{
-public:
-	BkgroundUI();
-	HWND createWindow();
-	void closeWindow();
+class BkgroundUI : public CDlgBase, public Singleton<BkgroundUI> {
+ public:
+  BkgroundUI();
+  HWND createWindow();
+  void closeWindow();
 
-private:
-	LPDLGTEMPLATE makeDlgTemplate(__in LPVOID lpBuf);
+ private:
+  LPDLGTEMPLATE makeDlgTemplate(__in LPVOID lpBuf);
 
-private:
-	void InitMsgMap();
-	void onInitDialog(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-    void onKeyDown(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-    void onSnapshotTestSelectRect(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-    void onSnapshotWindowChange(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-	void onPaint(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-	void onDrawRect(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-	void onDrawPolyRegion(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-	void onAddRectItem(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-	void onAddPolyRegionItem(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+ private:
+  void InitMsgMap();
+  void onInitDialog(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onKeyDown(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onSnapshotTestSelectRect(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onSnapshotWindowChange(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onPaint(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onDrawRect(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onDrawPolyRegion(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onAddRectItem(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onAddPolyRegionItem(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
 
-	DECLARE_DIALOG_PROC
+  DECLARE_DIALOG_PROC
 
-private:
-	void drawRect(__in RECT &rc);
-	void drawPolyRegion(__in RECT &rc);
+ private:
+  void drawRect(__in RECT& rc);
+  void drawPolyRegion(__in RECT& rc);
 
-private:
-    RECT m_sSelectRect;
+ private:
+  RECT m_sSelectRect;
 
-private:
-	BOOL m_bDrawRect;
-	RECT m_sCurrentDraw;
-	std::vector<RECT> m_sDrawRect;
-	std::vector<RECT> m_sDrawPolyRegion;
+ private:
+  BOOL m_bDrawRect;
+  RECT m_sCurrentDraw;
+  std::vector<RECT> m_sDrawRect;
+  std::vector<RECT> m_sDrawPolyRegion;
 };
 
-#endif// BKGROUNDUI_30a15831-bd3e-4e94-817a-e1d46b604b91_H__
+#endif  // BKGROUNDUI_30a15831-bd3e-4e94-817a-e1d46b604b91_H__

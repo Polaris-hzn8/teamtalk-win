@@ -15,57 +15,81 @@
 #include <vector>
 #pragma warning(disable : 4267)
 
-typedef signed char						Int8;
-typedef unsigned char					UInt8;
-typedef signed short					Int16;
-typedef unsigned short					UInt16;
-typedef signed int						Int32;
-typedef unsigned int					UInt32;
-typedef signed __int64					Int64;
-typedef unsigned __int64				UInt64;
-typedef std::basic_string<char>         ByteBuffer;
-typedef std::string                     utf8String;
-typedef char                            utf8char;
-typedef unsigned char                   byte;
+typedef signed char Int8;
+typedef unsigned char UInt8;
+typedef signed short Int16;
+typedef unsigned short UInt16;
+typedef signed int Int32;
+typedef unsigned int UInt32;
+typedef signed __int64 Int64;
+typedef unsigned __int64 UInt64;
+typedef std::basic_string<char> ByteBuffer;
+typedef std::string utf8String;
+typedef char utf8char;
+typedef unsigned char byte;
 
-#define PTR_NULL(p)				{ assert(p); if (0 == p) { return 0; } }
-#define PTR_VOID(p)				{ assert(p); if (0 == p) { return; } }
-#define STR_VOID(p)				{ assert(p); if (0 == p || 0 == _tcslen(p)) { return; } }
-#define PTR_FALSE(p)			{ assert(p); if (0 == p) { return FALSE; } }
+#define PTR_NULL(p) \
+  {                 \
+    assert(p);      \
+    if (0 == p) {   \
+      return 0;     \
+    }               \
+  }
+#define PTR_VOID(p) \
+  {                 \
+    assert(p);      \
+    if (0 == p) {   \
+      return;       \
+    }               \
+  }
+#define STR_VOID(p)                  \
+  {                                  \
+    assert(p);                       \
+    if (0 == p || 0 == _tcslen(p)) { \
+      return;                        \
+    }                                \
+  }
+#define PTR_FALSE(p) \
+  {                  \
+    assert(p);       \
+    if (0 == p) {    \
+      return FALSE;  \
+    }                \
+  }
 
-
-#define NAMESPACE_BEGIN(n)		namespace n {
-#define NAMESPACE_END(n)		}	
+#define NAMESPACE_BEGIN(n) namespace n {
+#define NAMESPACE_END(n) }
 
 #define WARNING_STRING2(x) #x
 #define WARNING_STRING(x) WARNING_STRING2(x)
-#define WARNING_TARGET(x) "["#x"] "
-#define WARNING_TODO(target, desc)  message(__FILE__ "(" WARNING_STRING(__LINE__) ") : warning : @TODO " WARNING_TARGET(target)##desc)
-#define WARNING_FIX(target, desc)   message(__FILE__ "(" WARNING_STRING(__LINE__) ") : warning : @FIXME " WARNING_TARGET(target)##desc)
-#define WARNING_WARN(target, desc)  message(__FILE__ "(" WARNING_STRING(__LINE__) ") : warning : @WARN " WARNING_TARGET(target)##desc)
+#define WARNING_TARGET(x) "[" #x "] "
+#define WARNING_TODO(target, desc) \
+  message(__FILE__ "(" WARNING_STRING(__LINE__) ") : warning : @TODO " WARNING_TARGET(target)##desc)
+#define WARNING_FIX(target, desc) \
+  message(__FILE__ "(" WARNING_STRING(__LINE__) ") : warning : @FIXME " WARNING_TARGET(target)##desc)
+#define WARNING_WARN(target, desc) \
+  message(__FILE__ "(" WARNING_STRING(__LINE__) ") : warning : @WARN " WARNING_TARGET(target)##desc)
 
 #if defined(IN)
 #undef IN
-#endif // IN
+#endif  // IN
 
-#define  IN
+#define IN
 
 #if defined(OUT)
 #undef OUT
-#endif // OUT
+#endif  // OUT
 
-#define  OUT
-
+#define OUT
 
 // Configuration constants
-#define UTIL_LOG_APPFILE			_T("applog.log")
-#define UTIL_MULTILIGNUAL			_T("chinese.ini")
+#define UTIL_LOG_APPFILE _T("applog.log")
+#define UTIL_MULTILIGNUAL _T("chinese.ini")
 
-#define APP		"app"
-#define NET		"net"
-#define DEBG	"debug"
-#define ERR		"error"
-#define SOCK	"socket"
+#define APP "app"
+#define NET "net"
+#define DEBG "debug"
+#define ERR "error"
+#define SOCK "socket"
 
-
-#endif// _GLOBAL_DEFINE_H_
+#endif  // _GLOBAL_DEFINE_H_

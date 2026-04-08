@@ -13,29 +13,20 @@
 
 NAMESPACE_BEGIN(util)
 
-Multilingual::Multilingual()
-{
+Multilingual::Multilingual() {}
 
+Multilingual::~Multilingual() {}
+
+CString Multilingual::getStringById(LPCTSTR strID) {
+  CString cfgPath = util::getParentAppPath() + UTIL_MULTILIGNUAL;
+  TCHAR szValue[MAX_PATH];
+  ::GetPrivateProfileString(_T("DEFAULT"), strID, _T(""), szValue, MAX_PATH, cfgPath);
+  return szValue;
 }
 
-Multilingual::~Multilingual()
-{
-
-}
-
-CString Multilingual::getStringById(LPCTSTR strID)
-{
-	CString cfgPath = util::getParentAppPath() + UTIL_MULTILIGNUAL;
-	TCHAR szValue[MAX_PATH];
-	::GetPrivateProfileString(_T("DEFAULT"),strID,_T(""), szValue, MAX_PATH, cfgPath);
-	return szValue;
-}
-
-Multilingual* getMultilingual()
-{
-	static Multilingual multi;
-	return &multi;
+Multilingual* getMultilingual() {
+  static Multilingual multi;
+  return &multi;
 }
 
 NAMESPACE_END(util)
-

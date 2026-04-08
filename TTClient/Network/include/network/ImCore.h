@@ -9,9 +9,9 @@
 #ifndef _IMCORE_H_
 #define _IMCORE_H_
 
-#include <string.h>
-#include <iostream>
 #include <functional>
+#include <iostream>
+#include <string.h>
 
 #include <global_define.h>
 #include <network\ostype.h>
@@ -25,14 +25,14 @@ const std::string OPERATION_NAME_MSG_READ_ACK = "operation_name_msg_read_ack";
 
 class Operation;
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
 #ifdef _MSC_VER
-	unsigned int __stdcall event_run(void* threadArgu);
+unsigned int __stdcall event_run(void* threadArgu);
 #else
-	void* event_run(void* arg);
+void* event_run(void* arg);
 #endif
 
 // start/stop
@@ -45,7 +45,7 @@ NETWORK_DLL int IMLibCoreConnect(std::string ip, int port);
 NETWORK_DLL int IMLibCoreWrite(int key, uchar_t* data, uint32_t size);
 NETWORK_DLL void IMLibCoreShutdown(int key);
 NETWORK_DLL void IMLibCoreClose(int key);
-NETWORK_DLL void IMLibCoreRegisterCallback(int handle,ITcpSocketCallback* pCB);
+NETWORK_DLL void IMLibCoreRegisterCallback(int handle, ITcpSocketCallback* pCB);
 NETWORK_DLL void IMLibCoreUnRegisterCallback(int handle);
 
 // operation
@@ -53,10 +53,9 @@ NETWORK_DLL void IMLibCoreUnRegisterCallback(int handle);
 NETWORK_DLL void IMLibCoreStartOperation(IN Operation* pOperation, Int32 delay = 0);
 
 // 任务队列插入Lambda
-NETWORK_DLL void IMLibCoreStartOperationWithLambda(
-	std::function<void()> operationRun,
-	Int32 delay = 0,
-	std::string oper_name = "_common_operation_name");
+NETWORK_DLL void IMLibCoreStartOperationWithLambda(std::function<void()> operationRun,
+                                                   Int32 delay = 0,
+                                                   std::string oper_name = "_common_operation_name");
 
 // 任务队列删除
 NETWORK_DLL void IMLibCoreClearOperationByName(std::string oper_name);
@@ -67,5 +66,4 @@ NETWORK_DLL void IMLibCoreClearOperationByName(std::string oper_name);
 
 NAMESPACE_END(imcore)
 
-#endif// _IMCORE_H_
-
+#endif  // _IMCORE_H_

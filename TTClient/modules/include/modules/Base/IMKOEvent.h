@@ -15,12 +15,9 @@
 
 NAMESPACE_BEGIN(module)
 
-//just tag for observer event
-struct IMKOEvent : module::IEvent
-{
-
-};
+// just tag for observer event
+struct IMKOEvent : module::IEvent {};
 
 NAMESPACE_END(module)
 
-#endif// _ITIMEREVENT_H_
+#endif  // _ITIMEREVENT_H_

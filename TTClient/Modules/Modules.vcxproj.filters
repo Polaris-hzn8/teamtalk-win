@@ -61,9 +61,6 @@
     <Filter Include="Session\Operation">
       <UniqueIdentifier>{80980e71-8408-411f-9c20-4d9a9de9db33}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Protocal">
-      <UniqueIdentifier>{5d18eeba-40f6-41b4-9afa-1b6e22b831c7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ScreenCapture\UI">
       <UniqueIdentifier>{25451613-548e-4d4a-b11a-e23574841c7c}</UniqueIdentifier>
     </Filter>
@@ -78,6 +75,15 @@
     </Filter>
     <Filter Include="Session\UI\UserDetailInfo">
       <UniqueIdentifier>{6b21eab2-828f-452b-8125-28795603623b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharesrc">
+      <UniqueIdentifier>{a87a2fcf-4823-40ee-9380-115cd2a56603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharesrc\libsecurity">
+      <UniqueIdentifier>{757afb05-af1d-4b32-b704-b49dc37e9d74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharesrc\Protocal">
+      <UniqueIdentifier>{5d18eeba-40f6-41b4-9afa-1b6e22b831c7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -316,31 +322,46 @@
       <Filter>Misc</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharesrc\protocol\IM.Message.pb.cc">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharesrc\protocol\IM.Other.pb.cc">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharesrc\protocol\IM.Server.pb.cc">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharesrc\protocol\IM.SwitchService.pb.cc">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharesrc\protocol\IM.BaseDefine.pb.cc">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharesrc\protocol\IM.Buddy.pb.cc">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharesrc\protocol\IM.File.pb.cc">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharesrc\protocol\IM.Group.pb.cc">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sharesrc\protocol\IM.Login.pb.cc">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\libsecurity\aes_core.cpp">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\libsecurity\base64.cpp">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\libsecurity\md5.cpp">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\libsecurity\security.cpp">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sharesrc\libsecurity\sk_md5.cpp">
+      <Filter>sharesrc\libsecurity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -609,34 +630,52 @@
       <Filter>Misc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharesrc\protocol\IM.Message.pb.h">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharesrc\protocol\IM.Other.pb.h">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharesrc\protocol\IM.Server.pb.h">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharesrc\protocol\IM.SwitchService.pb.h">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharesrc\protocol\IM.BaseDefine.pb.h">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharesrc\protocol\IM.Buddy.pb.h">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharesrc\protocol\IM.File.pb.h">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharesrc\protocol\IM.Group.pb.h">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\sharesrc\protocol\IM.Login.pb.h">
-      <Filter>Protocal</Filter>
+      <Filter>sharesrc\Protocal</Filter>
     </ClInclude>
     <ClInclude Include="include\modules\module_dll.h">
       <Filter>Project Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\aes.h">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\aes_locl.h">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\base64.h">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\md5.h">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\security.h">
+      <Filter>sharesrc\libsecurity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sharesrc\libsecurity\sk_md5.h">
+      <Filter>sharesrc\libsecurity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

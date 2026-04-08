@@ -11,14 +11,14 @@
 
 #include <network/ostype.h>
 
-#define NETLIB_OPT_SET_CALLBACK			1	
-#define NETLIB_OPT_SET_CALLBACK_DATA	2
-#define NETLIB_OPT_GET_REMOTE_IP		3
-#define NETLIB_OPT_GET_REMOTE_PORT		4
-#define NETLIB_OPT_GET_LOCAL_IP			5
-#define NETLIB_OPT_GET_LOCAL_PORT		6
+#define NETLIB_OPT_SET_CALLBACK 1
+#define NETLIB_OPT_SET_CALLBACK_DATA 2
+#define NETLIB_OPT_GET_REMOTE_IP 3
+#define NETLIB_OPT_GET_REMOTE_PORT 4
+#define NETLIB_OPT_GET_LOCAL_IP 5
+#define NETLIB_OPT_GET_LOCAL_PORT 6
 
-#define NETLIB_MAX_SOCKET_BUF_SIZE		(128 * 1024)
+#define NETLIB_MAX_SOCKET_BUF_SIZE (128 * 1024)
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,17 +28,9 @@ int netlib_init();
 
 int netlib_destroy();
 
-int netlib_listen(	
-		const char*	server_ip, 
-		uint16_t	port,
-		callback_t	callback,
-		void*		callback_data);
+int netlib_listen(const char* server_ip, uint16_t port, callback_t callback, void* callback_data);
 
-net_handle_t netlib_connect(
-		const char*	server_ip,
-		uint16_t	port,
-		callback_t	callback,
-		void*		callback_data);
+net_handle_t netlib_connect(const char* server_ip, uint16_t port, callback_t callback, void* callback_data);
 
 int netlib_send(net_handle_t handle, void* buf, int len);
 

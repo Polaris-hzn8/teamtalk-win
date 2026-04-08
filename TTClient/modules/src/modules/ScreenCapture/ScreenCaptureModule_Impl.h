@@ -11,17 +11,15 @@
 
 #include <modules/IScreenCaptureModule.h>
 
-class ScreenCaptureModule_Impl final :public module::IScreenCaptureModule
-{
-public:
-    BOOL initCapture(__in HWND hWnd);
-    BOOL startCapture(__in std::wstring strSavePath, __in BOOL bMinimizeWindow /* = FALSE */);
-    void cancelCapture();
+class ScreenCaptureModule_Impl final : public module::IScreenCaptureModule {
+ public:
+  BOOL initCapture(__in HWND hWnd);
+  BOOL startCapture(__in std::wstring strSavePath, __in BOOL bMinimizeWindow /* = FALSE */);
+  void cancelCapture();
 
-    module::ScreenCaptureHotkeyId shouldHandle(__in LPARAM lParam);
+  module::ScreenCaptureHotkeyId shouldHandle(__in LPARAM lParam);
 
-    void onScreenCaptureFinish(__in std::wstring resultPicPath);
+  void onScreenCaptureFinish(__in std::wstring resultPicPath);
 };
 
-#endif// SCREENCAPTUREMODULE_IMPL_1403B705-6422-4459-829B-20F1F6DB205C_H__
-
+#endif  // SCREENCAPTUREMODULE_IMPL_1403B705-6422-4459-829B-20F1F6DB205C_H__

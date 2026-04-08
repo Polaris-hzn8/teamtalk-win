@@ -12,62 +12,58 @@
 #include <modules/ScreenCapture/Common.h>
 #include <modules/ScreenCapture/UI/Dlgbase.h>
 
-struct EditToolbarInfo
-{
-	int m_iX;
-	int m_iY;
-	int m_iWidth;
-	int m_iHeight;
-	std::wstring m_strPicPath;
-	std::wstring m_strHoverPicPath;
-	std::wstring m_strSelPicPath;
-	std::vector<RECT> m_sItemRect;
+struct EditToolbarInfo {
+  int m_iX;
+  int m_iY;
+  int m_iWidth;
+  int m_iHeight;
+  std::wstring m_strPicPath;
+  std::wstring m_strHoverPicPath;
+  std::wstring m_strSelPicPath;
+  std::vector<RECT> m_sItemRect;
 };
 
-enum ToolBarButtonIdx
-{
-	_TBI_RECT,
-	_TBI_ELLIPSE,
-	_TBI_CANCEL,
-	_TBI_FINISH,
+enum ToolBarButtonIdx {
+  _TBI_RECT,
+  _TBI_ELLIPSE,
+  _TBI_CANCEL,
+  _TBI_FINISH,
 
-	_TBI_MAX
+  _TBI_MAX
 };
 
-class EditToolbarUI : public CDlgBase, public Singleton<EditToolbarUI>
-{
-public:
-	EditToolbarUI();
-	HWND createWindow(__in EditToolbarInfo &toolBarInfo, __in HWND hParent = NULL);
-	void closeWindow();
+class EditToolbarUI : public CDlgBase, public Singleton<EditToolbarUI> {
+ public:
+  EditToolbarUI();
+  HWND createWindow(__in EditToolbarInfo& toolBarInfo, __in HWND hParent = NULL);
+  void closeWindow();
 
-private:
-	LPDLGTEMPLATE makeDlgTemplate(__in LPVOID lpBuf);
+ private:
+  LPDLGTEMPLATE makeDlgTemplate(__in LPVOID lpBuf);
 
-private:
-	void paintWindow(__in const RECT *rc);
-	void copyToolbarInfo(__in EditToolbarInfo &toolBarInfo);
-	
-private:
-	int findPtInToolbarRect(__in int xPos, __in int yPos);
+ private:
+  void paintWindow(__in const RECT* rc);
+  void copyToolbarInfo(__in EditToolbarInfo& toolBarInfo);
 
-public:
-	void InitMsgMap();
-	void onPaint(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-    void onKeyDown(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-	void onLButtonDown(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-	void onMouseMove(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-	void onPaintToolBarItem(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-	void onTestSelectIndex(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
-	void onAdjustToolbarPosition(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+ private:
+  int findPtInToolbarRect(__in int xPos, __in int yPos);
 
-	DECLARE_DIALOG_PROC
+ public:
+  void InitMsgMap();
+  void onPaint(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onKeyDown(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onLButtonDown(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onMouseMove(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onPaintToolBarItem(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onTestSelectIndex(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
+  void onAdjustToolbarPosition(__in HWND hWnd, __in WPARAM wParam, __in LPARAM lParam);
 
-private:
-	EditToolbarInfo m_sToolbarInfo;
-	int m_iSelectIdx;
-	int m_iMouseMoveIdx;
+  DECLARE_DIALOG_PROC
+
+ private:
+  EditToolbarInfo m_sToolbarInfo;
+  int m_iSelectIdx;
+  int m_iMouseMoveIdx;
 };
 
-#endif// EDITTOOLBARUI_626e8e45-6c7f-4273-8469-1b3beb73cc36_H__
-
+#endif  // EDITTOOLBARUI_626e8e45-6c7f-4273-8469-1b3beb73cc36_H__

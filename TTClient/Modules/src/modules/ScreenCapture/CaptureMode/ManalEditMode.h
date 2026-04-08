@@ -4,28 +4,28 @@
 
 #include <modules/ScreenCapture/CaptureMode/ModeComm.h>
 
-class ManalEditMode :public Singleton<ManalEditMode>, public IModeMsgHandler
-{
-public:
-	ManalEditMode();
-	void clear();
-public:
-	virtual void onLButtonDown(__in int x, __in int y);
-	virtual void onLButtonUp(__in int x, __in int y);
-	virtual void onLButtonDBClick(__in int x, __in int y);
-	virtual void onMouseMove(__in int x, __in int y);
-	virtual void saveSelectRect(__in std::wstring savePath);
+class ManalEditMode : public Singleton<ManalEditMode>, public IModeMsgHandler {
+ public:
+  ManalEditMode();
+  void clear();
 
-private:
-	void onRectangle(__in int x, __in int y);
-	void onPolyRegion(__in int x, __in int y);
-	void onFreeRegion(__in int x, __in int y);
+ public:
+  virtual void onLButtonDown(__in int x, __in int y);
+  virtual void onLButtonUp(__in int x, __in int y);
+  virtual void onLButtonDBClick(__in int x, __in int y);
+  virtual void onMouseMove(__in int x, __in int y);
+  virtual void saveSelectRect(__in std::wstring savePath);
 
-private:
-	int m_iSelectIdx;
-	int m_iPosX;
-	int m_iPosY;
-	RECT m_sSelectRect;
+ private:
+  void onRectangle(__in int x, __in int y);
+  void onPolyRegion(__in int x, __in int y);
+  void onFreeRegion(__in int x, __in int y);
+
+ private:
+  int m_iSelectIdx;
+  int m_iPosX;
+  int m_iPosY;
+  RECT m_sSelectRect;
 };
 
-#endif// MANALEDITMODE_380da203-9530-4ba1-8dac-3a032ef27567_H__
+#endif  // MANALEDITMODE_380da203-9530-4ba1-8dac-3a032ef27567_H__

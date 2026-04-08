@@ -9,39 +9,39 @@
 #ifndef _SUBJECT_H_
 #define _SUBJECT_H_
 
-#include <vector>
 #include <global_define.h>
-#include <network/basic/lock.h>
 #include <modules/Base/ModuleObserver.h>
+#include <network/basic/lock.h>
+#include <vector>
 
 NAMESPACE_BEGIN(module)
 
-class ModuleSubject final
-{
-public:
-    ModuleSubject();
-    ~ModuleSubject();
-public:
-	void addObserver(IN void* pObserObject, IN MKODelegate handle);
-	void removeObserver(IN void* pObserObject);
-	void asynNotifyObserver(IN const std::string& keyId);
-	void asynNotifyObserver(IN const std::string& keyId, IN std::string& mkoString);
-	void asynNotifyObserver(IN const std::string& keyId, IN Int32 mkoInt);
-	void asynNotifyObserver(IN const std::string& keyId, IN void* pmkoVoid);
-	void asynNotifyObserver(IN const std::string& keyId, IN std::shared_ptr<void> pmkoShardVoid);
+class ModuleSubject final {
+ public:
+  ModuleSubject();
+  ~ModuleSubject();
 
-	void getIObserverHandlersByModuleId(OUT std::vector<MKODelegate>& vecMKOCallbacks);
-	BOOL isObserverExist(IN const void* pObserObject);
+ public:
+  void addObserver(IN void* pObserObject, IN MKODelegate handle);
+  void removeObserver(IN void* pObserObject);
+  void asynNotifyObserver(IN const std::string& keyId);
+  void asynNotifyObserver(IN const std::string& keyId, IN std::string& mkoString);
+  void asynNotifyObserver(IN const std::string& keyId, IN Int32 mkoInt);
+  void asynNotifyObserver(IN const std::string& keyId, IN void* pmkoVoid);
+  void asynNotifyObserver(IN const std::string& keyId, IN std::shared_ptr<void> pmkoShardVoid);
 
-private:
-	void _removeAllObservers();
-	void _asynNotifyObserver(IN const std::string& keyId, IN MKOEvent_Impl* pEvent);
+  void getIObserverHandlersByModuleId(OUT std::vector<MKODelegate>& vecMKOCallbacks);
+  BOOL isObserverExist(IN const void* pObserObject);
 
-private:
-	std::vector<ModuleObserverCtx*>	m_vecObservers;
-	CLock							m_lockObserver;
+ private:
+  void _removeAllObservers();
+  void _asynNotifyObserver(IN const std::string& keyId, IN MKOEvent_Impl* pEvent);
+
+ private:
+  std::vector<ModuleObserverCtx*> m_vecObservers;
+  CLock m_lockObserver;
 };
 
 NAMESPACE_END(module)
 
-#endif// _SUBJECT_H_
+#endif  // _SUBJECT_H_

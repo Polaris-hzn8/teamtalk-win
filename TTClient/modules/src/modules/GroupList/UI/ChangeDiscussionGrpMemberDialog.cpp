@@ -1,437 +1,356 @@
 
 #include "stdafx.h"
-#include <modules/IUserListModule.h>
-#include <modules/IGroupListModule.h>
-#include <modules/ITcpClientModule.h>
-#include <modules/ISysConfigModule.h>
-#include <modules/Session/UI/UIIMList.h>
-#include <modules/Session/UI/Search/SearchLayout.h>
 #include <modules/GroupList/UI/ChangeDiscussionGrpMemberDialog.h>
-#include <protocol/IM.Group.pb.h>
+#include <modules/IGroupListModule.h>
+#include <modules/ISysConfigModule.h>
+#include <modules/ITcpClientModule.h>
+#include <modules/IUserListModule.h>
+#include <modules/Session/UI/Search/SearchLayout.h>
+#include <modules/Session/UI/UIIMList.h>
 #include <network/ImCore.h>
+#include <protocol/IM.Group.pb.h>
 
 DUI_BEGIN_MESSAGE_MAP(ChangeDiscussionGrpMemberDialog, WindowImplBase)
-	DUI_ON_MSGTYPE(DUI_MSGTYPE_WINDOWINIT, OnPrepare)
-	DUI_ON_MSGTYPE(DUI_MSGTYPE_ITEMACTIVATE, OnItemActive)
-	DUI_ON_MSGTYPE(DUI_MSGTYPE_ITEMCLICK,OnItemClick)
-	DUI_ON_MSGTYPE(DUI_MSGTYPE_CLICK,OnClick)
-	DUI_ON_MSGTYPE(DUI_MSGTYPE_TEXTCHANGED,OnTextChanged)
-	//DUI_ON_MSGTYPE(DUI_MSGTYPE_ITEMDBCLICK,OnItemDBClick)
+DUI_ON_MSGTYPE(DUI_MSGTYPE_WINDOWINIT, OnPrepare)
+DUI_ON_MSGTYPE(DUI_MSGTYPE_ITEMACTIVATE, OnItemActive)
+DUI_ON_MSGTYPE(DUI_MSGTYPE_ITEMCLICK, OnItemClick)
+DUI_ON_MSGTYPE(DUI_MSGTYPE_CLICK, OnClick)
+DUI_ON_MSGTYPE(DUI_MSGTYPE_TEXTCHANGED, OnTextChanged)
+// DUI_ON_MSGTYPE(DUI_MSGTYPE_ITEMDBCLICK,OnItemDBClick)
 DUI_END_MESSAGE_MAP()
 
 ChangeDiscussionGrpMemberDialog::ChangeDiscussionGrpMemberDialog(IN const std::string& sid)
-:m_pListCreatFrom(nullptr)
-,m_pListGroupMembers(nullptr)
-,m_editSearch(nullptr)
-,m_searchePanel(nullptr)
-, m_currentSessionId(sid)
-{
+  : m_pListCreatFrom(nullptr),
+    m_pListGroupMembers(nullptr),
+    m_editSearch(nullptr),
+    m_searchePanel(nullptr),
+    m_currentSessionId(sid) {}
 
+ChangeDiscussionGrpMemberDialog::~ChangeDiscussionGrpMemberDialog() {}
+
+LPCTSTR ChangeDiscussionGrpMemberDialog::GetWindowClassName() const {
+  return _T("ChangeDiscussionGrpMemberDialog");
 }
 
-ChangeDiscussionGrpMemberDialog::~ChangeDiscussionGrpMemberDialog()
-{
-
+DuiLib::CDuiString ChangeDiscussionGrpMemberDialog::GetSkinFile() {
+  return _T("CreateDiscussionGrpDialog\\ChangeDiscussionMemberDialog.xml");
 }
 
-LPCTSTR ChangeDiscussionGrpMemberDialog::GetWindowClassName() const
-{
-	return _T("ChangeDiscussionGrpMemberDialog");
+DuiLib::CDuiString ChangeDiscussionGrpMemberDialog::GetSkinFolder() {
+  return _T("");
 }
 
-DuiLib::CDuiString ChangeDiscussionGrpMemberDialog::GetSkinFile()
-{
-	return  _T("CreateDiscussionGrpDialog\\ChangeDiscussionMemberDialog.xml");
+CControlUI* ChangeDiscussionGrpMemberDialog::CreateControl(LPCTSTR pstrClass) {
+  if (_tcsicmp(pstrClass, _T("CreatFromList")) == 0) {
+    return new UIIMList(m_PaintManager);
+  }
+  return NULL;
+}
+void ChangeDiscussionGrpMemberDialog::OnFinalMessage(HWND hWnd) {
+  WindowImplBase::OnFinalMessage(hWnd);
+  delete this;
 }
 
-DuiLib::CDuiString ChangeDiscussionGrpMemberDialog::GetSkinFolder()
-{
-	return _T("");
+LRESULT ChangeDiscussionGrpMemberDialog::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
+  if (WM_NCLBUTTONDBLCLK != uMsg)  // 非标题栏双击消息
+  {
+    return WindowImplBase::HandleMessage(uMsg, wParam, lParam);
+  }
+  return 0;
 }
 
-CControlUI* ChangeDiscussionGrpMemberDialog::CreateControl(LPCTSTR pstrClass)
-{
-	if (_tcsicmp(pstrClass, _T("CreatFromList")) == 0)
-	{
-		return new UIIMList(m_PaintManager);
-	}
-	return NULL;
+void ChangeDiscussionGrpMemberDialog::OnPrepare(TNotifyUI& msg) {
+  m_pListCreatFrom = static_cast<UIIMList*>(m_PaintManager.FindControl(_T("CreatFromList")));
+  m_pListCreatFrom->SetIitemXmlFile(_T("CreateDiscussionGrpDialog\\ListCreatFromItem.xml"));
+  m_pListCreatFrom->SetItemNormalHeight(40);
+  m_pListGroupMembers = static_cast<CListUI*>(m_PaintManager.FindControl(_T("GroupMembersList")));
+  m_editGroupName = static_cast<CEditUI*>(m_PaintManager.FindControl(_T("editGroupName")));
+  m_editSearch = static_cast<CEditUI*>(m_PaintManager.FindControl(_T("editSearch")));
+  m_pListSearchResult = static_cast<CListUI*>(m_PaintManager.FindControl(_T("searchResultList")));
+  m_searchePanel = static_cast<CVerticalLayoutUI*>(m_PaintManager.FindControl(_T("SearchPanel")));
+  m_TextaddNums = static_cast<CTextUI*>(m_PaintManager.FindControl(_T("TextaddNums")));
+  const module::DepartmentMap mapDeparments = module::getUserListModule()->getAllDepartments();
+  for (auto itDepart : mapDeparments)  // 遍历所有部门
+  {
+    module::DepartmentEntity& depart = itDepart.second;
+    IMListItemInfo item;
+    item.id = util::stringToCString(depart.dId);
+    item.folder = true;
+    item.empty = false;
+    item.nickName = depart.name;
+    Node* root_parent = m_pListCreatFrom->AddNode(item, NULL);
 
-}
-void ChangeDiscussionGrpMemberDialog::OnFinalMessage(HWND hWnd)
-{
-	WindowImplBase::OnFinalMessage(hWnd);
-	delete this;
-}
-
-
-LRESULT ChangeDiscussionGrpMemberDialog::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-	if (WM_NCLBUTTONDBLCLK != uMsg)//非标题栏双击消息
-	{
-		return WindowImplBase::HandleMessage(uMsg, wParam, lParam);
-	}
-	return 0;
-}
-
-void ChangeDiscussionGrpMemberDialog::OnPrepare(TNotifyUI& msg)
-{
-	m_pListCreatFrom = static_cast<UIIMList*>(m_PaintManager.FindControl(_T("CreatFromList")));
-	m_pListCreatFrom->SetIitemXmlFile(_T("CreateDiscussionGrpDialog\\ListCreatFromItem.xml"));
-	m_pListCreatFrom->SetItemNormalHeight(40);
-	m_pListGroupMembers = static_cast<CListUI*>(m_PaintManager.FindControl(_T("GroupMembersList")));
-	m_editGroupName = static_cast<CEditUI*>(m_PaintManager.FindControl(_T("editGroupName")));
-	m_editSearch = static_cast<CEditUI*>(m_PaintManager.FindControl(_T("editSearch")));
-	m_pListSearchResult = static_cast<CListUI*>(m_PaintManager.FindControl(_T("searchResultList")));
-	m_searchePanel = static_cast<CVerticalLayoutUI*>(m_PaintManager.FindControl(_T("SearchPanel")));
-	m_TextaddNums = static_cast<CTextUI*>(m_PaintManager.FindControl(_T("TextaddNums")));
-	const module::DepartmentMap mapDeparments
-		= module::getUserListModule()->getAllDepartments();
-	for (auto itDepart : mapDeparments)//遍历所有部门
-	{
-		module::DepartmentEntity& depart = itDepart.second;
-		IMListItemInfo item;
-		item.id = util::stringToCString(depart.dId);
-		item.folder = true;
-		item.empty = false;
-		item.nickName = depart.name;
-		Node* root_parent = m_pListCreatFrom->AddNode(item, NULL);
-
-		for (std::string uId : depart.members)
-		{
-			module::UserInfoEntity user;
-			if (module::getUserListModule()->getUserInfoBySId(uId, user))
-			{
-				item.id = util::stringToCString(uId);
-				item.folder = false;
-				item.avatarPath = util::stringToCString(user.getAvatarPath());
-				item.nickName = user.getRealName();
-				item.description = _T("");
-				m_pListCreatFrom->AddNode(item, root_parent);
-			}
-		}
-		m_pListCreatFrom->SetChildVisible(root_parent, false);
-	}
-	module::GroupInfoEntity groupInfo;
-	if (module::getGroupListModule()->getGroupInfoBySId(m_currentSessionId, groupInfo))
-	{
-		BOOL  bEnableDeleteBtn = groupInfo.creatorId == module::getSysConfigModule()->userID() ? TRUE : FALSE;
-		for (std::string sid:groupInfo.groupMemeberList)
-		{
-			_AddToGroupMemberList(sid, bEnableDeleteBtn);
-		}
-		m_editGroupName->SetText(groupInfo.csName);
-	}
+    for (std::string uId : depart.members) {
+      module::UserInfoEntity user;
+      if (module::getUserListModule()->getUserInfoBySId(uId, user)) {
+        item.id = util::stringToCString(uId);
+        item.folder = false;
+        item.avatarPath = util::stringToCString(user.getAvatarPath());
+        item.nickName = user.getRealName();
+        item.description = _T("");
+        m_pListCreatFrom->AddNode(item, root_parent);
+      }
+    }
+    m_pListCreatFrom->SetChildVisible(root_parent, false);
+  }
+  module::GroupInfoEntity groupInfo;
+  if (module::getGroupListModule()->getGroupInfoBySId(m_currentSessionId, groupInfo)) {
+    BOOL bEnableDeleteBtn = groupInfo.creatorId == module::getSysConfigModule()->userID() ? TRUE : FALSE;
+    for (std::string sid : groupInfo.groupMemeberList) {
+      _AddToGroupMemberList(sid, bEnableDeleteBtn);
+    }
+    m_editGroupName->SetText(groupInfo.csName);
+  }
 }
 
-void ChangeDiscussionGrpMemberDialog::OnItemActive(TNotifyUI& msg)
-{
-	if (0 == _tcsicmp(msg.pSender->GetClass(),_T("ListContainerElementUI")))
-	{
-		if (0 == _tcsicmp(msg.pSender->GetName(), _T("ListCreatFromItem")))
-		{
-			Node* node = (Node*)msg.pSender->GetTag();
-			if (!m_pListCreatFrom->CanExpand(node))
-			{
-				CString csId = node->data().sId;
-				if (csId.IsEmpty())
-					return;
-				std::string sId = util::cStringToString(csId);
-				
-				if (_AddToGroupMemberList(sId))
-				{
-					_changeResultList(sId, TRUE);
-					_refreshUIAddedNum();
-				}	
-			}
-		}
-		else if (0 == _tcsicmp(msg.pSender->GetName(), _T("SearchResultItem")))
-		{
-			CString csId = msg.pSender->GetUserData();
-			if (csId.IsEmpty())
-				return;
-			std::string sId = util::cStringToString(csId);
+void ChangeDiscussionGrpMemberDialog::OnItemActive(TNotifyUI& msg) {
+  if (0 == _tcsicmp(msg.pSender->GetClass(), _T("ListContainerElementUI"))) {
+    if (0 == _tcsicmp(msg.pSender->GetName(), _T("ListCreatFromItem"))) {
+      Node* node = (Node*)msg.pSender->GetTag();
+      if (!m_pListCreatFrom->CanExpand(node)) {
+        CString csId = node->data().sId;
+        if (csId.IsEmpty())
+          return;
+        std::string sId = util::cStringToString(csId);
 
-			if (_AddToGroupMemberList(sId))
-			{
-				_changeResultList(sId, TRUE);
-				_refreshUIAddedNum();
-			}
-		}
-	}
+        if (_AddToGroupMemberList(sId)) {
+          _changeResultList(sId, TRUE);
+          _refreshUIAddedNum();
+        }
+      }
+    } else if (0 == _tcsicmp(msg.pSender->GetName(), _T("SearchResultItem"))) {
+      CString csId = msg.pSender->GetUserData();
+      if (csId.IsEmpty())
+        return;
+      std::string sId = util::cStringToString(csId);
+
+      if (_AddToGroupMemberList(sId)) {
+        _changeResultList(sId, TRUE);
+        _refreshUIAddedNum();
+      }
+    }
+  }
 }
 
-void ChangeDiscussionGrpMemberDialog::OnItemClick(TNotifyUI& msg)
-{
-	CDuiString cname = msg.pSender->GetClass();
-	CDuiString name = msg.pSender->GetName();
-	if (0 == _tcsicmp(msg.pSender->GetClass(),_T("ListContainerElementUI")))
-	{
-		if (0 == _tcsicmp(msg.pSender->GetName(),_T("ListCreatFromItem")))
-		{
-			Node* node = (Node*)msg.pSender->GetTag();
+void ChangeDiscussionGrpMemberDialog::OnItemClick(TNotifyUI& msg) {
+  CDuiString cname = msg.pSender->GetClass();
+  CDuiString name = msg.pSender->GetName();
+  if (0 == _tcsicmp(msg.pSender->GetClass(), _T("ListContainerElementUI"))) {
+    if (0 == _tcsicmp(msg.pSender->GetName(), _T("ListCreatFromItem"))) {
+      Node* node = (Node*)msg.pSender->GetTag();
 
-			if (m_pListCreatFrom->CanExpand(node))
-			{
-				m_pListCreatFrom->SetChildVisible(node, !node->data().child_visible_);
-			}
-		}
-	}
+      if (m_pListCreatFrom->CanExpand(node)) {
+        m_pListCreatFrom->SetChildVisible(node, !node->data().child_visible_);
+      }
+    }
+  }
 }
 
-void ChangeDiscussionGrpMemberDialog::OnClick(TNotifyUI& msg)
-{
-	__super::OnClick(msg);
-	if (0 == _tcsicmp(msg.pSender->GetName(), _T("okbtn"))
-		&& m_pListCreatFrom && m_pListGroupMembers)
-	{
-		CDuiString groupName = m_editGroupName->GetText();
-		if (m_pListGroupMembers->GetCount() >= 2)
-		{
-			_sendChangeReq();
-			Close(IDCANCEL);
-		}
-		
-	}
-	else if (0 == _tcsicmp(msg.pSender->GetName(), _T("removebtn")))
-	{
-		CListContainerElementUI* pListElement = reinterpret_cast<CListContainerElementUI*>(msg.pSender->GetTag());
-		if (pListElement)
-		{
-			CString strId = pListElement->GetUserData();
-			if (m_pListGroupMembers->Remove(pListElement))
-			{
-				std::string sid = util::cStringToString(strId);
-				_changeResultList(sid, FALSE);//恢复结果列表
-				_refreshUIAddedNum();
-			}
-		}
-	}
+void ChangeDiscussionGrpMemberDialog::OnClick(TNotifyUI& msg) {
+  __super::OnClick(msg);
+  if (0 == _tcsicmp(msg.pSender->GetName(), _T("okbtn")) && m_pListCreatFrom && m_pListGroupMembers) {
+    CDuiString groupName = m_editGroupName->GetText();
+    if (m_pListGroupMembers->GetCount() >= 2) {
+      _sendChangeReq();
+      Close(IDCANCEL);
+    }
+  } else if (0 == _tcsicmp(msg.pSender->GetName(), _T("removebtn"))) {
+    CListContainerElementUI* pListElement = reinterpret_cast<CListContainerElementUI*>(msg.pSender->GetTag());
+    if (pListElement) {
+      CString strId = pListElement->GetUserData();
+      if (m_pListGroupMembers->Remove(pListElement)) {
+        std::string sid = util::cStringToString(strId);
+        _changeResultList(sid, FALSE);  // 恢复结果列表
+        _refreshUIAddedNum();
+      }
+    }
+  }
 }
 
-BOOL ChangeDiscussionGrpMemberDialog::_AddToGroupMemberList(IN std::string sid, IN const BOOL bEnableDelete/* = TRUE*/)
-{
-	if (sid.empty())
-	{
-		return FALSE;
-	}
-	//检查成员是否已存在
-	for (int n = 0; n < m_pListGroupMembers->GetCount();n++)
-	{
-		CControlUI* pItem = m_pListGroupMembers->GetItemAt(n);
-		if (pItem)
-		{
-			CString strId = pItem->GetUserData();
-			if (!strId.IsEmpty())
-			{
-				std::string sId = util::cStringToString(strId);
-				if (sId == sid)
-				{
-					return FALSE;
-				}
-			}
-		}
-	}
-	//创建ITEM
-	module::UserInfoEntity userInfo;
-	if (!module::getUserListModule()->getUserInfoBySId(sid, userInfo))
-	{
-		LOG__(DEBG, _T("can't find the userInfo:%s"), util::stringToCString(sid));
-		return FALSE;
-	}
-	CDialogBuilder dlgBuilder;
-	CListContainerElementUI* pListElement = (CListContainerElementUI*)dlgBuilder.Create(_T("CreateDiscussionGrpDialog\\ListGroupMembersItem.xml"), (UINT)0, NULL, &m_PaintManager);
-	if (!pListElement)
-	{
-		LOG__(ERR, _T("创建群组成员项失败"));
-		return FALSE;
-	}
-	CControlUI* pLogo = static_cast<CControlUI*>(pListElement->FindSubControl(_T("AvatarInfo")));
-	if (!pLogo)
-	{
-		return FALSE;
-	}
-	pLogo->SetBkImage(util::stringToCString(userInfo.getAvatarPath()));
+BOOL ChangeDiscussionGrpMemberDialog::_AddToGroupMemberList(IN std::string sid,
+                                                            IN const BOOL bEnableDelete /* = TRUE*/) {
+  if (sid.empty()) {
+    return FALSE;
+  }
+  // 检查成员是否已存在
+  for (int n = 0; n < m_pListGroupMembers->GetCount(); n++) {
+    CControlUI* pItem = m_pListGroupMembers->GetItemAt(n);
+    if (pItem) {
+      CString strId = pItem->GetUserData();
+      if (!strId.IsEmpty()) {
+        std::string sId = util::cStringToString(strId);
+        if (sId == sid) {
+          return FALSE;
+        }
+      }
+    }
+  }
+  // 创建ITEM
+  module::UserInfoEntity userInfo;
+  if (!module::getUserListModule()->getUserInfoBySId(sid, userInfo)) {
+    LOG__(DEBG, _T("can't find the userInfo:%s"), util::stringToCString(sid));
+    return FALSE;
+  }
+  CDialogBuilder dlgBuilder;
+  CListContainerElementUI* pListElement = (CListContainerElementUI*)dlgBuilder.Create(
+    _T("CreateDiscussionGrpDialog\\ListGroupMembersItem.xml"), (UINT)0, NULL, &m_PaintManager);
+  if (!pListElement) {
+    LOG__(ERR, _T("创建群组成员项失败"));
+    return FALSE;
+  }
+  CControlUI* pLogo = static_cast<CControlUI*>(pListElement->FindSubControl(_T("AvatarInfo")));
+  if (!pLogo) {
+    return FALSE;
+  }
+  pLogo->SetBkImage(util::stringToCString(userInfo.getAvatarPath()));
 
-	CLabelUI* pNameLable = static_cast<CLabelUI*>(pListElement->FindSubControl(_T("nickname")));
-	if (!pNameLable)
-	{
-		return FALSE;
-	}
-	pNameLable->SetText(userInfo.getRealName());
+  CLabelUI* pNameLable = static_cast<CLabelUI*>(pListElement->FindSubControl(_T("nickname")));
+  if (!pNameLable) {
+    return FALSE;
+  }
+  pNameLable->SetText(userInfo.getRealName());
 
-	CButtonUI* pRemoveBtn = static_cast<CButtonUI*>(pListElement->FindSubControl(_T("removebtn")));
-	if (pRemoveBtn)
-	{
-		//设置删除按钮可见性，成员列表中不能删除自己
-		pRemoveBtn->SetTag(UINT_PTR(pListElement));
-		if (!bEnableDelete)
-		{
-			pRemoveBtn->SetVisible(FALSE);
-		}
-	}
+  CButtonUI* pRemoveBtn = static_cast<CButtonUI*>(pListElement->FindSubControl(_T("removebtn")));
+  if (pRemoveBtn) {
+    // 设置删除按钮可见性，成员列表中不能删除自己
+    pRemoveBtn->SetTag(UINT_PTR(pListElement));
+    if (!bEnableDelete) {
+      pRemoveBtn->SetVisible(FALSE);
+    }
+  }
 
-	if (module::getSysConfigModule()->userID() == userInfo.sId)//不能删除自己
-	{
-		pRemoveBtn->SetVisible(false);
-	}
-	
-	pListElement->SetUserData(util::stringToCString(userInfo.sId));
+  if (module::getSysConfigModule()->userID() == userInfo.sId)  // 不能删除自己
+  {
+    pRemoveBtn->SetVisible(false);
+  }
 
-	m_pListGroupMembers->Add(pListElement);
+  pListElement->SetUserData(util::stringToCString(userInfo.sId));
 
-	return TRUE;
+  m_pListGroupMembers->Add(pListElement);
+
+  return TRUE;
 }
 
-void ChangeDiscussionGrpMemberDialog::OnTextChanged(TNotifyUI& msg)
-{
-	if (msg.pSender == m_editSearch)
-	{
-		m_pListSearchResult->RemoveAll();
+void ChangeDiscussionGrpMemberDialog::OnTextChanged(TNotifyUI& msg) {
+  if (msg.pSender == m_editSearch) {
+    m_pListSearchResult->RemoveAll();
 
-		CDuiString inputText = m_editSearch->GetText();
-		if (inputText.IsEmpty())
-		{
-			m_pListSearchResult->SetVisible(false);
-			m_pListCreatFrom->SetVisible(true);
-		}
-		else
-		{
-			m_pListCreatFrom->SetVisible(false);
-			m_pListSearchResult->SetVisible(true);
+    CDuiString inputText = m_editSearch->GetText();
+    if (inputText.IsEmpty()) {
+      m_pListSearchResult->SetVisible(false);
+      m_pListCreatFrom->SetVisible(true);
+    } else {
+      m_pListCreatFrom->SetVisible(false);
+      m_pListSearchResult->SetVisible(true);
 
-			module::UserInfoEntityVec userList;
-			module::getUserListModule()->getSearchUserNameListByShortName(inputText.GetData(), userList);
-			_updateSearchResultList(userList);
-		}
-	}
+      module::UserInfoEntityVec userList;
+      module::getUserListModule()->getSearchUserNameListByShortName(inputText.GetData(), userList);
+      _updateSearchResultList(userList);
+    }
+  }
 }
 
-void ChangeDiscussionGrpMemberDialog::_updateSearchResultList(IN const std::vector<std::string>& nameList)
-{
-	if (nameList.empty())
-	{
-		return;
-	}
-	for (std::string sid : nameList)
-	{
-		module::UserInfoEntity userInfo;
-		if (!module::getUserListModule()->getUserInfoBySId(sid, userInfo))
-		{
-			LOG__(ERR, _T("can't find the userInfo:%s"), util::stringToCString(sid));
-			return;
-		}
-		CDialogBuilder dlgBuilder;
-		CListContainerElementUI* pListElement = (CListContainerElementUI*)dlgBuilder.Create(_T("CreateDiscussionGrpDialog\\ListGroupMembersItem.xml"), (UINT)0, NULL, &m_PaintManager);
-		if (!pListElement)
-		{
-			LOG__(ERR, _T("Creat group item failed!"));
-			return;
-		}
-		pListElement->SetName(_T("SearchResultItem"));
-		CControlUI* pLogo = static_cast<CControlUI*>(pListElement->FindSubControl(_T("AvatarInfo")));
-		if (!pLogo)
-		{
-			return;
-		}
-		pLogo->SetBkImage(util::stringToCString(userInfo.getAvatarPath()));
+void ChangeDiscussionGrpMemberDialog::_updateSearchResultList(IN const std::vector<std::string>& nameList) {
+  if (nameList.empty()) {
+    return;
+  }
+  for (std::string sid : nameList) {
+    module::UserInfoEntity userInfo;
+    if (!module::getUserListModule()->getUserInfoBySId(sid, userInfo)) {
+      LOG__(ERR, _T("can't find the userInfo:%s"), util::stringToCString(sid));
+      return;
+    }
+    CDialogBuilder dlgBuilder;
+    CListContainerElementUI* pListElement = (CListContainerElementUI*)dlgBuilder.Create(
+      _T("CreateDiscussionGrpDialog\\ListGroupMembersItem.xml"), (UINT)0, NULL, &m_PaintManager);
+    if (!pListElement) {
+      LOG__(ERR, _T("Creat group item failed!"));
+      return;
+    }
+    pListElement->SetName(_T("SearchResultItem"));
+    CControlUI* pLogo = static_cast<CControlUI*>(pListElement->FindSubControl(_T("AvatarInfo")));
+    if (!pLogo) {
+      return;
+    }
+    pLogo->SetBkImage(util::stringToCString(userInfo.getAvatarPath()));
 
-		CLabelUI* pNameLable = static_cast<CLabelUI*>(pListElement->FindSubControl(_T("nickname")));
-		if (!pNameLable)
-		{
-			return;
-		}
-		pNameLable->SetText(userInfo.getRealName());
+    CLabelUI* pNameLable = static_cast<CLabelUI*>(pListElement->FindSubControl(_T("nickname")));
+    if (!pNameLable) {
+      return;
+    }
+    pNameLable->SetText(userInfo.getRealName());
 
-		CButtonUI* pRemoveBtn = static_cast<CButtonUI*>(pListElement->FindSubControl(_T("removebtn")));
-		if (pRemoveBtn)
-		{
-			pRemoveBtn->SetVisible(false);
-		}
+    CButtonUI* pRemoveBtn = static_cast<CButtonUI*>(pListElement->FindSubControl(_T("removebtn")));
+    if (pRemoveBtn) {
+      pRemoveBtn->SetVisible(false);
+    }
 
-		pListElement->SetUserData(util::stringToCString(userInfo.sId));
+    pListElement->SetUserData(util::stringToCString(userInfo.sId));
 
-		m_pListSearchResult->Add(pListElement);
-	}
+    m_pListSearchResult->Add(pListElement);
+  }
 }
 
-void ChangeDiscussionGrpMemberDialog::_refreshUIAddedNum()
-{
-	if (m_TextaddNums)
-	{
-		CString strFormat;
-		strFormat.Format(_T("(%d/50)"), m_pListGroupMembers->GetCount());
-		m_TextaddNums->SetText(strFormat);
-	}
+void ChangeDiscussionGrpMemberDialog::_refreshUIAddedNum() {
+  if (m_TextaddNums) {
+    CString strFormat;
+    strFormat.Format(_T("(%d/50)"), m_pListGroupMembers->GetCount());
+    m_TextaddNums->SetText(strFormat);
+  }
 }
 
-void ChangeDiscussionGrpMemberDialog::_changeResultList(IN const std::string& sid, IN const BOOL bAdded)
-{
-	if (bAdded)//添加操作
-	{
-		auto iter = std::find_if(m_deleteUsers.begin(),m_deleteUsers.end(),
-			[=](std::string id){
-			return id == sid;
-		});
-		if (iter == m_deleteUsers.end())
-		{
-			m_addedUsers.push_back(sid);
-		}
-		else
-		{
-			m_deleteUsers.erase(iter);
-		}
-	}
-	else//删除操作
-	{		
-		auto iter = std::find_if(m_addedUsers.begin(), m_addedUsers.end(),
-			[=](std::string id){
-			return id == sid;
-		});
-		if (iter == m_addedUsers.end())
-		{
-			m_deleteUsers.push_back(sid);
-		}
-		else
-		{
-			m_addedUsers.erase(iter);
-		}
-	}
+void ChangeDiscussionGrpMemberDialog::_changeResultList(IN const std::string& sid, IN const BOOL bAdded) {
+  if (bAdded)  // 添加操作
+  {
+    auto iter = std::find_if(m_deleteUsers.begin(), m_deleteUsers.end(), [=](std::string id) { return id == sid; });
+    if (iter == m_deleteUsers.end()) {
+      m_addedUsers.push_back(sid);
+    } else {
+      m_deleteUsers.erase(iter);
+    }
+  } else  // 删除操作
+  {
+    auto iter = std::find_if(m_addedUsers.begin(), m_addedUsers.end(), [=](std::string id) { return id == sid; });
+    if (iter == m_addedUsers.end()) {
+      m_deleteUsers.push_back(sid);
+    } else {
+      m_addedUsers.erase(iter);
+    }
+  }
 }
 
-void ChangeDiscussionGrpMemberDialog::_sendChangeReq()
-{
-	std::string oSid = module::getGroupListModule()->getOriginalSId(m_currentSessionId);
-	if (!m_addedUsers.empty())
-	{
-		IM::Group::IMGroupChangeMemberReq imGroupChangeMemberReq;
-		imGroupChangeMemberReq.set_user_id(module::getSysConfigModule()->userId());
-		imGroupChangeMemberReq.set_change_type(IM::BaseDefine::GroupModifyType::GROUP_MODIFY_TYPE_ADD);
-		imGroupChangeMemberReq.set_group_id(util::stringToInt32(oSid));
-		for (std::string sid:m_addedUsers)
-		{
-			imGroupChangeMemberReq.add_member_id_list(util::stringToInt32(sid));
-		}
-		LOG__(APP, _T("IMGroupChangeMemberReq - add,groupID = %s,size = %d")
-			, util::stringToCString(m_currentSessionId),m_addedUsers.size());
-		module::getTcpClientModule()->sendPacket(IM::BaseDefine::ServiceID::SID_GROUP
-			, IM::BaseDefine::GroupCmdID::CID_GROUP_CHANGE_MEMBER_REQUEST
-			, &imGroupChangeMemberReq);
-	}
-	if (!m_deleteUsers.empty())
-	{
-		IM::Group::IMGroupChangeMemberReq imGroupChangeMemberReq;
-		imGroupChangeMemberReq.set_user_id(module::getSysConfigModule()->userId());
-		imGroupChangeMemberReq.set_change_type(IM::BaseDefine::GroupModifyType::GROUP_MODIFY_TYPE_DEL);
-		imGroupChangeMemberReq.set_group_id(util::stringToInt32(oSid));
-		for (std::string sid : m_deleteUsers)
-		{
-			imGroupChangeMemberReq.add_member_id_list(util::stringToInt32(sid));
-		}
-		LOG__(APP, _T("IMGroupChangeMemberReq - del,groupID = %s,size = %d")
-			, util::stringToCString(m_currentSessionId), m_deleteUsers.size());
-		module::getTcpClientModule()->sendPacket(IM::BaseDefine::ServiceID::SID_GROUP
-			, IM::BaseDefine::GroupCmdID::CID_GROUP_CHANGE_MEMBER_REQUEST
-			, &imGroupChangeMemberReq);
-	}
+void ChangeDiscussionGrpMemberDialog::_sendChangeReq() {
+  std::string oSid = module::getGroupListModule()->getOriginalSId(m_currentSessionId);
+  if (!m_addedUsers.empty()) {
+    IM::Group::IMGroupChangeMemberReq imGroupChangeMemberReq;
+    imGroupChangeMemberReq.set_user_id(module::getSysConfigModule()->userId());
+    imGroupChangeMemberReq.set_change_type(IM::BaseDefine::GroupModifyType::GROUP_MODIFY_TYPE_ADD);
+    imGroupChangeMemberReq.set_group_id(util::stringToInt32(oSid));
+    for (std::string sid : m_addedUsers) {
+      imGroupChangeMemberReq.add_member_id_list(util::stringToInt32(sid));
+    }
+    LOG__(APP,
+          _T("IMGroupChangeMemberReq - add,groupID = %s,size = %d"),
+          util::stringToCString(m_currentSessionId),
+          m_addedUsers.size());
+    module::getTcpClientModule()->sendPacket(IM::BaseDefine::ServiceID::SID_GROUP,
+                                             IM::BaseDefine::GroupCmdID::CID_GROUP_CHANGE_MEMBER_REQUEST,
+                                             &imGroupChangeMemberReq);
+  }
+  if (!m_deleteUsers.empty()) {
+    IM::Group::IMGroupChangeMemberReq imGroupChangeMemberReq;
+    imGroupChangeMemberReq.set_user_id(module::getSysConfigModule()->userId());
+    imGroupChangeMemberReq.set_change_type(IM::BaseDefine::GroupModifyType::GROUP_MODIFY_TYPE_DEL);
+    imGroupChangeMemberReq.set_group_id(util::stringToInt32(oSid));
+    for (std::string sid : m_deleteUsers) {
+      imGroupChangeMemberReq.add_member_id_list(util::stringToInt32(sid));
+    }
+    LOG__(APP,
+          _T("IMGroupChangeMemberReq - del,groupID = %s,size = %d"),
+          util::stringToCString(m_currentSessionId),
+          m_deleteUsers.size());
+    module::getTcpClientModule()->sendPacket(IM::BaseDefine::ServiceID::SID_GROUP,
+                                             IM::BaseDefine::GroupCmdID::CID_GROUP_CHANGE_MEMBER_REQUEST,
+                                             &imGroupChangeMemberReq);
+  }
 }

@@ -4,35 +4,33 @@
 
 #include <modules/ScreenCapture/CaptureMode/ModeComm.h>
 
-enum CaptureMode
-{
-	CM_MIN = 0,
-	CM_AUTO_SELECT,
-	CM_MANAL_SELECT,
-	CM_MANAL_EDIT,
+enum CaptureMode {
+  CM_MIN = 0,
+  CM_AUTO_SELECT,
+  CM_MANAL_SELECT,
+  CM_MANAL_EDIT,
 
-	CM_MAX
+  CM_MAX
 };
 
-class CaptureModeMgr :public Singleton<CaptureModeMgr>
-{
-public:
-	CaptureModeMgr();
-	CaptureMode getMode(){ return m_emCurrentMode; }
-	CaptureMode changeMode(__in CaptureMode emMode);
-	void clear();
+class CaptureModeMgr : public Singleton<CaptureModeMgr> {
+ public:
+  CaptureModeMgr();
+  CaptureMode getMode() { return m_emCurrentMode; }
+  CaptureMode changeMode(__in CaptureMode emMode);
+  void clear();
 
-public:
-	BOOL snapshotWindows();
+ public:
+  BOOL snapshotWindows();
 
-public:
-	void handleMouseMsg(__in UINT uMsg, __in int xPos, __in int yPos);
+ public:
+  void handleMouseMsg(__in UINT uMsg, __in int xPos, __in int yPos);
 
-private:
-	IModeMsgHandler *getModeHandler();
+ private:
+  IModeMsgHandler* getModeHandler();
 
-private:
-	CaptureMode m_emCurrentMode;
+ private:
+  CaptureMode m_emCurrentMode;
 };
 
-#endif// CAPTUREMODE_1bd9073c-b1f7-4892-bd99-555bd9d973b7_H__
+#endif  // CAPTUREMODE_1bd9073c-b1f7-4892-bd99-555bd9d973b7_H__

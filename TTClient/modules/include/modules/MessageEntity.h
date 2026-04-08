@@ -14,71 +14,68 @@
 #include <modules/module_dll.h>
 
 // 消息服务器类型定义与服务器相同
-enum MSG_TYPE_SERVER{
-	MSG_TYPE_TEXT_P2P = 0x01,
-	MSG_TYPE_AUDIO_P2P = 0x02,
-	MSG_TYPE_TEXT_GROUP = 0x11,
-	MSG_TYPE_AUDIO_GROUP = 0x12,
+enum MSG_TYPE_SERVER {
+  MSG_TYPE_TEXT_P2P = 0x01,
+  MSG_TYPE_AUDIO_P2P = 0x02,
+  MSG_TYPE_TEXT_GROUP = 0x11,
+  MSG_TYPE_AUDIO_GROUP = 0x12,
 };
 
 // 消息渲染类型（IE浏览器使用）
-enum MSG_TYPE_RENDER
-{
-	MESSAGE_RENDERTYPE_TEXT = 1,            //普通文本
-	MESSAGE_RENDERTYPE_IMAGE = 2,           //普通图片
-	MESSAGE_RENDERTYPE_SYSTEMTIPS = 4,      //系统提示
-	MESSAGE_RENDERTYPE_FILETRANSFER = 5,    //文件提示
-	MESSAGE_RENDERTYPE_AUDIO = 6,           //音频消息
+enum MSG_TYPE_RENDER {
+  MESSAGE_RENDERTYPE_TEXT = 1,          // 普通文本
+  MESSAGE_RENDERTYPE_IMAGE = 2,         // 普通图片
+  MESSAGE_RENDERTYPE_SYSTEMTIPS = 4,    // 系统提示
+  MESSAGE_RENDERTYPE_FILETRANSFER = 5,  // 文件提示
+  MESSAGE_RENDERTYPE_AUDIO = 6,         // 音频消息
 };
 
 // 消息状态 运行时\离线\历史
-enum MSG_TYPE_STATUS
-{
-	MESSAGE_TYPE_NONE = -1,
-	MESSAGE_TYPE_RUNTIME = 0,               //运行时消息
-	MESSAGE_TYPE_OFFLINE,                   //离线消息
-	MESSAGE_TYPE_HISTORY,                   //历史消息
+enum MSG_TYPE_STATUS {
+  MESSAGE_TYPE_NONE = -1,
+  MESSAGE_TYPE_RUNTIME = 0,  // 运行时消息
+  MESSAGE_TYPE_OFFLINE,      // 离线消息
+  MESSAGE_TYPE_HISTORY,      // 历史消息
 };
 
 // 消息来源定义
-enum MSG_TYPE_FROM
-{
-	MESSAGETYPE_FROM_ERROR = 0,
-	MESSAGETYPE_FROM_FRIEND,				//点对点的好友消息
-	MESSAGETYPE_FROM_GROUP,					//群组消息
+enum MSG_TYPE_FROM {
+  MESSAGETYPE_FROM_ERROR = 0,
+  MESSAGETYPE_FROM_FRIEND,  // 点对点的好友消息
+  MESSAGETYPE_FROM_GROUP,   // 群组消息
 };
 
-class MODULE_API MessageEntity
-{
-public:
-    MessageEntity();
-    ~MessageEntity() = default;
-public:
-	UInt8			msgType;            //消息类型		 1.文本消息、100.消息	MSG_TYPE_SERVER
-	UInt8			msgStatusType;      //消息的的状态类型 0 发送 1 接收、2 历史		MSG_TYPE_STATUS
-	UInt8			msgRenderType;      //消息的渲染类型								MSG_TYPE_RENDER
-	UInt8			msgSessionType;		//消息的来源		 1.单聊消息、2.群聊消息
-	UInt32          msgTime;            //消息收发时间
-	std::string     content;            //消息内容
-	std::string     imageId;            //图片ID
-	std::string     talkerSid;          //消息的发送者
-	std::string     sessionId;          //会话的ID
-	UInt32		    msgId;				//msg ID
+class MODULE_API MessageEntity {
+ public:
+  MessageEntity();
+  ~MessageEntity() = default;
 
-	//语音相关
-	UInt8           msgAudioTime;       //语音消息时长
-	UInt8           msgAudioReaded;     //已经被播放过
+ public:
+  UInt8 msgType;          // 消息类型		 1.文本消息、100.消息	MSG_TYPE_SERVER
+  UInt8 msgStatusType;    // 消息的的状态类型 0 发送 1 接收、2 历史		MSG_TYPE_STATUS
+  UInt8 msgRenderType;    // 消息的渲染类型								MSG_TYPE_RENDER
+  UInt8 msgSessionType;   // 消息的来源		 1.单聊消息、2.群聊消息
+  UInt32 msgTime;         // 消息收发时间
+  std::string content;    // 消息内容
+  std::string imageId;    // 图片ID
+  std::string talkerSid;  // 消息的发送者
+  std::string sessionId;  // 会话的ID
+  UInt32 msgId;           // msg ID
 
-public:
-	BOOL isMySendMsg()const;
-	BOOL isFromGroupMsg()const;
-	BOOL getSenderInfo(OUT CString& senderName, OUT std::string& senderAvatartPath);//获取发送者的名字和头像路径
-	BOOL makeGroupSessionId();//当接收到群消息时要加上群的前缀 "group_"
-	inline  BOOL isReaded()const; //for audio msg
+  // 语音相关
+  UInt8 msgAudioTime;    // 语音消息时长
+  UInt8 msgAudioReaded;  // 已经被播放过
 
-public:
-	//群消息相关
-	std::string getOriginSessionId();
+ public:
+  BOOL isMySendMsg() const;
+  BOOL isFromGroupMsg() const;
+  BOOL getSenderInfo(OUT CString& senderName, OUT std::string& senderAvatartPath);  // 获取发送者的名字和头像路径
+  BOOL makeGroupSessionId();     // 当接收到群消息时要加上群的前缀 "group_"
+  inline BOOL isReaded() const;  // for audio msg
+
+ public:
+  // 群消息相关
+  std::string getOriginSessionId();
 };
 
-#endif// MESSAGEENTITY_35FE027F_F23D_4444_B013_9FCF04145DD6_H__
+#endif  // MESSAGEENTITY_35FE027F_F23D_4444_B013_9FCF04145DD6_H__

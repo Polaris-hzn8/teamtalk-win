@@ -9,28 +9,28 @@
 #ifndef RELOGINMANAGER_95607570_AE99_4D6C_B2F6_25CD0FD8A0FA_H__
 #define RELOGINMANAGER_95607570_AE99_4D6C_B2F6_25CD0FD8A0FA_H__
 
-#include <modules/Base/IEvent.h>
 #include <memory>
+#include <modules/Base/IEvent.h>
 
 class ReloginManager;
-class ReloginManager
-{
-    friend class ReloginTimer;
-public:
-    ReloginManager();
-    ~ReloginManager();
-	void OnOperationCallback(std::shared_ptr<void> param);
+class ReloginManager {
+  friend class ReloginTimer;
 
-public:
-    void startReloginTimer(UInt32 second);
-    void forceRelogin();
-    
-private:
-    void doRelogin();
+ public:
+  ReloginManager();
+  ~ReloginManager();
+  void OnOperationCallback(std::shared_ptr<void> param);
 
-private:
-    UInt32                      m_secondCount;//重连计时：3秒后重连，15秒
-    BOOL                        m_bDoReloginNow;
+ public:
+  void startReloginTimer(UInt32 second);
+  void forceRelogin();
+
+ private:
+  void doRelogin();
+
+ private:
+  UInt32 m_secondCount;  // 重连计时：3秒后重连，15秒
+  BOOL m_bDoReloginNow;
 };
 
-#endif// RELOGINMANAGER_95607570_AE99_4D6C_B2F6_25CD0FD8A0FA_H__
+#endif  // RELOGINMANAGER_95607570_AE99_4D6C_B2F6_25CD0FD8A0FA_H__

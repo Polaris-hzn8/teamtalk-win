@@ -29,45 +29,45 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-#pragma once
-
-namespace util {
 
 #ifndef _RVTINET6_MD5_H_
 #define _RVTINET6_MD5_H_
 
+#include <stdint.h>
+#include <windows.h>
 
-#define MD5_BUFLEN	64
+namespace util {
 
-	typedef struct {
-		union {
-			DWORD	md5_state32[4];
-			BYTE	md5_state8[16];
-		} md5_st;
+#define MD5_BUFLEN 64
 
-#define md5_sta		md5_st.md5_state32[0]
-#define md5_stb		md5_st.md5_state32[1]
-#define md5_stc		md5_st.md5_state32[2]
-#define md5_std		md5_st.md5_state32[3]
-#define md5_st8		md5_st.md5_state8
+typedef struct {
+  union {
+    DWORD md5_state32[4];
+    BYTE md5_state8[16];
+  } md5_st;
 
-		union {
-			ULONGLONG md5_count64;
-			BYTE	md5_count8[8];
-		} md5_count;
-#define md5_n	md5_count.md5_count64
-#define md5_n8	md5_count.md5_count8
+#define md5_sta md5_st.md5_state32[0]
+#define md5_stb md5_st.md5_state32[1]
+#define md5_stc md5_st.md5_state32[2]
+#define md5_std md5_st.md5_state32[3]
+#define md5_st8 md5_st.md5_state8
 
-		DWORD	md5_i;
-		BYTE	md5_buf[MD5_BUFLEN];
-	} md5_ctxt;
+  union {
+    ULONGLONG md5_count64;
+    BYTE md5_count8[8];
+  } md5_count;
+#define md5_n md5_count.md5_count64
+#define md5_n8 md5_count.md5_count8
 
-	void md5_init(md5_ctxt*);
-	void md5_loop(md5_ctxt*, BYTE*, DWORD);
-	void md5_pad(md5_ctxt*);
-	void md5_result(BYTE*, md5_ctxt*);
+  DWORD md5_i;
+  BYTE md5_buf[MD5_BUFLEN];
+} md5_ctxt;
 
-#endif /* ! _RVTINET6_MD5_H_*/
+void md5_init(md5_ctxt*);
+void md5_loop(md5_ctxt*, BYTE*, DWORD);
+void md5_pad(md5_ctxt*);
+void md5_result(BYTE*, md5_ctxt*);
 
-} // util
+}  // namespace util
 
+#endif // _RVTINET6_MD5_H_

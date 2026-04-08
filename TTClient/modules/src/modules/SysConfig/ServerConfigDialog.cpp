@@ -8,99 +8,80 @@
 
 #include "stdafx.h"
 #include <global_define.h>
-#include <modules/SysConfig/ServerConfigDialog.h>
-#include <modules/ISysConfigModule.h>
 #include <modules/IMiscModule.h>
+#include <modules/ISysConfigModule.h>
+#include <modules/SysConfig/ServerConfigDialog.h>
 #include <utility/utilStrCodingAPI.h>
 
 DUI_BEGIN_MESSAGE_MAP(ServerConfigDialog, WindowImplBase)
-	DUI_ON_MSGTYPE(DUI_MSGTYPE_WINDOWINIT, OnWindowInitialized)
-	DUI_ON_MSGTYPE(DUI_MSGTYPE_CLICK, OnClick)
+DUI_ON_MSGTYPE(DUI_MSGTYPE_WINDOWINIT, OnWindowInitialized)
+DUI_ON_MSGTYPE(DUI_MSGTYPE_CLICK, OnClick)
 DUI_END_MESSAGE_MAP()
 
-ServerConfigDialog::ServerConfigDialog()
-:m_pbtnApply(0)
-{
+ServerConfigDialog::ServerConfigDialog() : m_pbtnApply(0) {}
 
+ServerConfigDialog::~ServerConfigDialog() {}
+
+LPCTSTR ServerConfigDialog::GetWindowClassName() const {
+  return _T("TeamTalkServerConfigDialog");
 }
 
-ServerConfigDialog::~ServerConfigDialog()
-{
-
+DuiLib::CDuiString ServerConfigDialog::GetSkinFile() {
+  return _T("SysConfigDialog\\ServerConfigDialog.xml");
 }
 
-LPCTSTR ServerConfigDialog::GetWindowClassName() const
-{
-	return _T("TeamTalkServerConfigDialog");
+CControlUI* ServerConfigDialog::CreateControl(LPCTSTR pstrClass) {
+  return nullptr;
 }
 
-DuiLib::CDuiString ServerConfigDialog::GetSkinFile()
-{
-	return  _T("SysConfigDialog\\ServerConfigDialog.xml");
+void ServerConfigDialog::OnFinalMessage(HWND hWnd) {
+  WindowImplBase::OnFinalMessage(hWnd);
+  delete this;
 }
 
-CControlUI* ServerConfigDialog::CreateControl(LPCTSTR pstrClass)
-{
-	return nullptr;
+void ServerConfigDialog::OnWindowInitialized(TNotifyUI& msg) {
+  m_pbtnApply = (CButtonUI*)m_PaintManager.FindControl(_T("applybtn"));
+  PTR_VOID(m_pbtnApply);
+
+  m_pEditAddress = (CEditUI*)m_PaintManager.FindControl(_T("Address"));
+  PTR_VOID(m_pEditAddress);
+
+  _InitlizeSetting();
 }
 
-void ServerConfigDialog::OnFinalMessage(HWND hWnd)
-{
-	WindowImplBase::OnFinalMessage(hWnd);
-	delete this;
+void ServerConfigDialog::OnClick(TNotifyUI& msg) {
+  PTR_VOID(msg.pSender);
+  if (msg.pSender == m_pbtnApply) {
+    if (_ApplySetting())
+      Close(IDOK);
+  }
+
+  __super::OnClick(msg);
 }
 
-void ServerConfigDialog::OnWindowInitialized(TNotifyUI& msg)
-{
-	m_pbtnApply = (CButtonUI*)m_PaintManager.FindControl(_T("applybtn"));
-	PTR_VOID(m_pbtnApply);
-
-	m_pEditAddress = (CEditUI*)m_PaintManager.FindControl(_T("Address"));
-	PTR_VOID(m_pEditAddress);
-
-	_InitlizeSetting();
+DuiLib::CDuiString ServerConfigDialog::GetSkinFolder() {
+  return _T("");
 }
 
-void ServerConfigDialog::OnClick(TNotifyUI& msg)
-{
-	PTR_VOID(msg.pSender);
-	if (msg.pSender == m_pbtnApply)
-	{
-		if(_ApplySetting())
-			Close(IDOK);
-	}
+void ServerConfigDialog::_InitlizeSetting() {
+  LOG__(ERR, _T("_InitlizeSetting,潩?潩潩?潩"));
+  module::TTConfig* pTTConfig = module::getSysConfigModule()->getSystemConfig();
+  if (!pTTConfig) {
+    return;
+  }
 
-	__super::OnClick(msg);
+  if (!pTTConfig->loginServIP.IsEmpty()) {
+    m_pEditAddress->SetText(pTTConfig->loginServIP);
+  }
 }
 
-DuiLib::CDuiString ServerConfigDialog::GetSkinFolder()
-{
-	return _T("");
-}
+BOOL ServerConfigDialog::_ApplySetting() {
+  module::TTConfig* pTTConfig = module::getSysConfigModule()->getSystemConfig();
+  PTR_FALSE(pTTConfig);
+  CString strLoginServIP = m_pEditAddress->GetText();
+  if (strLoginServIP.IsEmpty())
+    return FALSE;
 
-void ServerConfigDialog::_InitlizeSetting()
-{
-	LOG__(ERR, _T("_InitlizeSetting,潩?潩潩?潩"));
-	module::TTConfig* pTTConfig = module::getSysConfigModule()->getSystemConfig();
-	if (!pTTConfig)
-	{
-		return;
-	}
-
-	if (!pTTConfig->loginServIP.IsEmpty())
-	{
-		m_pEditAddress->SetText(pTTConfig->loginServIP);
-	}
-}
-
-BOOL ServerConfigDialog::_ApplySetting()
-{
-	module::TTConfig* pTTConfig = module::getSysConfigModule()->getSystemConfig();
-	PTR_FALSE(pTTConfig);
-	CString strLoginServIP = m_pEditAddress->GetText();
-	if (strLoginServIP.IsEmpty())
-		return FALSE;
-		
-	pTTConfig->loginServIP = strLoginServIP;
-	return module::getSysConfigModule()->saveData();
+  pTTConfig->loginServIP = strLoginServIP;
+  return module::getSysConfigModule()->saveData();
 }

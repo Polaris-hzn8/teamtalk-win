@@ -14,16 +14,16 @@
 
 NAMESPACE_BEGIN(util)
 
-class UTILITY_CLASS Multilingual
-{
-public:
-    Multilingual();
-    ~Multilingual();
-public:
-	CString getStringById(LPCTSTR strID);
+class UTILITY_CLASS Multilingual {
+ public:
+  Multilingual();
+  ~Multilingual();
+
+ public:
+  CString getStringById(LPCTSTR strID);
 };
 extern UTILITY_API Multilingual* getMultilingual();
 
 NAMESPACE_END(util)
 
-#endif// _MULTILINGUAL_H_
+#endif  // _MULTILINGUAL_H_

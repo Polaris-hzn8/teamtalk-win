@@ -11,38 +11,37 @@
 
 #include <network/ostype.h>
 
-class NETWORK_DLL CFastLock
-{
-public:
-	CFastLock();
-	~CFastLock();
-public:
+class NETWORK_DLL CFastLock {
+ public:
+  CFastLock();
+  ~CFastLock();
+
+ public:
 #ifdef _MSC_VER
-	CRITICAL_SECTION m_critical_section;
+  CRITICAL_SECTION m_critical_section;
 #else
-	pthread_mutex_t m_mutex;
+  pthread_mutex_t m_mutex;
 #endif
 };
 
-class NETWORK_DLL CLock
-{
-public:
-    void lock();
-    void unlock();
+class NETWORK_DLL CLock {
+ public:
+  void lock();
+  void unlock();
 #ifndef _MSC_VER
-    virtual bool try_lock();
+  virtual bool try_lock();
 #endif
-private:
-	CFastLock	m_lock;
+ private:
+  CFastLock m_lock;
 };
 
-class NETWORK_DLL CAutoLock
-{
-public:
-    CAutoLock(CLock* pLock);
-    virtual ~CAutoLock();
-private:
-    CLock* m_pLock;
+class NETWORK_DLL CAutoLock {
+ public:
+  CAutoLock(CLock* pLock);
+  virtual ~CAutoLock();
+
+ private:
+  CLock* m_pLock;
 };
 
 #endif

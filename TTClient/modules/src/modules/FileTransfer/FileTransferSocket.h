@@ -3,86 +3,80 @@
  Reviser: Polaris_hzn8
  Email: lch2022fox@163.com
  Github: https://github.com/Polaris-hzn8
- brief: 
+ brief:
 */
 
 #ifndef FILETRANSFERSOCKET_612C0628_0BB6_4FF0_BE0F_F5DE2C35836D_H__
 #define FILETRANSFERSOCKET_612C0628_0BB6_4FF0_BE0F_F5DE2C35836D_H__
 
 #include <global_define.h>
+#include <google/protobuf/message_lite.h>
 #include <modules/Base/IEvent.h>
 #include <modules/Base/ITimerEvent.h>
 #include <modules/ITcpClientModule.h>
 #include <network/core/ImPduBase.h>
 #include <network/core/im_conn.h>
-#include <google/protobuf/message_lite.h>
 
 class CImPdu;
 class FileTransferSocket;
 class FileTransTaskBase;
 
-namespace module
-{
-    class CImConn;
+namespace module {
+class CImConn;
 }
 
-class PingFileSevTimer : public module::ITimerEvent
-{
-public:
-	PingFileSevTimer(FileTransferSocket* pTransSocket);
-	virtual void process();
-	virtual void release();
+class PingFileSevTimer : public module::ITimerEvent {
+ public:
+  PingFileSevTimer(FileTransferSocket* pTransSocket);
+  virtual void process();
+  virtual void release();
 
-private:
-	FileTransferSocket* m_pFileTransSocket;
+ private:
+  FileTransferSocket* m_pFileTransSocket;
 };
 
-class FileTransferSocket :public ITcpSocketCallback
-{
-public:
-	FileTransferSocket(std::string& taskId);
-	~FileTransferSocket(void);
+class FileTransferSocket : public ITcpSocketCallback {
+ public:
+  FileTransferSocket(std::string& taskId);
+  ~FileTransferSocket(void);
 
-public:
-	BOOL startFileTransLink();
-	void stopfileTransLink();
-    void sendPacket(IN UInt16 moduleId, IN UInt16 cmdId,IN google::protobuf::MessageLite* pbBody);
+ public:
+  BOOL startFileTransLink();
+  void stopfileTransLink();
+  void sendPacket(IN UInt16 moduleId, IN UInt16 cmdId, IN google::protobuf::MessageLite* pbBody);
 
-private:
-	//网络连接
-	virtual BOOL connect(const CString &linkaddr, UInt16 port);
-	virtual BOOL shutdown();
+ private:
+  // 网络连接
+  virtual BOOL connect(const CString& linkaddr, UInt16 port);
+  virtual BOOL shutdown();
 
-	//心跳相关
-	virtual void startHeartbeat();
-	virtual void stopHeartbeat();
+  // 心跳相关
+  virtual void startHeartbeat();
+  virtual void stopHeartbeat();
 
-    virtual void onClose();
-    virtual void onReceiveData(const char* data, int32_t size);
-    virtual void onConnectDone();
-    virtual void onReceiveError();
+  virtual void onClose();
+  virtual void onReceiveData(const char* data, int32_t size);
+  virtual void onConnectDone();
+  virtual void onReceiveError();
 
+ private:
+  /**@name 消息过滤器*/
+  //@{
+  void _fileLoginResponse(IN std::string& body);
+  void _filePullDataReqResponse(IN std::string& body);
+  void _filePullDataRspResponse(IN std::string& body);
+  void _fileState(IN std::string& body);
+  //@}
 
-private:
-	/**@name 消息过滤器*/
-	//@{
-    void _fileLoginResponse(IN std::string& body);
-    void _filePullDataReqResponse(IN std::string& body);
-    void _filePullDataRspResponse(IN std::string& body);
-    void _fileState(IN std::string& body);
-	//@}
+ public:
+  std::string m_sTaskId;
 
-public:
-	std::string							m_sTaskId;
+ private:
+  imcore::TTPBHeader m_TTPBHeader;
+  PingFileSevTimer* m_pPingTimer;
+  UInt32 m_progressRefreshMark;
 
-private:
-
-    imcore::TTPBHeader				    m_TTPBHeader;
-	PingFileSevTimer*                   m_pPingTimer;
-	UInt32                              m_progressRefreshMark;
-
-    int								m_socketHandle;
-
+  int m_socketHandle;
 };
 
-#endif// #define FILETRANSFERSOCKET_612C0628_0BB6_4FF0_BE0F_F5DE2C35836D_H__
+#endif  // #define FILETRANSFERSOCKET_612C0628_0BB6_4FF0_BE0F_F5DE2C35836D_H__

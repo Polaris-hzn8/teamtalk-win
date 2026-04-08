@@ -13,42 +13,42 @@
 
 using namespace DuiLib;
 
-class SysConfigDialog final : public WindowImplBase
-{
-public:
-    SysConfigDialog();
-    virtual ~SysConfigDialog();
-	DUI_DECLARE_MESSAGE_MAP()
-public:
-	LPCTSTR GetWindowClassName() const;
-	virtual CDuiString GetSkinFile();
-	virtual CDuiString GetSkinFolder();
-	virtual CControlUI* CreateControl(LPCTSTR pstrClass);
-	virtual void OnFinalMessage(HWND hWnd);
+class SysConfigDialog final : public WindowImplBase {
+ public:
+  SysConfigDialog();
+  virtual ~SysConfigDialog();
+  DUI_DECLARE_MESSAGE_MAP()
+ public:
+  LPCTSTR GetWindowClassName() const;
+  virtual CDuiString GetSkinFile();
+  virtual CDuiString GetSkinFolder();
+  virtual CControlUI* CreateControl(LPCTSTR pstrClass);
+  virtual void OnFinalMessage(HWND hWnd);
 
-protected:
-	void OnWindowInitialized(TNotifyUI& msg);
-	void OnClick(TNotifyUI& msg);
+ protected:
+  void OnWindowInitialized(TNotifyUI& msg);
+  void OnClick(TNotifyUI& msg);
 
-private:
-	void _InitlizeSetting();
-	void _ApplySetting();
-private:
-	CButtonUI*				m_pbtnApply;
-	CButtonUI*				m_pbtnClose;
+ private:
+  void _InitlizeSetting();
+  void _ApplySetting();
 
-	CCheckBoxUI*			m_topmostBtn;
-	CCheckBoxUI*			m_newmessagealertBtn;
-	
-	CCheckBoxUI*			m_soundBtn;
-	COptionUI*				m_DingdongRdo;
-	COptionUI*				m_HujiaoRdo;
-	COptionUI*				m_JianpanRdo;
-	COptionUI*				m_DinglinRdo;
-	CButtonUI*				m_TestSoundBtn;
+ private:
+  CButtonUI* m_pbtnApply;
+  CButtonUI* m_pbtnClose;
 
-	COptionUI*				m_CtrlEntrtRdo;
-	COptionUI*				m_EnterRdo;
+  CCheckBoxUI* m_topmostBtn;
+  CCheckBoxUI* m_newmessagealertBtn;
+
+  CCheckBoxUI* m_soundBtn;
+  COptionUI* m_DingdongRdo;
+  COptionUI* m_HujiaoRdo;
+  COptionUI* m_JianpanRdo;
+  COptionUI* m_DinglinRdo;
+  CButtonUI* m_TestSoundBtn;
+
+  COptionUI* m_CtrlEntrtRdo;
+  COptionUI* m_EnterRdo;
 };
 
-#endif// SETTINGDIALOG_D45AE043_1F5F_4CBD_833A_309EBBA7F18E_H__
+#endif  // SETTINGDIALOG_D45AE043_1F5F_4CBD_833A_309EBBA7F18E_H__

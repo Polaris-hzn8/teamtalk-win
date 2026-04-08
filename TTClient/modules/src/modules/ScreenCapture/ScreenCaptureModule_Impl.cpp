@@ -8,80 +8,68 @@
 
 #include "stdafx.h"
 #include <cxImage/cxImage/ximage.h>
-#include <utility/utilCommonAPI.h>
-#include <utility/utilStrCodingAPI.h>
 #include <modules/IScreenCaptureModule.h>
 #include <modules/ScreenCapture/ScreenCapture.h>
 #include <modules/ScreenCapture/ScreenCaptureModule_Impl.h>
+#include <utility/utilCommonAPI.h>
+#include <utility/utilStrCodingAPI.h>
 
-namespace module
-{
-IScreenCaptureModule* getScreenCaptureModule()
-{
-	static ScreenCaptureModule_Impl module;
-	return &module;
+namespace module {
+IScreenCaptureModule* getScreenCaptureModule() {
+  static ScreenCaptureModule_Impl module;
+  return &module;
 }
+}  // namespace module
+
+BOOL ScreenCaptureModule_Impl::initCapture(__in HWND hWnd) {
+  return ScreenCapture::getInstance()->initCapture(hWnd);
 }
 
-BOOL ScreenCaptureModule_Impl::initCapture(__in HWND hWnd)
-{
-	return ScreenCapture::getInstance()->initCapture(hWnd);
-}
+void ScreenCaptureModule_Impl::onScreenCaptureFinish(__in std::wstring resultPicPath) {
+  // CxImage img;
+  // img.Load(resultPicPath.c_str(), CXIMAGE_SUPPORT_PNG);
+  // HBITMAP hBitmap = img.MakeBitmap();
+  // if (!hBitmap)
+  //     return;
 
-void ScreenCaptureModule_Impl::onScreenCaptureFinish(__in std::wstring resultPicPath)
-{
-    //CxImage img;
-    //img.Load(resultPicPath.c_str(), CXIMAGE_SUPPORT_PNG);
-    //HBITMAP hBitmap = img.MakeBitmap();
-    //if (!hBitmap)
-    //    return;
+  // OpenClipboard(AfxGetMainWnd()->GetSafeHwnd());
+  // EmptyClipboard();
+  // SetClipboardData(CF_BITMAP, hBitmap);
+  // CloseClipboard();
 
-    //OpenClipboard(AfxGetMainWnd()->GetSafeHwnd());
-    //EmptyClipboard();
-    //SetClipboardData(CF_BITMAP, hBitmap);
-    //CloseClipboard();
+  // std::string strCapturePath = util::ws2s(resultPicPath);
+  // asynNotifyObserver(module::MODULE_SCREEN_CAPTURE_PREFIX + "id", strCapturePath);
 
-    //std::string strCapturePath = util::ws2s(resultPicPath);
-    //asynNotifyObserver(module::MODULE_SCREEN_CAPTURE_PREFIX + "id", strCapturePath);
+  HBITMAP hBitmap = (HBITMAP)LoadImage(NULL, resultPicPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+  if (!hBitmap) {
+    return;
+  }
+  if (!OpenClipboard(NULL)) {
+    return;
+  }
 
-    HBITMAP hBitmap = (HBITMAP)LoadImage(NULL, resultPicPath.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-    if (!hBitmap)
-    {
-        return;
+  do {
+    if (!EmptyClipboard()) {
+      break;
     }
-    if (!OpenClipboard(NULL))
-    {
-        return;
-    }
+    SetClipboardData(CF_BITMAP, hBitmap);
 
-    do
-    {
-        if (!EmptyClipboard())
-        {
-            break;
-        }
-        SetClipboardData(CF_BITMAP, hBitmap);
+    std::string strCapturePath = util::ws2s(resultPicPath);
+    asynNotifyObserver(module::MODULE_SCREEN_CAPTURE_PREFIX + "id", strCapturePath);
+  } while (FALSE);
 
-        std::string strCapturePath = util::ws2s(resultPicPath);
-        asynNotifyObserver(module::MODULE_SCREEN_CAPTURE_PREFIX + "id", strCapturePath);
-    } while (FALSE);
-
-    CloseClipboard();
-    DeleteObject(hBitmap);
+  CloseClipboard();
+  DeleteObject(hBitmap);
 }
 
-BOOL ScreenCaptureModule_Impl::startCapture(__in std::wstring strSavePath, __in BOOL bMinimizeWindow)
-{
-	return ScreenCapture::getInstance()->startCapture(strSavePath, (ScreenCaptureCallback *)this, bMinimizeWindow);
+BOOL ScreenCaptureModule_Impl::startCapture(__in std::wstring strSavePath, __in BOOL bMinimizeWindow) {
+  return ScreenCapture::getInstance()->startCapture(strSavePath, (ScreenCaptureCallback*)this, bMinimizeWindow);
 }
 
-module::ScreenCaptureHotkeyId ScreenCaptureModule_Impl::shouldHandle(__in LPARAM lParam)
-{
-	return (module::ScreenCaptureHotkeyId)ScreenCapture::getInstance()->shouldHandle(lParam);
+module::ScreenCaptureHotkeyId ScreenCaptureModule_Impl::shouldHandle(__in LPARAM lParam) {
+  return (module::ScreenCaptureHotkeyId)ScreenCapture::getInstance()->shouldHandle(lParam);
 }
 
-void ScreenCaptureModule_Impl::cancelCapture()
-{
-    ScreenCapture::getInstance()->cancelCapture();
+void ScreenCaptureModule_Impl::cancelCapture() {
+  ScreenCapture::getInstance()->cancelCapture();
 }
-

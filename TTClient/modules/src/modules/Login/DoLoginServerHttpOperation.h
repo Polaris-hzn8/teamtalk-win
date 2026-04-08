@@ -12,29 +12,28 @@
 #include <string>
 #include <modules/IHttpPoolModule.h>
 
-enum
-{
-	DOLOGIN_SUCC = 0,
-	DOLOGIN_FAIL = 1,
+enum {
+  DOLOGIN_SUCC = 0,
+  DOLOGIN_FAIL = 1,
 };
 
-class DoLoginServerParam
-{
-public:
-	UInt8		result = DOLOGIN_FAIL;
-	CString		resMsg;
+class DoLoginServerParam {
+ public:
+  UInt8 result = DOLOGIN_FAIL;
+  CString resMsg;
 };
 
-class DoLoginServerHttpOperation : public module::IHttpOperation
-{
-public:
-	DoLoginServerHttpOperation(IN module::IOperationDelegate callback,IN DoLoginServerParam& param);
-	virtual  ~DoLoginServerHttpOperation() = default;
-public:
-	virtual void processOpertion();
-	virtual void release();
-private:
-	DoLoginServerParam			m_param;
+class DoLoginServerHttpOperation : public module::IHttpOperation {
+ public:
+  DoLoginServerHttpOperation(IN module::IOperationDelegate callback, IN DoLoginServerParam& param);
+  virtual ~DoLoginServerHttpOperation() = default;
+
+ public:
+  virtual void processOpertion();
+  virtual void release();
+
+ private:
+  DoLoginServerParam m_param;
 };
 
-#endif// DOLOGINSERVERHTTPOPERATION_D4296DCE_0662_447D_9F79_B058C0B9FC6D_H__
+#endif  // DOLOGINSERVERHTTPOPERATION_D4296DCE_0662_447D_9F79_B058C0B9FC6D_H__

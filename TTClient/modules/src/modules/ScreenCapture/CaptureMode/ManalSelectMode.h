@@ -4,29 +4,27 @@
 
 #include <modules/ScreenCapture/CaptureMode/ModeComm.h>
 
-class ManalSelectMode :public Singleton<ManalSelectMode>, public IModeMsgHandler
-{
-public:
-	ManalSelectMode();
-	void clear();
+class ManalSelectMode : public Singleton<ManalSelectMode>, public IModeMsgHandler {
+ public:
+  ManalSelectMode();
+  void clear();
 
-public:
-	virtual void onLButtonDown(__in int x, __in int y);
-	virtual void onLButtonUp(__in int x, __in int y);
-	virtual void onLButtonDBClick(__in int x, __in int y);
-	virtual void onMouseMove(__in int x, __in int y);
+ public:
+  virtual void onLButtonDown(__in int x, __in int y);
+  virtual void onLButtonUp(__in int x, __in int y);
+  virtual void onLButtonDBClick(__in int x, __in int y);
+  virtual void onMouseMove(__in int x, __in int y);
 
-public:
-	void adjustToolbarPosition(__in BOOL bShow);
+ public:
+  void adjustToolbarPosition(__in BOOL bShow);
 
-private:
-	int m_iPosX;
-	int m_iPosY;
-	int m_iClickXDis;
-	int m_iClickYDis;
-	RECT m_sSelectRect;
-	BOOL m_bSelectFinish;
+ private:
+  int m_iPosX;
+  int m_iPosY;
+  int m_iClickXDis;
+  int m_iClickYDis;
+  RECT m_sSelectRect;
+  BOOL m_bSelectFinish;
 };
 
-#endif// MANALSELECTMODE_08e677dd-16a3-4241-bed9-479b4dd4de34_H__
-
+#endif  // MANALSELECTMODE_08e677dd-16a3-4241-bed9-479b4dd4de34_H__

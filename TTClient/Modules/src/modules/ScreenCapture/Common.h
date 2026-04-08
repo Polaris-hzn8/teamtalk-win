@@ -9,20 +9,17 @@
 #ifndef COMMON_AB85173C_FF84_48AF_A453_99E670F74E73_H__
 #define COMMON_AB85173C_FF84_48AF_A453_99E670F74E73_H__
 
-#include <windows.h>
 #include <string>
+#include <windows.h>
 
 template <typename T>
-class Singleton
-{
-public:
-	static T* Instance()
-	{
-		static T obj;
-		return &obj;
-	}
+class Singleton {
+ public:
+  static T* Instance() {
+    static T obj;
+    return &obj;
+  }
 };
-
 
 #define SCREEN_CAPTURE_MSG_WND_CLASS L"SCREEN_CAPTURE_MSG_WND_CLASS"
 #define SCREEN_CAPTURE_MSG_WND_NAME L"SCREEN_CAPTURE_MSG_WND_NAME"
@@ -41,75 +38,58 @@ public:
 #define WM_SNAPSHOT_FINISH_CAPTURE WM_USER + 0x879
 #define WM_SNAPSHOT_CANCEL_CPATURE WM_USER + 0x878
 
+namespace ScreenCommon {
+inline LPWORD makeWORDAlign(LPWORD lpIn) {
+  // 地址2字节对齐
+  ULONG ul;
+  ul = (ULONG)lpIn;
+  ul++;
+  ul >>= 1;
+  ul <<= 1;
 
-namespace ScreenCommon
-{
-	inline LPWORD makeWORDAlign(LPWORD lpIn)
-	{
-		//地址2字节对齐
-		ULONG ul;
-		ul = (ULONG)lpIn;
-		ul++;
-		ul >>= 1;
-		ul <<= 1;
-
-		return (LPWORD)ul;
-	}
-
-	inline BOOL isRectEmpty(const RECT &rc)
-	{
-		if ((rc.right <= rc.left)
-			||(rc.bottom <= rc.top))
-		{
-			return TRUE;
-		}
-
-		return FALSE;
-	}
-
-    inline BOOL isRectEqual(const RECT *rc1, const RECT *rc2)
-    {
-        if (rc1->left == rc2->left
-            && rc1->top == rc2->top
-            && rc1->right == rc2->right
-            && rc1->bottom == rc2->bottom)
-        {
-            return TRUE;
-        }
-        return FALSE;
-    }
-
-	inline BOOL isLButtonDown()
-	{
-		SHORT iKeyState = GetAsyncKeyState(VK_LBUTTON);
-		return iKeyState & 0x8000;
-	}
-
-    inline void generateMsgWindowName(__inout wchar_t *szWndName, __in int maxLen)
-    {
-        wnsprintf(szWndName, maxLen, L"%s_%d", SCREEN_CAPTURE_MSG_WND_NAME, GetCurrentProcessId());
-    }
-
-    inline HWND findMsgWindow()
-    {
-        wchar_t szWndName[MAX_PATH] = {0};
-        generateMsgWindowName(szWndName, MAX_PATH);
-
-        return FindWindow(szWndName, szWndName);
-    }
-
-    inline void postNotifyMessage(__in int uMsg, __in WPARAM wParam, __in LPARAM lParam)
-    {
-        HWND hMsgWnd = findMsgWindow();
-        PostMessage(hMsgWnd, uMsg, wParam, lParam);
-    }
-
-    inline LRESULT sendNotifyMessage(__in int uMsg, __in WPARAM wParam, __in LPARAM lParam)
-    {
-        HWND hMsgWnd = findMsgWindow();
-        return SendMessage(hMsgWnd, uMsg, wParam, lParam);
-    }
+  return (LPWORD)ul;
 }
 
-#endif// COMMON_AB85173C-FF84-48AF-A453-99E670F74E73_H__
+inline BOOL isRectEmpty(const RECT& rc) {
+  if ((rc.right <= rc.left) || (rc.bottom <= rc.top)) {
+    return TRUE;
+  }
 
+  return FALSE;
+}
+
+inline BOOL isRectEqual(const RECT* rc1, const RECT* rc2) {
+  if (rc1->left == rc2->left && rc1->top == rc2->top && rc1->right == rc2->right && rc1->bottom == rc2->bottom) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+inline BOOL isLButtonDown() {
+  SHORT iKeyState = GetAsyncKeyState(VK_LBUTTON);
+  return iKeyState & 0x8000;
+}
+
+inline void generateMsgWindowName(__inout wchar_t* szWndName, __in int maxLen) {
+  wnsprintf(szWndName, maxLen, L"%s_%d", SCREEN_CAPTURE_MSG_WND_NAME, GetCurrentProcessId());
+}
+
+inline HWND findMsgWindow() {
+  wchar_t szWndName[MAX_PATH] = {0};
+  generateMsgWindowName(szWndName, MAX_PATH);
+
+  return FindWindow(szWndName, szWndName);
+}
+
+inline void postNotifyMessage(__in int uMsg, __in WPARAM wParam, __in LPARAM lParam) {
+  HWND hMsgWnd = findMsgWindow();
+  PostMessage(hMsgWnd, uMsg, wParam, lParam);
+}
+
+inline LRESULT sendNotifyMessage(__in int uMsg, __in WPARAM wParam, __in LPARAM lParam) {
+  HWND hMsgWnd = findMsgWindow();
+  return SendMessage(hMsgWnd, uMsg, wParam, lParam);
+}
+}  // namespace ScreenCommon
+
+#endif  // COMMON_AB85173C-FF84-48AF-A453-99E670F74E73_H__
