@@ -13,6 +13,7 @@
 #include <unordered_map>
 #include <network/core/netlib.h>
 #include <network/core/ImPduUtil.h>
+#include <network/Utils/CRefObject.h>
 
 #define SERVER_HEARTBEAT_INTERVAL 5000
 #define SERVER_TIMEOUT 30000

@@ -3,10 +3,18 @@
 #define __OS_TYPE_H__
 
 #ifdef _MSC_VER
+// 必须在Windows.h之前定义，防止Windows.h包含旧的winsock.h
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+// 阻止Windows.h包含winsock.h
+#ifndef _WINSOCKAPI_
+#define _WINSOCKAPI_
+#endif
+#include <WinSock2.h>
+#include <Windows.h>
 #include <direct.h>
 #include <stdint.h>
-#include <Windows.h>
-#include <WinSock2.h>
 #include <yaolog\yaolog.h>
 #include <global_define.h>
 #define snprintf sprintf_s

@@ -10,8 +10,8 @@
 #define _BASE_SOCKET_H_
 
 #include <string>
-#include <network\ostype.h>
-#include <network\Core\CRefObject.h>
+#include <network/ostype.h>
+#include <network/Utils/CRefObject.h>
 
 namespace network {
 

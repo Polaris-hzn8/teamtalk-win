@@ -1,6 +1,6 @@
 
-#ifndef _CREF_OBJECT_H_
-#define _CREF_OBJECT_H_
+#ifndef _BASIC_TOOLS_H_
+#define _BASIC_TOOLS_H_
 
 #include <mutex>
 #include <string>
@@ -8,21 +8,29 @@
 
 namespace network {
 
-// å¼•ç”¨è®¡æ•°å¯¹è±¡ç±»
-class NETWORK_DLL CRefObject {
- public:
-  CRefObject();
-  virtual ~CRefObject();
+// Ê±¼äºÍÑÓÊ±
+uint64_t get_tick_count();
+void util_sleep(uint32_t millisecond);
 
-  void SetLock(std::mutex* lock) { m_lock = lock; }
-  void AddRef();
-  void ReleaseRef();
+// ÎÄ¼þ²Ù×÷
+size_t get_file_size(const char* path);
 
- private:
-  int m_refCount;
-  std::mutex* m_lock;
-};
+// ÍøÂçIP×ª»»
+unsigned int ip2long(const char* ip);
+char* long2ip(const unsigned int in);
+
+// ½ø³ÌÏà¹Ø
+void writePid();
+
+// ×Ö·û´®×ª»»
+std::string int2string(uint32_t user_id);
+uint32_t string2int(const std::string& value);
+
+// ×Ö·û´®Ìæ»»
+void replace_mark(std::string& str, std::string& new_value, uint32_t& start_pos);
+void replace_mark(std::string& str, uint32_t new_value, uint32_t& start_pos);
+char* replaceStr(char* pSrc, char oldChar, char newChar);
 
 } // namespace network
 
-#endif // _CREF_OBJECT_H_
+#endif // _BASIC_TOOLS_H_

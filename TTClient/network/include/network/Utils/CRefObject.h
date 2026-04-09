@@ -2,7 +2,7 @@
 #ifndef _CREF_OBJECT_H_
 #define _CREF_OBJECT_H_
 
-#include <mutex>
+#include <atomic>
 #include <string>
 #include <network/ostype.h>
 
@@ -14,13 +14,11 @@ class NETWORK_DLL CRefObject {
   CRefObject();
   virtual ~CRefObject();
 
-  void SetLock(std::mutex* lock) { m_lock = lock; }
   void AddRef();
   void ReleaseRef();
-
+  
  private:
-  int m_refCount;
-  std::mutex* m_lock;
+  std::atomic<int> m_refCount;
 };
 
 } // namespace network
