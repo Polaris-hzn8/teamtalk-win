@@ -75,7 +75,7 @@ SendMsgManage* SendMsgManage::getInstance() {
 
 UInt32 SendMsgManage::_getSeqNo(void) {
   static UInt16 seqNo = static_cast<UInt16>(rand() % 1000);
-  if (seqNo > (imcore::TTPBHEADER_RESERVED_MASK - 1)) {
+  if (seqNo > (network::TTPBHEADER_RESERVED_MASK - 1)) {
     seqNo = static_cast<UInt16>(rand() % 1000);
   }
   return ++seqNo;
@@ -113,7 +113,7 @@ void SendMsgManage::clearSendMessageList() {
 }
 
 void SendMsgManage::sendMessage(IN SendingMsg& sendingMsg) {
-  imcore::IMLibCoreStartOperationWithLambda([=]() mutable {
+  network::IMLibCoreStartOperationWithLambda([=]() mutable {
     IM::Message::IMMsgData imMsgData;
     imMsgData.set_from_user_id(module::getSysConfigModule()->userId());
     std::string sToId = sendingMsg.msg.getOriginSessionId();

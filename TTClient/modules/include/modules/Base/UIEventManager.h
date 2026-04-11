@@ -20,7 +20,7 @@
 
 NAMESPACE_BEGIN(module)
 
-using namespace imcore;
+using namespace network;
 
 struct IEvent;
 struct ITimerEvent;

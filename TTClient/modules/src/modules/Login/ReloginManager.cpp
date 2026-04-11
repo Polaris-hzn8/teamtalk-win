@@ -45,7 +45,7 @@ void ReloginManager::doRelogin() {
     }
 
     // 清理掉队列里面 未发送的 消息已读确认 Operation《不处理可能会引发丢消息》
-    imcore::IMLibCoreClearOperationByName(imcore::OPERATION_NAME_MSG_READ_ACK);
+    network::IMLibCoreClearOperationByName(network::OPERATION_NAME_MSG_READ_ACK);
 
     LoginParam param;
     module::TTConfig* pCfg = module::getSysConfigModule()->getSystemConfig();
@@ -55,7 +55,7 @@ void ReloginManager::doRelogin() {
     param.csUserName.Trim();
 
     LoginOperation* pOperation = new LoginOperation(BIND_CALLBACK_1(ReloginManager::OnOperationCallback), param);
-    imcore::IMLibCoreStartOperation(pOperation);
+    network::IMLibCoreStartOperation(pOperation);
     m_bDoReloginNow = TRUE;
   } catch (...) {
     module::getTcpClientModule()->shutdown();

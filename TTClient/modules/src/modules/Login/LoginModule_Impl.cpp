@@ -50,7 +50,7 @@ BOOL LoginModule_Impl::showLoginDialog() {
 }
 
 void LoginModule_Impl::notifyLoginDone() {
-  imcore::IMLibCoreStartOperationWithLambda([] {
+  network::IMLibCoreStartOperationWithLambda([] {
     // 获取部门信息
     UInt32 lastTime = module::getSysConfigModule()->getDepartmentInfoLatestUpdateTime();
     IM::Buddy::IMDepartmentReq imDepartmentReq;
@@ -81,7 +81,7 @@ void LoginModule_Impl::notifyLoginDone() {
   });
 }
 
-void LoginModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBody) {
+void LoginModule_Impl::onPacket(network::TTPBHeader& header, std::string& pbBody) {
   switch (header.getCommandId()) {
     case IM::BaseDefine::LoginCmdID::CID_LOGIN_KICK_USER:
       _kickUserResponse(pbBody);

@@ -70,4 +70,4 @@ void md5_result(BYTE*, md5_ctxt*);
 
 }  // namespace util
 
-#endif // _RVTINET6_MD5_H_
+#endif  // _RVTINET6_MD5_H_

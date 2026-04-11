@@ -6,8 +6,8 @@
  brief:
 */
 
-#include "MainDialog.h"
 #include "stdafx.h"
+#include "MainDialog.h"
 
 void MainDialog::OnTrayIconNotify(WPARAM wParam, LPARAM lParam) {
   if (wParam != m_niData.uID)

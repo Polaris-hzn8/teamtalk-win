@@ -26,7 +26,7 @@ void GroupListModule_Impl::release() {
   delete this;
 }
 
-void GroupListModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBody) {
+void GroupListModule_Impl::onPacket(network::TTPBHeader& header, std::string& pbBody) {
   switch (header.getCommandId()) {
     case IM::BaseDefine::CID_GROUP_NORMAL_LIST_RESPONSE:
       _groupNormalListResponse(pbBody);
@@ -111,7 +111,7 @@ void GroupListModule_Impl::tcpGetGroupsInfo(IN const module::GroupVec& VecGroupI
   if (VecGroupId.empty()) {
     return;
   }
-  imcore::IMLibCoreStartOperationWithLambda([=]() {
+  network::IMLibCoreStartOperationWithLambda([=]() {
     IM::Group::IMGroupInfoListReq imGroupInfoListReq;
     imGroupInfoListReq.set_user_id(module::getSysConfigModule()->userId());
     for (auto groupId : VecGroupId) {
@@ -138,7 +138,7 @@ void GroupListModule_Impl::tcpGetGroupInfo(IN const std::string& groupId) {
 }
 
 void GroupListModule_Impl::tcpShieldGroup(IN const std::string& groupId, IN UInt32 shieldStatus) {
-  imcore::IMLibCoreStartOperationWithLambda([=]() {
+  network::IMLibCoreStartOperationWithLambda([=]() {
     IM::Group::IMGroupShieldReq imGroupShieldReq;
     imGroupShieldReq.set_user_id(module::getSysConfigModule()->userId());
     UInt32 groupID = util::stringToInt32(getOriginalSId(groupId));

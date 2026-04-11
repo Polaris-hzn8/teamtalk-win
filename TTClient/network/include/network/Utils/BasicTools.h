@@ -31,6 +31,16 @@ void replace_mark(std::string& str, std::string& new_value, uint32_t& start_pos)
 void replace_mark(std::string& str, uint32_t new_value, uint32_t& start_pos);
 char* replaceStr(char* pSrc, char oldChar, char newChar);
 
-} // namespace network
+/// @brief 将id转换为url（线程安全）
+/// @param id 要转换的id
+/// @return 转换后的url
+std::string idtourl(uint32_t id);
 
-#endif // _BASIC_TOOLS_H_
+/// @brief 将url转换为id
+/// @param url 要转换的url
+/// @return 转换后的id
+uint32_t urltoid(const char* url);
+
+}  // namespace network
+
+#endif  // _BASIC_TOOLS_H_

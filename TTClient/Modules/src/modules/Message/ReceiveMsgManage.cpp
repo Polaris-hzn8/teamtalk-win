@@ -9,7 +9,6 @@
 #include <modules/Session/SessionManager.h>
 #include <modules/Session/UI/Session/SessionDialog.h>
 #include <modules/Session/UI/UIIMEdit.h>
-#include <network/Basic/Lock.h>
 #include <regex>
 #include <utility/Multilingual.h>
 #include <utility/utilCommonAPI.h>

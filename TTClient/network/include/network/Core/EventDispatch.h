@@ -8,13 +8,15 @@
     2. a singleton pattern: only one instance of this class can exist
 */
 
-#ifndef __EVENT_DISPATCH_H__
-#define __EVENT_DISPATCH_H__
+#ifndef _EVENT_DISPATCH_H_
+#define _EVENT_DISPATCH_H_
 
 #include <list>
 #include <mutex>
 #include <string>
 #include <network\ostype.h>
+
+namespace network {
 
 enum { SOCKET_READ = 0x1, SOCKET_WRITE = 0x2, SOCKET_EXCEP = 0x4, SOCKET_ALL = 0x7 };
 
@@ -69,4 +71,6 @@ class CEventDispatch {
   bool running;
 };
 
-#endif
+}  // namespace network
+
+#endif  // _EVENT_DISPATCH_H_

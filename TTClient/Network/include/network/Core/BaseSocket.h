@@ -90,4 +90,4 @@ CBaseSocket* FindBaseSocket(net_handle_t fd);
 
 }  // namespace network
 
-#endif // _BASE_SOCKET_H_
+#endif  // _BASE_SOCKET_H_

@@ -13,7 +13,7 @@
 #include <network/ostype.h>
 #include <string>
 
-NAMESPACE_BEGIN(imcore)
+namespace network {
 
 #pragma warning(disable : 4251)
 struct NETWORK_DLL Exception : public std::exception {
@@ -25,6 +25,6 @@ struct NETWORK_DLL Exception : public std::exception {
   std::string m_msg;
 };
 
-NAMESPACE_END(imcore)
+}  // namespace network
 
 #endif  // EXCEPTION_7889B422_4F2F_495F_AFAC_180F657486D2_H__

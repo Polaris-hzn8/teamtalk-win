@@ -30,9 +30,9 @@ typedef std::function<void(std::string, MKO_TUPLE_PARAM)> MKODelegate;
 #define BIND_CALLBACK_2(func) std::bind(&func, this, std::placeholders::_1, std::placeholders::_2)
 
 NAMESPACE_BEGIN(module)
+
 class ModuleSubject;
 class ModuleObserverCtx;
-
 class MKOEvent_Impl final : public IMKOEvent {
  public:
   MKOEvent_Impl(IN ModuleSubject* p);

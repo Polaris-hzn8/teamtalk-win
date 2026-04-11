@@ -34,7 +34,7 @@ FileTransferModule_Impl::~FileTransferModule_Impl() {
   module::getFileTransferModule()->removeObserver(this);
 }
 
-void FileTransferModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBody) {
+void FileTransferModule_Impl::onPacket(network::TTPBHeader& header, std::string& pbBody) {
   switch (header.getCommandId()) {
     case IM::BaseDefine::FileCmdID::CID_FILE_RESPONSE:  // 发送“文件请求/离线文件”-返回
       _sendfileResponse(pbBody);
@@ -97,7 +97,7 @@ BOOL FileTransferModule_Impl::sendFile(IN const CString& sFilePath,
 
     LOG__(DEBG, _T("FileTransferSevice_Impl::sendFile sTaskID = %s"), util::stringToCString(fileEntity.sTaskID));
 
-    imcore::IMLibCoreStartOperationWithLambda([=]() {
+    network::IMLibCoreStartOperationWithLambda([=]() {
       IM::File::IMFileReq imFileReq;
       LOG__(APP,
             _T("imFileReq,name=%s,size=%d,toId=%s"),
@@ -232,7 +232,7 @@ BOOL FileTransferModule_Impl::acceptFileTransfer(IN const std::string& sTaskId, 
         LOG__(DEBG,
               _T("FileTransferSevice_Impl::acceptFileTransfer 拒绝离线文件 sFileID = %s"),
               util::stringToCString(FileInfo.sTaskID));
-        imcore::IMLibCoreStartOperationWithLambda([=]() {
+        network::IMLibCoreStartOperationWithLambda([=]() {
           LOG__(APP, _T("拒绝离线文件 imFileDelOfflineReq sFileID = %s"), util::stringToCString(FileInfo.sFileName));
           IM::File::IMFileDelOfflineReq imFileDelOfflineReq;
           imFileDelOfflineReq.set_from_user_id(util::stringToInt32(FileInfo.sFromID));

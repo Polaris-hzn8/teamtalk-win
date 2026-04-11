@@ -16,7 +16,7 @@ class LoginModule_Impl final : public module::ILoginModule {
  public:
   LoginModule_Impl();
   virtual ~LoginModule_Impl();
-  virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody);
+  virtual void onPacket(network::TTPBHeader& header, std::string& pbBody);
 
  public:
   virtual BOOL showLoginDialog();

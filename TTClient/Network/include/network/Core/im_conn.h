@@ -15,6 +15,8 @@
 #include <network/core/ImPduUtil.h>
 #include <network/Utils/CRefObject.h>
 
+namespace network {
+
 #define SERVER_HEARTBEAT_INTERVAL 5000
 #define SERVER_TIMEOUT 30000
 #define CLIENT_HEARTBEAT_INTERVAL 30000
@@ -64,5 +66,7 @@ class CImConn : public CRefObject {
 typedef std::unordered_map<net_handle_t, CImConn*> ConnMap_t;
 
 void imconn_callback(void* callback_data, uint8_t msg, uint32_t handle, void* pParam);
+
+} // namespace network
 
 #endif  // IMCONN_F6246291_E098_40CB_B2B9_612AD9AC1F93_H__

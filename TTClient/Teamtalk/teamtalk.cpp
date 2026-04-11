@@ -1,21 +1,21 @@
-﻿#include "teamtalk.h"
-#include "MainDialog/MainDialog.h"
+﻿
 #include "stdafx.h"
-
+#include <version_info.h>
 #include <global_define.h>
-#include <google/protobuf/stubs/common.h>
+#include <network/ImCore.h>
+#include <network/operation/OperationManager.h>
 #include <modules/IHttpPoolModule.h>
 #include <modules/ILoginModule.h>
 #include <modules/IMiscModule.h>
 #include <modules/ISysConfigModule.h>
 #include <modules/ITcpClientModule.h>
 #include <modules/base/UIEventManager.h>
-#include <network/ImCore.h>
-#include <network/operation/OperationManager.h>
 #include <utility/Multilingual.h>
 #include <utility/utilCommonAPI.h>
 #include <utility/utilStrCodingAPI.h>
-#include <version_info.h>
+#include <google/protobuf/stubs/common.h>
+#include "teamtalk.h"
+#include "MainDialog/MainDialog.h"
 
 CteamtalkApp theApp;
 
@@ -61,14 +61,14 @@ BOOL CteamtalkApp::InitInstance() {
   // 网络事件循环
   // 1.启动任务处理线程
   // 2.启动IO处理线程监听IO读写事件
-  if (!imcore::IMLibCoreRunEvent()) {
+  if (!network::IMLibCoreRunEvent()) {
     LOG__(ERR, _T("start imcore lib failed!"));
   }
   LOG__(APP, _T("start imcore lib done"));
 
   // 启动UI事件代理窗口
   // 从系统消息队列中获取消息并处理 包含普通事件与定时事件
-  if (module::getEventManager()->startup() != imcore::IMCORE_OK) {
+  if (module::getEventManager()->startup() != network::IMCORE_OK) {
     LOG__(ERR, _T("start ui event failed"));
   }
   LOG__(APP, _T("start ui event done"));
@@ -137,7 +137,7 @@ BOOL CteamtalkApp::ExitInstance() {
   module::getTcpClientModule()->shutdown();
   LOG__(APP, _T("close tcpclient socket done"));
   // stop imcore lib
-  imcore::IMLibCoreStopEvent();
+  network::IMLibCoreStopEvent();
   LOG__(APP, _T("stop imcore lib done"));
 
   module::getEventManager()->shutdown();

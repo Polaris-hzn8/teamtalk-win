@@ -159,7 +159,7 @@ void CreateDiscussionGrpDialog::OnClick(TNotifyUI& msg) {
 
     // 创建讨论组
     std::string strGroupName = util::cStringToString(CString(groupName));
-    imcore::IMLibCoreStartOperationWithLambda([=]() {
+    network::IMLibCoreStartOperationWithLambda([=]() {
       IM::Group::IMGroupCreateReq imGroupCreateReq;
       imGroupCreateReq.set_user_id(module::getSysConfigModule()->userId());
       imGroupCreateReq.set_group_type(IM::BaseDefine::GroupType::GROUP_TYPE_TMP);

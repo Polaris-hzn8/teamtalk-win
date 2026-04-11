@@ -6,9 +6,11 @@
  brief:
 */
 
+#include <network\core\netlib.h>
 #include <network\core\BaseSocket.h>
 #include <network\core\EventDispatch.h>
-#include <network\core\netlib.h>
+
+namespace network {
 
 int netlib_init() {
   int ret = NETLIB_OK;
@@ -156,3 +158,5 @@ bool netlib_is_running() {
 void netlib_set_running() {
   CEventDispatch::Instance()->setRunning();
 }
+
+}  // namespace network

@@ -10,6 +10,8 @@
 
 #include <network\core\im_conn.h>
 
+namespace network {
+
 class TcpSocketsManager {
  public:
   ~TcpSocketsManager();
@@ -28,5 +30,7 @@ class TcpSocketsManager {
  private:
   ConnMap_t m_client_conn_map;
 };
+
+}  // namespace netwrok
 
 #endif  // _TCP_SOCKETS_MANAGER_

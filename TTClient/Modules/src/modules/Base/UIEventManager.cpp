@@ -93,7 +93,7 @@ LRESULT _stdcall UIEventManager::_WindowProc(HWND hWnd, UINT message, WPARAM wpa
   return ::DefWindowProc(hWnd, message, wparam, lparam);
 }
 
-imcore::IMCoreErrorCode UIEventManager::startup() {
+network::IMCoreErrorCode UIEventManager::startup() {
   IMCoreErrorCode errCode = IMCORE_OK;
   if (NULL != m_hWnd) {
     return IMCORE_OK;
@@ -145,7 +145,7 @@ void UIEventManager::_processEvent(IEvent* pEvent, BOOL bRelease) {
     if (bRelease) {
       pEvent->release();
     }
-  } catch (imcore::Exception* e) {
+  } catch (network::Exception* e) {
     LOG__(ERR, _T("event run exception"));
     pEvent->onException(e);
     if (bRelease) {
@@ -176,7 +176,7 @@ module::IMCoreErrorCode UIEventManager::asynFireUIEvent(IN const IEvent* const p
   return IMCORE_OK;
 }
 
-imcore::IMCoreErrorCode UIEventManager::asynFireUIEventWithLambda(std::function<void()> eventRun) {
+network::IMCoreErrorCode UIEventManager::asynFireUIEventWithLambda(std::function<void()> eventRun) {
   assert(m_hWnd);
   if (0 == m_hWnd)
     return IMCORE_ARGUMENT_ERROR;
@@ -186,12 +186,12 @@ imcore::IMCoreErrorCode UIEventManager::asynFireUIEventWithLambda(std::function<
   return asynFireUIEvent(pLambdaEvent);
 }
 
-imcore::IMCoreErrorCode UIEventManager::scheduleTimerWithLambda(IN UInt32 delay,
+network::IMCoreErrorCode UIEventManager::scheduleTimerWithLambda(IN UInt32 delay,
                                                                 IN BOOL bRepeat,
                                                                 IN std::function<void()> timerRun,
                                                                 OUT ITimerEvent** ppTimer) {
   LambdaEvent<ITimerEvent>* pLambdaEvent = new LambdaEvent<ITimerEvent>(timerRun);
-  imcore::IMCoreErrorCode errCode = scheduleTimer(pLambdaEvent, delay, bRepeat);
+  network::IMCoreErrorCode errCode = scheduleTimer(pLambdaEvent, delay, bRepeat);
   *ppTimer = pLambdaEvent;
   if (IMCORE_OK != errCode) {
     delete pLambdaEvent;
@@ -201,7 +201,7 @@ imcore::IMCoreErrorCode UIEventManager::scheduleTimerWithLambda(IN UInt32 delay,
   return errCode;
 }
 
-imcore::IMCoreErrorCode UIEventManager::scheduleTimer(IN ITimerEvent* pTimerEvent, IN UInt32 delay, IN BOOL bRepeat) {
+network::IMCoreErrorCode UIEventManager::scheduleTimer(IN ITimerEvent* pTimerEvent, IN UInt32 delay, IN BOOL bRepeat) {
   assert(pTimerEvent);
   if (0 == pTimerEvent) {
     return IMCORE_ARGUMENT_ERROR;
@@ -251,7 +251,7 @@ void UIEventManager::_processTimer() {
   }
 }
 
-imcore::IMCoreErrorCode UIEventManager::killTimer(IN ITimerEvent* pTimerEvent) {
+network::IMCoreErrorCode UIEventManager::killTimer(IN ITimerEvent* pTimerEvent) {
   std::lock_guard<std::mutex> lock(m_lock);
   auto iter = std::remove_if(
     m_lstTimers.begin(), m_lstTimers.end(), [=](TTTimer& ttime) { return (pTimerEvent == ttime.pTimerEvent); });

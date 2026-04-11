@@ -14,7 +14,7 @@
 
 using namespace std;
 
-NAMESPACE_BEGIN(imcore)
+namespace network {
 
 static std::mutex g_lock;
 
@@ -47,7 +47,7 @@ bool IMLibCoreRunEvent() {
   if (netlib_is_running())
     return true;
 
-  // start thread -> netlib_eventloop
+    // start thread -> netlib_eventloop
 #ifdef _MSC_VER
   unsigned int threadId = 0;
   g_hEventThread = (HANDLE)_beginthreadex(nullptr, 0, event_run, nullptr, 0, &threadId);
@@ -152,4 +152,4 @@ void IMLibCoreClearOperationByName(std::string oper_name) {
   }
 }
 
-NAMESPACE_END(imcore)
+}  // namespace network

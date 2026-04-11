@@ -11,7 +11,7 @@ class GroupListModule_Impl final : public module::IGroupListModule {
   GroupListModule_Impl() = default;
   virtual ~GroupListModule_Impl() = default;
   virtual void release();
-  virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody);
+  virtual void onPacket(network::TTPBHeader& header, std::string& pbBody);
 
  public:
   virtual BOOL startup();

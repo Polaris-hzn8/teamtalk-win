@@ -16,11 +16,11 @@ class NETWORK_DLL CRefObject {
 
   void AddRef();
   void ReleaseRef();
-  
+
  private:
   std::atomic<int> m_refCount;
 };
 
-} // namespace network
+}  // namespace network
 
-#endif // _CREF_OBJECT_H_
+#endif  // _CREF_OBJECT_H_

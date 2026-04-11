@@ -166,7 +166,7 @@ void MiscModule_Impl::asynOpenWebBrowser(CString& url, Int32 nFlag /*= SW_SHOWMA
   if (url.IsEmpty())
     return;
 
-  imcore::IMLibCoreStartOperationWithLambda([=]() {
+  network::IMLibCoreStartOperationWithLambda([=]() {
     HINSTANCE hRet = 0;
     hRet = ::ShellExecute(NULL, _T("open"), url, NULL, NULL, nFlag);
     if ((DWORD)hRet <= 32) {

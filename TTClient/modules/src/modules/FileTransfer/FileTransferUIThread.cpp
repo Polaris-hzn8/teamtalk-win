@@ -112,7 +112,7 @@ void FileTransferUIThread::closeFileSocketByTaskId(std::string& taskId) {
 BOOL FileTransferUIThread::acceptFileTransfer(const std::string& taskId) {
   FileTransferSocket* pFileSocket = _findFileSocketByTaskId(taskId);
   if (pFileSocket) {
-    imcore::IMLibCoreStartOperationWithLambda([=]() {
+    network::IMLibCoreStartOperationWithLambda([=]() {
       TransferFileEntity fileEntity;
       if (TransferFileEntityManager::getInstance()->getFileInfoByTaskId(taskId, fileEntity)) {
         int mode = fileEntity.nClientMode == IM::BaseDefine::ClientFileRole::CLIENT_OFFLINE_DOWNLOAD
@@ -142,7 +142,7 @@ BOOL FileTransferUIThread::acceptFileTransfer(const std::string& taskId) {
 BOOL FileTransferUIThread::rejectFileTransfer(const std::string& taskId) {
   FileTransferSocket* pFileSocket = _findFileSocketByTaskId(taskId);
   if (pFileSocket) {
-    imcore::IMLibCoreStartOperationWithLambda([=]() {
+    network::IMLibCoreStartOperationWithLambda([=]() {
       TransferFileEntity fileEntity;
       if (TransferFileEntityManager::getInstance()->getFileInfoByTaskId(taskId, fileEntity)) {
         IM::File::IMFileState imFileState;
@@ -164,7 +164,7 @@ BOOL FileTransferUIThread::rejectFileTransfer(const std::string& taskId) {
 BOOL FileTransferUIThread::cancelFileTransfer(const std::string& taskId) {
   FileTransferSocket* pFileSocket = _findFileSocketByTaskId(taskId);
   if (pFileSocket) {
-    imcore::IMLibCoreStartOperationWithLambda([=]() {
+    network::IMLibCoreStartOperationWithLambda([=]() {
       TransferFileEntity fileEntity;
       if (TransferFileEntityManager::getInstance()->getFileInfoByTaskId(taskId, fileEntity)) {
         // 删除文件对象

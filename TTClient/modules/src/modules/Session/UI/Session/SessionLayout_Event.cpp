@@ -272,7 +272,7 @@ void SessionLayout::DocmentComplete(IDispatch* pDisp, VARIANT*& url) {
 
 HRESULT STDMETHODCALLTYPE SessionLayout::TranslateUrl(/* [in] */ DWORD dwTranslate,
                                                       /* [in] */ OLECHAR __RPC_FAR* pchURLIn,
-                                                      /* [out] */ OLECHAR __RPC_FAR* __RPC_FAR* ppchURLOut) {
+                                                      /* [out] */ OLECHAR __RPC_FAR * __RPC_FAR * ppchURLOut) {
   m_csTobeTranslateUrl = pchURLIn;
   *ppchURLOut = 0;
 

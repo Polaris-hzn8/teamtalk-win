@@ -65,7 +65,7 @@ BOOL MessageModule_Impl::getHistoryMessage(IN const std::string& sId,
   }
 
   // final fetch history message from server db
-  imcore::IMLibCoreStartOperationWithLambda([=]() mutable {
+  network::IMLibCoreStartOperationWithLambda([=]() mutable {
     LOG__(APP,
           _T("IMGetMsgListReq history message ,sessionId = %s,sessionName=%s,last msgId = %d,Count = %d"),
           util::stringToCString(sessEntity.sessionID),
@@ -79,8 +79,8 @@ BOOL MessageModule_Impl::getHistoryMessage(IN const std::string& sId,
     imGetMsgListReq.set_msg_id_begin(topMsgId);  // 比较群成员排序
     imGetMsgListReq.set_msg_cnt(nMsgCount);
 
-    UInt16 reserved = (TRUE == scrollBottom) ? imcore::RESERVED_TYPE_HISTORY_SCROLLBOTTOM_MESSAGE
-                                             : imcore::RESERVED_TYPE_HISTORY_MESSAGE;
+    UInt16 reserved = (TRUE == scrollBottom) ? network::RESERVED_TYPE_HISTORY_SCROLLBOTTOM_MESSAGE
+                                             : network::RESERVED_TYPE_HISTORY_MESSAGE;
     module::getTcpClientModule()->sendPacket(
       IM::BaseDefine::SID_MSG, IM::BaseDefine::CID_MSG_LIST_REQUEST, reserved, &imGetMsgListReq);
   });

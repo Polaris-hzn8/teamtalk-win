@@ -180,7 +180,7 @@ void LoginDialog::OnHttpCallbackOperation(std::shared_ptr<void> param) {
     loginparam.password = pCfg->password;
     loginparam.csUserName.Trim();
     LoginOperation* pOperation = new LoginOperation(BIND_CALLBACK_1(LoginDialog::OnOperationCallback), loginparam);
-    imcore::IMLibCoreStartOperation(pOperation);
+    network::IMLibCoreStartOperation(pOperation);
   } else {
     m_ptxtTip->SetText(pParam->resMsg);
     module::TTConfig* pCfg = module::getSysConfigModule()->getSystemConfig();

@@ -13,7 +13,7 @@
 #include <network/operation/IOperation.h>
 #include <network/ostype.h>
 
-NAMESPACE_BEGIN(imcore)
+namespace network {
 
 class NETWORK_DLL Operation : public IOperation {
   enum OperationState {
@@ -44,6 +44,6 @@ class NETWORK_DLL Operation : public IOperation {
   OperationState m_optState;
 };
 
-NAMESPACE_END(imcore)
+}  // namespace network
 
 #endif  // OPERATION_D8F2BC78_108D_4219_9D6E_F1728D1B8C95_H__

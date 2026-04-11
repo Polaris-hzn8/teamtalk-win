@@ -31,7 +31,9 @@ class ServerPingTimer : public module::ITimerEvent {
 
 // 客户端TCP网络长连接模块实现
 // 对TcpClientScoket做一个适配
-class TcpClientModule_Impl final : public ITcpClientModule, public ITcpSocketCallback {
+class TcpClientModule_Impl final : 
+	public ITcpClientModule, 
+	public network::ITcpSocketCallback {
   friend class ServerPingTimer;
 
  public:
@@ -74,7 +76,7 @@ class TcpClientModule_Impl final : public ITcpClientModule, public ITcpSocketCal
 
   BOOL m_bDoReloginServerNow;
 
-  imcore::TTPBHeader m_TTPBHeader;
+  network::TTPBHeader m_TTPBHeader;
 };
 
 #endif  // TCPCLIENTMODULE_IMPL_7c021d09-7902-44de-be96-f22561b99198_H__

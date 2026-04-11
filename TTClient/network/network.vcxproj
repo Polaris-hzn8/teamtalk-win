@@ -44,13 +44,16 @@
     <ClCompile Include="src\network\TcpSocketsManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\network\Utils\BasicTools.cpp" />
-    <ClCompile Include="src\network\Utils\CRefObject.cpp" />
+    <ClCompile Include="src\network\Utils\BasicTools.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\network\Utils\CRefObject.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sharesrc\yaolog\yaolog.h" />
     <ClInclude Include="include\network\Core\BaseSocket.h" />
-    <ClInclude Include="include\network\Core\CRefObject.h" />
     <ClInclude Include="include\network\Core\EventDispatch.h" />
     <ClInclude Include="include\network\Core\ImPduBase.h" />
     <ClInclude Include="include\network\Core\ImPduUtil.h" />

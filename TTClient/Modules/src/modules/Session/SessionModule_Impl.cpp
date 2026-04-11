@@ -31,7 +31,7 @@ module::ISessionModule* getSessionModule() {
 
 SessionModule_Impl::SessionModule_Impl() : m_pSyncTimer(nullptr) {}
 
-void SessionModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBody) {
+void SessionModule_Impl::onPacket(network::TTPBHeader& header, std::string& pbBody) {
   if (IM::BaseDefine::ServiceID::SID_MSG == header.getModuleId()) {
     switch (header.getCommandId()) {
       case IM::BaseDefine::MessageCmdID::CID_MSG_DATA:
@@ -47,7 +47,7 @@ void SessionModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBod
         _sessionMsgUnreadCntResponse(pbBody);
         break;
       case IM::BaseDefine::MessageCmdID::CID_MSG_LIST_RESPONSE:
-        if (imcore::RESERVER_TYPE_UNREADER_MESSAGE == header.getSeqNumber()) {
+        if (network::RESERVER_TYPE_UNREADER_MESSAGE == header.getSeqNumber()) {
           _sessionUnReadMsgListResponse(pbBody);
         } else {
           _sessionHistoryMsgListResponse(header.getSeqNumber(), pbBody);
@@ -97,7 +97,7 @@ BOOL SessionModule_Impl::_banGroupMSG(IN MessageEntity msg) {
   }
   if (groupInfo.shieldStatus) {
     // 发已读确认，通知服务器，该群消息已读
-    imcore::IMLibCoreStartOperationWithLambda([=]() mutable {
+    network::IMLibCoreStartOperationWithLambda([=]() mutable {
       IM::Message::IMMsgDataReadAck imMsgDataReadAck;
       imMsgDataReadAck.set_user_id(module::getSysConfigModule()->userId());
       std::string sid = msg.getOriginSessionId();
@@ -198,7 +198,7 @@ void SessionModule_Impl::_sessionMsgData(IN std::string& pbBody) {
     // 通知服务器收到该消息
     if (MESSAGETYPE_FROM_FRIEND == msg.msgSessionType)  // 只有个人消息要发已收确认,群消息是不发已收确认的
     {
-      imcore::IMLibCoreStartOperationWithLambda([=]() {
+      network::IMLibCoreStartOperationWithLambda([=]() {
         MessageEntity sendingmsgTemp = msg;
         std::string OriginSessionId = sendingmsgTemp.getOriginSessionId();
 
@@ -359,7 +359,7 @@ void SessionModule_Impl::_sessionMsgUnreadCntResponse(IN string& pbBody) {
   for (int i = 0; i < nSize; ++i) {
     const IM::BaseDefine::UnreadInfo& unReadInfo = imUnreadMsgCntRsp.unreadinfo_list(i);
     // 直接开启获取具体离线消息的task
-    imcore::IMLibCoreStartOperationWithLambda([=]() {
+    network::IMLibCoreStartOperationWithLambda([=]() {
       LOG__(APP,
             _T("IMGetMsgListReq unread message ,sessionid = %s,sessionType = %d"),
             util::int32ToCString(unReadInfo.session_id()),
@@ -379,7 +379,7 @@ void SessionModule_Impl::_sessionMsgUnreadCntResponse(IN string& pbBody) {
 
       module::getTcpClientModule()->sendPacket(IM::BaseDefine::ServiceID::SID_MSG,
                                                IM::BaseDefine::MessageCmdID::CID_MSG_LIST_REQUEST,
-                                               imcore::RESERVER_TYPE_UNREADER_MESSAGE,
+                                               network::RESERVER_TYPE_UNREADER_MESSAGE,
                                                &imGetMsgListReq);
     });
   }

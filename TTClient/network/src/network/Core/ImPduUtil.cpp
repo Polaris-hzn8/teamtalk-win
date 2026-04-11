@@ -11,6 +11,8 @@
 #include <string.h>
 #include <network\core\ImPduUtil.h>
 
+namespace network {
+
 ///////////// CSimpleBuffer ////////////////
 CSimpleBuffer::CSimpleBuffer() {
   m_buffer = NULL;
@@ -257,17 +259,5 @@ void CByteStream::_WriteByte(void* buf, uint32_t len) {
   m_pos += len;
 }
 
-/*
- * Warning!!!
- * This function return a static char pointer, caller must immediately copy the string to other place
- */
-char* idtourl(uint32_t id) {
-  static char buf[64];
-  sprintf(buf, "%d", id);
-  return buf;
-}
+}  // namespace netwrok
 
-uint32_t urltoid(const char* url) {
-  uint32_t id = atoi(url);
-  return id;
-}

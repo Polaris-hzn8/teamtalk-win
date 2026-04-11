@@ -9,6 +9,8 @@
 #include <global_define.h>
 #include <network/TcpSocketsManager.h>
 
+namespace network {
+
 TcpSocketsManager::TcpSocketsManager() {}
 
 TcpSocketsManager::~TcpSocketsManager() {}
@@ -56,3 +58,6 @@ void TcpSocketsManager::release_by_handle(net_handle_t handle) {
   if (iter != m_client_conn_map.end())
     m_client_conn_map.erase(handle);
 }
+
+}  // namespace network
+

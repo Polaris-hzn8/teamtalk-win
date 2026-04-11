@@ -66,7 +66,7 @@ void MainListLayout::DoInit() {
   m_Tab->SelectItem(2);
 
   // 所有业务模块的本地化数据加载
-  imcore::IMLibCoreStartOperationWithLambda([]() {
+  network::IMLibCoreStartOperationWithLambda([]() {
     if (!module::getUserListModule()->startup()) {
       LOG__(ERR, _T("userlist module local db datas start failed!"));
     }

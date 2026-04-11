@@ -19,7 +19,7 @@
 #include <string>
 #include <thread>
 
-NAMESPACE_BEGIN(imcore)
+namespace network {
 
 /**
  * @brief OperationManager 异步任务管理器
@@ -62,6 +62,6 @@ class OperationManager {
 
 OperationManager* getOperationManager();
 
-NAMESPACE_END(imcore)
+}  // namespace network
 
 #endif  // OPERATIONMANAGER_7EEF3272_2557_4A76_9C25_67D4639F40DB_H__

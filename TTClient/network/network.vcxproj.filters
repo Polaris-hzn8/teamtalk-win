@@ -119,9 +119,6 @@
     <ClInclude Include="include\network\TcpSocketsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\network\Core\CRefObject.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="include\network\Utils\CRefObject.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>

@@ -13,7 +13,7 @@
 #include <network/ostype.h>
 #include <network/core/ImPduUtil.h>
 
-NAMESPACE_BEGIN(imcore)
+namespace network {
 
 const static Int8 HEADER_LENGTH = 16;
 const static Int16 VERSION = 1;
@@ -62,6 +62,6 @@ class NETWORK_DLL TTPBHeader final {
   byte* m_pHeaderBuff = 0;
 };
 
-NAMESPACE_END(imcore)
+}  // namespace network
 
 #endif  // TTPBHEADER_BE699480_6F65_405B_9E8A_F5B0F13800D0_H__

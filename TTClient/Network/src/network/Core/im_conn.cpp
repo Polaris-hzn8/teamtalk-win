@@ -11,6 +11,8 @@
 #include <network\core\ImPduBase.h>
 #include <network\core\im_conn.h>
 
+namespace network {
+
 void imconn_callback(void* callback_data, uint8_t msg, uint32_t handle, void* pParam) {
   NOTUSED_ARG(handle);
   NOTUSED_ARG(pParam);
@@ -135,15 +137,15 @@ void CImConn::OnRead() {
       break;
 
     m_in_buf.IncWriteOffset(ret);
-    while (m_in_buf.GetWriteOffset() >= imcore::HEADER_LENGTH) {
+    while (m_in_buf.GetWriteOffset() >= network::HEADER_LENGTH) {
       uint32_t len = m_in_buf.GetWriteOffset();
       uint32_t length = CByteStream::ReadUint32(m_in_buf.GetBuffer());
       if (length > len)
         break;
 
       try {
-        imcore::TTPBHeader pbHeader;
-        pbHeader.unSerialize((byte*)m_in_buf.GetBuffer(), imcore::HEADER_LENGTH);
+        network::TTPBHeader pbHeader;
+        pbHeader.unSerialize((byte*)m_in_buf.GetBuffer(), network::HEADER_LENGTH);
         LOG__(NET, _T("OnRead moduleId:0x%x,commandId:0x%x"), pbHeader.getModuleId(), pbHeader.getCommandId());
         if (m_pTcpSocketCB)
           m_pTcpSocketCB->onReceiveData((const char*)m_in_buf.GetBuffer(), length);
@@ -187,3 +189,5 @@ void CImConn::registerCallback(ITcpSocketCallback* pCB) {
 void CImConn::unRegisterCallback() {
   m_pTcpSocketCB = 0;
 }
+
+}  // namespace network

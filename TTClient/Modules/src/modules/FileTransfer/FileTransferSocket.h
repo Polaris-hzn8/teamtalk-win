@@ -35,7 +35,7 @@ class PingFileSevTimer : public module::ITimerEvent {
   FileTransferSocket* m_pFileTransSocket;
 };
 
-class FileTransferSocket : public ITcpSocketCallback {
+class FileTransferSocket : public network::ITcpSocketCallback {
  public:
   FileTransferSocket(std::string& taskId);
   ~FileTransferSocket(void);
@@ -72,7 +72,7 @@ class FileTransferSocket : public ITcpSocketCallback {
   std::string m_sTaskId;
 
  private:
-  imcore::TTPBHeader m_TTPBHeader;
+  network::TTPBHeader m_TTPBHeader;
   PingFileSevTimer* m_pPingTimer;
   UInt32 m_progressRefreshMark;
 

@@ -13,7 +13,7 @@
 #include <utility/utilCommonAPI.h>
 #include <yaolog/yaolog.h>
 
-namespace imcore {
+namespace network {
 struct Exception;
 }
 
@@ -22,7 +22,7 @@ NAMESPACE_BEGIN(module)
 struct IEvent {
  public:
   virtual void process() = 0;
-  virtual void onException(imcore::Exception* e) {
+  virtual void onException(network::Exception* e) {
     LOG__(ERR, _T("IEvent exception,%d"));
     assert(FALSE);
   }

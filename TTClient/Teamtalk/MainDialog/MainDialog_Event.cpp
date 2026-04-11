@@ -6,8 +6,8 @@
  brief:
 */
 
-#include "MainDialog.h"
 #include "stdafx.h"
+#include "MainDialog.h"
 #include <modules/IFileTransferModule.h>
 #include <modules/ILoginModule.h>
 #include <modules/IMessageModule.h>

@@ -177,7 +177,7 @@ void SessionLayout::_AsynSendReadAck(IN MessageEntity& msg) {
     LOG__(APP, _T("Not runtime or offline msgStatusType:%d,msgId:%d"), msg.msgStatusType, msg.msgId);
     return;
   }
-  imcore::IMLibCoreStartOperationWithLambda(
+  network::IMLibCoreStartOperationWithLambda(
     [=]() mutable {
       std::string OriginSessionId = msg.getOriginSessionId();
       IM::Message::IMMsgDataReadAck imMsgDataReadAck;
@@ -189,7 +189,7 @@ void SessionLayout::_AsynSendReadAck(IN MessageEntity& msg) {
         IM::BaseDefine::SID_MSG, IM::BaseDefine::CID_MSG_READ_ACK, &imMsgDataReadAck);
     },
     0,
-    imcore::OPERATION_NAME_MSG_READ_ACK);
+    network::OPERATION_NAME_MSG_READ_ACK);
 }
 
 void SessionLayout::UpdateRunTimeMsg() {

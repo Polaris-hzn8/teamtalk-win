@@ -13,7 +13,7 @@
 #include <memory>
 #include <network/ostype.h>
 
-NAMESPACE_BEGIN(imcore)
+namespace network {
 
 struct NETWORK_DLL IOperation {
  public:
@@ -21,6 +21,6 @@ struct NETWORK_DLL IOperation {
   virtual void release() = 0;
 };
 
-NAMESPACE_END(imcore)
+}  // namespace network
 
 #endif  // IOPERATION123_D8CF1B19_B95A_4A75_82FB_7572A1BB9A30_H__

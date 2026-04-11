@@ -10,7 +10,7 @@ class FileTransferModule_Impl : public module::IFileTransferModule {
  public:
   FileTransferModule_Impl();
   virtual ~FileTransferModule_Impl();
-  virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody);
+  virtual void onPacket(network::TTPBHeader& header, std::string& pbBody);
 
  public:
   // 发送文件

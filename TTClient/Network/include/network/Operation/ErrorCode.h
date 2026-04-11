@@ -11,7 +11,7 @@
 
 #include <global_define.h>
 
-NAMESPACE_BEGIN(imcore)
+namespace network {
 
 typedef UInt32 IMCoreErrorCode;
 
@@ -35,6 +35,6 @@ const IMCoreErrorCode IMCORE_WORK_PUSHOPERTION_ERROR = IMCORE_WORK_FLAG | 0x02; 
 const IMCoreErrorCode IMCORE_WORK_POSTMESSAGE_ERROR = IMCORE_WORK_FLAG | 0x03;        //
 const IMCoreErrorCode IMCORE_WORK_TIMER_INEXISTENCE_ERROR = IMCORE_WORK_FLAG | 0x04;  // Timer不存在
 
-NAMESPACE_END(imcore)
+}  // namespace network
 
 #endif  // ERRORCODE_4A19179B_20B8_4BF7_AD9A_2468C3BF9AB7_H__

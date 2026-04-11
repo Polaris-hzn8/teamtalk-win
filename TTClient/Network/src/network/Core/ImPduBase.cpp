@@ -8,7 +8,7 @@
 
 #include <network\core\ImPduBase.h>
 
-NAMESPACE_BEGIN(imcore)
+namespace network {
 
 TTPBHeader::TTPBHeader() : m_pHeaderBuff(0) {
   m_pHeaderBuff = new byte[HEADER_LENGTH];
@@ -61,4 +61,5 @@ void TTPBHeader::clear() {
   m_reserved = 0;
 }
 
-NAMESPACE_END(imcore)
+}  // namespace network
+

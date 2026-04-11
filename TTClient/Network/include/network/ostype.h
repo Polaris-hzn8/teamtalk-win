@@ -22,7 +22,6 @@
 #ifdef __APPLE__
 #include <sys/event.h>
 #include <sys/syscall.h>  // syscall(SYS_gettid)
-#include <sys/time.h>
 #else
 #include <sys/epoll.h>
 #endif
@@ -39,6 +38,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <sys/time.h>
 #define closesocket close
 #define ioctlsocket ioctl
 #endif

@@ -15,6 +15,8 @@
 #include <string>
 #include <network/ostype.h>
 
+namespace network {
+
 #define ERROR_CODE_PARSE_FAILED 1
 #define ERROR_CODE_WRONG_SERVICE_ID 2
 #define ERROR_CODE_WRONG_COMMAND_ID 3
@@ -114,7 +116,6 @@ class CByteStream {
   uint32_t m_pos;
 };
 
-char* idtourl(uint32_t id);
-uint32_t urltoid(const char* url);
+}  // namespace network
 
 #endif /* UTILPDU_H_ */

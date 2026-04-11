@@ -12,7 +12,7 @@
 #include <network/operation/OperationManager.h>
 #include <yaolog/yaolog.h>
 
-NAMESPACE_BEGIN(imcore)
+namespace network {
 
 namespace {
 class LambdaOperation : public Operation {
@@ -171,4 +171,4 @@ OperationManager* getOperationManager() {
   return &manager;
 }
 
-NAMESPACE_END(imcore)
+}  // namespace network

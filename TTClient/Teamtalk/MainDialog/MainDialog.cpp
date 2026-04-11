@@ -6,9 +6,9 @@
  brief:
 */
 
+#include "stdafx.h"
 #include "MainDialog.h"
 #include "Resource.h"
-#include "stdafx.h"
 #include <modules/ILoginModule.h>
 #include <modules/IMessageModule.h>
 #include <modules/IMiscModule.h>

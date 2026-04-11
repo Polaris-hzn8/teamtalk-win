@@ -16,10 +16,10 @@
 #include <global_define.h>
 #include <network\ostype.h>
 
+namespace network {
+
 class ClientConn;
 struct ITcpSocketCallback;
-
-NAMESPACE_BEGIN(imcore)
 
 const std::string OPERATION_NAME_MSG_READ_ACK = "operation_name_msg_read_ack";
 
@@ -64,6 +64,6 @@ NETWORK_DLL void IMLibCoreClearOperationByName(std::string oper_name);
 }
 #endif
 
-NAMESPACE_END(imcore)
+}  // namespace network
 
 #endif  // _IMCORE_H_

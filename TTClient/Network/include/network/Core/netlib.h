@@ -11,6 +11,12 @@
 
 #include <network/ostype.h>
 
+namespace network {
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define NETLIB_OPT_SET_CALLBACK 1
 #define NETLIB_OPT_SET_CALLBACK_DATA 2
 #define NETLIB_OPT_GET_REMOTE_IP 3
@@ -19,10 +25,6 @@
 #define NETLIB_OPT_GET_LOCAL_PORT 6
 
 #define NETLIB_MAX_SOCKET_BUF_SIZE (128 * 1024)
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 int netlib_init();
 
@@ -58,5 +60,7 @@ void netlib_set_running();
 #ifdef __cplusplus
 }
 #endif
+
+}  // namespace network
 
 #endif

@@ -18,7 +18,7 @@ class UserListModule_Impl final : public module::IUserListModule {
  public:
   UserListModule_Impl();
   virtual ~UserListModule_Impl() = default;
-  virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody);
+  virtual void onPacket(network::TTPBHeader& header, std::string& pbBody);
 
  public:
   virtual BOOL startup();

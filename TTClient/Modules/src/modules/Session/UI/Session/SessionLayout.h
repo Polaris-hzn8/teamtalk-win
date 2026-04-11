@@ -32,7 +32,7 @@ class SessionLayout : public CHorizontalLayoutUI, public INotifyUI, public CWebB
   virtual HRESULT STDMETHODCALLTYPE TranslateUrl(
     /* [in] */ DWORD dwTranslate,
     /* [in] */ OLECHAR __RPC_FAR* pchURLIn,
-    /* [out] */ OLECHAR __RPC_FAR* __RPC_FAR* ppchURLOut);
+    /* [out] */ OLECHAR __RPC_FAR * __RPC_FAR * ppchURLOut);
   virtual void NewWindow2(VARIANT_BOOL*& Cancel, BSTR bstrUrl);
 
   // 音频播放相关函数

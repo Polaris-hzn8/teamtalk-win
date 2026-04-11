@@ -6,8 +6,11 @@
  brief:
 */
 
+#include <network\Utils\BasicTools.h>
 #include <network\core\BaseSocket.h>
 #include <network\core\EventDispatch.h>
+
+namespace network {
 
 #define MIN_TIMER_DURATION 100  // miliseconds
 
@@ -42,11 +45,11 @@ CEventDispatch::~CEventDispatch() {
 void CEventDispatch::AddTimer(callback_t callback, void* user_data, uint64_t interval) {
   std::list<TimerItem*>::iterator it;
   for (it = m_timer_list.begin(); it != m_timer_list.end(); it++) {
-      TimerItem* pItem = *it;
-      if (pItem->callback == callback && pItem->user_data == user_data) {
-        pItem->interval = interval;
-        pItem->next_tick = get_tick_count() + interval;
-        return;
+    TimerItem* pItem = *it;
+    if (pItem->callback == callback && pItem->user_data == user_data) {
+      pItem->interval = interval;
+      pItem->next_tick = get_tick_count() + interval;
+      return;
     }
   }
 
@@ -342,3 +345,5 @@ void CEventDispatch::StopDispatch() {
 }
 
 #endif
+
+}  // namespace network

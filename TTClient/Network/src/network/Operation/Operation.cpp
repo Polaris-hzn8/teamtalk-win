@@ -11,7 +11,7 @@
 #include <network/operation/Operation.h>
 #include <yaolog/yaolog.h>
 
-NAMESPACE_BEGIN(imcore)
+namespace network {
 
 const std::string OPERATION_NAME_COMMON = "operation_name_common";
 
@@ -42,4 +42,4 @@ void Operation::release() {
   delete this;
 }
 
-NAMESPACE_END(imcore)
+}  // namespace network

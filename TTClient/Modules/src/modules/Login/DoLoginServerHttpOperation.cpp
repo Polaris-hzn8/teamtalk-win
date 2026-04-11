@@ -53,7 +53,7 @@ void DoLoginServerHttpOperation::processOpertion() {
       goto End;
     }
     int nCode = root.get("code", "").asInt();
-    if (0 == nCode) {// 登陆成功
+    if (0 == nCode) {  // 登陆成功
       LOG__(APP, _T("get msgSvr IP succeed!"));
       pCfg->msgSevPriorIP = root.get("priorIP", "").asString();
       pCfg->msgSevBackupIP = root.get("backupIP", "").asString();
