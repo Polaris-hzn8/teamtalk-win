@@ -94,7 +94,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;MODULE_DLL;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;SECURITY_WIN32=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdparty;$(SolutionDir)3rdparty\jsoncpp\include;$(SolutionDir)3rdparty\protobuf\include;$(SolutionDir)3rdparty\sqlite3\include;$(SolutionDir)3rdparty\httpclient;$(SolutionDir)sharesrc;$(SolutionDir)sharesrc\libsecurity;$(SolutionDir)sharesrc\protocol;$(SolutionDir)TTClient\Network\include;$(SolutionDir)TTClient\Utility\include;$(ProjectDir)src;$(ProjectDir)include;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdparty;$(SolutionDir)3rdparty\jsoncpp\include;$(SolutionDir)3rdparty\protobuf\include;$(SolutionDir)3rdparty\sqlite3\include;$(SolutionDir)3rdparty\httpclient;$(SolutionDir)sharesrc;$(SolutionDir)sharesrc\libsecurity;$(SolutionDir)sharesrc\protocol;$(SolutionDir)TTClient\imcore\include;$(SolutionDir)TTClient\Utility\include;$(ProjectDir)src;$(ProjectDir)include;$(ProjectDir)</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -104,7 +104,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>.\Modules.def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)\sharelib\$(TargetName).lib</ImportLibrary>
-      <AdditionalDependencies>utility.lib;network.lib;httpclient.lib;winmm.lib;DuiLib.lib;libprotobuf-lite.lib;MSVCRT.lib;cxImage.lib;jsoncpp.lib;mfcs140u.lib</AdditionalDependencies>
+      <AdditionalDependencies>utility.lib;imcore.lib;httpclient.lib;winmm.lib;DuiLib.lib;libprotobuf-lite.lib;MSVCRT.lib;cxImage.lib;jsoncpp.lib;mfcs140u.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\sharelib\</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>MSVCRT.lib;mfcs120u.lib</IgnoreSpecificDefaultLibraries>
     </Link>

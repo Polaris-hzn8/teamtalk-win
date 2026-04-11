@@ -10,10 +10,10 @@
 #define IEVENT_83A4713C_930E_426A_98F5_8BB8747994D3_H__
 
 #include <global_define.h>
-#include <utility/utilCommonAPI.h>
 #include <yaolog/yaolog.h>
+#include <utility/utilCommonAPI.h>
 
-namespace network {
+namespace imcore {
 struct Exception;
 }
 
@@ -22,7 +22,7 @@ NAMESPACE_BEGIN(module)
 struct IEvent {
  public:
   virtual void process() = 0;
-  virtual void onException(network::Exception* e) {
+  virtual void onException(imcore::Exception* e) {
     LOG__(ERR, _T("IEvent exception,%d"));
     assert(FALSE);
   }

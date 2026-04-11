@@ -2,8 +2,8 @@
 #ifndef GROUPLISTMODULE_IMPL_A4D4E682_0D42_4CF1_BF4B_B05E2F62C248_H__
 #define GROUPLISTMODULE_IMPL_A4D4E682_0D42_4CF1_BF4B_B05E2F62C248_H__
 
-#include <modules/IGroupListModule.h>
 #include <mutex>
+#include <modules/IGroupListModule.h>
 
 class CImPdu;
 class GroupListModule_Impl final : public module::IGroupListModule {
@@ -11,7 +11,7 @@ class GroupListModule_Impl final : public module::IGroupListModule {
   GroupListModule_Impl() = default;
   virtual ~GroupListModule_Impl() = default;
   virtual void release();
-  virtual void onPacket(network::TTPBHeader& header, std::string& pbBody);
+  virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody);
 
  public:
   virtual BOOL startup();

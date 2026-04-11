@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="sharesrc">
+      <UniqueIdentifier>{b71d1fe4-68b9-423e-a3be-d9655dd477c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharesrc\yaolog">
+      <UniqueIdentifier>{b897c027-7500-4b2f-b7e0-59ef71b3d04b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{53b29dbb-ae54-42c2-a48e-48a8e6f65884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{42c06adf-0c84-4315-88f6-b632817a373d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base">
+      <UniqueIdentifier>{c66ed8e4-13b9-41b7-9451-805b3ae5d66a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\extra">
+      <UniqueIdentifier>{e84a20a4-355f-43db-a659-f71b0831fdca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\imconn">
+      <UniqueIdentifier>{a27a015e-8606-4f60-9ba9-056c687fe609}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\impdu">
+      <UniqueIdentifier>{c7c91172-4849-43f0-8c22-bfd6dc3985fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operation">
+      <UniqueIdentifier>{5e1585c9-fc35-4f9b-a939-c8868817bdc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{787359a9-8c8d-44f5-b3ff-6dd039b37bcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base">
+      <UniqueIdentifier>{2ba942be-adec-432b-95c7-c44fe7927bb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operation">
+      <UniqueIdentifier>{7eb8d9a5-3af2-4ba1-9c3b-d848ed82f0c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{e9b7036d-b0e4-482b-8869-bda91f5a48c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\extra">
+      <UniqueIdentifier>{34ea3d92-b7fd-4ed4-813a-786425e0dc60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\imconn">
+      <UniqueIdentifier>{d6aa54c5-9535-41fe-b0c3-47f3b3ca9302}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\impdu">
+      <UniqueIdentifier>{c68c73f7-9332-4fdd-b48c-68040ed2991a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\sharesrc\yaolog\yaolog.cpp">
+      <Filter>sharesrc\yaolog</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\base\BaseSocket.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\base\EventDispatch.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\base\netlib.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\extra\ImCore.cpp">
+      <Filter>Source Files\extra</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\extra\TcpSocketsManager.cpp">
+      <Filter>Source Files\extra</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\imconn\im_conn.cpp">
+      <Filter>Source Files\imconn</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\impdu\im_pdu_base.cpp">
+      <Filter>Source Files\impdu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\impdu\simple_buffer.cpp">
+      <Filter>Source Files\impdu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\operation\Operation.cpp">
+      <Filter>Source Files\operation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\operation\OperationManager.cpp">
+      <Filter>Source Files\operation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\utils\basic_tools.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imcore\utils\ref_object.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\sharesrc\yaolog\yaolog.h">
+      <Filter>sharesrc\yaolog</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\base\BaseSocket.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\base\EventDispatch.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\base\netlib.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\extra\ImCore.h">
+      <Filter>Header Files\extra</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\extra\TcpSocketsManager.h">
+      <Filter>Header Files\extra</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\imconn\im_conn.h">
+      <Filter>Header Files\imconn</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\impdu\im_pdu_base.h">
+      <Filter>Header Files\impdu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\impdu\simple_buffer.h">
+      <Filter>Header Files\impdu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\operation\ErrorCode.h">
+      <Filter>Header Files\operation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\operation\Exception.h">
+      <Filter>Header Files\operation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\operation\IOperation.h">
+      <Filter>Header Files\operation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\operation\Operation.h">
+      <Filter>Header Files\operation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\operation\OperationManager.h">
+      <Filter>Header Files\operation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\utils\basic_tools.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\utils\ref_object.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\imcore\ostype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

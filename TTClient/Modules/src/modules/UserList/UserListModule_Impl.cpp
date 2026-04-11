@@ -7,18 +7,18 @@
 */
 
 #include "stdafx.h"
+#include <random>
 #include <cxImage/cxImage/ximage.h>
 #include <modules/IDatabaseModule.h>
 #include <modules/IMiscModule.h>
 #include <modules/ISessionModule.h>
 #include <modules/ISysConfigModule.h>
 #include <modules/ITcpClientModule.h>
-#include <modules/Session/Operation/DownloadAvatarHttpOperation.h>
 #include <modules/UserList/UserListModule_Impl.h>
-#include <network/ImCore.h>
-#include <network/core/ImPduBase.h>
+#include <modules/Session/Operation/DownloadAvatarHttpOperation.h>
+#include <imcore/extra/ImCore.h>
+#include <imcore/impdu/im_pdu_base.h>
 #include <protocol/IM.Buddy.pb.h>
-#include <random>
 #include <utility/utilStrCodingAPI.h>
 
 namespace module {
@@ -30,7 +30,7 @@ module::IUserListModule* getUserListModule() {
 
 UserListModule_Impl::UserListModule_Impl() {}
 
-void UserListModule_Impl::onPacket(network::TTPBHeader& header, std::string& pbBody) {
+void UserListModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBody) {
   switch (header.getCommandId()) {
     case IM::BaseDefine::BuddyListCmdID::CID_BUDDY_LIST_RECENT_CONTACT_SESSION_RESPONSE:
       _recentlistResponse(pbBody);
@@ -113,7 +113,7 @@ void UserListModule_Impl::_allUserlistResponse(IN std::string& pbBody) {
       imAllUserRsp.latest_update_time());  // 保存最后一次更新时间
   }
 
-  network::IMLibCoreStartOperationWithLambda([=]() {
+  imcore::IMLibCoreStartOperationWithLambda([=]() {
     // todo incremental updating processing —enhancement
     _tcpGetAllUsersOnlineStatus();
     _downloadAllUserAvatarImg();  // 更新用户的头像
@@ -371,7 +371,7 @@ UInt8 UserListModule_Impl::getMyLineStatus() {
 }
 
 void UserListModule_Impl::tcpGetUserOnlieStatus(IN const std::string& sId) {
-  network::IMLibCoreStartOperationWithLambda([=]() {
+  imcore::IMLibCoreStartOperationWithLambda([=]() {
     UInt32 userId = util::stringToInt32(sId);
     IM::Buddy::IMUsersStatReq imUsersStatReq;
     imUsersStatReq.set_user_id(module::getSysConfigModule()->userId());
@@ -383,7 +383,7 @@ void UserListModule_Impl::tcpGetUserOnlieStatus(IN const std::string& sId) {
 }
 
 void UserListModule_Impl::_tcpGetUserOnlieStatus(const module::UserInfoEntityVec& VecId) {
-  network::IMLibCoreStartOperationWithLambda([=]() {
+  imcore::IMLibCoreStartOperationWithLambda([=]() {
     IM::Buddy::IMUsersStatReq imUsersStatReq;
     for (auto sId : VecId) {
       UInt32 userId = util::stringToInt32(sId);
@@ -484,7 +484,7 @@ void UserListModule_Impl::_tcpGetUserInfoList(IN module::UserInfoEntityVec VecUn
   if (VecUnKnowUserInfo.empty())
     return;
 
-  network::IMLibCoreStartOperationWithLambda([=]() {
+  imcore::IMLibCoreStartOperationWithLambda([=]() {
     IM::Buddy::IMUsersInfoReq imUsersInfoReq;
     imUsersInfoReq.set_user_id(module::getSysConfigModule()->userId());
     for (auto sid : VecUnKnowUserInfo) {
@@ -676,7 +676,7 @@ BOOL UserListModule_Impl::startup() {
     }
   }
 
-  network::IMLibCoreStartOperationWithLambda([=]() {
+  imcore::IMLibCoreStartOperationWithLambda([=]() {
     _tcpGetAllUsersOnlineStatus();
     _downloadAllUserAvatarImg();  // 更新用户的头像
   });
@@ -792,7 +792,7 @@ void UserListModule_Impl::tcpChangeMySignInfo(IN const std::string sSignInfo) {
   {
     LOG__(APP, _T("sSignInfo empty"));
   }
-  network::IMLibCoreStartOperationWithLambda([=]() {
+  imcore::IMLibCoreStartOperationWithLambda([=]() {
     IM::Buddy::IMChangeSignInfoReq imChangeSignInfoReq;
     imChangeSignInfoReq.set_user_id(module::getSysConfigModule()->userId());
     imChangeSignInfoReq.set_sign_info(sSignInfo);

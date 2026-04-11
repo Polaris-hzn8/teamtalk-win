@@ -7,7 +7,7 @@
 #include <modules/IUserListModule.h>
 #include <modules/Session/UI/Search/SearchLayout.h>
 #include <modules/Session/UI/UIIMList.h>
-#include <network/ImCore.h>
+#include <imcore/extra/ImCore.h>
 #include <protocol/IM.Group.pb.h>
 
 DUI_BEGIN_MESSAGE_MAP(ChangeDiscussionGrpMemberDialog, WindowImplBase)

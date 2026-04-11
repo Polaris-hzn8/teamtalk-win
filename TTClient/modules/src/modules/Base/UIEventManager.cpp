@@ -6,13 +6,13 @@
  brief:
 */
 
-#include <algorithm>
 #include <memory>
+#include <algorithm>
 #include <modules/Base/IEvent.h>
 #include <modules/Base/UIEventManager.h>
-#include <network/operation/Exception.h>
 #include <utility/utilCommonAPI.h>
 #include <utility/utilStrCodingAPI.h>
+#include <imcore/operation/Exception.h>
 
 NAMESPACE_BEGIN(module)
 
@@ -93,13 +93,13 @@ LRESULT _stdcall UIEventManager::_WindowProc(HWND hWnd, UINT message, WPARAM wpa
   return ::DefWindowProc(hWnd, message, wparam, lparam);
 }
 
-network::IMCoreErrorCode UIEventManager::startup() {
-  IMCoreErrorCode errCode = IMCORE_OK;
+imcore::IMCoreErrorCode UIEventManager::startup() {
+  imcore::IMCoreErrorCode errCode = imcore::IMCORE_OK;
   if (NULL != m_hWnd) {
-    return IMCORE_OK;
+    return imcore::IMCORE_OK;
   } else {
     if (!_registerClass()) {
-      return IMCORE_INVALID_HWND_ERROR;
+      return imcore::IMCORE_INVALID_HWND_ERROR;
     }
 
     m_hWnd = CreateWindowW(uiEventWndClass,  // 类名
@@ -120,7 +120,7 @@ network::IMCoreErrorCode UIEventManager::startup() {
     }
   }
   if (FALSE == IsWindow(m_hWnd)) {
-    errCode = IMCORE_INVALID_HWND_ERROR;
+    errCode = imcore::IMCORE_INVALID_HWND_ERROR;
   }
   return errCode;
 }
@@ -145,7 +145,7 @@ void UIEventManager::_processEvent(IEvent* pEvent, BOOL bRelease) {
     if (bRelease) {
       pEvent->release();
     }
-  } catch (network::Exception* e) {
+  } catch (imcore::Exception* e) {
     LOG__(ERR, _T("event run exception"));
     pEvent->onException(e);
     if (bRelease) {
@@ -164,36 +164,36 @@ void UIEventManager::_processEvent(IEvent* pEvent, BOOL bRelease) {
   }
 }
 
-module::IMCoreErrorCode UIEventManager::asynFireUIEvent(IN const IEvent* const pEvent) {
+imcore::IMCoreErrorCode UIEventManager::asynFireUIEvent(IN const IEvent* const pEvent) {
   assert(m_hWnd);
   assert(pEvent);
   if (0 == m_hWnd || 0 == pEvent)
-    return IMCORE_ARGUMENT_ERROR;
+    return imcore::IMCORE_ARGUMENT_ERROR;
 
   if (FALSE == ::PostMessage(m_hWnd, UI_EVENT_MSG, reinterpret_cast<WPARAM>(this), reinterpret_cast<WPARAM>(pEvent)))
-    return IMCORE_WORK_POSTMESSAGE_ERROR;
+    return imcore::IMCORE_WORK_POSTMESSAGE_ERROR;
 
-  return IMCORE_OK;
+  return imcore::IMCORE_OK;
 }
 
-network::IMCoreErrorCode UIEventManager::asynFireUIEventWithLambda(std::function<void()> eventRun) {
+imcore::IMCoreErrorCode UIEventManager::asynFireUIEventWithLambda(std::function<void()> eventRun) {
   assert(m_hWnd);
   if (0 == m_hWnd)
-    return IMCORE_ARGUMENT_ERROR;
+    return imcore::IMCORE_ARGUMENT_ERROR;
 
   // 注：todo...这里再应用退出时,可能会引起内存泄露，因为释放是靠windows消息队列来的
   LambdaEvent<IEvent>* pLambdaEvent = new LambdaEvent<IEvent>(eventRun);
   return asynFireUIEvent(pLambdaEvent);
 }
 
-network::IMCoreErrorCode UIEventManager::scheduleTimerWithLambda(IN UInt32 delay,
+imcore::IMCoreErrorCode UIEventManager::scheduleTimerWithLambda(IN UInt32 delay,
                                                                 IN BOOL bRepeat,
                                                                 IN std::function<void()> timerRun,
                                                                 OUT ITimerEvent** ppTimer) {
   LambdaEvent<ITimerEvent>* pLambdaEvent = new LambdaEvent<ITimerEvent>(timerRun);
-  network::IMCoreErrorCode errCode = scheduleTimer(pLambdaEvent, delay, bRepeat);
+  imcore::IMCoreErrorCode errCode = scheduleTimer(pLambdaEvent, delay, bRepeat);
   *ppTimer = pLambdaEvent;
-  if (IMCORE_OK != errCode) {
+  if (imcore::IMCORE_OK != errCode) {
     delete pLambdaEvent;
     pLambdaEvent = nullptr;
     *ppTimer = 0;
@@ -201,10 +201,13 @@ network::IMCoreErrorCode UIEventManager::scheduleTimerWithLambda(IN UInt32 delay
   return errCode;
 }
 
-network::IMCoreErrorCode UIEventManager::scheduleTimer(IN ITimerEvent* pTimerEvent, IN UInt32 delay, IN BOOL bRepeat) {
+imcore::IMCoreErrorCode UIEventManager::scheduleTimer(
+    IN ITimerEvent* pTimerEvent,
+    IN UInt32 delay,
+    IN BOOL bRepeat) {
   assert(pTimerEvent);
   if (0 == pTimerEvent) {
-    return IMCORE_ARGUMENT_ERROR;
+    return imcore::IMCORE_ARGUMENT_ERROR;
   }
   if (0 == delay) {
     asynFireUIEvent(pTimerEvent);
@@ -219,13 +222,13 @@ network::IMCoreErrorCode UIEventManager::scheduleTimer(IN ITimerEvent* pTimerEve
     for (TTTimer& timer : m_lstTimers) {
       if (timer.pTimerEvent == pTimerEvent) {
         timer = ctx;
-        return IMCORE_OK;
+        return imcore::IMCORE_OK;
       }
     }
     m_lstTimers.push_back(ctx);
   }
 
-  return IMCORE_OK;
+  return imcore::IMCORE_OK;
 }
 
 void UIEventManager::_processTimer() {
@@ -251,7 +254,7 @@ void UIEventManager::_processTimer() {
   }
 }
 
-network::IMCoreErrorCode UIEventManager::killTimer(IN ITimerEvent* pTimerEvent) {
+imcore::IMCoreErrorCode UIEventManager::killTimer(IN ITimerEvent* pTimerEvent) {
   std::lock_guard<std::mutex> lock(m_lock);
   auto iter = std::remove_if(
     m_lstTimers.begin(), m_lstTimers.end(), [=](TTTimer& ttime) { return (pTimerEvent == ttime.pTimerEvent); });
@@ -259,10 +262,10 @@ network::IMCoreErrorCode UIEventManager::killTimer(IN ITimerEvent* pTimerEvent) 
     m_lstTimers.erase(iter, m_lstTimers.end());
     delete pTimerEvent;
     pTimerEvent = NULL;
-    return IMCORE_OK;
+    return imcore::IMCORE_OK;
   }
 
-  return IMCORE_WORK_TIMER_INEXISTENCE_ERROR;
+  return imcore::IMCORE_WORK_TIMER_INEXISTENCE_ERROR;
 }
 
 TTTimer::TTTimer() : nElapse(0), nDelay(0), bRepeat(TRUE), pTimerEvent(0) {}

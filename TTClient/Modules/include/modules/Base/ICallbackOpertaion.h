@@ -5,31 +5,31 @@
  Github: https://github.com/Polaris-hzn8
  brief:
     ICallbackOpertaion
-    1.module::ICallbackOperation 继承自 network::Operation		-> module依赖network的执行单元
-    2.IPduPacketParse::onPacket 需要 network::TTPBHeader		-> module依赖network的网络层协议
-    3.核心层(network) + 扩展层(module) 双向依赖接口设计
+    1.module::ICallbackOperation 继承自 imcore::Operation		-> module依赖imcore的执行单元
+    2.IPduPacketParse::onPacket 需要 imcore::TTPBHeader		-> module依赖imcore的网络层协议
+    3.核心层(imcore) + 扩展层(module) 双向依赖接口设计
 */
 
 #ifndef IMODULEINTERFACE_26428D8B_4585_4660_95B3_94E8735700E9_H__
 #define IMODULEINTERFACE_26428D8B_4585_4660_95B3_94E8735700E9_H__
 
+#include <string>
 #include <functional>
 #include <global_define.h>
 #include <modules/Base/ICallbackOperationEvent.h>
 #include <modules/Base/IEvent.h>
 #include <modules/Base/UIEventManager.h>
 #include <modules/module_dll.h>
-#include <network/operation/Operation.h>
-#include <string>
+#include <imcore/operation/Operation.h>
 
-namespace network {
+namespace imcore {
 class TTPBHeader;
 }
 
 NAMESPACE_BEGIN(module)
 
 // 异步操作接口
-class MODULE_CLASS ICallbackOpertaion : public network::Operation {
+class MODULE_CLASS ICallbackOpertaion : public imcore::Operation {
  public:
   ICallbackOpertaion(IOperationDelegate& callback) : m_callback(callback) {}
   virtual ~ICallbackOpertaion() {}
@@ -48,7 +48,7 @@ class MODULE_CLASS ICallbackOpertaion : public network::Operation {
 
 struct IPduPacketParse {
  public:
-  virtual void onPacket(network::TTPBHeader& header, std::string& pbBody) = 0;  // TCP网络包解析
+  virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody) = 0;  // TCP网络包解析
 };
 
 NAMESPACE_END(module)

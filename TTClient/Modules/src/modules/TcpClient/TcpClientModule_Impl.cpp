@@ -15,8 +15,9 @@
 #include <modules/IUserListModule.h>
 #include <modules/base/ICallbackOpertaion.h>
 #include <modules/base/UIEventManager.h>
-#include <network/ImCore.h>
-#include <network/core/im_conn.h>
+#include <imcore/extra/ImCore.h>
+#include <imcore/imconn/im_conn.h>
+#include <imcore/impdu/im_pdu_base.h>
 #include <protocol/IM.Login.pb.h>
 #include <protocol/IM.Other.pb.h>
 #include <utility/utilStrCodingAPI.h>
@@ -89,16 +90,16 @@ void TcpClientModule_Impl::onClose() {
 
   _stopHearbeat();
 
-  network::IMLibCoreClose(m_socketHandle);
-  network::IMLibCoreUnRegisterCallback(m_socketHandle);
+  imcore::IMLibCoreClose(m_socketHandle);
+  imcore::IMLibCoreUnRegisterCallback(m_socketHandle);
 }
 
 void TcpClientModule_Impl::onReceiveData(const char* data, int32_t size) {
   if (m_pServerPingTimer)
     m_pServerPingTimer->m_bHasReceivedPing = TRUE;
 
-  network::TTPBHeader header;
-  header.unSerialize((byte*)data, network::HEADER_LENGTH);
+  imcore::TTPBHeader header;
+  header.unSerialize((byte*)data, imcore::HEADER_LENGTH);
   if (IM::BaseDefine::CID_OTHER_HEARTBEAT == header.getCommandId() &&
       IM::BaseDefine::SID_OTHER == header.getModuleId()) {
     // 模块器端过来的心跳包，不跳到业务层派发
@@ -108,7 +109,7 @@ void TcpClientModule_Impl::onReceiveData(const char* data, int32_t size) {
   LOG__(NET, _T("receiveData message moduleId:0x%x, commandId:0x%x"), header.getModuleId(), header.getCommandId());
 
   if (g_seqNum == header.getSeqNumber()) {
-    m_pImLoginResp->ParseFromArray(data + network::HEADER_LENGTH, size - network::HEADER_LENGTH);
+    m_pImLoginResp->ParseFromArray(data + imcore::HEADER_LENGTH, size - imcore::HEADER_LENGTH);
     ::SetEvent(m_eventReceived);
     return;
   }
@@ -133,8 +134,8 @@ IM::Login::IMLoginRes* TcpClientModule_Impl::doLogin(CString& linkaddr,
                                                      UInt16 port,
                                                      CString& uName,
                                                      std::string& pass) {
-  m_socketHandle = network::IMLibCoreConnect(util::cStringToString(linkaddr), port);
-  network::IMLibCoreRegisterCallback(m_socketHandle, this);
+  m_socketHandle = imcore::IMLibCoreConnect(util::cStringToString(linkaddr), port);
+  imcore::IMLibCoreRegisterCallback(m_socketHandle, this);
   if (util::waitSingleObject(m_eventConnected, 5000)) {
     IM::Login::IMLoginReq imLoginReq;
     std::string& name = util::cStringToString(uName);
@@ -159,7 +160,7 @@ void TcpClientModule_Impl::shutdown() {
   _stopHearbeat();
   _stopServerPingTimer();
 
-  network::IMLibCoreShutdown(m_socketHandle);
+  imcore::IMLibCoreShutdown(m_socketHandle);
 }
 
 void TcpClientModule_Impl::sendPacket(UInt16 moduleId, google::protobuf::MessageLite* pbBody) {
@@ -190,21 +191,21 @@ void TcpClientModule_Impl::sendPacket(UInt16 moduleId,
 }
 
 void TcpClientModule_Impl::_sendPacket(google::protobuf::MessageLite* pbBody) {
-  UInt32 length = network::HEADER_LENGTH + pbBody->ByteSize();
+  UInt32 length = imcore::HEADER_LENGTH + pbBody->ByteSize();
   m_TTPBHeader.setLength(length);
   std::unique_ptr<byte> data(new byte[length]);
   memset(data.get(), 0, length);
-  memcpy(data.get(), m_TTPBHeader.getSerializeBuffer(), network::HEADER_LENGTH);
-  if (!pbBody->SerializeToArray(data.get() + network::HEADER_LENGTH, pbBody->ByteSize())) {
+  memcpy(data.get(), m_TTPBHeader.getSerializeBuffer(), imcore::HEADER_LENGTH);
+  if (!pbBody->SerializeToArray(data.get() + imcore::HEADER_LENGTH, pbBody->ByteSize())) {
     LOG__(ERR, _T("pbBody SerializeToArray failed"));
     return;
   }
-  network::IMLibCoreWrite(m_socketHandle, data.get(), length);
+  imcore::IMLibCoreWrite(m_socketHandle, data.get(), length);
 }
 
 void TcpClientModule_Impl::startHeartbeat() {
   auto sendHeartbeat = [this]() {
-    network::IMLibCoreStartOperationWithLambda([this]() {
+    imcore::IMLibCoreStartOperationWithLambda([this]() {
       IM::Other::IMHeartBeat imHearBeat;
       sendPacket(IM::BaseDefine::SID_OTHER, IM::BaseDefine::CID_OTHER_HEARTBEAT, &imHearBeat);
     });
@@ -220,9 +221,9 @@ void TcpClientModule_Impl::_stopHearbeat() {
 
 void TcpClientModule_Impl::_handlePacketOperation(const char* data, UInt32 size) {
   std::string copyInBuffer(data, size);
-  network::IMLibCoreStartOperationWithLambda([=]() {
-    network::TTPBHeader header;
-    header.unSerialize((byte*)copyInBuffer.data(), network::HEADER_LENGTH);
+  imcore::IMLibCoreStartOperationWithLambda([=]() {
+    imcore::TTPBHeader header;
+    header.unSerialize((byte*)copyInBuffer.data(), imcore::HEADER_LENGTH);
 
     module::IPduPacketParse* pModule = (module::IPduPacketParse*)__getModule(header.getModuleId());
     if (!pModule) {
@@ -230,7 +231,7 @@ void TcpClientModule_Impl::_handlePacketOperation(const char* data, UInt32 size)
       LOG__(ERR, _T("module is null, moduleId:%d,commandId:%d"), header.getModuleId(), header.getCommandId());
       return;
     }
-    std::string pbBody(copyInBuffer.data() + network::HEADER_LENGTH, size - network::HEADER_LENGTH);
+    std::string pbBody(copyInBuffer.data() + imcore::HEADER_LENGTH, size - imcore::HEADER_LENGTH);
     pModule->onPacket(header, pbBody);
   });
 }

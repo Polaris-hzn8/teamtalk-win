@@ -5,7 +5,7 @@
 #include <modules/ITcpClientModule.h>
 #include <modules/IUserListModule.h>
 #include <modules/Session/UI/UIGroupsTreelist.h>
-#include <network/ImCore.h>
+#include <imcore/extra/ImCore.h>
 #include <protocol/IM.Group.pb.h>
 #include <utility/Multilingual.h>
 
@@ -159,7 +159,7 @@ void CreateDiscussionGrpDialog::OnClick(TNotifyUI& msg) {
 
     // 创建讨论组
     std::string strGroupName = util::cStringToString(CString(groupName));
-    network::IMLibCoreStartOperationWithLambda([=]() {
+    imcore::IMLibCoreStartOperationWithLambda([=]() {
       IM::Group::IMGroupCreateReq imGroupCreateReq;
       imGroupCreateReq.set_user_id(module::getSysConfigModule()->userId());
       imGroupCreateReq.set_group_type(IM::BaseDefine::GroupType::GROUP_TYPE_TMP);

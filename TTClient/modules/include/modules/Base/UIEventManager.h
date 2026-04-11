@@ -9,18 +9,16 @@
 #ifndef UIEVENTMANAGER_7F7C0283_2B1D_4BB8_8052_ADBB35F055F3_H__
 #define UIEVENTMANAGER_7F7C0283_2B1D_4BB8_8052_ADBB35F055F3_H__
 
+#include <list>
+#include <mutex>
 #include <functional>
 #include <global_define.h>
-#include <list>
 #include <modules/Base/IEvent.h>
 #include <modules/Base/ITimerEvent.h>
 #include <modules/module_dll.h>
-#include <mutex>
-#include <network/operation/ErrorCode.h>
+#include <imcore/operation/ErrorCode.h>
 
 NAMESPACE_BEGIN(module)
-
-using namespace network;
 
 struct IEvent;
 struct ITimerEvent;
@@ -39,16 +37,16 @@ class MODULE_CLASS UIEventManager final {
   ~UIEventManager();
 
  public:
-  IMCoreErrorCode startup();
+  imcore::IMCoreErrorCode startup();
   void shutdown();
-  IMCoreErrorCode asynFireUIEvent(IN const IEvent* const pEvent);
-  IMCoreErrorCode asynFireUIEventWithLambda(std::function<void()> eventRun);
-  IMCoreErrorCode scheduleTimer(IN ITimerEvent* pTimerEvent, IN UInt32 delay, IN BOOL bRepeat);
-  IMCoreErrorCode scheduleTimerWithLambda(IN UInt32 delay,
+  imcore::IMCoreErrorCode asynFireUIEvent(IN const IEvent* const pEvent);
+  imcore::IMCoreErrorCode asynFireUIEventWithLambda(std::function<void()> eventRun);
+  imcore::IMCoreErrorCode scheduleTimer(IN ITimerEvent* pTimerEvent, IN UInt32 delay, IN BOOL bRepeat);
+  imcore::IMCoreErrorCode scheduleTimerWithLambda(IN UInt32 delay,
                                           IN BOOL bRepeat,
                                           IN std::function<void()> timerRun,
                                           OUT ITimerEvent** ppTimer);
-  IMCoreErrorCode killTimer(IN ITimerEvent* pTimerEvent);
+  imcore::IMCoreErrorCode killTimer(IN ITimerEvent* pTimerEvent);
 
  private:
   BOOL _registerClass();

@@ -7,8 +7,8 @@
 #include <modules/ISysConfigModule.h>
 #include <modules/ITcpClientModule.h>
 #include <modules/Message/SendMsgManage.h>
-#include <network/ImCore.h>
-#include <network/core/ImPduBase.h>
+#include <imcore/extra/ImCore.h>
+#include <imcore/impdu/im_pdu_base.h>
 #include <protocol/IM.Message.pb.h>
 #include <utility/utilStrCodingAPI.h>
 
@@ -75,7 +75,7 @@ SendMsgManage* SendMsgManage::getInstance() {
 
 UInt32 SendMsgManage::_getSeqNo(void) {
   static UInt16 seqNo = static_cast<UInt16>(rand() % 1000);
-  if (seqNo > (network::TTPBHEADER_RESERVED_MASK - 1)) {
+  if (seqNo > (imcore::TTPBHEADER_RESERVED_MASK - 1)) {
     seqNo = static_cast<UInt16>(rand() % 1000);
   }
   return ++seqNo;
@@ -113,7 +113,7 @@ void SendMsgManage::clearSendMessageList() {
 }
 
 void SendMsgManage::sendMessage(IN SendingMsg& sendingMsg) {
-  network::IMLibCoreStartOperationWithLambda([=]() mutable {
+  imcore::IMLibCoreStartOperationWithLambda([=]() mutable {
     IM::Message::IMMsgData imMsgData;
     imMsgData.set_from_user_id(module::getSysConfigModule()->userId());
     std::string sToId = sendingMsg.msg.getOriginSessionId();

@@ -15,7 +15,7 @@
 #include <modules/Session/UI/UIEAUserTreelist.h>
 #include <modules/Session/UI/UIGroupsTreelist.h>
 #include <modules/Session/UI/UIRecentSessionList.h>
-#include <network/ImCore.h>
+#include <imcore/extra/ImCore.h>
 #include <protocol/IM.Buddy.pb.h>
 #include <utility/Multilingual.h>
 
@@ -66,7 +66,7 @@ void MainListLayout::DoInit() {
   m_Tab->SelectItem(2);
 
   // 所有业务模块的本地化数据加载
-  network::IMLibCoreStartOperationWithLambda([]() {
+  imcore::IMLibCoreStartOperationWithLambda([]() {
     if (!module::getUserListModule()->startup()) {
       LOG__(ERR, _T("userlist module local db datas start failed!"));
     }

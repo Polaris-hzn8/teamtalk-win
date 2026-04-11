@@ -21,8 +21,8 @@
 #include <modules/Session/UI/UIRecentSessionList.h>
 #include <modules/Session/UI/UserDetailInfo/UserDetailInfoDialog.h>
 
-#include <network/ImCore.h>
-#include <network/core/ImPduBase.h>
+#include <imcore/extra/ImCore.h>
+#include <imcore/impdu/im_pdu_base.h>
 #include <protocol/IM.File.pb.h>
 #include <protocol/IM.Message.pb.h>
 #include <utility/Multilingual.h>
@@ -43,7 +43,7 @@ void MainListLayout::MKOForUserlistModuleCallback(const std::string& keyId, MKO_
     _AddRecentSessionListToUI();
 
     // 获取会话离线消息
-    network::IMLibCoreStartOperationWithLambda([]() {
+    imcore::IMLibCoreStartOperationWithLambda([]() {
       LOG__(APP, _T("IMUnreadMsgCntReq"));
       IM::Message::IMUnreadMsgCntReq imUnreadMsgCntReq;
       imUnreadMsgCntReq.set_user_id(module::getSysConfigModule()->userId());
@@ -53,7 +53,7 @@ void MainListLayout::MKOForUserlistModuleCallback(const std::string& keyId, MKO_
     });
 
     // 获取离线文件 todo
-    network::IMLibCoreStartOperationWithLambda([]() {
+    imcore::IMLibCoreStartOperationWithLambda([]() {
       LOG__(APP, _T("IMFileHasOfflineReq"));
       IM::File::IMFileHasOfflineReq imFileHasOfflineReq;
       imFileHasOfflineReq.set_user_id(module::getSysConfigModule()->userId());
@@ -185,7 +185,7 @@ void MainListLayout::MKOForSessionModuleCallback(const std::string& keyId, MKO_T
       ReceiveMsgManage::getInstance()->popMessagesBySId(sId, msgList, MESSAGE_TYPE_HISTORY);
       std::vector<MessageEntity> msgVec;
       std::copy(msgList.begin(), msgList.end(), std::back_inserter(msgVec));
-      BOOL scrollBottom = (network::RESERVED_TYPE_HISTORY_MESSAGE == reserved) ? FALSE : TRUE;
+      BOOL scrollBottom = (imcore::RESERVED_TYPE_HISTORY_MESSAGE == reserved) ? FALSE : TRUE;
       pSessionDialog->DoDisplayHistoryMsgToIE(msgVec, scrollBottom);
 
       if (!msgList.empty()) {

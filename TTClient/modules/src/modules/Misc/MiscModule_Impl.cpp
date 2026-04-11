@@ -12,7 +12,7 @@
 #include <mmsystem.h>
 #include <modules/ISysConfigModule.h>
 #include <modules/Misc/MiscModule_Impl.h>
-#include <network/ImCore.h>
+#include <imcore/extra/ImCore.h>
 #include <utility/Multilingual.h>
 #include <utility/utilCommonAPI.h>
 #include <utility/utilStrCodingAPI.h>
@@ -166,7 +166,7 @@ void MiscModule_Impl::asynOpenWebBrowser(CString& url, Int32 nFlag /*= SW_SHOWMA
   if (url.IsEmpty())
     return;
 
-  network::IMLibCoreStartOperationWithLambda([=]() {
+  imcore::IMLibCoreStartOperationWithLambda([=]() {
     HINSTANCE hRet = 0;
     hRet = ::ShellExecute(NULL, _T("open"), url, NULL, NULL, nFlag);
     if ((DWORD)hRet <= 32) {

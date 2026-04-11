@@ -19,7 +19,7 @@
 #include <modules/Login/LoginDialog.h>
 #include <modules/Login/LoginOperation.h>
 #include <modules/Login/DoLoginServerHttpOperation.h>
-#include <network/ImCore.h>
+#include <imcore/extra/ImCore.h>
 #include <utility/Multilingual.h>
 #include <utility/utilCommonAPI.h>
 #include <utility/utilStrCodingAPI.h>
@@ -180,7 +180,7 @@ void LoginDialog::OnHttpCallbackOperation(std::shared_ptr<void> param) {
     loginparam.password = pCfg->password;
     loginparam.csUserName.Trim();
     LoginOperation* pOperation = new LoginOperation(BIND_CALLBACK_1(LoginDialog::OnOperationCallback), loginparam);
-    network::IMLibCoreStartOperation(pOperation);
+    imcore::IMLibCoreStartOperation(pOperation);
   } else {
     m_ptxtTip->SetText(pParam->resMsg);
     module::TTConfig* pCfg = module::getSysConfigModule()->getSystemConfig();

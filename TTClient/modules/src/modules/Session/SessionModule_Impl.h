@@ -10,7 +10,7 @@ class SessionModule_Impl final : public module::ISessionModule {
  public:
   SessionModule_Impl();
   virtual ~SessionModule_Impl() = default;
-  virtual void onPacket(network::TTPBHeader& header, std::string& pbBody);
+  virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody);
 
  public:
   virtual DuiLib::CControlUI* createMainDialogControl(IN LPCTSTR pstrClass, IN DuiLib::CPaintManagerUI& paintManager);

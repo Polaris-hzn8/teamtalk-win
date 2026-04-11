@@ -13,8 +13,8 @@
 #include <modules/Login/LoginDialog.h>
 #include <modules/Login/LoginModule_Impl.h>
 #include <modules/Login/ReloginManager.h>
-#include <network/ImCore.h>
-#include <network/core/ImPduBase.h>
+#include <imcore/extra/ImCore.h>
+#include <imcore/impdu/im_pdu_base.h>
 #include <protocol/IM.Buddy.pb.h>
 #include <protocol/IM.Group.pb.h>
 #include <protocol/IM.Login.pb.h>
@@ -50,7 +50,7 @@ BOOL LoginModule_Impl::showLoginDialog() {
 }
 
 void LoginModule_Impl::notifyLoginDone() {
-  network::IMLibCoreStartOperationWithLambda([] {
+  imcore::IMLibCoreStartOperationWithLambda([] {
     // 获取部门信息
     UInt32 lastTime = module::getSysConfigModule()->getDepartmentInfoLatestUpdateTime();
     IM::Buddy::IMDepartmentReq imDepartmentReq;
@@ -81,7 +81,7 @@ void LoginModule_Impl::notifyLoginDone() {
   });
 }
 
-void LoginModule_Impl::onPacket(network::TTPBHeader& header, std::string& pbBody) {
+void LoginModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBody) {
   switch (header.getCommandId()) {
     case IM::BaseDefine::LoginCmdID::CID_LOGIN_KICK_USER:
       _kickUserResponse(pbBody);

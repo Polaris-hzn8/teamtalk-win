@@ -16,7 +16,7 @@
 #include <modules/MessageEntity.h>
 #include <modules/Session/SessionManager.h>
 #include <modules/Session/UI/Session/SessionLayout.h>
-#include <network/ImCore.h>
+#include <imcore/extra/ImCore.h>
 #include <protocol/IM.Message.pb.h>
 #include <utility/Multilingual.h>
 #include <utility/utilStrCodingAPI.h>
@@ -177,7 +177,7 @@ void SessionLayout::_AsynSendReadAck(IN MessageEntity& msg) {
     LOG__(APP, _T("Not runtime or offline msgStatusType:%d,msgId:%d"), msg.msgStatusType, msg.msgId);
     return;
   }
-  network::IMLibCoreStartOperationWithLambda(
+  imcore::IMLibCoreStartOperationWithLambda(
     [=]() mutable {
       std::string OriginSessionId = msg.getOriginSessionId();
       IM::Message::IMMsgDataReadAck imMsgDataReadAck;
@@ -189,7 +189,7 @@ void SessionLayout::_AsynSendReadAck(IN MessageEntity& msg) {
         IM::BaseDefine::SID_MSG, IM::BaseDefine::CID_MSG_READ_ACK, &imMsgDataReadAck);
     },
     0,
-    network::OPERATION_NAME_MSG_READ_ACK);
+    imcore::OPERATION_NAME_MSG_READ_ACK);
 }
 
 void SessionLayout::UpdateRunTimeMsg() {

@@ -16,8 +16,8 @@
 #include <modules/ISysConfigModule.h>
 #include <modules/ITcpClientModule.h>
 #include <modules/IUserListModule.h>
-#include <network/ImCore.h>
-#include <network/core/ImPduBase.h>
+#include <imcore/extra/ImCore.h>
+#include <imcore/impdu/im_pdu_base.h>
 #include <protocol/IM.BaseDefine.pb.h>
 #include <protocol/IM.SwitchService.pb.h>
 #include <utility/Multilingual.h>
@@ -30,7 +30,7 @@ module::IP2PCmdModule* getP2PCmdModule() {
 }
 }  // namespace module
 
-void P2PCmdModule_Impl::onPacket(network::TTPBHeader& header, std::string& pbBody) {
+void P2PCmdModule_Impl::onPacket(imcore::TTPBHeader& header, std::string& pbBody) {
   switch (header.getCommandId()) {
     case IM::BaseDefine::SwitchServiceCmdID::CID_SWITCH_P2P_CMD:
       _p2pCmdNotifyResponse(pbBody);
@@ -107,7 +107,7 @@ BOOL P2PCmdModule_Impl::tcpSendShakeWindowCMD(IN std::string sToID) {
   std::string cmdMsgData;
   _makeJsonData(module::KEY_P2PCMD_SHAKEWINDOW, module::KEY_P2PCMD_SHAKEWINDOW_NOTIFY, "shakewindow", cmdMsgData);
 
-  network::IMLibCoreStartOperationWithLambda([=]() {
+  imcore::IMLibCoreStartOperationWithLambda([=]() {
     IM::SwitchService::IMP2PCmdMsg imP2PCmdMsg;
     imP2PCmdMsg.set_from_user_id(module::getSysConfigModule()->userId());
     UInt32 nToId = util::stringToInt32(sToID);
@@ -130,7 +130,7 @@ void P2PCmdModule_Impl::tcpSendWritingCMD(IN std::string sToID, IN const BOOL bW
     _makeJsonData(module::KEY_P2PCMD_WRITING, module::KEY_P2PCMD_STOP_WRITING_NOTIFY, "stop writing", cmdMsgData);
   }
 
-  network::IMLibCoreStartOperationWithLambda([=]() {
+  imcore::IMLibCoreStartOperationWithLambda([=]() {
     // LOG__(DEBG, _T("IMP2PCmdMsg,bWriting = %d"),bWriting);
     IM::SwitchService::IMP2PCmdMsg imP2PCmdMsg;
     imP2PCmdMsg.set_from_user_id(module::getSysConfigModule()->userId());

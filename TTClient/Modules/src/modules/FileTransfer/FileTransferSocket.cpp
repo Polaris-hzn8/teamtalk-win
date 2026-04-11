@@ -12,17 +12,17 @@
 #include <modules/IMiscModule.h>
 #include <modules/ISysConfigModule.h>
 
-#include <network/ImCore.h>
-#include <network/core/ImPduBase.h>
-#include <network/core/im_conn.h>
+#include <imcore/extra/ImCore.h>
+#include <imcore/imconn/im_conn.h>
+#include <imcore/impdu/im_pdu_base.h>
 
 FileTransferSocket::FileTransferSocket(std::string& taskId) : m_pPingTimer(nullptr), m_sTaskId(taskId) {}
 
 FileTransferSocket::~FileTransferSocket(void) {}
 
 BOOL FileTransferSocket::connect(const CString& linkaddr, UInt16 port) {
-  m_socketHandle = network::IMLibCoreConnect(util::cStringToString(linkaddr), port);
-  network::IMLibCoreRegisterCallback(m_socketHandle, this);
+  m_socketHandle = imcore::IMLibCoreConnect(util::cStringToString(linkaddr), port);
+  imcore::IMLibCoreRegisterCallback(m_socketHandle, this);
 
   return TRUE;
 }
@@ -30,7 +30,7 @@ BOOL FileTransferSocket::connect(const CString& linkaddr, UInt16 port) {
 BOOL FileTransferSocket::shutdown() {
   stopHeartbeat();
   //_stopServerPingTimer();
-  network::IMLibCoreShutdown(m_socketHandle);
+  imcore::IMLibCoreShutdown(m_socketHandle);
   return TRUE;
 }
 
@@ -39,17 +39,17 @@ void FileTransferSocket::sendPacket(IN UInt16 moduleId, IN UInt16 cmdId, IN goog
   m_TTPBHeader.setModuleId(moduleId);
   m_TTPBHeader.setCommandId(cmdId);
 
-  UInt32 length = network::HEADER_LENGTH + pbBody->ByteSize();  // 计算总长度
+  UInt32 length = imcore::HEADER_LENGTH + pbBody->ByteSize();  // 计算总长度
   m_TTPBHeader.setLength(length);
 
   std::unique_ptr<byte> data(new byte[length]);
   ZeroMemory(data.get(), length);
-  memcpy(data.get(), m_TTPBHeader.getSerializeBuffer(), network::HEADER_LENGTH);  // 复制头
-  if (!pbBody->SerializeToArray(data.get() + network::HEADER_LENGTH, pbBody->ByteSize())) {
+  memcpy(data.get(), m_TTPBHeader.getSerializeBuffer(), imcore::HEADER_LENGTH);  // 复制头
+  if (!pbBody->SerializeToArray(data.get() + imcore::HEADER_LENGTH, pbBody->ByteSize())) {
     LOG__(ERR, _T("pbBody SerializeToArray failed"));
     return;
   }
-  network::IMLibCoreWrite(m_socketHandle, data.get(), length);
+  imcore::IMLibCoreWrite(m_socketHandle, data.get(), length);
 }
 
 void FileTransferSocket::startHeartbeat() {
@@ -66,15 +66,15 @@ void FileTransferSocket::stopHeartbeat() {
 
 void FileTransferSocket::onReceiveData(const char* data, int32_t size) {
   std::string pbBody;
-  network::TTPBHeader pbHeader;
+  imcore::TTPBHeader pbHeader;
   try {
-    pbHeader.unSerialize((byte*)data, network::HEADER_LENGTH);
-    pbBody.assign(data + network::HEADER_LENGTH, size - network::HEADER_LENGTH);
+    pbHeader.unSerialize((byte*)data, imcore::HEADER_LENGTH);
+    pbBody.assign(data + imcore::HEADER_LENGTH, size - imcore::HEADER_LENGTH);
 
     if (IM::BaseDefine::OtherCmdID::CID_OTHER_HEARTBEAT == pbHeader.getCommandId() &&
         IM::BaseDefine::ServiceID::SID_OTHER == pbHeader.getModuleId())
       return;
-  } catch (network::CPduException e) {
+  } catch (imcore::CPduException e) {
     LOG__(ERR,
           _T("onPacket CPduException serviceId:%d,commandId:%d,errCode:%d"),
           e.GetModuleId(),
@@ -374,7 +374,7 @@ void PingFileSevTimer::release() {
 }
 
 void PingFileSevTimer::process() {
-  network::IMLibCoreStartOperationWithLambda([=]() {
+  imcore::IMLibCoreStartOperationWithLambda([=]() {
     IM::Other::IMHeartBeat imHearBeat;
     m_pFileTransSocket->sendPacket(
       IM::BaseDefine::ServiceID::SID_OTHER, IM::BaseDefine::OtherCmdID::CID_OTHER_HEARTBEAT, &imHearBeat);

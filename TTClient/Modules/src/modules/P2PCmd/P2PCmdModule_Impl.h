@@ -15,7 +15,7 @@ class P2PCmdModule_Impl : public module::IP2PCmdModule {
  public:
   P2PCmdModule_Impl() = default;
   virtual ~P2PCmdModule_Impl() = default;
-  virtual void onPacket(network::TTPBHeader& header, std::string& pbBody);
+  virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody);
 
  public:
   virtual BOOL tcpSendShakeWindowCMD(IN std::string sToID);

@@ -17,7 +17,7 @@
 #include <modules/Base/ModuleObserver.h>
 #include <modules/Login/LoginOperation.h>
 #include <modules/Login/ReloginManager.h>
-#include <network/ImCore.h>
+#include <imcore/extra/ImCore.h>
 #include <protocol/IM.Buddy.pb.h>
 #include <utility/Multilingual.h>
 
@@ -45,7 +45,7 @@ void ReloginManager::doRelogin() {
     }
 
     // 清理掉队列里面 未发送的 消息已读确认 Operation《不处理可能会引发丢消息》
-    network::IMLibCoreClearOperationByName(network::OPERATION_NAME_MSG_READ_ACK);
+    imcore::IMLibCoreClearOperationByName(imcore::OPERATION_NAME_MSG_READ_ACK);
 
     LoginParam param;
     module::TTConfig* pCfg = module::getSysConfigModule()->getSystemConfig();
@@ -55,7 +55,7 @@ void ReloginManager::doRelogin() {
     param.csUserName.Trim();
 
     LoginOperation* pOperation = new LoginOperation(BIND_CALLBACK_1(ReloginManager::OnOperationCallback), param);
-    network::IMLibCoreStartOperation(pOperation);
+    imcore::IMLibCoreStartOperation(pOperation);
     m_bDoReloginNow = TRUE;
   } catch (...) {
     module::getTcpClientModule()->shutdown();

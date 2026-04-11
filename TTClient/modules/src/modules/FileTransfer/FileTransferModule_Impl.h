@@ -2,15 +2,15 @@
 #ifndef FILETRANSFER_IMPL_AB8D6DD0_25EF_4809_A857_9450EEA7CBFE_H__
 #define FILETRANSFER_IMPL_AB8D6DD0_25EF_4809_A857_9450EEA7CBFE_H__
 
-#include <modules/FileTransfer/TransferManager.h>
 #include <modules/IFileTransferModule.h>
+#include <modules/FileTransfer/TransferManager.h>
 
 class FileTransferDialog;
 class FileTransferModule_Impl : public module::IFileTransferModule {
  public:
   FileTransferModule_Impl();
   virtual ~FileTransferModule_Impl();
-  virtual void onPacket(network::TTPBHeader& header, std::string& pbBody);
+  virtual void onPacket(imcore::TTPBHeader& header, std::string& pbBody);
 
  public:
   // 发送文件
